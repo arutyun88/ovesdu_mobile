@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ovesdu_mobile/widgets/logo_widget.dart';
+import 'package:ovesdu_mobile/config/app_theme.dart';
+import 'package:ovesdu_mobile/ui/pages/auth_page.dart';
 
 void main() => runApp(const OvesDuApp());
 
@@ -10,14 +11,10 @@ class OvesDuApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const fontSize = 96.0;
-    return const MaterialApp(
+    return MaterialApp(
       title: 'OvesDu Application',
-      home: Scaffold(
-        body: Center(
-          child: LogoWidget(fontSize: fontSize),
-        ),
-      ),
+      theme: AppTheme.light,
+      home: const AuthPage(),
     );
   }
 }
