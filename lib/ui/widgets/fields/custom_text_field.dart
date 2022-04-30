@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
     required this.onTap,
     required this.onChanged,
     required this.controller,
+    required this.borderColor,
   }) : super(key: key);
 
   final String hintText;
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
   final Function() onTap;
   final Function(String) onChanged;
   final TextEditingController controller;
+  final Color borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
             border: Border.all(
               width: loginFocus.hasFocus ? 1.0 : .5,
-              color: AppColors.orange,
+              color: borderColor,
             ),
           ),
           padding: EdgeInsets.all(loginFocus.hasFocus ? 12.0 : 12.5),

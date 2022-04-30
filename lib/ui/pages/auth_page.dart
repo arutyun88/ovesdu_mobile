@@ -18,13 +18,15 @@ class _AuthPageState extends State<AuthPage> {
   late FocusNode _loginFocus;
   late TextEditingController _controller;
   late bool isComplete;
+  late bool enabled;
+  late String errorText;
 
   @override
   void initState() {
     super.initState();
     _loginFocus = FocusNode();
     _controller = TextEditingController();
-    isComplete = _controller.text.isNotEmpty;
+    _validate();
   }
 
   @override
@@ -32,6 +34,26 @@ class _AuthPageState extends State<AuthPage> {
     _loginFocus.dispose();
     _controller.dispose();
     super.dispose();
+  }
+
+  _validate() {
+    var value = _controller.text.trim();
+    errorText = '';
+    if (value.isEmpty) {
+      errorText = '';
+      isComplete = true;
+      enabled = false;
+    } else {
+      if (value.length < 4) {
+        errorText = 'username не может быть менее 4 знаков';
+        isComplete = false;
+        enabled = false;
+      } else {
+        errorText = '';
+        isComplete = true;
+        enabled = true;
+      }
+    }
   }
 
   @override
@@ -71,11 +93,11 @@ class _AuthPageState extends State<AuthPage> {
                                 _loginFocus.hasFocus;
                               });
                             },
+                            borderColor:
+                                isComplete ? AppColors.orange : AppColors.red,
                             onChanged: (value) {
                               setState(() {
-                                _controller.text.trim().isNotEmpty
-                                    ? isComplete = true
-                                    : isComplete = false;
+                                _validate();
                               });
                             },
                           ),
@@ -84,6 +106,18 @@ class _AuthPageState extends State<AuthPage> {
                             child: Container(
                               constraints: const BoxConstraints(
                                 minHeight: 40.0,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    errorText,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .caption!
+                                        .apply(color: AppColors.red),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -96,7 +130,7 @@ class _AuthPageState extends State<AuthPage> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.0),
-                                    color: isComplete
+                                    color: enabled
                                         ? AppColors.orange
                                         : AppColors.orange.withOpacity(.5),
                                   ),
@@ -111,7 +145,7 @@ class _AuthPageState extends State<AuthPage> {
                                     ),
                                   ),
                                 ),
-                                onPressed: isComplete ? () {} : null,
+                                onPressed: enabled ? () {} : null,
                               ),
                             ],
                           ),
