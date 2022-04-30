@@ -6,9 +6,17 @@ abstract class AppTheme {
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.lightBackground,
     backgroundColor: AppColors.lightBackground,
-    hintColor: AppColors.hintTextColor,
+    textTheme: TextTheme(
+      headline5: ThemeData.dark().textTheme.headline5?.copyWith(
+            color: AppColors.lightText,
+          ),
+    ),
     inputDecorationTheme: const InputDecorationTheme(
-      hintStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
+      hintStyle: TextStyle(
+        fontSize: 14.0,
+        fontWeight: FontWeight.w400,
+        color: AppColors.hintTextColor,
+      ),
       labelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
     ),
   );
@@ -17,10 +25,22 @@ abstract class AppTheme {
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.darkBackground,
     backgroundColor: AppColors.darkBackground,
-    hintColor: AppColors.hintTextColor,
+    textTheme: TextTheme(
+      headline5: ThemeData.dark().textTheme.headline5?.copyWith(
+            color: AppColors.darkText,
+          ),
+    ),
     inputDecorationTheme: const InputDecorationTheme(
-      hintStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
+      hintStyle: TextStyle(
+        fontSize: 14.0,
+        fontWeight: FontWeight.w400,
+        color: AppColors.hintTextColor,
+      ),
       labelStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
     ),
   );
+}
+
+extension TextStyleExt on TextTheme {
+  get hintStyle2 => const TextStyle(color: AppColors.red);
 }

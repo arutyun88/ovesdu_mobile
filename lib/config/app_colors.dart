@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color lightBackground = Color(0xFFFFFFFF);
-  static const Color lightText = Color(0xFF1E1E28);
+  static const Color lightBackground = Color.fromRGBO(255, 255, 255, 1);
+  static const Color lightText = Color.fromRGBO(30, 30, 40, 1);
 
-  static const Color darkBackground = Color(0xFF1E1E28);
-  static const Color darkText = Color(0xFFFFFFFF);
+  static const Color darkBackground = Color.fromRGBO(30, 30, 40, 1);
+  static const Color darkText = Color.fromRGBO(255, 255, 255, 1);
 
   static const Color textButton = Color(0xFFFF9726);
   static const Color selectedItemColor = Color(0xFFFF9726);
@@ -22,12 +22,14 @@ class AppColors {
   static const gradientFlagVertical = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    colors: [AppColors.red, AppColors.blue, AppColors.orange],
+    colors: _flagColors,
   );
 
   static const gradientFlagHorizontal = LinearGradient(
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
-    colors: [AppColors.red, AppColors.blue, AppColors.orange],
+    colors: _flagColors,
   );
+
+  static const _flagColors = [AppColors.red, AppColors.blue, AppColors.orange];
 }
