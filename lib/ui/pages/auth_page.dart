@@ -38,7 +38,6 @@ class _AuthPageState extends State<AuthPage> {
 
   _validate() {
     var value = _controller.text.trim();
-    errorText = '';
     if (value.isEmpty) {
       errorText = '';
       isComplete = true;
@@ -101,26 +100,29 @@ class _AuthPageState extends State<AuthPage> {
                               });
                             },
                           ),
-                          Flexible(
-                            flex: 2,
-                            child: Container(
-                              constraints: const BoxConstraints(
-                                minHeight: 40.0,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Flexible(
+                                child: Container(
+                                  height: 30,
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 8.0,
+                                  ),
+                                  child: Text(
                                     errorText,
+                                    maxLines: 1,
+                                    textAlign: TextAlign.right,
                                     style: Theme.of(context)
                                         .textTheme
                                         .caption!
                                         .apply(color: AppColors.red),
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
+                            ],
                           ),
+                          Flexible(flex: 2, child: Container()),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -130,13 +132,17 @@ class _AuthPageState extends State<AuthPage> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.0),
+                                    border: Border.all(
+                                      color: AppColors.orange,
+                                      width: 2.0,
+                                    ),
                                     color: enabled
                                         ? AppColors.orange
-                                        : AppColors.orange.withOpacity(.5),
+                                        : AppColors.unselectedItemColor,
                                   ),
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 24.0,
-                                    vertical: 10.0,
+                                    vertical: 8.0,
                                   ),
                                   child: const Text(
                                     'next',
@@ -150,7 +156,7 @@ class _AuthPageState extends State<AuthPage> {
                             ],
                           ),
                           Flexible(
-                            flex: 3,
+                            flex: 4,
                             child: Container(
                               constraints: const BoxConstraints(
                                 minHeight: 60.0,
@@ -188,7 +194,7 @@ class _AuthPageState extends State<AuthPage> {
                             ],
                           ),
                           Flexible(
-                            flex: 3,
+                            flex: 4,
                             child: Container(
                               constraints: const BoxConstraints(
                                 minHeight: 60.0,

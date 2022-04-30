@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:ovesdu_mobile/config/app_colors.dart';
+import 'package:ovesdu_mobile/ui/widgets/fields/text_formatters.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -27,7 +29,7 @@ class CustomTextField extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          margin: const EdgeInsets.only(top: 10.0),
+          margin: const EdgeInsets.only(top: 8.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             border: Border.all(
@@ -35,19 +37,28 @@ class CustomTextField extends StatelessWidget {
               color: borderColor,
             ),
           ),
-          padding: EdgeInsets.all(loginFocus.hasFocus ? 12.0 : 12.5),
+          padding: EdgeInsets.all(loginFocus.hasFocus ? 11.0 : 11.5),
           child: TextField(
+            autocorrect: false,
+            textCapitalization: TextCapitalization.none,
+            inputFormatters: [
+              SimpleTextFormatter(),
+              MaskedInputFormatter("###############"),
+            ],
             controller: controller,
             focusNode: loginFocus,
             onTap: onTap,
             onChanged: onChanged,
             cursorWidth: 1.0,
-            cursorHeight: 27.0,
+            cursorHeight: 20.0,
             cursorColor: hintStyle.color,
-            style: Theme.of(context).textTheme.headline5,
+            style: Theme.of(context).textTheme.headline6,
             decoration: InputDecoration(
               isCollapsed: true,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+                vertical: 4.0,
+              ),
               hintText: hintText,
               hintStyle: hintStyle,
               focusedBorder: UnderlineInputBorder(
@@ -62,8 +73,8 @@ class CustomTextField extends StatelessWidget {
                 top: 0.0,
                 left: 14.0,
                 child: Container(
-                  height: 20,
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  height: 16,
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   color: AppColors.lightBackground,
                   child: Text(
                     labelText,
