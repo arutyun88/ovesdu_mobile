@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
-import 'package:ovesdu_mobile/config/app_colors.dart';
 import 'package:ovesdu_mobile/ui/widgets/fields/text_formatters.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -62,20 +61,23 @@ class CustomTextField extends StatelessWidget {
               hintText: hintText,
               hintStyle: hintStyle,
               focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(width: .5, color: hintStyle.color!),
+                borderSide: BorderSide(
+                  width: .5,
+                  color: hintStyle.color!,
+                ),
               ),
               border: const UnderlineInputBorder(borderSide: BorderSide.none),
             ),
           ),
         ),
-        loginFocus.hasFocus
+        controller.text.isNotEmpty
             ? Positioned(
                 top: 0.0,
                 left: 14.0,
                 child: Container(
                   height: 16,
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  color: AppColors.lightBackground,
+                  color: Theme.of(context).backgroundColor,
                   child: Text(
                     labelText,
                     style: TextStyle(

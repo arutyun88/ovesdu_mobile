@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ovesdu_mobile/config/app_colors.dart';
@@ -134,24 +136,30 @@ class _AuthPageState extends State<AuthPage> {
                                     borderRadius: BorderRadius.circular(10.0),
                                     border: Border.all(
                                       color: AppColors.orange,
-                                      width: 2.0,
+                                      width: 1.0,
                                     ),
                                     color: enabled
                                         ? AppColors.orange
-                                        : AppColors.unselectedItemColor,
+                                        : AppColors.orange.withOpacity(.2),
                                   ),
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 24.0,
                                     vertical: 8.0,
                                   ),
-                                  child: const Text(
+                                  child: Text(
                                     'next',
                                     style: TextStyle(
-                                      color: AppColors.buttonTextColor,
+                                      color: enabled
+                                          ? Theme.of(context).backgroundColor
+                                          : AppColors.orange,
                                     ),
                                   ),
                                 ),
-                                onPressed: enabled ? () {} : null,
+                                onPressed: enabled
+                                    ? () {
+                                        log('next button clicked');
+                                      }
+                                    : null,
                               ),
                             ],
                           ),
@@ -189,7 +197,9 @@ class _AuthPageState extends State<AuthPage> {
                                     color: AppColors.orange,
                                   ),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  log('login button clicked');
+                                },
                               ),
                             ],
                           ),
