@@ -157,6 +157,10 @@ class _AuthPageState extends State<AuthPage> {
                                 ),
                                 onPressed: enabled
                                     ? () {
+                                        setState(() {
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
+                                        });
                                         log('next button clicked');
                                       }
                                     : null,
@@ -198,6 +202,10 @@ class _AuthPageState extends State<AuthPage> {
                                   ),
                                 ),
                                 onPressed: () {
+                                  setState(() {
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
+                                  });
                                   log('login button clicked');
                                 },
                               ),
