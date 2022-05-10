@@ -3,9 +3,13 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ovesdu_mobile/config/app_colors.dart';
+import 'package:ovesdu_mobile/config/locale_provider.dart';
+import 'package:ovesdu_mobile/main.dart';
 import 'package:ovesdu_mobile/ui/widgets/created_by_widget.dart';
 import 'package:ovesdu_mobile/ui/widgets/fields/custom_text_field.dart';
 import 'package:ovesdu_mobile/ui/widgets/logo_sliver_delegate.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({
@@ -59,6 +63,7 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider =  Provider.of<LocaleProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: GestureDetector(
@@ -147,7 +152,7 @@ class _AuthPageState extends State<AuthPage> {
                                     vertical: 8.0,
                                   ),
                                   child: Text(
-                                    'next',
+                                    AppLocalizations.of(context)!.next,
                                     style: TextStyle(
                                       color: enabled
                                           ? Theme.of(context).backgroundColor
@@ -177,12 +182,13 @@ class _AuthPageState extends State<AuthPage> {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
-                            children: const [
+                            children: [
                               Flexible(
                                 child: Text(
-                                  'If you already have an account, please',
+                                  AppLocalizations.of(context)!
+                                      .haveAnAccount('some user'),
                                   textAlign: TextAlign.end,
-                                  style: TextStyle(fontSize: 14.0),
+                                  style: const TextStyle(fontSize: 14.0),
                                 ),
                               ),
                             ],
@@ -202,6 +208,7 @@ class _AuthPageState extends State<AuthPage> {
                                   ),
                                 ),
                                 onPressed: () {
+                                  provider.clearLocale();
                                   setState(() {
                                     FocusManager.instance.primaryFocus
                                         ?.unfocus();
@@ -209,6 +216,7 @@ class _AuthPageState extends State<AuthPage> {
                                   log('login button clicked');
                                 },
                               ),
+                              const LanguagePickerWidget(),
                             ],
                           ),
                           Flexible(

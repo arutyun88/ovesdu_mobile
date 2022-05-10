@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ovesdu_mobile/config/app_theme.dart';
+import 'package:ovesdu_mobile/config/locale_provider.dart';
+import 'package:ovesdu_mobile/l10n/l10n.dart';
 import 'package:ovesdu_mobile/ui/pages/auth_page.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(const OvesDuApp());
 
@@ -11,10 +14,54 @@ class OvesDuApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'OvesDu Application',
-      theme: AppTheme.light,
-      home: const AuthPage(),
+    return ChangeNotifierProvider(
+      create: (context) => LocaleProvider(),
+      builder: (context, child) {
+        final provider = Provider.of<LocaleProvider>(context);
+        return MaterialApp(
+          title: 'OvesDu Application',
+          theme: AppTheme.light,
+          locale: provider.locale,
+          supportedLocales: L10n.supportedLocales,
+          localizationsDelegates: L10n.localizationsDelegates,
+          home: const AuthPage(),
+        );
+      },
+    );
+  }
+}
+
+class LanguagePickerWidget extends StatelessWidget {
+  const LanguagePickerWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = Provider.of<LocaleProvider>(context);
+    return DropdownButtonHideUnderline(
+      child: DropdownButton(
+        value: provider.locale,
+        icon: Container(width: 12.0),
+        items: L10n.supportedLocales.map((locale) {
+          final flag = L10n.getFlag(locale.languageCode);
+          return DropdownMenuItem(
+            child: Center(
+              child: Text(
+                flag,
+                style: const TextStyle(fontSize: 32),
+              ),
+            ),
+            value: locale,
+            onTap: () {
+              final provider = Provider.of<LocaleProvider>(
+                context,
+                listen: false,
+              );
+              provider.setLocale(locale);
+            },
+          );
+        }).toList(),
+        onChanged: (_) {},
+      ),
     );
   }
 }

@@ -12,8 +12,14 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+  shared_preferences: ^2.0.14
+
   cupertino_icons: ^1.0.2
   flutter_multi_formatter: ^2.5.1
+  intl: ^0.17.0
+  provider: ^6.0.2
 
 dev_dependencies:
   flutter_test:
@@ -21,6 +27,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
 
   assets:
