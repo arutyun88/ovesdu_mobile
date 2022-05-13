@@ -3,13 +3,11 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ovesdu_mobile/config/app_colors.dart';
-import 'package:ovesdu_mobile/config/locale_provider.dart';
 import 'package:ovesdu_mobile/main.dart';
 import 'package:ovesdu_mobile/ui/widgets/created_by_widget.dart';
 import 'package:ovesdu_mobile/ui/widgets/fields/custom_text_field.dart';
 import 'package:ovesdu_mobile/ui/widgets/logo_sliver_delegate.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({
@@ -50,7 +48,7 @@ class _AuthPageState extends State<AuthPage> {
       enabled = false;
     } else {
       if (value.length < 4) {
-        errorText = 'username не может быть менее 4 знаков';
+        errorText = AppLocalizations.of(context)!.usernameErrorText;
         isComplete = false;
         enabled = false;
       } else {
@@ -63,7 +61,7 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider =  Provider.of<LocaleProvider>(context);
+    _validate();
     return Scaffold(
       body: SafeArea(
         child: GestureDetector(
@@ -90,8 +88,10 @@ class _AuthPageState extends State<AuthPage> {
                       child: Column(
                         children: [
                           CustomTextField(
-                            hintText: 'enter your username',
-                            labelText: 'username',
+                            hintText:
+                                AppLocalizations.of(context)!.usernameHint,
+                            labelText:
+                                AppLocalizations.of(context)!.usernameLabel,
                             controller: _controller,
                             loginFocus: _loginFocus,
                             onTap: () {
@@ -112,7 +112,7 @@ class _AuthPageState extends State<AuthPage> {
                             children: [
                               Flexible(
                                 child: Container(
-                                  height: 30,
+                                  height: 34,
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 8.0,
                                   ),
@@ -185,8 +185,7 @@ class _AuthPageState extends State<AuthPage> {
                             children: [
                               Flexible(
                                 child: Text(
-                                  AppLocalizations.of(context)!
-                                      .haveAnAccount('some user'),
+                                  AppLocalizations.of(context)!.haveAnAccount,
                                   textAlign: TextAlign.end,
                                   style: const TextStyle(fontSize: 14.0),
                                 ),
@@ -199,16 +198,15 @@ class _AuthPageState extends State<AuthPage> {
                               CupertinoButton(
                                 minSize: 0,
                                 padding: EdgeInsets.zero,
-                                child: const Text(
-                                  'login',
-                                  style: TextStyle(
+                                child: Text(
+                                  AppLocalizations.of(context)!.login,
+                                  style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.orange,
                                   ),
                                 ),
                                 onPressed: () {
-                                  provider.clearLocale();
                                   setState(() {
                                     FocusManager.instance.primaryFocus
                                         ?.unfocus();

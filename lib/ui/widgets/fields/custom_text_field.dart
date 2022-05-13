@@ -75,7 +75,7 @@ class CustomTextField extends StatelessWidget {
                 top: 0.0,
                 left: 14.0,
                 child: Container(
-                  height: 16,
+                  height: 18,
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   color: Theme.of(context).backgroundColor,
                   child: Text(

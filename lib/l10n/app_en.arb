@@ -7,8 +7,19 @@
   "@next": {
     "description": ""
   },
-  "haveAnAccount": "If you already have an account, please, {username}",
+  "usernameLabel": "username",
+  "usernameHint": "enter your username",
+  "@usernameHint": {
+    "description": ""
+  },
+  "usernameErrorText": "username cannot be less than 4 characters",
+  "haveAnAccount": "If you already have an account, please",
   "@haveAnAccount": {
+    "description": ""
+  },
+  "login": "login",
+  "famousUser": "Welcome, {username}.\nPlease, enter your password.",
+  "@famousUser": {
     "description": "",
     "placeholders": {
       "username": {
