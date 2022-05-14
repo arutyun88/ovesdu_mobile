@@ -2,12 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ovesdu_mobile/common/setting_provider/theme_provider.dart';
 import 'package:ovesdu_mobile/config/app_colors.dart';
-import 'package:ovesdu_mobile/main.dart';
 import 'package:ovesdu_mobile/ui/widgets/created_by_widget.dart';
 import 'package:ovesdu_mobile/ui/widgets/fields/custom_text_field.dart';
 import 'package:ovesdu_mobile/ui/widgets/logo_sliver_delegate.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({
@@ -62,6 +63,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     _validate();
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: GestureDetector(
@@ -208,13 +210,14 @@ class _AuthPageState extends State<AuthPage> {
                                 ),
                                 onPressed: () {
                                   setState(() {
+                                    themeProvider.setTheme();
                                     FocusManager.instance.primaryFocus
                                         ?.unfocus();
                                   });
                                   log('login button clicked');
                                 },
                               ),
-                              const LanguagePickerWidget(),
+                              // const LanguagePickerWidget(),
                             ],
                           ),
                           Flexible(

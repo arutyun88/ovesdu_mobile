@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:ovesdu_mobile/config/app_theme.dart';
-import 'package:ovesdu_mobile/config/locale_provider.dart';
+import 'package:ovesdu_mobile/common/setting_provider/theme_provider.dart';
+import 'package:ovesdu_mobile/common/setting_provider/locale_provider.dart';
 import 'package:ovesdu_mobile/l10n/l10n.dart';
 import 'package:ovesdu_mobile/ui/pages/auth_page.dart';
 import 'package:provider/provider.dart';
@@ -17,10 +17,14 @@ void main() async {
   final settings = await Hive.openBox('settings');
   String locale =
       settings.get('locale') ?? Platform.localeName.split('_').first;
+  bool isLightTheme = settings.get('lightTheme') ?? false;
 
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => LocaleProvider(locale),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LocaleProvider(locale)),
+        ChangeNotifierProvider(create: (_) => ThemeProvider(isLightTheme)),
+      ],
       child: const OvesDuApp(),
     ),
   );
@@ -34,9 +38,10 @@ class OvesDuApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locale = Provider.of<LocaleProvider>(context).locale;
+    final theme = Provider.of<ThemeProvider>(context).themeData;
     return MaterialApp(
       title: 'OvesDu Application',
-      theme: AppTheme.light,
+      theme: theme,
       locale: locale,
       supportedLocales: L10n.supportedLocales,
       localizationsDelegates: L10n.localizationsDelegates,
