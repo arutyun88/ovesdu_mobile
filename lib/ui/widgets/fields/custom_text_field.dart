@@ -7,7 +7,7 @@ class CustomTextField extends StatelessWidget {
     Key? key,
     required this.hintText,
     required this.labelText,
-    required this.loginFocus,
+    required this.focus,
     required this.onTap,
     required this.onChanged,
     required this.controller,
@@ -16,7 +16,7 @@ class CustomTextField extends StatelessWidget {
 
   final String hintText;
   final String labelText;
-  final FocusNode loginFocus;
+  final FocusNode focus;
   final Function() onTap;
   final Function(String) onChanged;
   final TextEditingController controller;
@@ -32,20 +32,21 @@ class CustomTextField extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             border: Border.all(
-              width: loginFocus.hasFocus ? 1.0 : .5,
+              width: focus.hasFocus ? 1.0 : .5,
               color: borderColor,
             ),
           ),
-          padding: EdgeInsets.all(loginFocus.hasFocus ? 11.0 : 11.5),
+          padding: EdgeInsets.all(focus.hasFocus ? 11.0 : 11.5),
           child: TextField(
             autocorrect: false,
             textCapitalization: TextCapitalization.none,
+            // TODO доработать маскирование
             inputFormatters: [
               SimpleTextFormatter(),
               MaskedInputFormatter("###############"),
             ],
             controller: controller,
-            focusNode: loginFocus,
+            focusNode: focus,
             onTap: onTap,
             onChanged: onChanged,
             cursorWidth: 1.0,

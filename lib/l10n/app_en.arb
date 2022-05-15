@@ -7,6 +7,7 @@
   "@next": {
     "description": ""
   },
+  "back": "back",
   "usernameLabel": "username",
   "usernameHint": "enter your username",
   "@usernameHint": {
@@ -26,5 +27,11 @@
         "type": "String"
       }
     }
-  }
+  },
+  "emailLabel": "email",
+  "emailHint": "enter your email",
+  "emailIsUseErrorText": "email is already in use",
+  "phoneIsUseErrorText": "phone number is already in use",
+  "phoneLabel": "phone",
+  "phoneHint": "enter your phone number"
 }
