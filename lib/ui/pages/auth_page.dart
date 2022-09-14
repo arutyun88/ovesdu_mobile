@@ -19,6 +19,7 @@ class _AuthPageState extends State<AuthPage> {
   late TextEditingController _phoneController;
 
   int _selectedIndex = 0;
+  final _mainScreenController = PageController(initialPage: 0, keepPage: true);
 
   @override
   void initState() {
@@ -59,28 +60,40 @@ class _AuthPageState extends State<AuthPage> {
                   ),
                   SliverFillRemaining(
                     hasScrollBody: false,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                      child: Column(
-                        children: [
-                          _selectedIndex == 0
-                              ? UsernameWidget(
-                                  controller: _usernameController,
-                                  onPressedNext: () {
-                                    setState(() => _selectedIndex = 1);
-                                  },
-                                )
-                              : RegisterInfoWidget(
-                                  emailController: _emailController,
-                                  phoneController: _phoneController,
-                                  onPressedBack: () {
-                                    setState(() => _selectedIndex = 0);
-                                  },
-                                  onPressedNext: () => setState(() {}),
+                    child: Column(
+                      children: [
+                        Flexible(
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height * .55,
+                            child: PageView(
+                              controller: _mainScreenController,
+                              physics: const NeverScrollableScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 35.0),
+                                  child: UsernameWidget(
+                                    controller: _usernameController,
+                                    onPressedNext: _nextOnPressed,
+                                  ),
                                 ),
-                          const CreatedByWidget(),
-                        ],
-                      ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 35.0),
+                                  child: RegisterInfoWidget(
+                                    emailController: _emailController,
+                                    phoneController: _phoneController,
+                                    onPressedBack: _backOnPressed,
+                                    onPressedNext: () => setState(() {}),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const CreatedByWidget(),
+                      ],
                     ),
                   ),
                 ],
@@ -89,6 +102,24 @@ class _AuthPageState extends State<AuthPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void _nextOnPressed() {
+    // setState(() => _selectedIndex = 1);
+    _mainScreenController.animateToPage(
+      1,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInCubic,
+    );
+  }
+
+  void _backOnPressed() {
+    // setState(() => _selectedIndex = 0);
+    _mainScreenController.animateToPage(
+      0,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInCubic,
     );
   }
 }

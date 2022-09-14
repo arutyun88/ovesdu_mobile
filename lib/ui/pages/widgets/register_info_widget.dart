@@ -93,47 +93,45 @@ class _RegisterInfoWidgetState extends State<RegisterInfoWidget> {
   @override
   Widget build(BuildContext context) {
     _validate();
-    return Flexible(
-      child: Column(
-        children: [
-          CustomTextField(
-            hintText: AppLocalizations.of(context)!.emailHint,
-            labelText: AppLocalizations.of(context)!.emailLabel,
-            controller: widget.emailController,
-            focus: _emailFocus,
-            onTap: () => setState(() => _emailFocus.hasFocus),
-            borderColor: emailIsComplete ? AppColors.orange : AppColors.red,
-            onChanged: (value) => setState(() => _validate()),
-          ),
-          ErrorTextWidget(errorText: emailErrorText),
-          CustomTextField(
-            hintText: AppLocalizations.of(context)!.phoneHint,
-            labelText: AppLocalizations.of(context)!.phoneLabel,
-            controller: widget.phoneController,
-            focus: _phoneFocus,
-            onTap: () => setState(() => _phoneFocus.hasFocus),
-            borderColor: phoneIsComplete ? AppColors.orange : AppColors.red,
-            onChanged: (value) => setState(() => _validate()),
-          ),
-          ErrorTextWidget(errorText: phoneErrorText),
-          const SizedBox(height: 16.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              DefaultButton(
-                title: AppLocalizations.of(context)!.back,
-                enable: true,
-                onPressed: widget.onPressedBack,
-              ),
-              DefaultButton(
-                title: AppLocalizations.of(context)!.next,
-                enable: nextButtonIsComplete,
-                onPressed: widget.onPressedNext,
-              ),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        CustomTextField(
+          hintText: AppLocalizations.of(context)!.emailHint,
+          labelText: AppLocalizations.of(context)!.emailLabel,
+          controller: widget.emailController,
+          focus: _emailFocus,
+          onTap: () => setState(() => _emailFocus.hasFocus),
+          borderColor: emailIsComplete ? AppColors.orange : AppColors.red,
+          onChanged: (value) => setState(() => _validate()),
+        ),
+        ErrorTextWidget(errorText: emailErrorText),
+        CustomTextField(
+          hintText: AppLocalizations.of(context)!.phoneHint,
+          labelText: AppLocalizations.of(context)!.phoneLabel,
+          controller: widget.phoneController,
+          focus: _phoneFocus,
+          onTap: () => setState(() => _phoneFocus.hasFocus),
+          borderColor: phoneIsComplete ? AppColors.orange : AppColors.red,
+          onChanged: (value) => setState(() => _validate()),
+        ),
+        ErrorTextWidget(errorText: phoneErrorText),
+        const SizedBox(height: 16.0),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            DefaultButton(
+              title: AppLocalizations.of(context)!.back,
+              enable: true,
+              onPressed: widget.onPressedBack,
+            ),
+            DefaultButton(
+              title: AppLocalizations.of(context)!.next,
+              enable: nextButtonIsComplete,
+              onPressed: widget.onPressedNext,
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

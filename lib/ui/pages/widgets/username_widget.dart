@@ -65,80 +65,78 @@ class _UsernameWidgetState extends State<UsernameWidget> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     _validate();
-    return Flexible(
-      child: Column(
-        children: [
-          CustomTextField(
-            hintText: AppLocalizations.of(context)!.usernameHint,
-            labelText: AppLocalizations.of(context)!.usernameLabel,
-            controller: _usernameController,
-            focus: _usernameFocus,
-            onTap: () => setState(() => _usernameFocus.hasFocus),
-            borderColor: isComplete ? AppColors.orange : AppColors.red,
-            onChanged: (value) => setState(() => _validate()),
-          ),
-          ErrorTextWidget(errorText: errorText),
-          Flexible(flex: 2, child: Container()),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              DefaultButton(
-                title: AppLocalizations.of(context)!.next,
-                enable: enabled,
-                onPressed: widget.onPressedNext,
-              ),
-            ],
-          ),
-          Flexible(
-            flex: 4,
-            child: Container(
-              constraints: const BoxConstraints(minHeight: 60.0),
+    return Column(
+      children: [
+        CustomTextField(
+          hintText: AppLocalizations.of(context)!.usernameHint,
+          labelText: AppLocalizations.of(context)!.usernameLabel,
+          controller: _usernameController,
+          focus: _usernameFocus,
+          onTap: () => setState(() => _usernameFocus.hasFocus),
+          borderColor: isComplete ? AppColors.orange : AppColors.red,
+          onChanged: (value) => setState(() => _validate()),
+        ),
+        ErrorTextWidget(errorText: errorText),
+        Flexible(flex: 2, child: Container()),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            DefaultButton(
+              title: AppLocalizations.of(context)!.next,
+              enable: enabled,
+              onPressed: widget.onPressedNext,
             ),
+          ],
+        ),
+        Flexible(
+          flex: 4,
+          child: Container(
+            constraints: const BoxConstraints(minHeight: 60.0),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Flexible(
-                child: Text(
-                  AppLocalizations.of(context)!.haveAnAccount,
-                  textAlign: TextAlign.end,
-                  style: const TextStyle(fontSize: 14.0),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Flexible(
+              child: Text(
+                AppLocalizations.of(context)!.haveAnAccount,
+                textAlign: TextAlign.end,
+                style: const TextStyle(fontSize: 14.0),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            CupertinoButton(
+              minSize: 0,
+              padding: EdgeInsets.zero,
+              child: Text(
+                AppLocalizations.of(context)!.login,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.orange,
                 ),
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              CupertinoButton(
-                minSize: 0,
-                padding: EdgeInsets.zero,
-                child: Text(
-                  AppLocalizations.of(context)!.login,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.orange,
-                  ),
-                ),
-                onPressed: () {
-                  setState(() {
-                    themeProvider.setTheme();
-                    FocusManager.instance.primaryFocus?.unfocus();
-                  });
-                },
-              ),
-              // const LanguagePickerWidget(),
-            ],
-          ),
-          Flexible(
-            flex: 4,
-            child: Container(
-              constraints: const BoxConstraints(minHeight: 60.0),
+              onPressed: () {
+                setState(() {
+                  themeProvider.setTheme();
+                  FocusManager.instance.primaryFocus?.unfocus();
+                });
+              },
             ),
+            // const LanguagePickerWidget(),
+          ],
+        ),
+        Flexible(
+          flex: 4,
+          child: Container(
+            constraints: const BoxConstraints(minHeight: 60.0),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
