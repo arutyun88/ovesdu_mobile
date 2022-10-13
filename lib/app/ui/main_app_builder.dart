@@ -7,9 +7,9 @@ import '../../common/setting_provider/theme_provider.dart';
 import '../../feature/auth/domain/auth_repository.dart';
 import '../../feature/auth/domain/state/auth_cubit.dart';
 import '../../l10n/l10n.dart';
-import '../../ui/pages/auth_page.dart';
 import '../di/init_di.dart';
 import '../domain/app_builder.dart';
+import 'root_screen.dart';
 
 class MainAppBuilder implements AppBuilder {
   @override
@@ -63,7 +63,7 @@ class OvesDuApp extends StatelessWidget {
       locale: locale,
       supportedLocales: L10n.supportedLocales,
       localizationsDelegates: L10n.localizationsDelegates,
-      home: const AuthPage(),
+      home: const RootScreen(),
     );
   }
 }
