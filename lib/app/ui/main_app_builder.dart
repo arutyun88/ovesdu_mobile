@@ -1,21 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/setting_provider/locale_provider.dart';
 import '../../common/setting_provider/theme_provider.dart';
+import '../../feature/auth/domain/auth_repository.dart';
+import '../../feature/auth/domain/state/auth_cubit.dart';
 import '../../l10n/l10n.dart';
 import '../../ui/pages/auth_page.dart';
+import '../di/init_di.dart';
 import '../domain/app_builder.dart';
 
 class MainAppBuilder implements AppBuilder {
   @override
   Widget buildApp(String locale, bool isLightTheme) {
+    return _GlobalProviders(
+      locale: locale,
+      isLightTheme: isLightTheme,
+      child: const OvesDuApp(),
+    );
+  }
+}
+
+class _GlobalProviders extends StatelessWidget {
+  const _GlobalProviders({
+    Key? key,
+    required this.child,
+    required this.locale,
+    required this.isLightTheme,
+  }) : super(key: key);
+
+  final Widget child;
+  final String locale;
+  final bool isLightTheme;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO MultiBlocProvider and locale and isLightTheme with locator
     return MultiProvider(
       providers: [
+        BlocProvider(create: (context) => AuthCubit(locator<AuthRepository>())),
         ChangeNotifierProvider(create: (_) => LocaleProvider(locale)),
         ChangeNotifierProvider(create: (_) => ThemeProvider(isLightTheme)),
       ],
-      child: const OvesDuApp(),
+      child: child,
     );
   }
 }
