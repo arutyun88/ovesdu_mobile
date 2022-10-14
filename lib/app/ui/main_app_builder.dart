@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +17,7 @@ class MainAppBuilder implements AppBuilder {
     return _GlobalProviders(
       locale: locale,
       isLightTheme: isLightTheme,
-      child: const OvesDuApp(),
+      child: const RootScreen(),
     );
   }
 }
@@ -45,31 +44,6 @@ class _GlobalProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ThemeProvider(isLightTheme)),
       ],
       child: child,
-    );
-  }
-}
-
-class OvesDuApp extends StatelessWidget {
-  const OvesDuApp({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final locale = Provider.of<LocaleProvider>(context).locale;
-    final theme = Provider.of<ThemeProvider>(context).themeData;
-    return MaterialApp(
-      title: 'OvesDu Application',
-      theme: theme,
-      locale: locale,
-      supportedLocales: L10n.supportedLocales,
-      localizationsDelegates: L10n.localizationsDelegates,
-      home: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: theme.brightness == Brightness.light
-            ? SystemUiOverlayStyle.dark
-            : SystemUiOverlayStyle.light,
-        child: const RootScreen(),
-      ),
     );
   }
 }
