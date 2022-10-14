@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
@@ -63,7 +64,12 @@ class OvesDuApp extends StatelessWidget {
       locale: locale,
       supportedLocales: L10n.supportedLocales,
       localizationsDelegates: L10n.localizationsDelegates,
-      home: const RootScreen(),
+      home: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: theme.brightness == Brightness.light
+            ? SystemUiOverlayStyle.dark
+            : SystemUiOverlayStyle.light,
+        child: const RootScreen(),
+      ),
     );
   }
 }
