@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
-import 'package:ovesdu_mobile/ui/widgets/fields/text_formatters.dart';
+import 'package:ovesdu_mobile/app/ui/components/text_formatters.dart';
 
+@Deprecated('Use AppTextField')
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
