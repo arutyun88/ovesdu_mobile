@@ -6,108 +6,107 @@ import '../../../config/app_colors.dart';
 import 'text_formatters.dart';
 
 class AppTextField extends StatefulWidget {
-  AppTextField({
+  const AppTextField({
     Key? key,
-    FocusNode? focus,
+    this.focus,
     this.borderColor = AppColors.orange,
-    TextEditingController? controller,
+    this.controller,
     this.onTap,
     this.onChanged,
-    this.hintText = '',
-    this.labelText = '',
-  })  : focusNode = focus ?? FocusNode(),
-        textController = controller ?? TextEditingController(),
-        super(key: key);
+    this.hintText,
+    this.labelText,
+  }) : super(key: key);
 
-  final FocusNode focusNode;
+  final FocusNode? focus;
   final Color borderColor;
-  final TextEditingController textController;
+  final TextEditingController? controller;
   final VoidCallback? onTap;
   final Function(String)? onChanged;
-  final String hintText;
-  final String labelText;
+  final String? hintText;
+  final String? labelText;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
 }
 
 class _AppTextFieldState extends State<AppTextField> {
-  late List<TextInputFormatter> formatters = [];
+  late List<TextInputFormatter> formatters;
+  late FocusNode node;
+  late TextEditingController controller;
 
   void setFormatters() {
     formatters.add(SimpleTextFormatter());
-    if (widget.textController.text.length > 1) {
+    if (controller.text.length > 1) {
       // TODO 15 characters?
       formatters.add(MaskedInputFormatter("###############"));
     }
   }
 
   @override
-  Widget build(BuildContext context) {
-    final hintStyle = Theme.of(context).inputDecorationTheme.hintStyle!;
+  initState() {
+    super.initState();
+    formatters = [];
+    node = widget.focus ?? FocusNode();
+    controller = widget.controller ?? TextEditingController();
+  }
 
-    return Stack(
-      children: [
-        Container(
-          margin: const EdgeInsets.only(top: 8.0),
-          decoration: BoxDecoration(
+  @override
+  Widget build(BuildContext context) {
+    final labelStyle = Theme.of(context).inputDecorationTheme.hintStyle!;
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 4),
+      child: TextField(
+        autocorrect: false,
+        textCapitalization: TextCapitalization.none,
+        // TODO доработать маскирование
+        inputFormatters: formatters,
+        controller: controller,
+        focusNode: node,
+        onTap: widget.onTap,
+        onChanged: widget.onChanged,
+        cursorWidth: 1.0,
+        cursorHeight: 20.0,
+        cursorColor: labelStyle.color,
+        style: Theme.of(context).textTheme.headline6,
+        decoration: InputDecoration(
+          isCollapsed: true,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 16.0,
+          ),
+          hintText: widget.hintText,
+          hintStyle: labelStyle,
+          labelText: widget.labelText,
+          labelStyle: labelStyle,
+          floatingLabelStyle: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: labelStyle.color,
+          ),
+          focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
-            border: Border.all(
-              width: widget.focusNode.hasFocus ? 1.0 : .5,
-              color: widget.borderColor,
+            borderSide: const BorderSide(
+              width: 1.0,
+              color: AppColors.orange,
             ),
           ),
-          padding: EdgeInsets.all(widget.focusNode.hasFocus ? 11.0 : 11.5),
-          child: TextField(
-            autocorrect: false,
-            textCapitalization: TextCapitalization.none,
-            // TODO доработать маскирование
-            inputFormatters: formatters,
-            controller: widget.textController,
-            focusNode: widget.focusNode,
-            onTap: widget.onTap ??
-                () => setState(
-                      () => widget.focusNode.hasFocus,
-                    ),
-            onChanged: widget.onChanged ??
-                (value) => setState(
-                      () => setFormatters(),
-                    ),
-            cursorWidth: 1.0,
-            cursorHeight: 20.0,
-            cursorColor: hintStyle.color,
-            style: Theme.of(context).textTheme.headline6,
-            decoration: InputDecoration(
-              isCollapsed: true,
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-                vertical: 4.0,
-              ),
-              hintText: widget.hintText,
-              hintStyle: hintStyle,
-              border: const UnderlineInputBorder(borderSide: BorderSide.none),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: const BorderSide(
+              width: .5,
+              color: AppColors.orange,
+            ),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(
+              width: .5,
+              color: AppColors.orange.withOpacity(.5),
             ),
           ),
         ),
-        if (widget.textController.text.isNotEmpty)
-          Positioned(
-            top: 0.0,
-            left: 14.0,
-            child: Container(
-              height: 18,
-              padding: const EdgeInsets.symmetric(horizontal: 4.0),
-              color: Theme.of(context).backgroundColor,
-              child: Text(
-                widget.labelText,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: hintStyle.color,
-                ),
-              ),
-            ),
-          )
-      ],
+      ),
     );
   }
 }
