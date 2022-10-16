@@ -4,6 +4,8 @@
   "back": "ետ",
   "usernameLabel": "օգտագործողի անունը",
   "usernameHint": "մուտքագրեք ձեր օգտվողի անունը",
+  "usernameOrEmailLabel": "օգտագործողի անունը կամ էլ",
+  "usernameOrEmailHint": "մուտքագրեք ձեր օգտվողի անունը կամ էլ",
   "usernameErrorText": "օգտանունը չի կարող լինել 4 նիշից պակաս",
   "haveAnAccount": "Եթե արդեն ունեք հաշիվ, խնդրում ենք",
   "login": "մուտք գործել",

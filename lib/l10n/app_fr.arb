@@ -4,6 +4,8 @@
   "back": "back",
   "usernameLabel": "username",
   "usernameHint": "enter your username",
+  "usernameOrEmailLabel": "username or email",
+  "usernameOrEmailHint": "enter your username or email",
   "usernameErrorText": "username cannot be less than 4 characters",
   "haveAnAccount": "If you already have an account, please",
   "login": "login",
