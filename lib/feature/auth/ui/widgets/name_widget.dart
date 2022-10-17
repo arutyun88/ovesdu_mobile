@@ -1,0 +1,103 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../app/ui/components/app_text_field.dart';
+import '../../../../config/app_colors.dart';
+import '../../../../ui/widgets/default_button.dart';
+import 'custom_flex.dart';
+
+class NameWidget extends StatefulWidget {
+  const NameWidget({
+    Key? key,
+    this.auth = true,
+  }) : super(key: key);
+
+  final bool auth;
+
+  @override
+  State<NameWidget> createState() => _NameWidgetState();
+}
+
+class _NameWidgetState extends State<NameWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 35.0,
+      ),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppTextField(
+              hintText: AppLocalizations.of(context)!.usernameOrEmailHint,
+              labelText: AppLocalizations.of(context)!.usernameOrEmailLabel,
+            ),
+            const CustomFlex(flex: 2),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 40.0,
+                bottom: 48.0,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  DefaultButton(
+                    title: AppLocalizations.of(context)!.next,
+                    enable: false,
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+            const CustomFlex(flex: 2),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Flexible(
+                  child: Text(
+                    widget.auth
+                        ? AppLocalizations.of(context)!.notHaveAnAccount
+                        : AppLocalizations.of(context)!.haveAnAccount,
+                    textAlign: TextAlign.end,
+                    style: const TextStyle(fontSize: 14.0),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 40.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CupertinoButton(
+                    minSize: 0,
+                    padding: EdgeInsets.zero,
+                    child: Text(
+                      widget.auth
+                          ? AppLocalizations.of(context)!.register
+                          : AppLocalizations.of(context)!.login,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.orange,
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        // themeProvider.setTheme();
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      });
+                    },
+                  ),
+                  // const LanguagePickerWidget(),
+                ],
+              ),
+            ),
+            const CustomFlex(flex: 3),
+          ],
+        ),
+      ),
+    );
+  }
+}
