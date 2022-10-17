@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:ovesdu_mobile/common/setting_provider/theme_provider.dart';
 import 'package:ovesdu_mobile/config/app_colors.dart';
-import 'package:ovesdu_mobile/ui/pages/widgets/error_text_widget.dart';
+import 'package:ovesdu_mobile/feature/auth/ui/widgets/error_text_widget.dart';
 import 'package:ovesdu_mobile/ui/widgets/default_button.dart';
 import 'package:ovesdu_mobile/ui/widgets/fields/custom_text_field.dart';
 import 'package:provider/provider.dart';

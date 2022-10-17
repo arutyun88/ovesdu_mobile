@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:ovesdu_mobile/config/app_colors.dart';
-import 'package:ovesdu_mobile/ui/pages/widgets/error_text_widget.dart';
+import 'package:ovesdu_mobile/feature/auth/ui/widgets/error_text_widget.dart';
 import 'package:ovesdu_mobile/ui/widgets/default_button.dart';
 import 'package:ovesdu_mobile/ui/widgets/fields/custom_text_field.dart';
 

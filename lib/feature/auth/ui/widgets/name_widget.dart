@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../app/ui/components/app_text_field.dart';
 import '../../../../config/app_colors.dart';
+import 'error_text_widget.dart';
 import '../../../../ui/widgets/default_button.dart';
 import 'custom_flex.dart';
 
@@ -19,6 +20,43 @@ class NameWidget extends StatefulWidget {
 }
 
 class _NameWidgetState extends State<NameWidget> {
+  late bool isComplete;
+  late TextEditingController _usernameController;
+  late bool enabled;
+  late String errorText;
+
+  @override
+  void initState() {
+    super.initState();
+    _usernameController = TextEditingController();
+    _validate();
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
+  }
+
+  _validate() {
+    var value = _usernameController.text.trim();
+    if (value.isEmpty) {
+      errorText = '';
+      isComplete = true;
+      enabled = false;
+    } else {
+      if (value.length < 4) {
+        errorText = AppLocalizations.of(context)!.usernameErrorText;
+        isComplete = false;
+        enabled = false;
+      } else {
+        errorText = '';
+        isComplete = true;
+        enabled = true;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,9 +67,13 @@ class _NameWidgetState extends State<NameWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            ErrorTextWidget(errorText: errorText),
             AppTextField(
+              controller: _usernameController,
               hintText: AppLocalizations.of(context)!.usernameOrEmailHint,
               labelText: AppLocalizations.of(context)!.usernameOrEmailLabel,
+              borderColor: isComplete ? AppColors.orange : AppColors.red,
+              onChanged: (value) => setState(() => _validate()),
             ),
             const CustomFlex(flex: 2),
             Padding(
@@ -44,7 +86,7 @@ class _NameWidgetState extends State<NameWidget> {
                 children: [
                   DefaultButton(
                     title: AppLocalizations.of(context)!.next,
-                    enable: false,
+                    enable: enabled,
                     onPressed: () {},
                   ),
                 ],
