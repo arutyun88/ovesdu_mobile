@@ -8,6 +8,7 @@ class MockAuthRepository implements AuthRepository {
   Future getName({
     required String username,
   }) {
+    // throw Exception('test');
     return Future.delayed(
       const Duration(seconds: 2),
       () {

@@ -11,9 +11,15 @@ class NameWidget extends StatefulWidget {
   const NameWidget({
     Key? key,
     this.auth = true,
+    required this.controller,
+    required this.onTap,
+    required this.buttonEnabled,
   }) : super(key: key);
 
   final bool auth;
+  final TextEditingController controller;
+  final Function() onTap;
+  final bool buttonEnabled;
 
   @override
   State<NameWidget> createState() => _NameWidgetState();
@@ -28,7 +34,7 @@ class _NameWidgetState extends State<NameWidget> {
   @override
   void initState() {
     super.initState();
-    _usernameController = TextEditingController();
+    _usernameController = widget.controller;
     _validate();
   }
 
@@ -86,8 +92,8 @@ class _NameWidgetState extends State<NameWidget> {
                 children: [
                   DefaultButton(
                     title: AppLocalizations.of(context)!.next,
-                    enable: enabled,
-                    onPressed: () {},
+                    enable: enabled && widget.buttonEnabled,
+                    onPressed: widget.onTap,
                   ),
                 ],
               ),

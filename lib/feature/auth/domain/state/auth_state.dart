@@ -7,6 +7,8 @@ class AuthState with _$AuthState {
 
   factory AuthState.authorized() = _AuthStateAuthorized;
 
+  factory AuthState.checked() = _AuthStateNotAuthorized;
+
   factory AuthState.waiting() = _AuthStateWaiting;
 
   factory AuthState.error(dynamic error) = _AuthStateError;

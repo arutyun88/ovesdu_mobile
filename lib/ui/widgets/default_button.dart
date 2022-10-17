@@ -19,6 +19,7 @@ class DefaultButton extends StatelessWidget {
     return CupertinoButton(
       minSize: 0,
       padding: EdgeInsets.zero,
+      onPressed: enable ? onPressed : null,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
@@ -34,7 +35,6 @@ class DefaultButton extends StatelessWidget {
           ),
         ),
       ),
-      onPressed: enable ? onPressed : null,
     );
   }
 }
