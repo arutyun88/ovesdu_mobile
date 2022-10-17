@@ -21,6 +21,8 @@
     "description": ""
   },
   "login": "login",
+  "notHaveAnAccount": "If you don’t have account, registering for an account is free and simple",
+  "register": "register",
   "famousUser": "Welcome, {username}.\nPlease, enter your password.",
   "@famousUser": {
     "description": "",
