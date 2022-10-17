@@ -21,6 +21,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   late final PageController _pageController;
 
+  late String username = '';
+
   @override
   void initState() {
     super.initState();
@@ -66,14 +68,59 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: SizedBox(
                             height: MediaQuery.of(context).size.height / 2.7,
                             child: PageView(
+                              physics: const NeverScrollableScrollPhysics(),
                               controller: _pageController,
                               children: [
-                                NameWidget(
-                                  controller: _usernameController,
-                                  onTap: () {
-                                    onTapToCheckUsername(cubit);
-                                    FocusManager.instance.primaryFocus
-                                        ?.unfocus();
+                                BlocConsumer<AuthCubit, AuthState>(
+                                  builder: (context, state) {
+                                    return NameWidget(
+                                      controller: _usernameController,
+                                      onTap: () {
+                                        onTapToCheckUsername(cubit);
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+                                      },
+                                    );
+                                  },
+                                  listener: (context, state) {
+                                    state.whenOrNull(
+                                      checked: (value) {
+                                        username = value;
+                                        changePage();
+                                      },
+                                    );
+                                  },
+                                ),
+                                BlocBuilder<AuthCubit, AuthState>(
+                                  builder: (context, state) {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 35.0,
+                                      ),
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Flexible(
+                                                  child: Text(
+                                                    'Welcome, $username',
+                                                    textAlign: TextAlign.start,
+                                                    style: const TextStyle(
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
                                   },
                                 ),
                               ],
@@ -97,14 +144,14 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void onTapToCheckUsername(AuthCubit authCubit) {
-    authCubit.checkUsername(username: _usernameController.text).then((value) {
-      if (cubit.state == AuthState.checked()) {
-        _pageController.animateToPage(
-          1,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.ease,
-        );
-      }
-    });
+    authCubit.checkUsername(username: _usernameController.text);
+  }
+
+  void changePage() {
+    _pageController.animateToPage(
+      1,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.ease,
+    );
   }
 }

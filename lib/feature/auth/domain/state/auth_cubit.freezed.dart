@@ -20,7 +20,7 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function() authorized,
-    required TResult Function() checked,
+    required TResult Function(String name) checked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) =>
@@ -29,7 +29,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) =>
@@ -38,7 +38,7 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -134,7 +134,7 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function() authorized,
-    required TResult Function() checked,
+    required TResult Function(String name) checked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) {
@@ -146,7 +146,7 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) {
@@ -158,7 +158,7 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -257,7 +257,7 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function() authorized,
-    required TResult Function() checked,
+    required TResult Function(String name) checked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) {
@@ -269,7 +269,7 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) {
@@ -281,7 +281,7 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -342,6 +342,7 @@ abstract class _$$_AuthStateCheckedCopyWith<$Res> {
   factory _$$_AuthStateCheckedCopyWith(
           _$_AuthStateChecked value, $Res Function(_$_AuthStateChecked) then) =
       __$$_AuthStateCheckedCopyWithImpl<$Res>;
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -354,37 +355,60 @@ class __$$_AuthStateCheckedCopyWithImpl<$Res>
 
   @override
   _$_AuthStateChecked get _value => super._value as _$_AuthStateChecked;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+  }) {
+    return _then(_$_AuthStateChecked(
+      name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_AuthStateChecked implements _AuthStateChecked {
-  _$_AuthStateChecked();
+  _$_AuthStateChecked(this.name);
+
+  @override
+  final String name;
 
   @override
   String toString() {
-    return 'AuthState.checked()';
+    return 'AuthState.checked(name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AuthStateChecked);
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthStateChecked &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_AuthStateCheckedCopyWith<_$_AuthStateChecked> get copyWith =>
+      __$$_AuthStateCheckedCopyWithImpl<_$_AuthStateChecked>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function() authorized,
-    required TResult Function() checked,
+    required TResult Function(String name) checked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) {
-    return checked();
+    return checked(name);
   }
 
   @override
@@ -392,11 +416,11 @@ class _$_AuthStateChecked implements _AuthStateChecked {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) {
-    return checked?.call();
+    return checked?.call(name);
   }
 
   @override
@@ -404,13 +428,13 @@ class _$_AuthStateChecked implements _AuthStateChecked {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
   }) {
     if (checked != null) {
-      return checked();
+      return checked(name);
     }
     return orElse();
   }
@@ -457,7 +481,12 @@ class _$_AuthStateChecked implements _AuthStateChecked {
 }
 
 abstract class _AuthStateChecked implements AuthState {
-  factory _AuthStateChecked() = _$_AuthStateChecked;
+  factory _AuthStateChecked(final String name) = _$_AuthStateChecked;
+
+  String get name;
+  @JsonKey(ignore: true)
+  _$$_AuthStateCheckedCopyWith<_$_AuthStateChecked> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -503,7 +532,7 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function() authorized,
-    required TResult Function() checked,
+    required TResult Function(String name) checked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) {
@@ -515,7 +544,7 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) {
@@ -527,7 +556,7 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -650,7 +679,7 @@ class _$_AuthStateError implements _AuthStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() notAuthorized,
     required TResult Function() authorized,
-    required TResult Function() checked,
+    required TResult Function(String name) checked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) {
@@ -662,7 +691,7 @@ class _$_AuthStateError implements _AuthStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) {
@@ -674,7 +703,7 @@ class _$_AuthStateError implements _AuthStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? notAuthorized,
     TResult Function()? authorized,
-    TResult Function()? checked,
+    TResult Function(String name)? checked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
