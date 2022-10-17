@@ -64,7 +64,12 @@ class _AppTextFieldState extends State<AppTextField> {
         controller: controller,
         focusNode: node,
         onTap: widget.onTap,
-        onChanged: widget.onChanged,
+        onChanged: (value) {
+          if (widget.onChanged != null) {
+            widget.onChanged!(value);
+          }
+          setFormatters();
+        },
         cursorWidth: 1.0,
         cursorHeight: 20.0,
         cursorColor: labelStyle.color,
