@@ -58,18 +58,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: MediaQuery.of(context).size.height / 2.7,
                             child: PageView(
                               children: [
-                                BlocBuilder<AuthCubit, AuthState>(
-                                  builder: (context, state) {
-                                    return NameWidget(
-                                      controller: _usernameController,
-                                      onTap: () {
-                                        onTapToCheckUsername(cubit);
-                                        FocusManager.instance.primaryFocus
-                                            ?.unfocus();
-                                      },
-                                      buttonEnabled:
-                                          state != AuthState.waiting(),
-                                    );
+                                NameWidget(
+                                  controller: _usernameController,
+                                  onTap: () {
+                                    onTapToCheckUsername(cubit);
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
                                   },
                                 ),
                               ],

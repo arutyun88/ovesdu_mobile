@@ -20,6 +20,7 @@ class AuthBuilder extends StatelessWidget {
           notAuthorized: () => isNotAuthorized(context),
           authorized: () => isAuthorized(context),
           waiting: () => isNotAuthorized(context),
+          checked: () => isNotAuthorized(context),
           error: (error) => isNotAuthorized(context),
         );
       },

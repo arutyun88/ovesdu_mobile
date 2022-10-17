@@ -14,16 +14,15 @@ class ErrorTextWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
-          child: Text(
-            '$errorText\n$errorText',
-            maxLines: 1,
-            textAlign: TextAlign.right,
-            style: Theme.of(context)
-                .textTheme
-                .caption!
-                .apply(color: AppColors.red),
+        Flexible(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
+            child: Text(
+              errorText,
+              maxLines: 1,
+              textAlign: TextAlign.right,
+              style: const TextStyle(fontSize: 14.0, color: AppColors.red),
+            ),
           ),
         ),
       ],
