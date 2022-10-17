@@ -19,11 +19,20 @@ class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _usernameController;
   late AuthCubit cubit;
 
+  late final PageController _pageController;
+
   @override
   void initState() {
     super.initState();
     _usernameController = TextEditingController();
     cubit = context.read<AuthCubit>();
+    _pageController = PageController(initialPage: 0, keepPage: true);
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
   }
 
   @override
@@ -57,6 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: SizedBox(
                             height: MediaQuery.of(context).size.height / 2.7,
                             child: PageView(
+                              controller: _pageController,
                               children: [
                                 NameWidget(
                                   controller: _usernameController,
@@ -87,6 +97,14 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void onTapToCheckUsername(AuthCubit authCubit) {
-    authCubit.checkUsername(username: _usernameController.text);
+    authCubit.checkUsername(username: _usernameController.text).then((value) {
+      if (cubit.state == AuthState.checked()) {
+        _pageController.animateToPage(
+          1,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.ease,
+        );
+      }
+    });
   }
 }

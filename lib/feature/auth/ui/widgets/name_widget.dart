@@ -38,12 +38,6 @@ class _NameWidgetState extends State<NameWidget> {
     _validate();
   }
 
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    super.dispose();
-  }
-
   _validate() {
     var value = _usernameController.text.trim();
     if (value.isEmpty) {
