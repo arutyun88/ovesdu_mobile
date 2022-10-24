@@ -2,10 +2,9 @@ part of 'auth_cubit.dart';
 
 @freezed
 class AuthState with _$AuthState {
-
   factory AuthState.notAuthorized() = _AuthStateNotAuthorized;
 
-  factory AuthState.authorized() = _AuthStateAuthorized;
+  factory AuthState.authorized(TokenEntity tokenEntity) = _AuthStateAuthorized;
 
   factory AuthState.checked(String name) = _AuthStateChecked;
 

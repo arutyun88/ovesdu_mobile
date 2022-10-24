@@ -10,7 +10,7 @@ class AuthBuilder extends StatelessWidget {
   }) : super(key: key);
 
   final WidgetBuilder isNotAuthorized;
-  final WidgetBuilder isAuthorized;
+  final ValueWidgetBuilder isAuthorized;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class AuthBuilder extends StatelessWidget {
       builder: (context, state) {
         return state.when(
           notAuthorized: () => isNotAuthorized(context),
-          authorized: () => isAuthorized(context),
+          authorized: (tokenEntity) => isAuthorized(context, tokenEntity, this),
           waiting: () => isNotAuthorized(context),
           checked: (value) => isNotAuthorized(context),
           error: (error) => isNotAuthorized(context),

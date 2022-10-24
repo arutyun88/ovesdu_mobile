@@ -1,7 +1,8 @@
 import 'package:injectable/injectable.dart';
-import 'package:ovesdu_mobile/feature/auth/domain/auth_repository.dart';
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
+import '../domain/auth_repository.dart';
+import '../domain/entities/token_entity/token_entity.dart';
 
 @Injectable(as: AuthRepository)
 @test
@@ -16,6 +17,21 @@ class MockAuthRepository implements AuthRepository {
       () {
         // throw Exception('test');
         return 'Пользователь';
+      },
+    );
+  }
+
+  @override
+  Future<TokenEntity> signIn({
+    required String username,
+    required String password,
+    required DeviceEntity device,
+  }) {
+    return Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        // throw Exception('test');
+        return const TokenEntity(accessToken: '', refreshToken: '');
       },
     );
   }

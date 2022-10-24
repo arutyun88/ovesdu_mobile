@@ -101,7 +101,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                     changePage(0);
                                     _unfocused();
                                   },
-                                  onTapAuthorize: () {},
+                                  onTapAuthorize: () {
+                                    onTapToAuthorize(cubit);
+                                    _unfocused();
+                                  },
                                 ),
                               ],
                             ),
@@ -124,7 +127,18 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void onTapToCheckUsername(AuthCubit authCubit) {
-    authCubit.checkUsername(username: _usernameController.text, device: device);
+    authCubit.checkUsername(
+      username: _usernameController.text,
+      device: device,
+    );
+  }
+
+  void onTapToAuthorize(AuthCubit authCubit) {
+    authCubit.signIn(
+      username: _usernameController.text,
+      password: _passwordController.text,
+      device: device,
+    );
   }
 
   void changePage(int page) {

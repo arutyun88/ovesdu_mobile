@@ -35,7 +35,7 @@ class RootScreen extends StatelessWidget {
           // TODO replace AuthPage() to LoginScreen()
           // isNotAuthorized: (context) => const AuthPage(),
           isNotAuthorized: (context) => LoginScreen(device: device),
-          isAuthorized: (context) => const MainScreen(),
+          isAuthorized: (context, value, child) => const MainScreen(),
         ),
       ),
     );

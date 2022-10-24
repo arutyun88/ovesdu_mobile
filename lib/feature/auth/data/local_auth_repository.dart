@@ -3,7 +3,9 @@ import 'package:injectable/injectable.dart';
 import '../../../app/data/dio_container.dart';
 import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../domain/auth_repository.dart';
+import '../domain/entities/token_entity/token_entity.dart';
 import 'dto/device_dto.dart';
+import 'dto/token_dto.dart';
 import 'dto/user_dto.dart';
 import 'dto/user_info_dto.dart';
 
@@ -28,6 +30,27 @@ class LocalAuthRepository implements AuthRepository {
         ).toJson(),
       );
       return UserInfoDto.fromJson(response.data['data']).toString();
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<TokenEntity> signIn({
+    required String username,
+    required String password,
+    required DeviceEntity device,
+  }) async {
+    try {
+      final response = await dioContainer.dio.post(
+        '/auth/token',
+        data: UserDto(
+          username: username,
+          password: password,
+          deviceList: [DeviceDto.toDto(device)],
+        ).toJson(),
+      );
+      return TokenDto.fromJson(response.data['data']).toEntity();
     } catch (_) {
       rethrow;
     }

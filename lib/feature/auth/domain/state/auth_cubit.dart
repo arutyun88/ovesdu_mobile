@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../app/domain/entities/device_entity/device_entity.dart';
 import '../auth_repository.dart';
+import '../entities/token_entity/token_entity.dart';
 
 part 'auth_state.dart';
 
@@ -24,6 +25,25 @@ class AuthCubit extends Cubit<AuthState> {
         device: device,
       );
       emit(AuthState.checked(result));
+    } catch (error) {
+      emit(AuthState.error(error));
+      rethrow;
+    }
+  }
+
+  Future<void> signIn({
+    required String username,
+    required String password,
+    required DeviceEntity device,
+  }) async {
+    emit(AuthState.waiting());
+    try {
+      final result = await authRepository.signIn(
+        username: username,
+        password: password,
+        device: device,
+      );
+      emit(AuthState.authorized(result));
     } catch (error) {
       emit(AuthState.error(error));
       rethrow;
