@@ -32,6 +32,11 @@
       }
     }
   },
+  "passwordLabel": "password",
+  "passwordHint": "enter your password",
+  "passwordErrorText": "less than 8 characters",
+  "passwordForgot": "If you forgot your password, you can",
+  "passwordRecoverButton": "recover it",
   "emailLabel": "email",
   "emailHint": "enter your email",
   "emailIsUseErrorText": "email is already in use",
