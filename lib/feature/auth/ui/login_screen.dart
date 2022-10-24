@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../ui/widgets/created_by_widget.dart';
 import '../../../ui/widgets/logo_sliver_delegate.dart';
 import '../domain/state/auth_cubit.dart';
@@ -9,7 +10,9 @@ import 'widgets/name_widget.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({
     Key? key,
+    required this.device,
   }) : super(key: key);
+  final DeviceEntity device;
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -22,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   late final PageController _pageController;
 
   late String username = '';
+  late DeviceEntity device = widget.device;
 
   @override
   void initState() {

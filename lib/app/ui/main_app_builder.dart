@@ -9,15 +9,16 @@ import '../../feature/auth/domain/state/auth_cubit.dart';
 import '../../l10n/l10n.dart';
 import '../di/init_di.dart';
 import '../domain/app_builder.dart';
+import '../domain/entities/device_entity/device_entity.dart';
 import 'root_screen.dart';
 
 class MainAppBuilder implements AppBuilder {
   @override
-  Widget buildApp(String locale, bool isLightTheme) {
+  Widget buildApp(String locale, bool isLightTheme, DeviceEntity device) {
     return _GlobalProviders(
       locale: locale,
       isLightTheme: isLightTheme,
-      child: const RootScreen(),
+      child: RootScreen(device: device),
     );
   }
 }
