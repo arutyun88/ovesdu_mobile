@@ -15,6 +15,7 @@ class AppTextField extends StatefulWidget {
     this.onChanged,
     this.hintText,
     this.labelText,
+    this.obscure = false,
   }) : super(key: key);
 
   final FocusNode? focus;
@@ -24,6 +25,7 @@ class AppTextField extends StatefulWidget {
   final Function(String)? onChanged;
   final String? hintText;
   final String? labelText;
+  final bool obscure;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -57,6 +59,7 @@ class _AppTextFieldState extends State<AppTextField> {
     return Padding(
       padding: const EdgeInsets.only(top: 4),
       child: TextField(
+        obscureText: widget.obscure,
         autocorrect: false,
         textCapitalization: TextCapitalization.none,
         // TODO доработать маскирование
