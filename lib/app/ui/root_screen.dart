@@ -30,7 +30,7 @@ class RootScreen extends StatelessWidget {
         home: AuthBuilder(
           // TODO replace AuthPage() to LoginScreen()
           isNotAuthorized: (context) => const AuthPage(),
-          isWaiting: (context) => const AppLoader(),
+          // isWaiting: (context) => const AppLoader(),
           isAuthorized: (context) => const MainScreen(),
         ),
       ),

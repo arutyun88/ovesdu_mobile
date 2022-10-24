@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../ui/widgets/created_by_widget.dart';
-import '../../ui/widgets/logo_sliver_delegate.dart';
-import 'domain/state/auth_cubit.dart';
-import 'ui/widgets/name_widget.dart';
+import '../../../ui/widgets/created_by_widget.dart';
+import '../../../ui/widgets/logo_sliver_delegate.dart';
+import '../domain/state/auth_cubit.dart';
+import 'widgets/name_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({

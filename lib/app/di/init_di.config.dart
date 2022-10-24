@@ -8,9 +8,9 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../feature/auth/data/local_auth_repository.dart' as _i11;
+import '../../feature/auth/data/local_auth_repository.dart' as _i10;
 import '../../feature/auth/data/mock_auth_repository.dart' as _i8;
-import '../../feature/auth/data/network_auth_repository.dart' as _i10;
+import '../../feature/auth/data/network_auth_repository.dart' as _i11;
 import '../../feature/auth/domain/auth_repository.dart' as _i7;
 import '../data/config/dev_app_config.dart' as _i4;
 import '../data/config/prod_app_config.dart' as _i5;
@@ -52,12 +52,12 @@ _i1.GetIt $initGetIt(
   );
   gh.singleton<_i9.DioContainer>(_i9.DioContainer(get<_i3.AppConfig>()));
   gh.factory<_i7.AuthRepository>(
-    () => _i10.NetworkAuthRepository(get<_i9.DioContainer>()),
-    registerFor: {_prod},
+    () => _i10.LocalAuthRepository(get<_i9.DioContainer>()),
+    registerFor: {_dev},
   );
   gh.factory<_i7.AuthRepository>(
-    () => _i11.LocalAuthRepository(get<_i9.DioContainer>()),
-    registerFor: {_dev},
+    () => _i11.NetworkAuthRepository(get<_i9.DioContainer>()),
+    registerFor: {_prod},
   );
   return get;
 }
