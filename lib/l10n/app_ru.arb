@@ -17,6 +17,7 @@
   "passwordErrorText": "менее 8 знаков",
   "passwordForgot": "Если вы забыли пароль, вы можете",
   "passwordRecoverButton": "восстановить его",
+  "authorize": "войти",
   "emailLabel": "электронная почта",
   "emailHint": "введите адрес электронной почты",
   "emailIsUseErrorText": "адрес уже используется",

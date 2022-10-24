@@ -17,6 +17,7 @@
   "passwordErrorText": "8 նիշից պակաս",
   "passwordForgot": "Եթե մոռացել եք ձեր գաղտնաբառը, կարող եք",
   "passwordRecoverButton": "վերականգնել այն",
+  "authorize": "մտնել",
   "emailLabel": "Էլ",
   "emailHint": "մուտքագրեք ձեր Էլ",
   "emailIsUseErrorText": "փոստն արդեն օգտագործվում է",

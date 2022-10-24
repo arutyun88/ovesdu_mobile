@@ -15,13 +15,13 @@ class PasswordWidget extends StatefulWidget {
     required this.username,
     required this.controller,
     required this.onTapBack,
-    required this.onTapNext,
+    required this.onTapAuthorize,
   }) : super(key: key);
 
   final String username;
   final TextEditingController controller;
   final Function() onTapBack;
-  final Function() onTapNext;
+  final Function() onTapAuthorize;
 
   @override
   State<PasswordWidget> createState() => _PasswordWidgetState();
@@ -97,10 +97,11 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                         enable: true,
                         onPressed: widget.onTapBack,
                       ),
+                      const SizedBox(width: 10.0),
                       DefaultButton(
-                        title: AppLocalizations.of(context)!.next,
+                        title: AppLocalizations.of(context)!.authorize,
                         enable: nextStepEnabled,
-                        onPressed: widget.onTapNext,
+                        onPressed: widget.onTapAuthorize,
                       ),
                     ],
                   ),
