@@ -109,35 +109,32 @@ class _NameWidgetState extends State<NameWidget> {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 40.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      CupertinoButton(
-                        minSize: 0,
-                        padding: EdgeInsets.zero,
-                        child: Text(
-                          widget.auth
-                              ? AppLocalizations.of(context)!.register
-                              : AppLocalizations.of(context)!.login,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.orange,
-                          ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CupertinoButton(
+                      minSize: 0,
+                      padding: EdgeInsets.zero,
+                      child: Text(
+                        widget.auth
+                            ? AppLocalizations.of(context)!.register
+                            : AppLocalizations.of(context)!.login,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.orange,
                         ),
-                        onPressed: () {
-                          setState(() {
-                            FocusManager.instance.primaryFocus?.unfocus();
-                          });
-                        },
                       ),
-                      // const LanguagePickerWidget(),
-                    ],
-                  ),
+                      onPressed: () {
+                        setState(() {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        });
+                      },
+                    ),
+                    // const LanguagePickerWidget(),
+                  ],
                 ),
-                const CustomFlex(flex: 3),
+                const CustomFlex(flex: 5),
               ],
             ),
           ),
