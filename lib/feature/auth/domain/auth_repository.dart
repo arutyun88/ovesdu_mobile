@@ -1,5 +1,10 @@
+import '../../../app/domain/entities/device_entity/device_entity.dart';
+
 abstract class AuthRepository {
-  Future<dynamic> getName({required String username});
+  Future<dynamic> getName({
+    required String username,
+    required DeviceEntity device,
+  });
 
   Future<dynamic> signUpFirstStep({
     required String username,

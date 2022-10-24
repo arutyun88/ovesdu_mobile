@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void onTapToCheckUsername(AuthCubit authCubit) {
-    authCubit.checkUsername(username: _usernameController.text);
+    authCubit.checkUsername(username: _usernameController.text, device: device);
   }
 
   void changePage() {

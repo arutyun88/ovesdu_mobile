@@ -1,12 +1,15 @@
 import 'package:injectable/injectable.dart';
 import 'package:ovesdu_mobile/feature/auth/domain/auth_repository.dart';
 
+import '../../../app/domain/entities/device_entity/device_entity.dart';
+
 @Injectable(as: AuthRepository)
 @test
 class MockAuthRepository implements AuthRepository {
   @override
   Future getName({
     required String username,
+    required DeviceEntity device,
   }) {
     return Future.delayed(
       const Duration(seconds: 2),
