@@ -6,7 +6,7 @@ import '../../domain/app_config.dart';
 @dev
 class DevAppConfig implements AppConfig {
   @override
-  String get baseUrl => 'localhost';
+  String get baseUrl => 'http://localhost';
 
   @override
   String get host => Environment.dev;
