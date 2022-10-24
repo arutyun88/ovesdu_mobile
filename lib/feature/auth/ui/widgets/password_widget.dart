@@ -37,6 +37,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
   @override
   void initState() {
     super.initState();
+    _validate();
   }
 
   _validate() {
@@ -60,7 +61,6 @@ class _PasswordWidgetState extends State<PasswordWidget> {
 
   @override
   Widget build(BuildContext context) {
-    _validate();
     return BlocConsumer<AuthCubit, AuthState>(
       builder: (context, state) {
         return Padding(

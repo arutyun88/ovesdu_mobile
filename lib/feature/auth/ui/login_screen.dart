@@ -99,6 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   controller: _passwordController,
                                   onTapBack: () {
                                     changePage(0);
+                                    _passwordController.text = '';
                                     _unfocused();
                                   },
                                   onTapAuthorize: () {
