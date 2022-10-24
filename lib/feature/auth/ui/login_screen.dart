@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ovesdu_mobile/feature/auth/ui/widgets/password_widget.dart';
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../ui/widgets/created_by_widget.dart';
@@ -20,6 +21,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _usernameController;
+  late TextEditingController _passwordController;
   late AuthCubit cubit;
 
   late final PageController _pageController;
@@ -31,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     _usernameController = TextEditingController();
+    _passwordController = TextEditingController();
     cubit = context.read<AuthCubit>();
     _pageController = PageController(initialPage: 0, keepPage: true);
   }
@@ -38,6 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void dispose() {
     _usernameController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -46,11 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SafeArea(
         child: GestureDetector(
-          onTap: () {
-            setState(() {
-              FocusManager.instance.primaryFocus?.unfocus();
-            });
-          },
+          onTap: () => setState(() => _unfocused()),
           child: Center(
             child: Container(
               constraints: const BoxConstraints(maxWidth: 500),
@@ -81,8 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       controller: _usernameController,
                                       onTap: () {
                                         onTapToCheckUsername(cubit);
-                                        FocusManager.instance.primaryFocus
-                                            ?.unfocus();
+                                        _unfocused();
                                       },
                                     );
                                   },
@@ -90,42 +89,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                     state.whenOrNull(
                                       checked: (value) {
                                         username = value;
-                                        changePage();
+                                        changePage(1);
                                       },
                                     );
                                   },
                                 ),
-                                BlocBuilder<AuthCubit, AuthState>(
-                                  builder: (context, state) {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 35.0,
-                                      ),
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Flexible(
-                                                  child: Text(
-                                                    'Welcome, $username',
-                                                    textAlign: TextAlign.start,
-                                                    style: const TextStyle(
-                                                      fontSize: 14.0,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
+                                PasswordWidget(
+                                  username: username,
+                                  controller: _passwordController,
+                                  onTapBack: () {
+                                    changePage(0);
+                                    _unfocused();
                                   },
+                                  onTapAuthorize: () {},
                                 ),
                               ],
                             ),
@@ -151,11 +127,13 @@ class _LoginScreenState extends State<LoginScreen> {
     authCubit.checkUsername(username: _usernameController.text, device: device);
   }
 
-  void changePage() {
+  void changePage(int page) {
     _pageController.animateToPage(
-      1,
-      duration: const Duration(milliseconds: 300),
+      page,
+      duration: const Duration(milliseconds: 500),
       curve: Curves.ease,
     );
   }
+
+  void _unfocused() => FocusManager.instance.primaryFocus?.unfocus();
 }
