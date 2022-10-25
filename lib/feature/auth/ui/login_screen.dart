@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ovesdu_mobile/feature/auth/ui/widgets/password_widget.dart';
@@ -111,9 +113,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 24.0),
-                          child: CreatedByWidget(),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: 24.0,
+                            bottom: Platform.isAndroid ? 12.0 : 0.0,
+                          ),
+                          child: const CreatedByWidget(),
                         ),
                       ],
                     ),
