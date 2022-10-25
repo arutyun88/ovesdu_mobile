@@ -9,6 +9,7 @@ import '../../../ui/widgets/logo_sliver_delegate.dart';
 import '../domain/state/auth_cubit.dart';
 import 'widgets/name_widget.dart';
 import 'widgets/password_widget.dart';
+import 'widgets/register_info_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({
@@ -86,9 +87,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     return NameWidget(
                                       controller: _usernameController,
                                       onTap: () {
-                                        onTapToCheckUsername(cubit);
+                                        isAuth.value
+                                            ? onTapToCheckUsernameSignIn(cubit)
+                                            : onTapToCheckUsernameSignUp(cubit);
                                         _unfocused();
                                       },
+                                      isAuth: isAuth,
                                     );
                                   },
                                   listener: (context, state) {
@@ -100,19 +104,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                     );
                                   },
                                 ),
-                                PasswordWidget(
-                                  username: username,
-                                  controller: _passwordController,
-                                  onTapBack: () {
-                                    changePage(0);
-                                    _passwordController.text = '';
-                                    _unfocused();
-                                  },
-                                  onTapAuthorize: () {
-                                    onTapToAuthorize(cubit);
-                                    _unfocused();
-                                  },
-                                ),
+                                isAuth.value
+                                    ? PasswordWidget(
+                                        username: username,
+                                        controller: _passwordController,
+                                        onTapBack: () {
+                                          changePage(0);
+                                          _passwordController.text = '';
+                                          _unfocused();
+                                        },
+                                        onTapAuthorize: () {
+                                          onTapToAuthorize(cubit);
+                                          _unfocused();
+                                        },
+                                      )
+                                    : const RegisterInfoWidget()
                               ],
                             ),
                           ),
@@ -136,12 +142,14 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void onTapToCheckUsername(AuthCubit authCubit) {
+  void onTapToCheckUsernameSignIn(AuthCubit authCubit) {
     authCubit.checkUsername(
       username: _usernameController.text,
       device: device,
     );
   }
+
+  void onTapToCheckUsernameSignUp(AuthCubit authCubit) {}
 
   void onTapToAuthorize(AuthCubit authCubit) {
     authCubit.signIn(

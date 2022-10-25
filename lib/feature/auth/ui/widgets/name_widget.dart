@@ -12,14 +12,14 @@ import 'custom_flex.dart';
 class NameWidget extends StatefulWidget {
   const NameWidget({
     Key? key,
-    this.auth = true,
     required this.controller,
     required this.onTap,
+    required this.isAuth,
   }) : super(key: key);
 
-  final bool auth;
   final TextEditingController controller;
   final Function() onTap;
+  final ValueNotifier<bool> isAuth;
 
   @override
   State<NameWidget> createState() => _NameWidgetState();
@@ -72,8 +72,12 @@ class _NameWidgetState extends State<NameWidget> {
                 ErrorTextWidget(errorText: errorText),
                 AppTextField(
                   controller: _usernameController,
-                  hintText: AppLocalizations.of(context)!.usernameOrEmailHint,
-                  labelText: AppLocalizations.of(context)!.usernameOrEmailLabel,
+                  hintText: widget.isAuth.value
+                      ? AppLocalizations.of(context)!.usernameOrEmailHint
+                      : AppLocalizations.of(context)!.usernameHint,
+                  labelText: widget.isAuth.value
+                      ? AppLocalizations.of(context)!.usernameOrEmailLabel
+                      : AppLocalizations.of(context)!.usernameLabel,
                   borderColor: isComplete ? AppColors.orange : AppColors.red,
                   onChanged: (value) => setState(() => _validate()),
                 ),
@@ -100,7 +104,7 @@ class _NameWidgetState extends State<NameWidget> {
                   children: [
                     Flexible(
                       child: Text(
-                        widget.auth
+                        widget.isAuth.value
                             ? AppLocalizations.of(context)!.notHaveAnAccount
                             : AppLocalizations.of(context)!.haveAnAccount,
                         textAlign: TextAlign.end,
@@ -116,7 +120,7 @@ class _NameWidgetState extends State<NameWidget> {
                       minSize: 0,
                       padding: EdgeInsets.zero,
                       child: Text(
-                        widget.auth
+                        widget.isAuth.value
                             ? AppLocalizations.of(context)!.register
                             : AppLocalizations.of(context)!.login,
                         style: const TextStyle(
@@ -127,6 +131,7 @@ class _NameWidgetState extends State<NameWidget> {
                       ),
                       onPressed: () {
                         setState(() {
+                          widget.isAuth.value = !widget.isAuth.value;
                           FocusManager.instance.primaryFocus?.unfocus();
                         });
                       },
