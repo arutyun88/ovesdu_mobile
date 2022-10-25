@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ovesdu_mobile/feature/auth/ui/widgets/password_widget.dart';
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../ui/widgets/created_by_widget.dart';
 import '../../../ui/widgets/logo_sliver_delegate.dart';
 import '../domain/state/auth_cubit.dart';
 import 'widgets/name_widget.dart';
+import 'widgets/password_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({
@@ -31,6 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
   late String username = '';
   late DeviceEntity device = widget.device;
 
+  late ValueNotifier<bool> isAuth;
+
   @override
   void initState() {
     super.initState();
@@ -38,6 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController = TextEditingController();
     cubit = context.read<AuthCubit>();
     _pageController = PageController(initialPage: 0, keepPage: true);
+    isAuth = ValueNotifier(true);
   }
 
   @override
@@ -63,6 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SliverPersistentHeader(
                     delegate: LogoDelegate(
                       MediaQuery.of(context).size.height / 3,
+                      isAuth,
                     ),
                   ),
                   SliverFillRemaining(

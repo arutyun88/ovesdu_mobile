@@ -1,5 +1,7 @@
 {
   "language": "Հայերեն",
+  "loginTitleSignIn": "Մուտք",
+  "loginTitleSignUp": "Գրանցում",
   "next": "շարունակել",
   "back": "ետ",
   "usernameLabel": "օգտագործողի անունը",

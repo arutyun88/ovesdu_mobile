@@ -1,5 +1,7 @@
 {
   "language": "Français",
+  "loginTitleSignIn": "Sign In",
+  "loginTitleSignUp": "Sign Up",
   "next": "next",
   "back": "back",
   "usernameLabel": "username",

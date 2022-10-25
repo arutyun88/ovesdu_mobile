@@ -56,6 +56,7 @@ class _AuthPageState extends State<AuthPage> {
                   SliverPersistentHeader(
                     delegate: LogoDelegate(
                       MediaQuery.of(context).size.height / 3,
+                      ValueNotifier(false),
                     ),
                   ),
                   SliverFillRemaining(

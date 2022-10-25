@@ -1,5 +1,7 @@
 {
   "language": "English",
+  "loginTitleSignIn": "Sign In",
+  "loginTitleSignUp": "Sign Up",
   "@language": {
     "description": "The current language"
   },

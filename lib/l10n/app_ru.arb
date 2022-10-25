@@ -1,5 +1,7 @@
 {
   "language": "Русский",
+  "loginTitleSignIn": "Вход",
+  "loginTitleSignUp": "Регистрация",
   "next": "далее",
   "back": "назад",
   "usernameLabel": "имя пользователя",
