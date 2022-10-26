@@ -18,6 +18,7 @@ class ContactWidget extends StatefulWidget {
     required this.phoneController,
     required this.onTapBack,
     required this.onTapConfirm,
+    required this.onTapConfirmWhenCorrect,
   }) : super(key: key);
 
   final String username;
@@ -25,6 +26,7 @@ class ContactWidget extends StatefulWidget {
   final TextEditingController phoneController;
   final Function() onTapBack;
   final Function() onTapConfirm;
+  final Function() onTapConfirmWhenCorrect;
 
   @override
   State<ContactWidget> createState() => _ContactWidgetState();
@@ -109,12 +111,19 @@ class _ContactWidgetState extends State<ContactWidget> {
       },
       listener: (context, state) {
         state.whenOrNull(
-          waiting: () => nextStepEnabled = false,
-          error: (error) {
-            _errorText = error.toString();
-            nextStepEnabled = false;
-          },
-        );
+            waiting: () => nextStepEnabled = false,
+            error: (error) {
+              _errorText = error.toString();
+              nextStepEnabled = false;
+            },
+            contactChecked: (correct) {
+              if (!correct) {
+                _errorText = AppLocalizations.of(context)!.emailOrPhoneExist;
+                nextStepEnabled = false;
+              } else {
+                widget.onTapConfirmWhenCorrect();
+              }
+            });
       },
     );
   }

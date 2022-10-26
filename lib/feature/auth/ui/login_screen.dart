@@ -142,6 +142,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                           onTapToCheckContactSignUp(cubit);
                                           _unfocused();
                                         },
+                                        onTapConfirmWhenCorrect: () {
+                                          changePage(2);
+                                          _unfocused();
+                                        },
                                       )
                               ],
                             ),
@@ -179,7 +183,12 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void onTapToCheckContactSignUp(AuthCubit authCubit) {}
+  void onTapToCheckContactSignUp(AuthCubit authCubit) {
+    authCubit.checkContactSignUp(
+      email: _emailController.text,
+      phoneNumber: _phoneController.text,
+    );
+  }
 
   void onTapToAuthorize(AuthCubit authCubit) {
     authCubit.signIn(
