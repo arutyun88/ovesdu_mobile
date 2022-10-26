@@ -29,5 +29,6 @@
   "phoneLabel": "phone",
   "phoneHint": "enter your phone number",
   "phoneNotCorrect": "phone not correct",
-  "confirm": "confirm"
+  "confirm": "confirm",
+  "emailOrPhoneExist": "email or phone already exist"
 }
