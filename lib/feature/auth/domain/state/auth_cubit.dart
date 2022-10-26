@@ -37,7 +37,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthState.waiting());
     try {
       final result = await authRepository.checkUsername(username);
-      emit(AuthState.usernameChecked(result));
+      emit(AuthState.valueChecked(result));
     } catch (error) {
       emit(AuthState.error(error));
       rethrow;

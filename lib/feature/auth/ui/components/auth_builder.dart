@@ -21,7 +21,7 @@ class AuthBuilder extends StatelessWidget {
           authorized: (tokenEntity) => isAuthorized(context, tokenEntity, this),
           waiting: () => isNotAuthorized(context),
           checked: (value) => isNotAuthorized(context),
-          usernameChecked: (value) => isNotAuthorized(context),
+          valueChecked: (value) => isNotAuthorized(context),
           error: (error) => isNotAuthorized(context),
         );
       },
