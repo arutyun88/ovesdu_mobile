@@ -101,6 +101,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                         username = value;
                                         changePage(1);
                                       },
+                                      usernameChecked: (value) {
+                                        username = _usernameController.text;
+                                        if (value) changePage(1);
+                                      },
                                     );
                                   },
                                 ),
@@ -143,13 +147,19 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void onTapToCheckUsernameSignIn(AuthCubit authCubit) {
-    authCubit.checkUsername(
+    authCubit.checkUsernameSignIn(
       username: _usernameController.text,
       device: device,
     );
   }
 
-  void onTapToCheckUsernameSignUp(AuthCubit authCubit) {}
+  void onTapToCheckUsernameSignUp(AuthCubit authCubit) {
+    authCubit.checkUsernameSignUp(
+      username: _usernameController.text,
+    );
+  }
+
+  void onTapToCheckContactSignUp(AuthCubit authCubit) {}
 
   void onTapToAuthorize(AuthCubit authCubit) {
     authCubit.signIn(
