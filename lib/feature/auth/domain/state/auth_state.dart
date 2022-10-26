@@ -8,6 +8,8 @@ class AuthState with _$AuthState {
 
   factory AuthState.checked(String name) = _AuthStateChecked;
 
+  factory AuthState.usernameChecked(bool value) = _AuthStateUsernameChecked;
+
   factory AuthState.waiting() = _AuthStateWaiting;
 
   factory AuthState.error(dynamic error) = _AuthStateError;
