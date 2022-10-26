@@ -82,4 +82,13 @@ class NetworkAuthRepository implements AuthRepository {
     // TODO: implement checkUsername
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> checkContact({
+    required String email,
+    required String phoneNumber,
+  }) {
+    // TODO: implement checkContact
+    throw UnimplementedError();
+  }
 }

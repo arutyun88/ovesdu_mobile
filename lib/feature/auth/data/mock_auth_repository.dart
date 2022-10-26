@@ -34,6 +34,19 @@ class MockAuthRepository implements AuthRepository {
   }
 
   @override
+  Future<bool> checkContact({
+    required String email,
+    required String phoneNumber,
+  }) {
+    return Future.delayed(
+      const Duration(seconds: 1),
+      () {
+        return email == 'some@some.com' && phoneNumber.length > 6;
+      },
+    );
+  }
+
+  @override
   Future<TokenEntity> signIn({
     required String username,
     required String password,

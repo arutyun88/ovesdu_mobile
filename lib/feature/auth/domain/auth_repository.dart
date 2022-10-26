@@ -9,6 +9,11 @@ abstract class AuthRepository {
 
   Future<bool> checkUsername(String username);
 
+  Future<bool> checkContact({
+    required String email,
+    required String phoneNumber,
+  });
+
   Future<TokenEntity> signIn({
     required String username,
     required String password,
