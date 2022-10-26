@@ -21,7 +21,8 @@ mixin _$AuthState {
     required TResult Function() notAuthorized,
     required TResult Function(TokenEntity tokenEntity) authorized,
     required TResult Function(String name) checked,
-    required TResult Function(bool value) valueChecked,
+    required TResult Function(bool value) usernameChecked,
+    required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) =>
@@ -31,7 +32,8 @@ mixin _$AuthState {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) =>
@@ -41,7 +43,8 @@ mixin _$AuthState {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -52,7 +55,8 @@ mixin _$AuthState {
     required TResult Function(_AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(_AuthStateAuthorized value) authorized,
     required TResult Function(_AuthStateChecked value) checked,
-    required TResult Function(_AuthStateValueChecked value) valueChecked,
+    required TResult Function(_AuthStateUsernameChecked value) usernameChecked,
+    required TResult Function(_AuthStateContactChecked value) contactChecked,
     required TResult Function(_AuthStateWaiting value) waiting,
     required TResult Function(_AuthStateError value) error,
   }) =>
@@ -62,7 +66,8 @@ mixin _$AuthState {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
   }) =>
@@ -72,7 +77,8 @@ mixin _$AuthState {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
     required TResult orElse(),
@@ -141,7 +147,8 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
     required TResult Function() notAuthorized,
     required TResult Function(TokenEntity tokenEntity) authorized,
     required TResult Function(String name) checked,
-    required TResult Function(bool value) valueChecked,
+    required TResult Function(bool value) usernameChecked,
+    required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) {
@@ -154,7 +161,8 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) {
@@ -167,7 +175,8 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -184,7 +193,8 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
     required TResult Function(_AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(_AuthStateAuthorized value) authorized,
     required TResult Function(_AuthStateChecked value) checked,
-    required TResult Function(_AuthStateValueChecked value) valueChecked,
+    required TResult Function(_AuthStateUsernameChecked value) usernameChecked,
+    required TResult Function(_AuthStateContactChecked value) contactChecked,
     required TResult Function(_AuthStateWaiting value) waiting,
     required TResult Function(_AuthStateError value) error,
   }) {
@@ -197,7 +207,8 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
   }) {
@@ -210,7 +221,8 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
     required TResult orElse(),
@@ -305,7 +317,8 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
     required TResult Function() notAuthorized,
     required TResult Function(TokenEntity tokenEntity) authorized,
     required TResult Function(String name) checked,
-    required TResult Function(bool value) valueChecked,
+    required TResult Function(bool value) usernameChecked,
+    required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) {
@@ -318,7 +331,8 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) {
@@ -331,7 +345,8 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -348,7 +363,8 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
     required TResult Function(_AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(_AuthStateAuthorized value) authorized,
     required TResult Function(_AuthStateChecked value) checked,
-    required TResult Function(_AuthStateValueChecked value) valueChecked,
+    required TResult Function(_AuthStateUsernameChecked value) usernameChecked,
+    required TResult Function(_AuthStateContactChecked value) contactChecked,
     required TResult Function(_AuthStateWaiting value) waiting,
     required TResult Function(_AuthStateError value) error,
   }) {
@@ -361,7 +377,8 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
   }) {
@@ -374,7 +391,8 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
     required TResult orElse(),
@@ -464,7 +482,8 @@ class _$_AuthStateChecked implements _AuthStateChecked {
     required TResult Function() notAuthorized,
     required TResult Function(TokenEntity tokenEntity) authorized,
     required TResult Function(String name) checked,
-    required TResult Function(bool value) valueChecked,
+    required TResult Function(bool value) usernameChecked,
+    required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) {
@@ -477,7 +496,8 @@ class _$_AuthStateChecked implements _AuthStateChecked {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) {
@@ -490,7 +510,8 @@ class _$_AuthStateChecked implements _AuthStateChecked {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -507,7 +528,8 @@ class _$_AuthStateChecked implements _AuthStateChecked {
     required TResult Function(_AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(_AuthStateAuthorized value) authorized,
     required TResult Function(_AuthStateChecked value) checked,
-    required TResult Function(_AuthStateValueChecked value) valueChecked,
+    required TResult Function(_AuthStateUsernameChecked value) usernameChecked,
+    required TResult Function(_AuthStateContactChecked value) contactChecked,
     required TResult Function(_AuthStateWaiting value) waiting,
     required TResult Function(_AuthStateError value) error,
   }) {
@@ -520,7 +542,8 @@ class _$_AuthStateChecked implements _AuthStateChecked {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
   }) {
@@ -533,7 +556,8 @@ class _$_AuthStateChecked implements _AuthStateChecked {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
     required TResult orElse(),
@@ -555,30 +579,31 @@ abstract class _AuthStateChecked implements AuthState {
 }
 
 /// @nodoc
-abstract class _$$_AuthStateValueCheckedCopyWith<$Res> {
-  factory _$$_AuthStateValueCheckedCopyWith(_$_AuthStateValueChecked value,
-          $Res Function(_$_AuthStateValueChecked) then) =
-      __$$_AuthStateValueCheckedCopyWithImpl<$Res>;
+abstract class _$$_AuthStateUsernameCheckedCopyWith<$Res> {
+  factory _$$_AuthStateUsernameCheckedCopyWith(
+          _$_AuthStateUsernameChecked value,
+          $Res Function(_$_AuthStateUsernameChecked) then) =
+      __$$_AuthStateUsernameCheckedCopyWithImpl<$Res>;
   $Res call({bool value});
 }
 
 /// @nodoc
-class __$$_AuthStateValueCheckedCopyWithImpl<$Res>
+class __$$_AuthStateUsernameCheckedCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res>
-    implements _$$_AuthStateValueCheckedCopyWith<$Res> {
-  __$$_AuthStateValueCheckedCopyWithImpl(_$_AuthStateValueChecked _value,
-      $Res Function(_$_AuthStateValueChecked) _then)
-      : super(_value, (v) => _then(v as _$_AuthStateValueChecked));
+    implements _$$_AuthStateUsernameCheckedCopyWith<$Res> {
+  __$$_AuthStateUsernameCheckedCopyWithImpl(_$_AuthStateUsernameChecked _value,
+      $Res Function(_$_AuthStateUsernameChecked) _then)
+      : super(_value, (v) => _then(v as _$_AuthStateUsernameChecked));
 
   @override
-  _$_AuthStateValueChecked get _value =>
-      super._value as _$_AuthStateValueChecked;
+  _$_AuthStateUsernameChecked get _value =>
+      super._value as _$_AuthStateUsernameChecked;
 
   @override
   $Res call({
     Object? value = freezed,
   }) {
-    return _then(_$_AuthStateValueChecked(
+    return _then(_$_AuthStateUsernameChecked(
       value == freezed
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -589,22 +614,22 @@ class __$$_AuthStateValueCheckedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AuthStateValueChecked implements _AuthStateValueChecked {
-  _$_AuthStateValueChecked(this.value);
+class _$_AuthStateUsernameChecked implements _AuthStateUsernameChecked {
+  _$_AuthStateUsernameChecked(this.value);
 
   @override
   final bool value;
 
   @override
   String toString() {
-    return 'AuthState.valueChecked(value: $value)';
+    return 'AuthState.usernameChecked(value: $value)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AuthStateValueChecked &&
+            other is _$_AuthStateUsernameChecked &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -614,9 +639,9 @@ class _$_AuthStateValueChecked implements _AuthStateValueChecked {
 
   @JsonKey(ignore: true)
   @override
-  _$$_AuthStateValueCheckedCopyWith<_$_AuthStateValueChecked> get copyWith =>
-      __$$_AuthStateValueCheckedCopyWithImpl<_$_AuthStateValueChecked>(
-          this, _$identity);
+  _$$_AuthStateUsernameCheckedCopyWith<_$_AuthStateUsernameChecked>
+      get copyWith => __$$_AuthStateUsernameCheckedCopyWithImpl<
+          _$_AuthStateUsernameChecked>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -624,11 +649,12 @@ class _$_AuthStateValueChecked implements _AuthStateValueChecked {
     required TResult Function() notAuthorized,
     required TResult Function(TokenEntity tokenEntity) authorized,
     required TResult Function(String name) checked,
-    required TResult Function(bool value) valueChecked,
+    required TResult Function(bool value) usernameChecked,
+    required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) {
-    return valueChecked(value);
+    return usernameChecked(value);
   }
 
   @override
@@ -637,11 +663,12 @@ class _$_AuthStateValueChecked implements _AuthStateValueChecked {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) {
-    return valueChecked?.call(value);
+    return usernameChecked?.call(value);
   }
 
   @override
@@ -650,13 +677,14 @@ class _$_AuthStateValueChecked implements _AuthStateValueChecked {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
   }) {
-    if (valueChecked != null) {
-      return valueChecked(value);
+    if (usernameChecked != null) {
+      return usernameChecked(value);
     }
     return orElse();
   }
@@ -667,11 +695,12 @@ class _$_AuthStateValueChecked implements _AuthStateValueChecked {
     required TResult Function(_AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(_AuthStateAuthorized value) authorized,
     required TResult Function(_AuthStateChecked value) checked,
-    required TResult Function(_AuthStateValueChecked value) valueChecked,
+    required TResult Function(_AuthStateUsernameChecked value) usernameChecked,
+    required TResult Function(_AuthStateContactChecked value) contactChecked,
     required TResult Function(_AuthStateWaiting value) waiting,
     required TResult Function(_AuthStateError value) error,
   }) {
-    return valueChecked(this);
+    return usernameChecked(this);
   }
 
   @override
@@ -680,11 +709,12 @@ class _$_AuthStateValueChecked implements _AuthStateValueChecked {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
   }) {
-    return valueChecked?.call(this);
+    return usernameChecked?.call(this);
   }
 
   @override
@@ -693,25 +723,195 @@ class _$_AuthStateValueChecked implements _AuthStateValueChecked {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
     required TResult orElse(),
   }) {
-    if (valueChecked != null) {
-      return valueChecked(this);
+    if (usernameChecked != null) {
+      return usernameChecked(this);
     }
     return orElse();
   }
 }
 
-abstract class _AuthStateValueChecked implements AuthState {
-  factory _AuthStateValueChecked(final bool value) = _$_AuthStateValueChecked;
+abstract class _AuthStateUsernameChecked implements AuthState {
+  factory _AuthStateUsernameChecked(final bool value) =
+      _$_AuthStateUsernameChecked;
 
   bool get value;
   @JsonKey(ignore: true)
-  _$$_AuthStateValueCheckedCopyWith<_$_AuthStateValueChecked> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_AuthStateUsernameCheckedCopyWith<_$_AuthStateUsernameChecked>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AuthStateContactCheckedCopyWith<$Res> {
+  factory _$$_AuthStateContactCheckedCopyWith(_$_AuthStateContactChecked value,
+          $Res Function(_$_AuthStateContactChecked) then) =
+      __$$_AuthStateContactCheckedCopyWithImpl<$Res>;
+  $Res call({bool value});
+}
+
+/// @nodoc
+class __$$_AuthStateContactCheckedCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements _$$_AuthStateContactCheckedCopyWith<$Res> {
+  __$$_AuthStateContactCheckedCopyWithImpl(_$_AuthStateContactChecked _value,
+      $Res Function(_$_AuthStateContactChecked) _then)
+      : super(_value, (v) => _then(v as _$_AuthStateContactChecked));
+
+  @override
+  _$_AuthStateContactChecked get _value =>
+      super._value as _$_AuthStateContactChecked;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_$_AuthStateContactChecked(
+      value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AuthStateContactChecked implements _AuthStateContactChecked {
+  _$_AuthStateContactChecked(this.value);
+
+  @override
+  final bool value;
+
+  @override
+  String toString() {
+    return 'AuthState.contactChecked(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthStateContactChecked &&
+            const DeepCollectionEquality().equals(other.value, value));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_AuthStateContactCheckedCopyWith<_$_AuthStateContactChecked>
+      get copyWith =>
+          __$$_AuthStateContactCheckedCopyWithImpl<_$_AuthStateContactChecked>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() notAuthorized,
+    required TResult Function(TokenEntity tokenEntity) authorized,
+    required TResult Function(String name) checked,
+    required TResult Function(bool value) usernameChecked,
+    required TResult Function(bool value) contactChecked,
+    required TResult Function() waiting,
+    required TResult Function(dynamic error) error,
+  }) {
+    return contactChecked(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? notAuthorized,
+    TResult Function(TokenEntity tokenEntity)? authorized,
+    TResult Function(String name)? checked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
+    TResult Function()? waiting,
+    TResult Function(dynamic error)? error,
+  }) {
+    return contactChecked?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notAuthorized,
+    TResult Function(TokenEntity tokenEntity)? authorized,
+    TResult Function(String name)? checked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
+    TResult Function()? waiting,
+    TResult Function(dynamic error)? error,
+    required TResult orElse(),
+  }) {
+    if (contactChecked != null) {
+      return contactChecked(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AuthStateNotAuthorized value) notAuthorized,
+    required TResult Function(_AuthStateAuthorized value) authorized,
+    required TResult Function(_AuthStateChecked value) checked,
+    required TResult Function(_AuthStateUsernameChecked value) usernameChecked,
+    required TResult Function(_AuthStateContactChecked value) contactChecked,
+    required TResult Function(_AuthStateWaiting value) waiting,
+    required TResult Function(_AuthStateError value) error,
+  }) {
+    return contactChecked(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
+    TResult Function(_AuthStateAuthorized value)? authorized,
+    TResult Function(_AuthStateChecked value)? checked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
+    TResult Function(_AuthStateWaiting value)? waiting,
+    TResult Function(_AuthStateError value)? error,
+  }) {
+    return contactChecked?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
+    TResult Function(_AuthStateAuthorized value)? authorized,
+    TResult Function(_AuthStateChecked value)? checked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
+    TResult Function(_AuthStateWaiting value)? waiting,
+    TResult Function(_AuthStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (contactChecked != null) {
+      return contactChecked(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AuthStateContactChecked implements AuthState {
+  factory _AuthStateContactChecked(final bool value) =
+      _$_AuthStateContactChecked;
+
+  bool get value;
+  @JsonKey(ignore: true)
+  _$$_AuthStateContactCheckedCopyWith<_$_AuthStateContactChecked>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -758,7 +958,8 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
     required TResult Function() notAuthorized,
     required TResult Function(TokenEntity tokenEntity) authorized,
     required TResult Function(String name) checked,
-    required TResult Function(bool value) valueChecked,
+    required TResult Function(bool value) usernameChecked,
+    required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) {
@@ -771,7 +972,8 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) {
@@ -784,7 +986,8 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -801,7 +1004,8 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
     required TResult Function(_AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(_AuthStateAuthorized value) authorized,
     required TResult Function(_AuthStateChecked value) checked,
-    required TResult Function(_AuthStateValueChecked value) valueChecked,
+    required TResult Function(_AuthStateUsernameChecked value) usernameChecked,
+    required TResult Function(_AuthStateContactChecked value) contactChecked,
     required TResult Function(_AuthStateWaiting value) waiting,
     required TResult Function(_AuthStateError value) error,
   }) {
@@ -814,7 +1018,8 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
   }) {
@@ -827,7 +1032,8 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
     required TResult orElse(),
@@ -911,7 +1117,8 @@ class _$_AuthStateError implements _AuthStateError {
     required TResult Function() notAuthorized,
     required TResult Function(TokenEntity tokenEntity) authorized,
     required TResult Function(String name) checked,
-    required TResult Function(bool value) valueChecked,
+    required TResult Function(bool value) usernameChecked,
+    required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
     required TResult Function(dynamic error) error,
   }) {
@@ -924,7 +1131,8 @@ class _$_AuthStateError implements _AuthStateError {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
   }) {
@@ -937,7 +1145,8 @@ class _$_AuthStateError implements _AuthStateError {
     TResult Function()? notAuthorized,
     TResult Function(TokenEntity tokenEntity)? authorized,
     TResult Function(String name)? checked,
-    TResult Function(bool value)? valueChecked,
+    TResult Function(bool value)? usernameChecked,
+    TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
     TResult Function(dynamic error)? error,
     required TResult orElse(),
@@ -954,7 +1163,8 @@ class _$_AuthStateError implements _AuthStateError {
     required TResult Function(_AuthStateNotAuthorized value) notAuthorized,
     required TResult Function(_AuthStateAuthorized value) authorized,
     required TResult Function(_AuthStateChecked value) checked,
-    required TResult Function(_AuthStateValueChecked value) valueChecked,
+    required TResult Function(_AuthStateUsernameChecked value) usernameChecked,
+    required TResult Function(_AuthStateContactChecked value) contactChecked,
     required TResult Function(_AuthStateWaiting value) waiting,
     required TResult Function(_AuthStateError value) error,
   }) {
@@ -967,7 +1177,8 @@ class _$_AuthStateError implements _AuthStateError {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
   }) {
@@ -980,7 +1191,8 @@ class _$_AuthStateError implements _AuthStateError {
     TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
     TResult Function(_AuthStateAuthorized value)? authorized,
     TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateValueChecked value)? valueChecked,
+    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult Function(_AuthStateContactChecked value)? contactChecked,
     TResult Function(_AuthStateWaiting value)? waiting,
     TResult Function(_AuthStateError value)? error,
     required TResult orElse(),

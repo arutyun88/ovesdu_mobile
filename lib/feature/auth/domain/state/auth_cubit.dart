@@ -37,7 +37,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthState.waiting());
     try {
       final result = await authRepository.checkUsername(username);
-      emit(AuthState.valueChecked(result));
+      emit(AuthState.usernameChecked(result));
     } catch (error) {
       emit(AuthState.error(error));
       rethrow;
@@ -54,7 +54,7 @@ class AuthCubit extends Cubit<AuthState> {
         email: email,
         phoneNumber: phoneNumber,
       );
-      emit(AuthState.valueChecked(result));
+      emit(AuthState.contactChecked(result));
     } catch (error) {
       emit(AuthState.error(error));
       rethrow;

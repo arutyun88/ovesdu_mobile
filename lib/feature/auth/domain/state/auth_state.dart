@@ -8,7 +8,9 @@ class AuthState with _$AuthState {
 
   factory AuthState.checked(String name) = _AuthStateChecked;
 
-  factory AuthState.valueChecked(bool value) = _AuthStateValueChecked;
+  factory AuthState.usernameChecked(bool value) = _AuthStateUsernameChecked;
+
+  factory AuthState.contactChecked(bool value) = _AuthStateContactChecked;
 
   factory AuthState.waiting() = _AuthStateWaiting;
 
