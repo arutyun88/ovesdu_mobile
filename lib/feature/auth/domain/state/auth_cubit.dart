@@ -14,7 +14,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   final AuthRepository authRepository;
 
-  Future<void> checkUsername({
+  Future<void> checkUsernameSignIn({
     required String username,
     required DeviceEntity device,
   }) async {
@@ -25,6 +25,19 @@ class AuthCubit extends Cubit<AuthState> {
         device: device,
       );
       emit(AuthState.checked(result));
+    } catch (error) {
+      emit(AuthState.error(error));
+      rethrow;
+    }
+  }
+
+  Future<void> checkUsernameSignUp({
+    required String username,
+  }) async {
+    emit(AuthState.waiting());
+    try {
+      final result = await authRepository.checkUsername(username);
+      emit(AuthState.usernameChecked(result));
     } catch (error) {
       emit(AuthState.error(error));
       rethrow;

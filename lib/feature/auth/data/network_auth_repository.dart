@@ -76,4 +76,10 @@ class NetworkAuthRepository implements AuthRepository {
     // TODO: implement signUpThirdStep
     throw UnimplementedError();
   }
+
+  @override
+  Future<bool> checkUsername(String username) {
+    // TODO: implement checkUsername
+    throw UnimplementedError();
+  }
 }

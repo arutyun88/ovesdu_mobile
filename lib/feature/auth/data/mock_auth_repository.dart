@@ -13,10 +13,22 @@ class MockAuthRepository implements AuthRepository {
     required DeviceEntity device,
   }) {
     return Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(seconds: 1),
       () {
-        // throw Exception('test');
+        if (username != 'some') {
+          throw Exception('test_exception');
+        }
         return 'Пользователь';
+      },
+    );
+  }
+
+  @override
+  Future<bool> checkUsername(String username) {
+    return Future.delayed(
+      const Duration(seconds: 1),
+      () {
+        return username == 'some';
       },
     );
   }
@@ -28,9 +40,11 @@ class MockAuthRepository implements AuthRepository {
     required DeviceEntity device,
   }) {
     return Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(seconds: 1),
       () {
-        // throw Exception('test');
+        if (username != 'some') {
+          throw Exception('test');
+        }
         return const TokenEntity(accessToken: '', refreshToken: '');
       },
     );
