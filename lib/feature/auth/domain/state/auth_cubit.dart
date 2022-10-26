@@ -44,6 +44,23 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> checkContactSignUp({
+    required String email,
+    required String phoneNumber,
+  }) async {
+    emit(AuthState.waiting());
+    try {
+      final result = await authRepository.checkContact(
+        email: email,
+        phoneNumber: phoneNumber,
+      );
+      emit(AuthState.valueChecked(result));
+    } catch (error) {
+      emit(AuthState.error(error));
+      rethrow;
+    }
+  }
+
   Future<void> signIn({
     required String username,
     required String password,
