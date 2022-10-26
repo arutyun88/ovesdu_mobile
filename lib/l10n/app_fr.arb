@@ -13,6 +13,7 @@
   "login": "login",
   "notHaveAnAccount": "If you don’t have account, registering for an account is free and simple",
   "register": "register",
+  "helloUsername": "Welcome, {username}.",
   "famousUser": "Welcome, {username}.\nPlease, enter your password.",
   "passwordLabel": "password",
   "passwordHint": "enter your password",
@@ -23,7 +24,10 @@
   "emailLabel": "email",
   "emailHint": "enter your email",
   "emailIsUseErrorText": "email is already in use",
+  "emailNotCorrect": "email not correct",
   "phoneIsUseErrorText": "phone number is already in use",
   "phoneLabel": "phone",
-  "phoneHint": "enter your phone number"
+  "phoneHint": "enter your phone number",
+  "phoneNotCorrect": "phone not correct",
+  "confirm": "confirm"
 }

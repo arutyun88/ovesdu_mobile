@@ -13,6 +13,7 @@
   "login": "մուտք գործել",
   "notHaveAnAccount": "Եթե դուք չունեք հաշիվ, ապա գրանցումն անվճար է և պարզ",
   "register": "գրանցվել",
+  "helloUsername": "Բարի գալուստ, {username}:",
   "famousUser": "Բարի գալուստ, {username}:\nԽնդրում ենք մուտքագրել ձեր գաղտնաբառը:",
   "passwordLabel": "գաղտնաբառը",
   "passwordHint": "մուտքագրեք ձեր գաղտնաբառը",
@@ -22,8 +23,11 @@
   "authorize": "մտնել",
   "emailLabel": "Էլ",
   "emailHint": "մուտքագրեք ձեր Էլ",
-  "emailIsUseErrorText": "փոստն արդեն օգտագործվում է",
+  "emailIsUseErrorText": "Էլփոստն արդեն օգտագործվում է",
+  "emailNotCorrect": "էլփոստը ճիշտ չէ",
   "phoneIsUseErrorText": "հեռախոսահամարն արդեն օգտագործվում է",
   "phoneLabel": "հեռախոս",
-  "phoneHint": "մուտքագրեք ձեր հեռախոսահամարը"
+  "phoneHint": "մուտքագրեք ձեր հեռախոսահամարը",
+  "phoneNotCorrect": "հեռախոսը ճիշտ չէ",
+  "confirm": "հաստատել"
 }
