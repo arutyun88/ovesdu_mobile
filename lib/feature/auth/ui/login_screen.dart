@@ -7,9 +7,9 @@ import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../ui/widgets/created_by_widget.dart';
 import '../../../ui/widgets/logo_sliver_delegate.dart';
 import '../domain/state/auth_cubit.dart';
+import 'widgets/contact_widget.dart';
 import 'widgets/name_widget.dart';
 import 'widgets/password_widget.dart';
-import 'widgets/register_info_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({
@@ -25,6 +25,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _usernameController;
   late TextEditingController _passwordController;
+  late TextEditingController _emailController;
+  late TextEditingController _phoneController;
   late AuthCubit cubit;
 
   late final PageController _pageController;
@@ -39,6 +41,8 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
     _usernameController = TextEditingController();
     _passwordController = TextEditingController();
+    _emailController = TextEditingController();
+    _phoneController = TextEditingController();
     cubit = context.read<AuthCubit>();
     _pageController = PageController(initialPage: 0, keepPage: true);
     isAuth = ValueNotifier(true);
@@ -48,6 +52,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
     super.dispose();
   }
 
@@ -122,7 +128,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                           _unfocused();
                                         },
                                       )
-                                    : const RegisterInfoWidget()
+                                    : ContactWidget(
+                                        username: username,
+                                        emailController: _emailController,
+                                        phoneController: _phoneController,
+                                        onTapBack: () {
+                                          changePage(0);
+                                          _emailController.text = '';
+                                          _phoneController.text = '';
+                                          _unfocused();
+                                        },
+                                        onTapConfirm: () {
+                                          onTapToCheckContactSignUp(cubit);
+                                          _unfocused();
+                                        },
+                                      )
                               ],
                             ),
                           ),
