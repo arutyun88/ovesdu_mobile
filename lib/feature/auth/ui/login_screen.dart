@@ -7,6 +7,7 @@ import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../ui/widgets/created_by_widget.dart';
 import '../../../ui/widgets/logo_sliver_delegate.dart';
 import '../domain/state/auth_cubit.dart';
+import 'register_screen.dart';
 import 'widgets/contact_widget.dart';
 import 'widgets/name_widget.dart';
 import 'widgets/password_widget.dart';
@@ -143,8 +144,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                           _unfocused();
                                         },
                                         onTapConfirmWhenCorrect: () {
-                                          changePage(2);
-                                          _unfocused();
+                                          Navigator.of(context)
+                                              .pushAndRemoveUntil(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  RegisterScreen(
+                                                username:
+                                                    _usernameController.text,
+                                                email: _emailController.text,
+                                                phoneNumber:
+                                                    _phoneController.text,
+                                              ),
+                                            ),
+                                            (_) => false,
+                                          );
                                         },
                                       )
                               ],
