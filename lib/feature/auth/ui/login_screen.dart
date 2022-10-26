@@ -154,6 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 email: _emailController.text,
                                                 phoneNumber:
                                                     _phoneController.text,
+                                                device: device,
                                               ),
                                             ),
                                             (_) => false,

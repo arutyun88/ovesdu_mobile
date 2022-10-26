@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/ui/components/app_text_field.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -9,11 +10,13 @@ class RegisterScreen extends StatefulWidget {
     required this.username,
     required this.email,
     required this.phoneNumber,
+    required this.device,
   }) : super(key: key);
 
   final String username;
   final String email;
   final String phoneNumber;
+  final DeviceEntity device;
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
