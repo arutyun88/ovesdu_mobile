@@ -16,6 +16,7 @@ class AppTextField extends StatefulWidget {
     this.hintText,
     this.labelText,
     this.obscure = false,
+    this.keyboardType = TextInputType.text,
   }) : super(key: key);
 
   final FocusNode? focus;
@@ -26,6 +27,7 @@ class AppTextField extends StatefulWidget {
   final String? hintText;
   final String? labelText;
   final bool obscure;
+  final TextInputType keyboardType;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -38,10 +40,10 @@ class _AppTextFieldState extends State<AppTextField> {
 
   void setFormatters() {
     formatters.add(SimpleTextFormatter());
-    if (controller.text.length > 1) {
+    // if (controller.text.length > 1) {
       // TODO 15 characters?
-      formatters.add(MaskedInputFormatter("###############"));
-    }
+      // formatters.add(MaskedInputFormatter("###############"));
+    // }
   }
 
   @override
@@ -59,6 +61,7 @@ class _AppTextFieldState extends State<AppTextField> {
     return Padding(
       padding: const EdgeInsets.only(top: 4),
       child: TextField(
+        keyboardType: widget.keyboardType,
         obscureText: widget.obscure,
         autocorrect: false,
         textCapitalization: TextCapitalization.none,
