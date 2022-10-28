@@ -169,6 +169,12 @@ class _NameWidgetState extends State<NameWidget> {
             errorText = error.toString();
             isComplete = false;
           },
+          usernameChecked: (value) {
+            if (!value) {
+              errorText = AppLocalizations.of(context)!.usernameAlreadyExist;
+            }
+            isComplete = value;
+          },
         );
       },
     );

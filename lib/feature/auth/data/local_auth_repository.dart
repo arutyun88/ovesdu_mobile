@@ -57,38 +57,31 @@ class LocalAuthRepository implements AuthRepository {
   }
 
   @override
-  Future signUpFirstStep({required String username, required String deviceId}) {
-    // TODO: implement signUpFirstStep
-    throw UnimplementedError();
-  }
-
-  @override
-  Future signUpSecondStep(
-      {required String email,
-      required String phoneNumber,
-      required String dayOfBirth}) {
-    // TODO: implement signUpSecondStep
-    throw UnimplementedError();
-  }
-
-  @override
-  Future signUpThirdStep({required String password}) {
-    // TODO: implement signUpThirdStep
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<bool> checkUsername(String username) {
-    // TODO: implement checkUsername
-    throw UnimplementedError();
+  Future<bool> checkUsername(String username) async {
+    try {
+      final response = await dioContainer.dio.get('/auth/check/$username');
+      return response.data['data'] as bool;
+    } catch (_) {
+      rethrow;
+    }
   }
 
   @override
   Future<bool> checkContact({
     required String email,
     required String phoneNumber,
-  }) {
-    // TODO: implement checkContact
-    throw UnimplementedError();
+  }) async {
+    try {
+      final response = await dioContainer.dio.post(
+        '/auth/check',
+        data: UserDto(
+          email: email,
+          phoneNumber: phoneNumber,
+        ).toJson(),
+      );
+      return response.data['data'] as bool;
+    } catch (_) {
+      rethrow;
+    }
   }
 }

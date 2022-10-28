@@ -62,31 +62,4 @@ class MockAuthRepository implements AuthRepository {
       },
     );
   }
-
-  @override
-  Future signUpFirstStep({
-    required String username,
-    required String deviceId,
-  }) {
-    return Future.delayed(
-      const Duration(seconds: 2),
-      () => false,
-    );
-  }
-
-  @override
-  Future signUpSecondStep({
-    required String email,
-    required String phoneNumber,
-    required String dayOfBirth,
-  }) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future signUpThirdStep({
-    required String password,
-  }) {
-    throw UnimplementedError();
-  }
 }

@@ -9,6 +9,7 @@ class UserDto {
   final dynamic id;
   final dynamic username;
   final dynamic email;
+  final dynamic phoneNumber;
   final dynamic password;
   final dynamic name;
   final List<DeviceDto>? deviceList;
@@ -17,6 +18,7 @@ class UserDto {
     this.id,
     this.username,
     this.email,
+    this.phoneNumber,
     this.password,
     this.name,
     this.deviceList,
