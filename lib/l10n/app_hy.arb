@@ -42,5 +42,7 @@
   "dateOfBirthLabel": "ծննդյան ամսաթիվ",
   "countryLabel": "երկիր",
   "cityLabel": "քաղաք",
-  "dateInvalid": "անվավեր ամսաթիվ"
+  "dateInvalid": "անվավեր ամսաթիվ",
+  "isUnderage": "դու անչափահաս ես",
+  "nameInvalid": "սխալ անուն"
 }

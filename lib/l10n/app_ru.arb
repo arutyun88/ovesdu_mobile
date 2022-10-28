@@ -42,5 +42,7 @@
   "dateOfBirthLabel": "дата рождения",
   "countryLabel": "страна",
   "cityLabel": "город",
-  "dateInvalid": "некорректная дата"
+  "dateInvalid": "некорректная дата",
+  "isUnderage": "вы несовершеннолетний",
+  "nameInvalid": "некорректное имя"
 }

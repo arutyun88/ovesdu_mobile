@@ -69,5 +69,7 @@
   "dateOfBirthLabel": "day of birth",
   "countryLabel": "country",
   "cityLabel": "city",
-  "dateInvalid": "invalid date"
+  "dateInvalid": "invalid date",
+  "isUnderage": "you are underage",
+  "nameInvalid": "invalid name"
 }
