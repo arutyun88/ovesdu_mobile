@@ -18,6 +18,7 @@
   "usernameOrEmailLabel": "username or email",
   "usernameOrEmailHint": "enter your username or email",
   "usernameErrorText": "less than 4 characters",
+  "usernameAlreadyExist": "username already exist",
   "haveAnAccount": "If you already have an account, please",
   "@haveAnAccount": {
     "description": ""
