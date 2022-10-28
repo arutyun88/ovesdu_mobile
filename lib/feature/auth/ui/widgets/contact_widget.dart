@@ -4,10 +4,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../app/const/reg_exr_const.dart';
 import '../../../../app/ui/components/app_text_field.dart';
-import '../../../../config/app_colors.dart';
-import '../../../../ui/widgets/default_button.dart';
+import '../../../../app/ui/config/app_colors.dart';
+import '../../../../app/ui/components/default_button.dart';
 import '../../domain/state/auth_cubit.dart';
-import 'custom_flex.dart';
+import '../../../../app/ui/components/custom_flex.dart';
 import 'error_text_widget.dart';
 
 class ContactWidget extends StatefulWidget {

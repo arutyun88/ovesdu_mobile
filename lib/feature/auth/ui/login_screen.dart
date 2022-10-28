@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
-import '../../../ui/widgets/created_by_widget.dart';
-import '../../../ui/widgets/logo_sliver_delegate.dart';
+import '../../../app/ui/components/created_by_widget.dart';
+import '../../../app/ui/components/logo_sliver_delegate.dart';
 import '../domain/state/auth_cubit.dart';
 import 'register_screen.dart';
 import 'widgets/contact_widget.dart';

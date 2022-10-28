@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../config/app_colors.dart';
+import '../config/app_colors.dart';
 import 'logo_widget.dart';
 
 class LogoDelegate extends SliverPersistentHeaderDelegate {

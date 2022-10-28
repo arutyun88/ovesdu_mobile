@@ -6,8 +6,8 @@ import 'package:ovesdu_mobile/app/ui/components/date_text_formatter.dart';
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/ui/components/app_text_field.dart';
-import '../../../config/app_colors.dart';
-import '../../../ui/widgets/default_button.dart';
+import '../../../app/ui/config/app_colors.dart';
+import '../../../app/ui/components/default_button.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/setting_provider/locale_provider.dart';
-import '../../common/setting_provider/theme_provider.dart';
 import '../../feature/auth/domain/auth_repository.dart';
 import '../../feature/auth/domain/state/auth_cubit.dart';
 import '../../l10n/l10n.dart';
+import '../data/setting_provider/locale_provider.dart';
+import '../data/setting_provider/theme_provider.dart';
 import '../di/init_di.dart';
 import '../domain/app_builder.dart';
 import '../domain/entities/device_entity/device_entity.dart';

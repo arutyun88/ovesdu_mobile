@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 
-import '../../../config/app_colors.dart';
+import '../config/app_colors.dart';
 import 'date_text_formatter.dart';
 import 'text_formatters.dart';
 

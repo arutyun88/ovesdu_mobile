@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:ovesdu_mobile/config/app_theme.dart';
+import 'package:ovesdu_mobile/app/ui/config/app_theme.dart';
 
 class ThemeProvider extends ChangeNotifier {
   bool isLightTheme;

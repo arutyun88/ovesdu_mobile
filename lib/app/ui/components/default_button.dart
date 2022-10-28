@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ovesdu_mobile/config/app_colors.dart';
+import 'package:ovesdu_mobile/app/ui/config/app_colors.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({
