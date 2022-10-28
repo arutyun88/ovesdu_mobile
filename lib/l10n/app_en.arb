@@ -44,6 +44,8 @@
   },
   "passwordLabel": "password",
   "passwordHint": "enter your password",
+  "passwordConfirmLabel": "confirm password",
+  "passwordConfirmHint": "confirm your password",
   "passwordErrorText": "less than 8 characters",
   "passwordForgot": "If you forgot your password, you can",
   "passwordRecoverButton": "recover it",
@@ -57,5 +59,15 @@
   "phoneHint": "enter your phone number",
   "phoneNotCorrect": "phone not correct",
   "confirm": "confirm",
-  "emailOrPhoneExist": "email or phone already exist"
+  "emailOrPhoneExist": "email or phone already exist",
+  "nameHint": "enter your name",
+  "nameLabel": "name",
+  "registerConfirmedUsernameLabel": "Username",
+  "registerConfirmedEmailLabel": "Email",
+  "registerConfirmedPhoneLabel": "Phone number",
+  "toStart": "to start",
+  "dateOfBirthLabel": "day of birth",
+  "countryLabel": "country",
+  "cityLabel": "city",
+  "dateInvalid": "invalid date"
 }

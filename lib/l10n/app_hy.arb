@@ -17,6 +17,8 @@
   "famousUser": "Բարի գալուստ, {username}:\nԽնդրում ենք մուտքագրել ձեր գաղտնաբառը:",
   "passwordLabel": "գաղտնաբառը",
   "passwordHint": "մուտքագրեք ձեր գաղտնաբառը",
+  "passwordConfirmLabel": "հաստատել գաղտնաբառը",
+  "passwordConfirmHint": "հաստատեք ձեր գաղտնաբառը",
   "passwordErrorText": "8 նիշից պակաս",
   "passwordForgot": "Եթե մոռացել եք ձեր գաղտնաբառը, կարող եք",
   "passwordRecoverButton": "վերականգնել այն",
@@ -30,5 +32,15 @@
   "phoneHint": "մուտքագրեք ձեր հեռախոսահամարը",
   "phoneNotCorrect": "հեռախոսը ճիշտ չէ",
   "confirm": "հաստատել",
-  "emailOrPhoneExist": "էլփոստը կամ հեռախոսն արդեն գոյություն ունի"
+  "emailOrPhoneExist": "էլփոստը կամ հեռախոսն արդեն գոյություն ունի",
+  "nameHint": "մուտքագրեք ձեր անունը",
+  "nameLabel": "անունը",
+  "registerConfirmedUsernameLabel": "Օգտագործողի անունը",
+  "registerConfirmedEmailLabel": "Էլփոստ",
+  "registerConfirmedPhoneLabel": "հեռախոսահամար",
+  "toStart": "վերսկսել",
+  "dateOfBirthLabel": "ծննդյան ամսաթիվ",
+  "countryLabel": "երկիր",
+  "cityLabel": "քաղաք",
+  "dateInvalid": "անվավեր ամսաթիվ"
 }

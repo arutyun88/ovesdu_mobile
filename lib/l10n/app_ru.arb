@@ -17,6 +17,8 @@
   "famousUser": "Добро пожаловать, {username}.\nПожалуйста, введите пароль.",
   "passwordLabel": "пароль",
   "passwordHint": "введите ваш пароль",
+  "passwordConfirmLabel": "подтверждение пароля",
+  "passwordConfirmHint": "подтвердите ваш пароль",
   "passwordErrorText": "менее 8 знаков",
   "passwordForgot": "Если вы забыли пароль, вы можете",
   "passwordRecoverButton": "восстановить его",
@@ -30,5 +32,15 @@
   "phoneHint": "введите номер вашего телефона",
   "phoneNotCorrect": "некорректный номер телефона",
   "confirm": "подтвердить",
-  "emailOrPhoneExist": "эл. почта или телефон уже используются"
+  "emailOrPhoneExist": "эл. почта или телефон уже используются",
+  "nameHint": "введите ваше имя",
+  "nameLabel": "имя",
+  "registerConfirmedUsernameLabel": "Имя пользователя",
+  "registerConfirmedEmailLabel": "Эл. почта",
+  "registerConfirmedPhoneLabel": "Номер телефона",
+  "toStart": "начать сначала",
+  "dateOfBirthLabel": "дата рождения",
+  "countryLabel": "страна",
+  "cityLabel": "город",
+  "dateInvalid": "некорректная дата"
 }
