@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ovesdu_mobile/app/const/reg_exr_const.dart';
 import 'package:ovesdu_mobile/app/ui/components/date_text_formatter.dart';
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
@@ -40,6 +41,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late bool _dateIsValid;
   late bool _nameIsComplete;
   late bool _nameIsValid;
+  late bool _passwordIsComplete;
+  late bool _passwordIsValid;
+  late bool _passwordConfirmIsComplete;
+  late bool _passwordConfirmIsValid;
 
   @override
   void initState() {
@@ -53,6 +58,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     _nameValidate();
     _dateValidate();
+    _passwordValidate();
+    _passwordConfirmValidate();
   }
 
   @override
@@ -175,7 +182,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _passwordController,
                   hintText: dictionary.passwordHint,
                   labelText: dictionary.passwordLabel,
-                  onChanged: (value) => setState(() {}),
+                  fieldType: TextFieldType.other,
+                  borderColor:
+                      _passwordIsComplete ? AppColors.orange : AppColors.red,
+                  onChanged: (value) => setState(_passwordValidate),
                 ),
                 const SizedBox(height: 12.0),
                 AppTextField(
@@ -183,7 +193,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _passwordConfirmController,
                   hintText: dictionary.passwordConfirmHint,
                   labelText: dictionary.passwordConfirmLabel,
-                  onChanged: (value) => setState(() {}),
+                  fieldType: TextFieldType.other,
+                  borderColor: _passwordConfirmIsComplete
+                      ? AppColors.orange
+                      : AppColors.red,
+                  onChanged: (value) => setState(_passwordConfirmValidate),
                 ),
                 Align(
                   alignment: Alignment.centerRight,
@@ -191,7 +205,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 30.0),
                     child: DefaultButton(
                       title: dictionary.register,
-                      enable: _dateIsValid && _nameIsValid,
+                      enable: _dateIsValid &&
+                          _nameIsValid &&
+                          _passwordIsValid &&
+                          _passwordConfirmIsValid,
                       onPressed: () {},
                     ),
                   ),
@@ -244,6 +261,49 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _dateIsComplete = true;
         _dateIsValid = true;
       }
+    }
+  }
+
+  void _passwordValidate() {
+    if (_passwordController.text.isEmpty) {
+      _errorText = '\n';
+      _passwordIsComplete = true;
+      _passwordIsValid = false;
+    } else {
+      if (_passwordController.text.validatePassword()) {
+        _errorText = '\n';
+        _passwordIsComplete = true;
+        _passwordIsValid = true;
+      } else {
+        _errorText = AppLocalizations.of(context)!.isUnderage;
+        _passwordIsComplete = false;
+        _passwordIsValid = false;
+      }
+    }
+    _passwordConfirmValidate();
+  }
+
+  void _passwordConfirmValidate() {
+    if (_passwordController.text.isNotEmpty) {
+      if (_passwordConfirmController.text.isEmpty) {
+        _errorText = AppLocalizations.of(context)!.isUnderage;
+        _passwordConfirmIsComplete = false;
+        _passwordConfirmIsValid = false;
+      } else {
+        if (_passwordController.text == _passwordConfirmController.text) {
+          _errorText = '\n';
+          _passwordConfirmIsComplete = true;
+          _passwordConfirmIsValid = true;
+        } else {
+          _errorText = AppLocalizations.of(context)!.isUnderage;
+          _passwordConfirmIsComplete = false;
+          _passwordConfirmIsValid = false;
+        }
+      }
+    } else {
+      _errorText = '\n';
+      _passwordConfirmIsComplete = true;
+      _passwordConfirmIsValid = false;
     }
   }
 
