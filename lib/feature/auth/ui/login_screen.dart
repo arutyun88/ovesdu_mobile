@@ -231,6 +231,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _phoneController.clear();
         _passwordController.clear();
         _usernameController.clear();
+        _countryCodeController.clear();
         _pageController.animateToPage(
           0,
           duration: const Duration(milliseconds: 1),
