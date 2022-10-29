@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -18,6 +20,7 @@ class ContactWidget extends StatefulWidget {
     required this.username,
     required this.emailController,
     required this.phoneController,
+    required this.countryCodeController,
     required this.onTapBack,
     required this.onTapConfirm,
     required this.onTapConfirmWhenCorrect,
@@ -26,6 +29,7 @@ class ContactWidget extends StatefulWidget {
   final String username;
   final TextEditingController emailController;
   final TextEditingController phoneController;
+  final TextEditingController countryCodeController;
   final Function() onTapBack;
   final Function() onTapConfirm;
   final Function() onTapConfirmWhenCorrect;
@@ -110,6 +114,9 @@ class _ContactWidgetState extends State<ContactWidget> {
                         enable: nextStepEnabled,
                         onPressed: () {
                           widget.phoneController.text = _phoneNotifier.value;
+                          log(_selectedCountryNotifier.value.code);
+                          widget.countryCodeController.text =
+                              _selectedCountryNotifier.value.code;
                           widget.onTapConfirm();
                         },
                       ),

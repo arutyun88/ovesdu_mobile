@@ -28,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _passwordController;
   late TextEditingController _emailController;
   late TextEditingController _phoneController;
+  late TextEditingController _countryCodeController;
   late AuthCubit cubit;
 
   late final PageController _pageController;
@@ -44,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController = TextEditingController();
     _emailController = TextEditingController();
     _phoneController = TextEditingController();
+    _countryCodeController = TextEditingController();
     cubit = context.read<AuthCubit>();
     _pageController = PageController(initialPage: 0, keepPage: true);
     isAuth = ValueNotifier(true);
@@ -55,6 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController.dispose();
     _emailController.dispose();
     _phoneController.dispose();
+    _countryCodeController.dispose();
     super.dispose();
   }
 
@@ -133,6 +136,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         username: username,
                                         emailController: _emailController,
                                         phoneController: _phoneController,
+                                        countryCodeController:
+                                            _countryCodeController,
                                         onTapBack: () {
                                           changePage(0);
                                           _emailController.text = '';
@@ -214,6 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
           email: _emailController.text,
           phoneNumber: _phoneController.text,
           device: device,
+          phoneCountryCode: _countryCodeController.text,
         ),
       ),
     )

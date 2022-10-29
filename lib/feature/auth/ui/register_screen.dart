@@ -18,12 +18,14 @@ class RegisterScreen extends StatefulWidget {
     required this.username,
     required this.email,
     required this.phoneNumber,
+    required this.phoneCountryCode,
     required this.device,
   }) : super(key: key);
 
   final String username;
   final String email;
   final String phoneNumber;
+  final String phoneCountryCode;
   final DeviceEntity device;
 
   @override
@@ -126,7 +128,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           _ConfirmedValue(
                             name: dictionary.registerConfirmedPhoneLabel,
-                            value: widget.phoneNumber,
+                            value:
+                                '${widget.phoneNumber} (${widget.phoneCountryCode})',
                           ),
                         ],
                       ),
