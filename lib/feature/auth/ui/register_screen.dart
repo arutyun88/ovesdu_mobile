@@ -237,7 +237,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _passwordConfirmIsValid;
   }
 
-  void _registerOnPressed(AuthCubit authCubit) {}
+  void _registerOnPressed(AuthCubit authCubit) {
+    authCubit.signUp(
+      username: widget.username,
+      email: widget.email,
+      phoneNumber: widget.phoneNumber,
+      name: _nameController.text,
+      dateOfBirth: _dateOfBirthController.text,
+      country: _countryController.text,
+      city: _cityController.text,
+      password: _passwordController.text,
+      device: widget.device,
+    );
+  }
 
   void _nameValidate() {
     if (_nameController.text.isEmpty) {

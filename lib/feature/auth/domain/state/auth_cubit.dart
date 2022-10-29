@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../app/domain/entities/device_entity/device_entity.dart';
+import '../../../../app/domain/entities/user_entity/user_entity.dart';
 import '../auth_repository.dart';
 import '../entities/token_entity/token_entity.dart';
 
@@ -72,6 +73,39 @@ class AuthCubit extends Cubit<AuthState> {
         username: username,
         password: password,
         device: device,
+      );
+      emit(AuthState.authorized(result));
+    } catch (error) {
+      emit(AuthState.error(error));
+      rethrow;
+    }
+  }
+
+  Future<void> signUp({
+    required String username,
+    required String email,
+    required String phoneNumber,
+    required String name,
+    required String dateOfBirth,
+    required String country,
+    required String city,
+    required String password,
+    required DeviceEntity device,
+  }) async {
+    emit(AuthState.waiting());
+    try {
+      final result = await authRepository.signUp(
+        UserEntity(
+          username: username,
+          email: email,
+          phoneNumber: phoneNumber,
+          name: name,
+          dateOfBirth: dateOfBirth,
+          country: country,
+          city: city,
+          password: password,
+          device: device,
+        ),
       );
       emit(AuthState.authorized(result));
     } catch (error) {
