@@ -87,8 +87,15 @@ class LocalAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<TokenEntity> signUp(UserEntity userEntity) {
-    // TODO: implement signUp
-    throw UnimplementedError();
+  Future<TokenEntity> signUp(UserEntity userEntity) async {
+    try {
+      final response = await dioContainer.dio.put(
+        '/auth/token',
+        data: UserDto.toDto(userEntity).toJson(),
+      );
+      return TokenDto.fromJson(response.data['data']).toEntity();
+    } catch (_) {
+      rethrow;
+    }
   }
 }

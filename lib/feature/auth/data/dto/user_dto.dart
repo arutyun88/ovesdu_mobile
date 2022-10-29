@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../app/domain/entities/user_entity/user_entity.dart';
 import 'device_dto.dart';
 
 part 'user_dto.g.dart';
@@ -12,6 +13,9 @@ class UserDto {
   final dynamic phoneNumber;
   final dynamic password;
   final dynamic name;
+  final dynamic dateOfBirth;
+  final dynamic country;
+  final dynamic city;
   final List<DeviceDto>? deviceList;
 
   UserDto({
@@ -21,6 +25,9 @@ class UserDto {
     this.phoneNumber,
     this.password,
     this.name,
+    this.dateOfBirth,
+    this.country,
+    this.city,
     this.deviceList,
   });
 
@@ -28,4 +35,16 @@ class UserDto {
       _$UserDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserDtoToJson(this);
+
+  factory UserDto.toDto(UserEntity entity) => UserDto(
+        username: entity.username,
+        email: entity.email,
+        phoneNumber: entity.phoneNumber,
+        name: entity.name,
+        dateOfBirth: entity.dateOfBirth,
+        country: entity.country,
+        city: entity.city,
+        password: entity.password,
+        deviceList: [DeviceDto.toDto(entity.device)],
+      );
 }
