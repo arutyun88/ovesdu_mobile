@@ -67,6 +67,7 @@ class _ContactWidgetState extends State<ContactWidget> {
                   child: ErrorTextWidget(errorText: _errorText),
                 ),
                 AppTextField(
+                  fieldType: TextFieldType.username,
                   keyboardType: TextInputType.emailAddress,
                   controller: widget.emailController,
                   hintText: AppLocalizations.of(context)!.emailHint,

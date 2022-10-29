@@ -7,7 +7,7 @@ class UsernameTextFormatter extends TextInputFormatter {
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     oldValue.selection;
-    var text = newValue.text.trim().replaceAll(' ', '').toLowerCase();
+    var text = newValue.text.trim().toLowerCase().replaceAll(' ', '');
     return TextEditingValue(
       text: text,
       selection: updateCursorSelection(text),
