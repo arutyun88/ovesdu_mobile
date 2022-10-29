@@ -7,6 +7,7 @@ import 'package:ovesdu_mobile/app/ui/components/text_fields/formatter/date_text_
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
+import '../../../app/ui/components/text_fields/formatter/common.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../../app/ui/components/default_button.dart';
 import '../domain/state/auth_cubit.dart';
@@ -293,19 +294,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _passwordValidate() {
-    if (_passwordController.text.isEmpty) {
+    _passwordController.text = _passwordController.text.trim();
+    var value = _passwordController.text;
+    _passwordController.selection = updateCursorSelection(value);
+    if (value.isEmpty) {
       _errorText = '\n';
       _passwordIsComplete = true;
       _passwordIsValid = false;
     } else {
-      if (_passwordController.text.validatePassword()) {
-        _errorText = '\n';
-        _passwordIsComplete = true;
-        _passwordIsValid = true;
-      } else {
-        _errorText = AppLocalizations.of(context)!.isUnderage;
+      if (value.length < 8) {
+        _errorText = AppLocalizations.of(context)!.passwordErrorText;
         _passwordIsComplete = false;
         _passwordIsValid = false;
+      } else {
+        if (value.validatePassword()) {
+          _errorText = '\n';
+          _passwordIsComplete = true;
+          _passwordIsValid = true;
+        } else {
+          _errorText = AppLocalizations.of(context)!.passwordNotCorrect;
+          _passwordIsComplete = false;
+          _passwordIsValid = false;
+        }
       }
     }
     _passwordConfirmValidate();
@@ -315,7 +325,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _passwordConfirmValidate() {
     if (_passwordController.text.isNotEmpty) {
       if (_passwordConfirmController.text.isEmpty) {
-        _errorText = AppLocalizations.of(context)!.isUnderage;
+        _errorText = AppLocalizations.of(context)!.passwordNotCorrect;
         _passwordConfirmIsComplete = false;
         _passwordConfirmIsValid = false;
       } else {
@@ -324,7 +334,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _passwordConfirmIsComplete = true;
           _passwordConfirmIsValid = true;
         } else {
-          _errorText = AppLocalizations.of(context)!.isUnderage;
+          _errorText = AppLocalizations.of(context)!.passwordNotMatch;
           _passwordConfirmIsComplete = false;
           _passwordConfirmIsValid = false;
         }

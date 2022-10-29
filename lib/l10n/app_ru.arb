@@ -22,6 +22,8 @@
   "passwordConfirmLabel": "подтверждение пароля",
   "passwordConfirmHint": "подтвердите ваш пароль",
   "passwordErrorText": "менее 8 знаков",
+  "passwordNotCorrect": "некорректный пароль",
+  "passwordNotMatch": "пароли не совпадают",
   "passwordForgot": "Если вы забыли пароль, вы можете",
   "passwordRecoverButton": "восстановить его",
   "authorize": "войти",

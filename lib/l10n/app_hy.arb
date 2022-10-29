@@ -22,6 +22,8 @@
   "passwordConfirmLabel": "հաստատել գաղտնաբառը",
   "passwordConfirmHint": "հաստատեք ձեր գաղտնաբառը",
   "passwordErrorText": "8 նիշից պակաս",
+  "passwordNotCorrect": "սխալ գաղտնաբառ",
+  "passwordNotMatch": "գաղտնաբառերը չեն համապատասխանում",
   "passwordForgot": "Եթե մոռացել եք ձեր գաղտնաբառը, կարող եք",
   "passwordRecoverButton": "վերականգնել այն",
   "authorize": "մտնել",

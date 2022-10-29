@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ovesdu_mobile/app/const/reg_exr_const.dart';
+import 'package:ovesdu_mobile/app/ui/components/text_fields/formatter/common.dart';
 
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/config/app_colors.dart';
@@ -40,8 +42,10 @@ class _PasswordWidgetState extends State<PasswordWidget> {
     _validate();
   }
 
-  _validate() {
-    var value = widget.controller.text.trim();
+  void _validate() {
+    widget.controller.text = widget.controller.text.trim();
+    var value = widget.controller.text;
+    widget.controller.selection = updateCursorSelection(value);
     if (value.isEmpty) {
       errorText = '\n';
       isComplete = true;
@@ -52,9 +56,15 @@ class _PasswordWidgetState extends State<PasswordWidget> {
         isComplete = false;
         nextStepEnabled = false;
       } else {
-        errorText = '\n';
-        isComplete = true;
-        nextStepEnabled = true;
+        if (value.validatePassword()) {
+          errorText = '\n';
+          isComplete = true;
+          nextStepEnabled = true;
+        } else {
+          errorText = AppLocalizations.of(context)!.passwordNotCorrect;
+          isComplete = false;
+          nextStepEnabled = false;
+        }
       }
     }
   }
