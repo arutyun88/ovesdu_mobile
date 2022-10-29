@@ -83,6 +83,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                   controller: widget.controller,
                   hintText: AppLocalizations.of(context)!.passwordHint,
                   labelText: AppLocalizations.of(context)!.passwordLabel,
+                  fieldType: TextFieldType.other,
                   borderColor: isComplete ? AppColors.orange : AppColors.red,
                   onChanged: (value) => setState(() => _validate()),
                 ),

@@ -32,8 +32,6 @@ class RootScreen extends StatelessWidget {
         supportedLocales: L10n.supportedLocales,
         localizationsDelegates: L10n.localizationsDelegates,
         home: AuthBuilder(
-          // TODO replace AuthPage() to LoginScreen()
-          // isNotAuthorized: (context) => const AuthPage(),
           isNotAuthorized: (context) => LoginScreen(device: device),
           isAuthorized: (context, value, child) => const MainScreen(),
         ),
