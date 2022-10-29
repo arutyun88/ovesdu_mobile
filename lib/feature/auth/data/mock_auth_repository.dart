@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
+import '../../../app/domain/entities/user_entity/user_entity.dart';
 import '../domain/auth_repository.dart';
 import '../domain/entities/token_entity/token_entity.dart';
 
@@ -57,6 +58,19 @@ class MockAuthRepository implements AuthRepository {
       () {
         if (username != 'some') {
           throw Exception('test');
+        }
+        return const TokenEntity(accessToken: '', refreshToken: '');
+      },
+    );
+  }
+
+  @override
+  Future<TokenEntity> signUp(UserEntity userEntity) {
+    return Future.delayed(
+      const Duration(seconds: 1),
+      () {
+        if (userEntity.username != 'some') {
+          throw Exception('test exception');
         }
         return const TokenEntity(accessToken: '', refreshToken: '');
       },

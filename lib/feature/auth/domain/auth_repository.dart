@@ -1,4 +1,5 @@
 import '../../../app/domain/entities/device_entity/device_entity.dart';
+import '../../../app/domain/entities/user_entity/user_entity.dart';
 import 'entities/token_entity/token_entity.dart';
 
 abstract class AuthRepository {
@@ -19,4 +20,6 @@ abstract class AuthRepository {
     required String password,
     required DeviceEntity device,
   });
+
+  Future<TokenEntity> signUp(UserEntity userEntity);
 }

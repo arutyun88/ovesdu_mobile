@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:ovesdu_mobile/app/domain/entities/user_entity/user_entity.dart';
 
 import '../../../app/data/dio_container.dart';
 import '../../../app/domain/entities/device_entity/device_entity.dart';
@@ -83,5 +84,11 @@ class NetworkAuthRepository implements AuthRepository {
     } catch (_) {
       rethrow;
     }
+  }
+
+  @override
+  Future<TokenEntity> signUp(UserEntity userEntity) {
+    // TODO: implement signUp
+    throw UnimplementedError();
   }
 }
