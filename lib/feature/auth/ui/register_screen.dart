@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:ovesdu_mobile/app/const/reg_exr_const.dart';
 import 'package:ovesdu_mobile/app/ui/components/date_text_formatter.dart';
@@ -8,7 +9,7 @@ import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/ui/components/app_text_field.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../../app/ui/components/default_button.dart';
-import 'login_screen.dart';
+import '../domain/state/auth_cubit.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({
@@ -38,13 +39,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   late String _errorText;
   late bool _dateIsComplete;
-  late bool _dateIsValid;
+  late bool _dateIsValid = false;
   late bool _nameIsComplete;
-  late bool _nameIsValid;
+  late bool _nameIsValid = false;
   late bool _passwordIsComplete;
-  late bool _passwordIsValid;
+  late bool _passwordIsValid = false;
   late bool _passwordConfirmIsComplete;
-  late bool _passwordConfirmIsValid;
+  late bool _passwordConfirmIsValid = false;
+  late bool _buttonEnabled;
 
   @override
   void initState() {
@@ -76,150 +78,166 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final dictionary = AppLocalizations.of(context)!;
-    return Scaffold(
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => setState(() => _unfocused()),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 35.0),
-            child: ListView(
-              physics: const ClampingScrollPhysics(),
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: CupertinoButton(
-                      minSize: 0,
-                      padding: EdgeInsets.zero,
-                      child: Text(
-                        dictionary.toStart,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.orange,
+    return BlocConsumer<AuthCubit, AuthState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: GestureDetector(
+              onTap: () => setState(() => _unfocused()),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                child: ListView(
+                  physics: const ClampingScrollPhysics(),
+                  children: [
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 24.0),
+                        child: CupertinoButton(
+                          minSize: 0,
+                          padding: EdgeInsets.zero,
+                          child: Text(
+                            dictionary.toStart,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.orange,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop(false);
+                          },
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                LoginScreen(device: widget.device),
-                          ),
-                          (_) => false,
-                        );
-                      },
                     ),
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _ConfirmedValue(
-                        name: dictionary.registerConfirmedUsernameLabel,
-                        value: widget.username,
-                      ),
-                      _ConfirmedValue(
-                        name: dictionary.registerConfirmedEmailLabel,
-                        value: widget.email,
-                      ),
-                      _ConfirmedValue(
-                        name: dictionary.registerConfirmedPhoneLabel,
-                        value: widget.phoneNumber,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 24.0),
-                AppTextField(
-                  controller: _nameController,
-                  hintText: dictionary.nameHint,
-                  labelText: dictionary.nameLabel,
-                  borderColor:
-                      _nameIsComplete ? AppColors.orange : AppColors.red,
-                  textCapitalization: TextCapitalization.words,
-                  fieldType: TextFieldType.other,
-                  onChanged: (value) => setState(_nameValidate),
-                ),
-                const SizedBox(height: 24.0),
-                Row(
-                  children: [
                     SizedBox(
-                      width: 160,
-                      child: AppTextField(
-                        fieldType: TextFieldType.date,
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        controller: _dateOfBirthController,
-                        borderColor:
-                            _dateIsComplete ? AppColors.orange : AppColors.red,
-                        hintText: dictionary.dateOfBirthLabel,
-                        labelText: dictionary.dateOfBirthLabel,
-                        onChanged: (value) => setState(_dateValidate),
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _ConfirmedValue(
+                            name: dictionary.registerConfirmedUsernameLabel,
+                            value: widget.username,
+                          ),
+                          _ConfirmedValue(
+                            name: dictionary.registerConfirmedEmailLabel,
+                            value: widget.email,
+                          ),
+                          _ConfirmedValue(
+                            name: dictionary.registerConfirmedPhoneLabel,
+                            value: widget.phoneNumber,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 24.0),
+                    AppTextField(
+                      controller: _nameController,
+                      hintText: dictionary.nameHint,
+                      labelText: dictionary.nameLabel,
+                      borderColor:
+                          _nameIsComplete ? AppColors.orange : AppColors.red,
+                      textCapitalization: TextCapitalization.words,
+                      fieldType: TextFieldType.other,
+                      onChanged: (value) => setState(_nameValidate),
+                    ),
+                    const SizedBox(height: 24.0),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 160,
+                          child: AppTextField(
+                            fieldType: TextFieldType.date,
+                            keyboardType: TextInputType.number,
+                            textAlign: TextAlign.center,
+                            controller: _dateOfBirthController,
+                            borderColor: _dateIsComplete
+                                ? AppColors.orange
+                                : AppColors.red,
+                            hintText: dictionary.dateOfBirthLabel,
+                            labelText: dictionary.dateOfBirthLabel,
+                            onChanged: (value) => setState(_dateValidate),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24.0),
+                    AppTextField(
+                      controller: _countryController,
+                      hintText: dictionary.countryLabel,
+                      labelText: dictionary.countryLabel,
+                      onChanged: (value) => setState(() {}),
+                    ),
+                    const SizedBox(height: 12.0),
+                    AppTextField(
+                      controller: _cityController,
+                      hintText: dictionary.cityLabel,
+                      labelText: dictionary.cityLabel,
+                      onChanged: (value) => setState(() {}),
+                    ),
+                    const SizedBox(height: 24.0),
+                    AppTextField(
+                      obscure: true,
+                      controller: _passwordController,
+                      hintText: dictionary.passwordHint,
+                      labelText: dictionary.passwordLabel,
+                      fieldType: TextFieldType.other,
+                      borderColor: _passwordIsComplete
+                          ? AppColors.orange
+                          : AppColors.red,
+                      onChanged: (value) => setState(_passwordValidate),
+                    ),
+                    const SizedBox(height: 12.0),
+                    AppTextField(
+                      obscure: true,
+                      controller: _passwordConfirmController,
+                      hintText: dictionary.passwordConfirmHint,
+                      labelText: dictionary.passwordConfirmLabel,
+                      fieldType: TextFieldType.other,
+                      borderColor: _passwordConfirmIsComplete
+                          ? AppColors.orange
+                          : AppColors.red,
+                      onChanged: (value) => setState(_passwordConfirmValidate),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 30.0),
+                        child: DefaultButton(
+                          title: dictionary.register,
+                          enable: _buttonEnabled,
+                          onPressed: () {
+                            _registerOnPressed(context.read<AuthCubit>());
+                          },
+                        ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 24.0),
-                AppTextField(
-                  controller: _countryController,
-                  hintText: dictionary.countryLabel,
-                  labelText: dictionary.countryLabel,
-                  onChanged: (value) => setState(() {}),
-                ),
-                const SizedBox(height: 12.0),
-                AppTextField(
-                  controller: _cityController,
-                  hintText: dictionary.cityLabel,
-                  labelText: dictionary.cityLabel,
-                  onChanged: (value) => setState(() {}),
-                ),
-                const SizedBox(height: 24.0),
-                AppTextField(
-                  obscure: true,
-                  controller: _passwordController,
-                  hintText: dictionary.passwordHint,
-                  labelText: dictionary.passwordLabel,
-                  fieldType: TextFieldType.other,
-                  borderColor:
-                      _passwordIsComplete ? AppColors.orange : AppColors.red,
-                  onChanged: (value) => setState(_passwordValidate),
-                ),
-                const SizedBox(height: 12.0),
-                AppTextField(
-                  obscure: true,
-                  controller: _passwordConfirmController,
-                  hintText: dictionary.passwordConfirmHint,
-                  labelText: dictionary.passwordConfirmLabel,
-                  fieldType: TextFieldType.other,
-                  borderColor: _passwordConfirmIsComplete
-                      ? AppColors.orange
-                      : AppColors.red,
-                  onChanged: (value) => setState(_passwordConfirmValidate),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30.0),
-                    child: DefaultButton(
-                      title: dictionary.register,
-                      enable: _dateIsValid &&
-                          _nameIsValid &&
-                          _passwordIsValid &&
-                          _passwordConfirmIsValid,
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
+      listener: (context, state) {
+        state.whenOrNull(
+          waiting: () => _buttonEnabled = false,
+          authorized: (entity) {
+            Navigator.of(context).pop();
+          },
+        );
+      },
     );
   }
+
+  void _buttonValidate() {
+    _buttonEnabled = _dateIsValid &&
+        _nameIsValid &&
+        _passwordIsValid &&
+        _passwordConfirmIsValid;
+  }
+
+  void _registerOnPressed(AuthCubit authCubit) {}
 
   void _nameValidate() {
     if (_nameController.text.isEmpty) {
@@ -262,6 +280,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _dateIsValid = true;
       }
     }
+    _buttonValidate();
   }
 
   void _passwordValidate() {
@@ -281,6 +300,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       }
     }
     _passwordConfirmValidate();
+    _buttonValidate();
   }
 
   void _passwordConfirmValidate() {
@@ -305,6 +325,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _passwordConfirmIsComplete = true;
       _passwordConfirmIsValid = false;
     }
+    _buttonValidate();
   }
 
   void _unfocused() => FocusManager.instance.primaryFocus?.unfocus();

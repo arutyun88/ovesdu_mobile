@@ -143,23 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           onTapToCheckContactSignUp(cubit);
                                           _unfocused();
                                         },
-                                        onTapConfirmWhenCorrect: () {
-                                          Navigator.of(context)
-                                              .pushAndRemoveUntil(
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  RegisterScreen(
-                                                username:
-                                                    _usernameController.text,
-                                                email: _emailController.text,
-                                                phoneNumber:
-                                                    _phoneController.text,
-                                                device: device,
-                                              ),
-                                            ),
-                                            (_) => false,
-                                          );
-                                        },
+                                        onTapConfirmWhenCorrect: onTapConfirm,
                                       )
                               ],
                             ),
@@ -218,6 +202,36 @@ class _LoginScreenState extends State<LoginScreen> {
       duration: const Duration(milliseconds: 500),
       curve: Curves.ease,
     );
+  }
+
+  void onTapConfirm() {
+    _unfocused();
+    Navigator.of(context)
+        .push(
+      MaterialPageRoute(
+        builder: (context) => RegisterScreen(
+          username: _usernameController.text,
+          email: _emailController.text,
+          phoneNumber: _phoneController.text,
+          device: device,
+        ),
+      ),
+    )
+        .then((value) {
+      if (value != null) {
+        isAuth.value = true;
+        _usernameController.clear();
+        _emailController.clear();
+        _phoneController.clear();
+        _passwordController.clear();
+        _usernameController.clear();
+        _pageController.animateToPage(
+          0,
+          duration: const Duration(milliseconds: 1),
+          curve: Curves.ease,
+        );
+      }
+    });
   }
 
   void _unfocused() => FocusManager.instance.primaryFocus?.unfocus();
