@@ -19,6 +19,7 @@ mixin _$UserEntity {
   String get username => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
+  String get phoneCountryCode => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get dateOfBirth => throw _privateConstructorUsedError;
   String get country => throw _privateConstructorUsedError;
@@ -40,6 +41,7 @@ abstract class $UserEntityCopyWith<$Res> {
       {String username,
       String email,
       String phoneNumber,
+      String phoneCountryCode,
       String name,
       String dateOfBirth,
       String country,
@@ -63,6 +65,7 @@ class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
     Object? username = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
+    Object? phoneCountryCode = freezed,
     Object? name = freezed,
     Object? dateOfBirth = freezed,
     Object? country = freezed,
@@ -82,6 +85,10 @@ class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneCountryCode: phoneCountryCode == freezed
+          ? _value.phoneCountryCode
+          : phoneCountryCode // ignore: cast_nullable_to_non_nullable
               as String,
       name: name == freezed
           ? _value.name
@@ -129,6 +136,7 @@ abstract class _$$_UserEntityCopyWith<$Res>
       {String username,
       String email,
       String phoneNumber,
+      String phoneCountryCode,
       String name,
       String dateOfBirth,
       String country,
@@ -155,6 +163,7 @@ class __$$_UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
     Object? username = freezed,
     Object? email = freezed,
     Object? phoneNumber = freezed,
+    Object? phoneCountryCode = freezed,
     Object? name = freezed,
     Object? dateOfBirth = freezed,
     Object? country = freezed,
@@ -174,6 +183,10 @@ class __$$_UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneCountryCode: phoneCountryCode == freezed
+          ? _value.phoneCountryCode
+          : phoneCountryCode // ignore: cast_nullable_to_non_nullable
               as String,
       name: name == freezed
           ? _value.name
@@ -210,6 +223,7 @@ class _$_UserEntity implements _UserEntity {
       {required this.username,
       required this.email,
       required this.phoneNumber,
+      required this.phoneCountryCode,
       required this.name,
       required this.dateOfBirth,
       required this.country,
@@ -223,6 +237,8 @@ class _$_UserEntity implements _UserEntity {
   final String email;
   @override
   final String phoneNumber;
+  @override
+  final String phoneCountryCode;
   @override
   final String name;
   @override
@@ -238,7 +254,7 @@ class _$_UserEntity implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(username: $username, email: $email, phoneNumber: $phoneNumber, name: $name, dateOfBirth: $dateOfBirth, country: $country, city: $city, password: $password, device: $device)';
+    return 'UserEntity(username: $username, email: $email, phoneNumber: $phoneNumber, phoneCountryCode: $phoneCountryCode, name: $name, dateOfBirth: $dateOfBirth, country: $country, city: $city, password: $password, device: $device)';
   }
 
   @override
@@ -250,6 +266,8 @@ class _$_UserEntity implements _UserEntity {
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.phoneCountryCode, phoneCountryCode) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.dateOfBirth, dateOfBirth) &&
@@ -265,6 +283,7 @@ class _$_UserEntity implements _UserEntity {
       const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(phoneNumber),
+      const DeepCollectionEquality().hash(phoneCountryCode),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(dateOfBirth),
       const DeepCollectionEquality().hash(country),
@@ -283,6 +302,7 @@ abstract class _UserEntity implements UserEntity {
       {required final String username,
       required final String email,
       required final String phoneNumber,
+      required final String phoneCountryCode,
       required final String name,
       required final String dateOfBirth,
       required final String country,
@@ -296,6 +316,8 @@ abstract class _UserEntity implements UserEntity {
   String get email;
   @override
   String get phoneNumber;
+  @override
+  String get phoneCountryCode;
   @override
   String get name;
   @override

@@ -243,6 +243,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       username: widget.username,
       email: widget.email,
       phoneNumber: widget.phoneNumber,
+      phoneCountryCode: widget.phoneCountryCode,
       name: _nameController.text,
       dateOfBirth: _dateOfBirthController.text,
       country: _countryController.text,

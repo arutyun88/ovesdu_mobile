@@ -11,8 +11,12 @@ UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
       username: json['username'],
       email: json['email'],
       phoneNumber: json['phoneNumber'],
+      phoneCountryCode: json['phoneCountryCode'],
       password: json['password'],
       name: json['name'],
+      dateOfBirth: json['dateOfBirth'],
+      country: json['country'],
+      city: json['city'],
       deviceList: (json['deviceList'] as List<dynamic>?)
           ?.map((e) => DeviceDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -23,7 +27,11 @@ Map<String, dynamic> _$UserDtoToJson(UserDto instance) => <String, dynamic>{
       'username': instance.username,
       'email': instance.email,
       'phoneNumber': instance.phoneNumber,
+      'phoneCountryCode': instance.phoneCountryCode,
       'password': instance.password,
       'name': instance.name,
+      'dateOfBirth': instance.dateOfBirth,
+      'country': instance.country,
+      'city': instance.city,
       'deviceList': instance.deviceList,
     };

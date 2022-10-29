@@ -10,6 +10,7 @@ class UserEntity with _$UserEntity {
     required String username,
     required String email,
     required String phoneNumber,
+    required String phoneCountryCode,
     required String name,
     required String dateOfBirth,
     required String country,

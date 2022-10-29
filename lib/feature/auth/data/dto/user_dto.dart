@@ -11,6 +11,7 @@ class UserDto {
   final dynamic username;
   final dynamic email;
   final dynamic phoneNumber;
+  final dynamic phoneCountryCode;
   final dynamic password;
   final dynamic name;
   final dynamic dateOfBirth;
@@ -23,6 +24,7 @@ class UserDto {
     this.username,
     this.email,
     this.phoneNumber,
+    this.phoneCountryCode,
     this.password,
     this.name,
     this.dateOfBirth,
@@ -40,6 +42,7 @@ class UserDto {
         username: entity.username,
         email: entity.email,
         phoneNumber: entity.phoneNumber,
+        phoneCountryCode: entity.phoneCountryCode,
         name: entity.name,
         dateOfBirth: entity.dateOfBirth,
         country: entity.country,
