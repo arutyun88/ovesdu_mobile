@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../app/const/reg_exr_const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/main_app_builder.dart';
@@ -48,14 +49,41 @@ class _UsernameWidgetState extends State<UsernameWidget> {
       isComplete = true;
       enabled = false;
     } else {
-      if (value.length < 4) {
-        errorText = AppLocalizations.of(context)!.usernameErrorText;
-        isComplete = false;
-        enabled = false;
+      if (widget.isAuth.value) {
+        if (value.contains('@')) {
+          isComplete = RegExp(RegExpConst.email).hasMatch(value);
+          if (isComplete) {
+            errorText = '\n';
+            enabled = true;
+          } else {
+            errorText = AppLocalizations.of(context)!.emailNotCorrect;
+            enabled = false;
+          }
+        } else {
+          if (value.length < 4) {
+            errorText = AppLocalizations.of(context)!.usernameErrorText;
+            isComplete = false;
+            enabled = false;
+          } else {
+            errorText = '\n';
+            isComplete = true;
+            enabled = true;
+          }
+        }
       } else {
-        errorText = '\n';
-        isComplete = true;
-        enabled = true;
+        if (value.contains('@')) {
+          errorText = AppLocalizations.of(context)!.usernameNotCorrect;
+          isComplete = false;
+          enabled = false;
+        } else if (value.length < 4) {
+          errorText = AppLocalizations.of(context)!.usernameErrorText;
+          isComplete = false;
+          enabled = false;
+        } else {
+          errorText = '\n';
+          isComplete = true;
+          enabled = true;
+        }
       }
     }
   }
@@ -76,7 +104,9 @@ class _UsernameWidgetState extends State<UsernameWidget> {
                 AppTextField(
                   controller: _usernameController,
                   fieldType: TextFieldType.username,
-                  keyboardType: TextInputType.emailAddress,
+                  keyboardType: widget.isAuth.value
+                      ? TextInputType.emailAddress
+                      : TextInputType.text,
                   hintText: widget.isAuth.value
                       ? AppLocalizations.of(context)!.usernameOrEmailHint
                       : AppLocalizations.of(context)!.usernameHint,

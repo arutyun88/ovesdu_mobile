@@ -23,12 +23,18 @@ class NetworkAuthRepository implements AuthRepository {
     required DeviceEntity device,
   }) async {
     try {
+      final UserDto data = username.contains('@')
+          ? UserDto(
+              email: username,
+              deviceList: [DeviceDto.toDto(device)],
+            )
+          : UserDto(
+              username: username,
+              deviceList: [DeviceDto.toDto(device)],
+            );
       final response = await dioContainer.dio.post(
         '/auth/info',
-        data: UserDto(
-          username: username,
-          deviceList: [DeviceDto.toDto(device)],
-        ).toJson(),
+        data: data.toJson(),
       );
       return UserInfoDto.fromJson(response.data['data']).toString();
     } catch (_) {
