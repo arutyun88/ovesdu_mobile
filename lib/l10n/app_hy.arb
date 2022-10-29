@@ -48,5 +48,7 @@
   "cityLabel": "քաղաք",
   "dateInvalid": "անվավեր ամսաթիվ",
   "isUnderage": "դու անչափահաս ես",
-  "nameInvalid": "սխալ անուն"
+  "nameInvalid": "սխալ անուն",
+  "searchCountryLabel": "որոնել երկիրը",
+  "searchCountryHint": "մուտքագրեք երկիրը կամ կոդը"
 }

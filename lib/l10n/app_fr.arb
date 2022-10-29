@@ -48,5 +48,7 @@
   "cityLabel": "city",
   "dateInvalid": "invalid date",
   "isUnderage": "you are underage",
-  "nameInvalid": "invalid name"
+  "nameInvalid": "invalid name",
+  "searchCountryLabel": "search country",
+  "searchCountryHint": "enter country or code"
 }

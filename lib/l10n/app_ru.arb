@@ -48,5 +48,7 @@
   "cityLabel": "город",
   "dateInvalid": "некорректная дата",
   "isUnderage": "вы несовершеннолетний",
-  "nameInvalid": "некорректное имя"
+  "nameInvalid": "некорректное имя",
+  "searchCountryLabel": "поиск страны",
+  "searchCountryHint": "введите страну или код"
 }
