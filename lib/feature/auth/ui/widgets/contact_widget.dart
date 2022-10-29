@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../app/const/countries.dart';
 import '../../../../app/const/reg_exr_const.dart';
+import '../../../../app/ui/components/text_fields/app_phone_field/app_phone_field.dart';
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../../../app/ui/components/buttons/default_button.dart';
@@ -37,11 +39,17 @@ class _ContactWidgetState extends State<ContactWidget> {
   late String _errorText = '';
   late bool _emailIsValid = true;
   late bool _phoneIsValid = true;
+  late ValueNotifier<String> _phoneNotifier;
+  late ValueNotifier<Country> _selectedCountryNotifier;
 
   @override
   void initState() {
     super.initState();
     nextStepEnabled = false;
+    _phoneNotifier = ValueNotifier('');
+    _selectedCountryNotifier = ValueNotifier(
+      countries.firstWhere((country) => country.code == 'AM'),
+    );
   }
 
   @override
@@ -76,13 +84,14 @@ class _ContactWidgetState extends State<ContactWidget> {
                   onChanged: _emailValidate,
                 ),
                 const SizedBox(height: 24),
-                AppTextField(
-                  keyboardType: TextInputType.phone,
+                AppPhoneField(
                   controller: widget.phoneController,
                   hintText: AppLocalizations.of(context)!.phoneHint,
                   labelText: AppLocalizations.of(context)!.phoneLabel,
                   borderColor: _phoneIsValid ? AppColors.orange : AppColors.red,
                   onChanged: _phoneValidate,
+                  phone: _phoneNotifier,
+                  selectedCountryNotifier: _selectedCountryNotifier,
                 ),
                 const CustomFlex(flex: 4),
                 Padding(
@@ -99,7 +108,10 @@ class _ContactWidgetState extends State<ContactWidget> {
                       DefaultButton(
                         title: AppLocalizations.of(context)!.confirm,
                         enable: nextStepEnabled,
-                        onPressed: widget.onTapConfirm,
+                        onPressed: () {
+                          widget.phoneController.text = _phoneNotifier.value;
+                          widget.onTapConfirm();
+                        },
                       ),
                     ],
                   ),
@@ -146,11 +158,11 @@ class _ContactWidgetState extends State<ContactWidget> {
     });
   }
 
-  // TODO IT
   void _phoneValidate(String value) {
+    Country country = _selectedCountryNotifier.value;
     setState(() {
       if (value.isNotEmpty) {
-        if (value.length < 5) {
+        if (value.length < country.minLength) {
           _errorText = AppLocalizations.of(context)!.phoneNotCorrect;
           _phoneIsValid = false;
         } else {
