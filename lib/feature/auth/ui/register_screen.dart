@@ -9,7 +9,7 @@ import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../app/ui/components/text_fields/formatter/common.dart';
 import '../../../app/ui/config/app_colors.dart';
-import '../../../app/ui/components/default_button.dart';
+import '../../../app/ui/components/buttons/default_button.dart';
 import '../domain/state/auth_cubit.dart';
 
 class RegisterScreen extends StatefulWidget {

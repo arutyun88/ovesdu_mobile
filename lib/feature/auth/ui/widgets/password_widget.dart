@@ -6,7 +6,7 @@ import 'package:ovesdu_mobile/app/ui/components/text_fields/formatter/common.dar
 
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import '../../../../app/ui/components/default_button.dart';
+import '../../../../app/ui/components/buttons/default_button.dart';
 import '../../domain/state/auth_cubit.dart';
 import '../../../../app/ui/components/custom_flex.dart';
 import 'error_text_widget.dart';

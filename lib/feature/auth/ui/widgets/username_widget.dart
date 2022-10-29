@@ -10,7 +10,7 @@ import '../../../../app/ui/main_app_builder.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../domain/state/auth_cubit.dart';
 import 'error_text_widget.dart';
-import '../../../../app/ui/components/default_button.dart';
+import '../../../../app/ui/components/buttons/default_button.dart';
 import '../../../../app/ui/components/custom_flex.dart';
 
 class UsernameWidget extends StatefulWidget {
