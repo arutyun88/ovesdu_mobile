@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/services.dart';
 
+import 'common.dart';
+
 class DateTextFormatter extends TextInputFormatter {
   static const _maxChars = 8;
 
@@ -13,7 +15,7 @@ class DateTextFormatter extends TextInputFormatter {
     var text = _format(newValue.text, '/');
     return newValue.copyWith(
       text: text,
-      selection: _updateCursorSelection(text),
+      selection: updateCursorSelection(text),
     );
   }
 
@@ -28,10 +30,6 @@ class DateTextFormatter extends TextInputFormatter {
       }
     }
     return newString;
-  }
-
-  TextSelection _updateCursorSelection(String text) {
-    return TextSelection.fromPosition(TextPosition(offset: text.length));
   }
 }
 

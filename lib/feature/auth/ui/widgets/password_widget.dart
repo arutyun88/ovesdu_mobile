@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../app/ui/components/app_text_field.dart';
+import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../../../app/ui/components/default_button.dart';
 import '../../domain/state/auth_cubit.dart';
@@ -79,11 +79,10 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                 ),
                 ErrorTextWidget(errorText: errorText),
                 AppTextField(
-                  obscure: true,
+                  fieldType: TextFieldType.password,
                   controller: widget.controller,
                   hintText: AppLocalizations.of(context)!.passwordHint,
                   labelText: AppLocalizations.of(context)!.passwordLabel,
-                  fieldType: TextFieldType.other,
                   borderColor: isComplete ? AppColors.orange : AppColors.red,
                   onChanged: (value) => setState(() => _validate()),
                 ),

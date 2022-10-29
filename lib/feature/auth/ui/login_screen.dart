@@ -5,11 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/ui/components/created_by_widget.dart';
-import '../../../app/ui/components/logo_sliver_delegate.dart';
+import '../../../app/ui/components/logo/logo_sliver_delegate.dart';
 import '../domain/state/auth_cubit.dart';
 import 'register_screen.dart';
 import 'widgets/contact_widget.dart';
-import 'widgets/name_widget.dart';
+import 'widgets/username_widget.dart';
 import 'widgets/password_widget.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               children: [
                                 BlocConsumer<AuthCubit, AuthState>(
                                   builder: (context, state) {
-                                    return NameWidget(
+                                    return UsernameWidget(
                                       controller: _usernameController,
                                       onTap: () {
                                         isAuth.value

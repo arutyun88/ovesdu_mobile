@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../app/ui/components/app_text_field.dart';
+import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/main_app_builder.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../domain/state/auth_cubit.dart';
@@ -12,8 +12,8 @@ import 'error_text_widget.dart';
 import '../../../../app/ui/components/default_button.dart';
 import '../../../../app/ui/components/custom_flex.dart';
 
-class NameWidget extends StatefulWidget {
-  const NameWidget({
+class UsernameWidget extends StatefulWidget {
+  const UsernameWidget({
     Key? key,
     required this.controller,
     required this.onTap,
@@ -25,10 +25,10 @@ class NameWidget extends StatefulWidget {
   final ValueNotifier<bool> isAuth;
 
   @override
-  State<NameWidget> createState() => _NameWidgetState();
+  State<UsernameWidget> createState() => _UsernameWidgetState();
 }
 
-class _NameWidgetState extends State<NameWidget> {
+class _UsernameWidgetState extends State<UsernameWidget> {
   late bool isComplete;
   late TextEditingController _usernameController;
   late bool enabled;
@@ -75,6 +75,8 @@ class _NameWidgetState extends State<NameWidget> {
                 ErrorTextWidget(errorText: errorText),
                 AppTextField(
                   controller: _usernameController,
+                  fieldType: TextFieldType.username,
+                  keyboardType: TextInputType.emailAddress,
                   hintText: widget.isAuth.value
                       ? AppLocalizations.of(context)!.usernameOrEmailHint
                       : AppLocalizations.of(context)!.usernameHint,

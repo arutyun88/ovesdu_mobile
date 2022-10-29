@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 
-import '../config/app_colors.dart';
-import 'date_text_formatter.dart';
-import 'text_formatters.dart';
+import '../../config/app_colors.dart';
+import 'formatter/date_text_formatter.dart';
+import 'formatter/password_text_formatter.dart';
+import 'formatter/username_text_formatter.dart';
 
 class AppTextField extends StatefulWidget {
-  const AppTextField({
-    Key? key,
-    this.focus,
-    this.borderColor = AppColors.orange,
-    this.controller,
-    this.onTap,
-    this.onChanged,
-    this.hintText,
-    this.labelText,
-    this.obscure = false,
-    this.keyboardType = TextInputType.text,
-    this.textCapitalization = TextCapitalization.none,
-    this.fieldType = TextFieldType.simple,
-    this.textAlign = TextAlign.start
-  }) : super(key: key);
+  const AppTextField(
+      {Key? key,
+      this.focus,
+      this.borderColor = AppColors.orange,
+      this.controller,
+      this.onTap,
+      this.onChanged,
+      this.hintText,
+      this.labelText,
+      this.keyboardType = TextInputType.text,
+      this.textCapitalization = TextCapitalization.none,
+      this.fieldType = TextFieldType.simple,
+      this.textAlign = TextAlign.start})
+      : super(key: key);
 
   final FocusNode? focus;
   final Color borderColor;
@@ -30,7 +29,6 @@ class AppTextField extends StatefulWidget {
   final Function(String)? onChanged;
   final String? hintText;
   final String? labelText;
-  final bool obscure;
   final TextInputType keyboardType;
   final TextCapitalization textCapitalization;
   final TextFieldType fieldType;
@@ -41,9 +39,10 @@ class AppTextField extends StatefulWidget {
 }
 
 enum TextFieldType {
-  simple,
+  username,
   date,
-  other,
+  password,
+  simple,
 }
 
 class _AppTextFieldState extends State<AppTextField> {
@@ -52,16 +51,15 @@ class _AppTextFieldState extends State<AppTextField> {
   late TextEditingController controller;
 
   void setFormatters() {
-    if (widget.fieldType == TextFieldType.simple) {
-      formatters.add(SimpleTextFormatter());
+    if (widget.fieldType == TextFieldType.username) {
+      formatters.add(UsernameTextFormatter());
     }
-    if(widget.fieldType == TextFieldType.date) {
+    if (widget.fieldType == TextFieldType.date) {
       formatters.add(DateTextFormatter());
     }
-    // if (controller.text.length > 1) {
-    // TODO 15 characters?
-    // formatters.add(MaskedInputFormatter("###############"));
-    // }
+    if (widget.fieldType == TextFieldType.password) {
+      formatters.add(PasswordTextFormatter());
+    }
   }
 
   @override
@@ -81,10 +79,9 @@ class _AppTextFieldState extends State<AppTextField> {
       child: TextField(
         textAlign: widget.textAlign,
         keyboardType: widget.keyboardType,
-        obscureText: widget.obscure,
+        obscureText: widget.fieldType == TextFieldType.password,
         autocorrect: false,
         textCapitalization: widget.textCapitalization,
-        // TODO доработать маскирование
         inputFormatters: formatters,
         controller: controller,
         focusNode: node,

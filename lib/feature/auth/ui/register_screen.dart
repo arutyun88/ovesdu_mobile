@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:ovesdu_mobile/app/const/reg_exr_const.dart';
-import 'package:ovesdu_mobile/app/ui/components/date_text_formatter.dart';
+import 'package:ovesdu_mobile/app/ui/components/text_fields/formatter/date_text_formatter.dart';
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
-import '../../../app/ui/components/app_text_field.dart';
+import '../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../../app/ui/components/default_button.dart';
 import '../domain/state/auth_cubit.dart';
@@ -138,7 +138,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       borderColor:
                           _nameIsComplete ? AppColors.orange : AppColors.red,
                       textCapitalization: TextCapitalization.words,
-                      fieldType: TextFieldType.other,
                       onChanged: (value) => setState(_nameValidate),
                     ),
                     const SizedBox(height: 24.0),
@@ -177,11 +176,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     const SizedBox(height: 24.0),
                     AppTextField(
-                      obscure: true,
+                      fieldType: TextFieldType.password,
                       controller: _passwordController,
                       hintText: dictionary.passwordHint,
                       labelText: dictionary.passwordLabel,
-                      fieldType: TextFieldType.other,
                       borderColor: _passwordIsComplete
                           ? AppColors.orange
                           : AppColors.red,
@@ -189,11 +187,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     const SizedBox(height: 12.0),
                     AppTextField(
-                      obscure: true,
+                      fieldType: TextFieldType.password,
                       controller: _passwordConfirmController,
                       hintText: dictionary.passwordConfirmHint,
                       labelText: dictionary.passwordConfirmLabel,
-                      fieldType: TextFieldType.other,
                       borderColor: _passwordConfirmIsComplete
                           ? AppColors.orange
                           : AppColors.red,

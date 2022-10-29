@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../app/const/reg_exr_const.dart';
-import '../../../../app/ui/components/app_text_field.dart';
+import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../../../app/ui/components/default_button.dart';
 import '../../domain/state/auth_cubit.dart';
