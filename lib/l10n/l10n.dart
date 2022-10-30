@@ -44,9 +44,9 @@ class _Language {
   });
 
   static const List<_Language> languages = [
-    _Language(name: 'Հայերեն', flag: '🇦🇲', language: 'hy', country: 'AM'),
-    _Language(name: 'English', flag: '🇺🇸', language: 'en', country: 'US'),
-    _Language(name: 'Русский', flag: '🇷🇺', language: 'ru', country: 'RU'),
-    _Language(name: 'Français', flag: '🇫🇷', language: 'fr', country: 'FR'),
+    _Language(name: 'հայերեն', flag: '🇦🇲', language: 'hy', country: 'AM'),
+    _Language(name: 'english', flag: '🇺🇸', language: 'en', country: 'US'),
+    _Language(name: 'русский', flag: '🇷🇺', language: 'ru', country: 'RU'),
+    _Language(name: 'français', flag: '🇫🇷', language: 'fr', country: 'FR'),
   ];
 }
