@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import '../../feature/auth/domain/auth_repository.dart';
 import '../../feature/auth/domain/state/auth_cubit.dart';
-import '../../l10n/l10n.dart';
 import '../data/setting_provider/locale_provider.dart';
 import '../data/setting_provider/theme_provider.dart';
 import '../di/init_di.dart';
@@ -42,7 +41,6 @@ class _GlobalProviders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO MultiBlocProvider and locale and isLightTheme with locator
     return MultiProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit(locator<AuthRepository>())),
@@ -50,41 +48,6 @@ class _GlobalProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ThemeProvider(isLightTheme)),
       ],
       child: child,
-    );
-  }
-}
-
-class LanguagePickerWidget extends StatelessWidget {
-  const LanguagePickerWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final provider = Provider.of<LocaleProvider>(context);
-    return DropdownButtonHideUnderline(
-      child: DropdownButton(
-        value: provider.locale,
-        icon: const SizedBox.shrink(),
-        items: L10n.supportedLocales.map((locale) {
-          final flag = L10n.getLanguage(locale.languageCode);
-          return DropdownMenuItem(
-            value: locale,
-            onTap: () {
-              final provider = Provider.of<LocaleProvider>(
-                context,
-                listen: false,
-              );
-              provider.setLocale(locale.languageCode);
-            },
-            child: Center(
-              child: Text(
-                flag,
-                style: const TextStyle(fontSize: 32),
-              ),
-            ),
-          );
-        }).toList(),
-        onChanged: (_) {},
-      ),
     );
   }
 }

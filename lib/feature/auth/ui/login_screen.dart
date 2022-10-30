@@ -9,6 +9,7 @@ import '../../../app/ui/components/logo/logo_sliver_delegate.dart';
 import '../domain/state/auth_cubit.dart';
 import 'register_screen.dart';
 import 'widgets/contact_widget.dart';
+import 'widgets/first_settings_widget.dart';
 import 'widgets/username_widget.dart';
 import 'widgets/password_widget.dart';
 
@@ -49,7 +50,11 @@ class _LoginScreenState extends State<LoginScreen> {
     _phoneController = TextEditingController();
     _countryCodeController = TextEditingController();
     cubit = context.read<AuthCubit>();
-    _pageController = PageController(initialPage: 0, keepPage: true);
+    _pageController = PageController(
+      initialPage: widget.firstStart ? 0 : 1,
+      keepPage: true,
+    );
+
     isAuth = ValueNotifier(true);
   }
 
@@ -94,6 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               physics: const NeverScrollableScrollPhysics(),
                               controller: _pageController,
                               children: [
+                                FirstSettingsWidget(
+                                  onConfirm: () => changePage(1),
+                                ),
                                 BlocConsumer<AuthCubit, AuthState>(
                                   builder: (context, state) {
                                     return UsernameWidget(
@@ -111,11 +119,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                     state.whenOrNull(
                                       checked: (value) {
                                         username = value;
-                                        changePage(1);
+                                        changePage(2);
                                       },
                                       usernameChecked: (value) {
                                         username = _usernameController.text;
-                                        if (value) changePage(1);
+                                        if (value) changePage(2);
                                       },
                                     );
                                   },
@@ -125,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         username: username,
                                         controller: _passwordController,
                                         onTapBack: () {
-                                          changePage(0);
+                                          changePage(1);
                                           _passwordController.text = '';
                                           _unfocused();
                                         },
@@ -141,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         countryCodeController:
                                             _countryCodeController,
                                         onTapBack: () {
-                                          changePage(0);
+                                          changePage(1);
                                           _emailController.text = '';
                                           _phoneController.text = '';
                                           _unfocused();
@@ -235,7 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _usernameController.clear();
         _countryCodeController.clear();
         _pageController.animateToPage(
-          0,
+          1,
           duration: const Duration(milliseconds: 1),
           curve: Curves.ease,
         );
