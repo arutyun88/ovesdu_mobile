@@ -16,8 +16,10 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({
     Key? key,
     required this.device,
+    required this.firstStart,
   }) : super(key: key);
   final DeviceEntity device;
+  final bool firstStart;
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();

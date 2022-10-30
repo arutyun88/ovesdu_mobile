@@ -14,8 +14,10 @@ class RootScreen extends StatelessWidget {
   const RootScreen({
     Key? key,
     required this.device,
+    required this.firstStart,
   }) : super(key: key);
   final DeviceEntity device;
+  final bool firstStart;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,10 @@ class RootScreen extends StatelessWidget {
         supportedLocales: L10n.supportedLocales,
         localizationsDelegates: L10n.localizationsDelegates,
         home: AuthBuilder(
-          isNotAuthorized: (context) => LoginScreen(device: device),
+          isNotAuthorized: (context) => LoginScreen(
+            device: device,
+            firstStart: firstStart,
+          ),
           isAuthorized: (context, value, child) => const MainScreen(),
         ),
       ),

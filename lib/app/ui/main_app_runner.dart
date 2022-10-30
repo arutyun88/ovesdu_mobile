@@ -15,6 +15,7 @@ class MainAppRunner implements AppRunner {
   String locale = Platform.localeName.split('_').first;
   bool isLightTheme = false;
   late DeviceEntity device;
+  late bool firstStart;
 
   final String env;
 
@@ -32,12 +33,14 @@ class MainAppRunner implements AppRunner {
     locale = settings.get('locale') ?? locale;
     isLightTheme = settings.get('lightTheme') ?? isLightTheme;
     device = await _getDeviceInfo();
+    firstStart = settings.get('firstStart') ?? true;
+    settings.put('firstStart', false);
   }
 
   @override
   Future<void> run(AppBuilder appBuilder) async {
     await preloadData();
-    runApp(appBuilder.buildApp(locale, isLightTheme, device));
+    runApp(appBuilder.buildApp(locale, isLightTheme, device, firstStart));
     log(env);
   }
 

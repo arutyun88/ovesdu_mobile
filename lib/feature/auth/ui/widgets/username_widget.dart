@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../app/const/reg_exr_const.dart';
-import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
-import '../../../../app/ui/main_app_builder.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../domain/state/auth_cubit.dart';
 import 'error_text_widget.dart';
@@ -170,21 +167,6 @@ class _UsernameWidgetState extends State<UsernameWidget> {
                           FocusManager.instance.primaryFocus?.unfocus();
                         });
                       },
-                    ),
-                    const LanguagePickerWidget(),
-                    CupertinoButton(
-                      minSize: 0,
-                      padding: EdgeInsets.zero,
-                      onPressed:
-                          Provider.of<ThemeProvider>(context, listen: false)
-                              .setTheme,
-                      child: const Text(
-                        'change',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: AppColors.orange,
-                        ),
-                      ),
                     ),
                   ],
                 ),

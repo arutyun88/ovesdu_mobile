@@ -14,11 +14,16 @@ import 'root_screen.dart';
 
 class MainAppBuilder implements AppBuilder {
   @override
-  Widget buildApp(String locale, bool isLightTheme, DeviceEntity device) {
+  Widget buildApp(
+    String locale,
+    bool isLightTheme,
+    DeviceEntity device,
+    bool firstStart,
+  ) {
     return _GlobalProviders(
       locale: locale,
       isLightTheme: isLightTheme,
-      child: RootScreen(device: device),
+      child: RootScreen(device: device, firstStart: firstStart),
     );
   }
 }
@@ -58,9 +63,9 @@ class LanguagePickerWidget extends StatelessWidget {
     return DropdownButtonHideUnderline(
       child: DropdownButton(
         value: provider.locale,
-        icon: Container(width: 12.0),
+        icon: const SizedBox.shrink(),
         items: L10n.supportedLocales.map((locale) {
-          final flag = L10n.getFlag(locale.languageCode);
+          final flag = L10n.getLanguage(locale.languageCode);
           return DropdownMenuItem(
             value: locale,
             onTap: () {
