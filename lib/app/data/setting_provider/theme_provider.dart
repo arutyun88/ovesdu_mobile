@@ -13,6 +13,7 @@ class ThemeProvider extends ChangeNotifier {
     final settings = await Hive.openBox('settings');
     settings.put('lightTheme', !isLightTheme);
     isLightTheme = !isLightTheme;
+    settings.close();
     notifyListeners();
   }
 }
