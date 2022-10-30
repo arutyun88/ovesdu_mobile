@@ -50,5 +50,9 @@
   "isUnderage": "դու անչափահաս ես",
   "nameInvalid": "սխալ անուն",
   "searchCountryLabel": "որոնել երկիրը",
-  "searchCountryHint": "մուտքագրեք երկիրը կամ կոդը"
+  "searchCountryHint": "մուտքագրեք երկիրը կամ կոդը",
+  "comeToTheDarkSide": "գնալ դեպի մութ կողմը",
+  "comeToTheBrightSide": "գնալ դեպի լուսավոր կողմը",
+  "stayOnTheDarkSide": "մնալ մութ կողմում",
+  "stayOnTheBrightSide": "մնալ լուսավոր կողմում"
 }

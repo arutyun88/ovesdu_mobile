@@ -9,6 +9,12 @@ class L10n {
         .flag;
   }
 
+  static String getLanguage(String code) {
+    return _Language.languages
+        .firstWhere((element) => element.language == code)
+        .name;
+  }
+
   static final supportedLocales = _Language.languages
       .map((locale) => Locale(
             locale.language,

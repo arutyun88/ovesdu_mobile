@@ -50,5 +50,9 @@
   "isUnderage": "you are underage",
   "nameInvalid": "invalid name",
   "searchCountryLabel": "search country",
-  "searchCountryHint": "enter country or code"
+  "searchCountryHint": "enter country or code",
+  "comeToTheDarkSide": "come to the dark side",
+  "comeToTheBrightSide": "come to the bright side",
+  "stayOnTheDarkSide": "stay on the dark side",
+  "stayOnTheBrightSide": "stay on the bright side"
 }

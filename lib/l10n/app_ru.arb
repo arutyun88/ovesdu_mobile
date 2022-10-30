@@ -50,5 +50,9 @@
   "isUnderage": "вы несовершеннолетний",
   "nameInvalid": "некорректное имя",
   "searchCountryLabel": "поиск страны",
-  "searchCountryHint": "введите страну или код"
+  "searchCountryHint": "введите страну или код",
+  "comeToTheDarkSide": "перейти на тёмную сторону",
+  "comeToTheBrightSide": "перейти на светлую сторону",
+  "stayOnTheDarkSide": "остаться на тёмной стороне",
+  "stayOnTheBrightSide": "остаться на светлой стороне"
 }
