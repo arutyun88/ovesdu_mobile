@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
-import '../../config/app_colors.dart';
+import '../../../data/setting_provider/theme_provider.dart';
 import 'logo_widget.dart';
 
 class LogoDelegate extends SliverPersistentHeaderDelegate {
@@ -38,15 +39,16 @@ class LogoDelegate extends SliverPersistentHeaderDelegate {
             child: ValueListenableBuilder<bool>(
                 valueListenable: isAuth,
                 builder: (context, auth, child) {
+                  final style =
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .themeData
+                          .textTheme
+                          .subtitle2;
                   return Text(
                     auth
                         ? AppLocalizations.of(context)!.loginTitleSignIn
                         : AppLocalizations.of(context)!.loginTitleSignUp,
-                    style: TextStyle(
-                      fontSize: 24.0 * (1 - percent),
-                      fontWeight: FontWeight.w200,
-                      color: AppColors.hintTextColor,
-                    ),
+                    style: style?.apply(color: style.color?.withOpacity(.3)),
                   );
                 }),
           ),
