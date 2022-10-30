@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _countryCodeController = TextEditingController();
     cubit = context.read<AuthCubit>();
     _pageController = PageController(
-      initialPage: widget.firstStart ? 0 : 1,
+      initialPage: widget.firstStart ? 0 : 0,
       keepPage: true,
     );
 

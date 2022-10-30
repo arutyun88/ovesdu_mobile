@@ -18,6 +18,10 @@ abstract class AppTheme {
         color: AppColors.lightText,
         fontSize: 24,
       ),
+      subtitle1: const TextStyle(
+        color: AppColors.lightText,
+        fontSize: 16,
+      ),
     ),
     inputDecorationTheme: const InputDecorationTheme(
       hintStyle: TextStyle(
@@ -44,6 +48,10 @@ abstract class AppTheme {
       subtitle2: const TextStyle(
         color: AppColors.darkText,
         fontSize: 24,
+      ),
+      subtitle1: const TextStyle(
+        color: AppColors.darkText,
+        fontSize: 16,
       ),
     ),
     inputDecorationTheme: const InputDecorationTheme(

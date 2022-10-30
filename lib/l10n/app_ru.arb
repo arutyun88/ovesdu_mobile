@@ -54,5 +54,6 @@
   "comeToTheDarkSide": "перейти на тёмную сторону",
   "comeToTheBrightSide": "перейти на светлую сторону",
   "stayOnTheDarkSide": "остаться на тёмной стороне",
-  "stayOnTheBrightSide": "остаться на светлой стороне"
+  "stayOnTheBrightSide": "остаться на светлой стороне",
+  "themAndLangChangeLater": "тему и язык приложения возможно будет изменить позднее в настройках"
 }

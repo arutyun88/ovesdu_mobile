@@ -125,7 +125,7 @@ class _FirstSettingsWidgetState extends State<FirstSettingsWidget> {
             ),
           ),
         ),
-        const CustomFlex(flex: 3),
+        const CustomFlex(flex: 1),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: Row(
@@ -145,7 +145,7 @@ class _FirstSettingsWidgetState extends State<FirstSettingsWidget> {
                         : _themeProvider.themeData.textTheme.headline4?.apply(
                             color: _themeProvider
                                 .themeData.textTheme.headline4?.color
-                                ?.withOpacity(.3),
+                                ?.withOpacity(.5),
                           ),
                   ),
                 ),
@@ -165,7 +165,7 @@ class _FirstSettingsWidgetState extends State<FirstSettingsWidget> {
                         ? _themeProvider.themeData.textTheme.headline4?.apply(
                             color: _themeProvider
                                 .themeData.textTheme.headline4?.color
-                                ?.withOpacity(.3),
+                                ?.withOpacity(.5),
                           )
                         : _themeProvider.themeData.textTheme.headline4,
                   ),
@@ -183,7 +183,18 @@ class _FirstSettingsWidgetState extends State<FirstSettingsWidget> {
             onPressed: widget.onConfirm,
           ),
         ),
-        const CustomFlex(flex: 6),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 24),
+          child: Text(
+            AppLocalizations.of(context)!.themAndLangChangeLater,
+            textAlign: TextAlign.center,
+            style: _themeProvider.themeData.textTheme.subtitle1?.apply(
+              color: _themeProvider.themeData.textTheme.subtitle1?.color
+                  ?.withOpacity(.5),
+            ),
+          ),
+        ),
+        // const CustomFlex(flex: 2),
       ],
     );
   }
