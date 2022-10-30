@@ -49,6 +49,8 @@
   "dateInvalid": "некорректная дата",
   "isUnderage": "вы несовершеннолетний",
   "nameInvalid": "некорректное имя",
+  "countryInvalid": "некорректно указана страна",
+  "cityInvalid": "некорректно указан город",
   "searchCountryLabel": "поиск страны",
   "searchCountryHint": "введите страну или код",
   "comeToTheDarkSide": "перейти на тёмную сторону",

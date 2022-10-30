@@ -49,6 +49,8 @@
   "dateInvalid": "անվավեր ամսաթիվ",
   "isUnderage": "դու անչափահաս ես",
   "nameInvalid": "սխալ անուն",
+  "countryInvalid": "սխալ երկիր",
+  "cityInvalid": "սխալ քաղաք",
   "searchCountryLabel": "որոնել երկիրը",
   "searchCountryHint": "մուտքագրեք երկիրը կամ կոդը",
   "comeToTheDarkSide": "գնալ դեպի մութ կողմը",

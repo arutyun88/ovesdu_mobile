@@ -76,6 +76,8 @@
   "dateInvalid": "invalid date",
   "isUnderage": "you are underage",
   "nameInvalid": "invalid name",
+  "countryInvalid": "invalid country",
+  "cityInvalid": "invalid city",
   "searchCountryLabel": "search country",
   "searchCountryHint": "enter country or code",
   "comeToTheDarkSide": "come to the dark side",

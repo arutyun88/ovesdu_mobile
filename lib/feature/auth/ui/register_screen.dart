@@ -45,6 +45,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late bool _dateIsValid = false;
   late bool _nameIsComplete;
   late bool _nameIsValid = false;
+  late bool _countryIsComplete;
+  late bool _countryIsValid = false;
+  late bool _cityIsComplete;
+  late bool _cityIsValid = false;
   late bool _passwordIsComplete;
   late bool _passwordIsValid = false;
   late bool _passwordConfirmIsComplete;
@@ -63,6 +67,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     _nameValidate();
     _dateValidate();
+    _countryValidate();
+    _cityValidate();
     _passwordValidate();
     _passwordConfirmValidate();
   }
@@ -169,14 +175,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       controller: _countryController,
                       hintText: dictionary.countryLabel,
                       labelText: dictionary.countryLabel,
-                      onChanged: (value) => setState(() {}),
+                      borderColor:
+                          _countryIsComplete ? AppColors.orange : AppColors.red,
+                      onChanged: (value) => setState(_countryValidate),
                     ),
                     const SizedBox(height: 12.0),
                     AppTextField(
                       controller: _cityController,
                       hintText: dictionary.cityLabel,
                       labelText: dictionary.cityLabel,
-                      onChanged: (value) => setState(() {}),
+                      borderColor:
+                          _cityIsComplete ? AppColors.orange : AppColors.red,
+                      onChanged: (value) => setState(_cityValidate),
                     ),
                     const SizedBox(height: 24.0),
                     AppTextField(
@@ -235,7 +245,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _buttonEnabled = _dateIsValid &&
         _nameIsValid &&
         _passwordIsValid &&
-        _passwordConfirmIsValid;
+        _passwordConfirmIsValid &&
+        _countryIsValid &&
+        _cityIsValid;
   }
 
   void _registerOnPressed(AuthCubit authCubit) {
@@ -267,6 +279,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _nameIsComplete = true;
       _nameIsValid = true;
     }
+  }
+
+  // TODO IT
+  void _countryValidate() {
+    if (_countryController.text.isEmpty) {
+      _errorText = '\n';
+      _countryIsComplete = true;
+      _countryIsValid = false;
+    } else if (_countryController.text.trim().length < 2) {
+      _errorText = AppLocalizations.of(context)!.countryInvalid;
+      _countryIsComplete = false;
+      _countryIsValid = false;
+    } else {
+      _errorText = '\n';
+      _countryIsComplete = true;
+      _countryIsValid = true;
+    }
+    _buttonValidate();
+  }
+
+  // TODO IT
+  void _cityValidate() {
+    if (_cityController.text.isEmpty) {
+      _errorText = '\n';
+      _cityIsComplete = true;
+      _cityIsValid = false;
+    } else if (_cityController.text.trim().length < 2) {
+      _errorText = AppLocalizations.of(context)!.cityInvalid;
+      _cityIsComplete = false;
+      _cityIsValid = false;
+    } else {
+      _errorText = '\n';
+      _cityIsComplete = true;
+      _cityIsValid = true;
+    }
+    _buttonValidate();
   }
 
   void _dateValidate() {
