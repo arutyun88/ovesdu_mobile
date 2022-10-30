@@ -10,6 +10,14 @@ abstract class AppTheme {
       headline5: ThemeData.dark().textTheme.headline5?.copyWith(
             color: AppColors.lightText,
           ),
+      headline4: const TextStyle(
+        color: AppColors.lightText,
+        fontSize: 20,
+      ),
+      subtitle2: const TextStyle(
+        color: AppColors.lightText,
+        fontSize: 24,
+      ),
     ),
     inputDecorationTheme: const InputDecorationTheme(
       hintStyle: TextStyle(
@@ -29,6 +37,14 @@ abstract class AppTheme {
       headline5: ThemeData.dark().textTheme.headline5?.copyWith(
             color: AppColors.darkText,
           ),
+      headline4: const TextStyle(
+        color: AppColors.darkText,
+        fontSize: 20,
+      ),
+      subtitle2: const TextStyle(
+        color: AppColors.darkText,
+        fontSize: 24,
+      ),
     ),
     inputDecorationTheme: const InputDecorationTheme(
       hintStyle: TextStyle(
