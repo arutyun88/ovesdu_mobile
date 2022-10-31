@@ -183,12 +183,7 @@ class _UsernameWidgetState extends State<UsernameWidget> {
             errorText = error.message;
             isComplete = false;
           },
-          usernameChecked: (value) {
-            if (!value) {
-              errorText = AppLocalizations.of(context)!.usernameAlreadyExist;
-            }
-            isComplete = value;
-          },
+          usernameChecked: () => isComplete = true,
         );
       },
     );

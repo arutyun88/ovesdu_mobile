@@ -25,12 +25,10 @@ class MockAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<bool> checkUsername(String username) {
+  Future<void> checkUsername(String username) {
     return Future.delayed(
       const Duration(seconds: 1),
-      () {
-        return username == 'some';
-      },
+      () {},
     );
   }
 

@@ -8,7 +8,7 @@ abstract class AuthRepository {
     required DeviceEntity device,
   });
 
-  Future<bool> checkUsername(String username);
+  Future<void> checkUsername(String username);
 
   Future<bool> checkContact({
     required String email,

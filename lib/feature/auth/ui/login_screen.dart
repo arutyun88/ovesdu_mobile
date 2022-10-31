@@ -124,9 +124,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                         username = value;
                                         changePage(2);
                                       },
-                                      usernameChecked: (value) {
+                                      usernameChecked: () {
                                         username = _usernameController.text;
-                                        if (value) changePage(2);
+                                        changePage(2);
                                       },
                                     );
                                   },

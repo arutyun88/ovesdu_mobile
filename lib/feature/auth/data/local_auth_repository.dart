@@ -66,11 +66,10 @@ class LocalAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<bool> checkUsername(String username) async {
+  Future<void> checkUsername(String username) async {
     await dioContainer.setHeaderLocale();
     try {
-      final response = await dioContainer.dio.get('/auth/check/$username');
-      return response.data['data'] as bool;
+      await dioContainer.dio.get('/auth/check/$username');
     } catch (_) {
       rethrow;
     }
