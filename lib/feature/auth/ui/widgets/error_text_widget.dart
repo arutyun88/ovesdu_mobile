@@ -15,13 +15,16 @@ class ErrorTextWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Flexible(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4.0),
-            child: Text(
-              errorText,
-              maxLines: 1,
-              textAlign: TextAlign.right,
-              style: const TextStyle(fontSize: 14.0, color: AppColors.red),
+          child: SizedBox(
+            height: 32,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                errorText,
+                maxLines: 1,
+                textAlign: TextAlign.right,
+                style: const TextStyle(fontSize: 14.0, color: AppColors.red),
+              ),
             ),
           ),
         ),
