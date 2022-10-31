@@ -10,7 +10,6 @@
   "usernameOrEmailHint": "մուտքագրեք ձեր օգտվողի անունը կամ էլ",
   "usernameErrorText": "4 նիշից պակաս",
   "usernameNotCorrect": "օգտվողի անունը ճիշտ չէ",
-  "usernameAlreadyExist": "օգտագործողի անունը արդեն զբաղված է",
   "haveAnAccount": "Եթե արդեն ունեք հաշիվ, խնդրում ենք",
   "login": "մուտք գործել",
   "notHaveAnAccount": "Եթե դուք չունեք հաշիվ, ապա գրանցումն անվճար է և պարզ",

@@ -9,7 +9,6 @@
   "usernameOrEmailLabel": "имя пользователя или адрес эл. почты",
   "usernameOrEmailHint": "введите имя пользователя или адрес электронной почты",
   "usernameErrorText": "менее 4 знаков",
-  "usernameAlreadyExist": "имя пользователя уже используется",
   "usernameNotCorrect": "некорректное имя пользователя",
   "haveAnAccount": "Если у вас уже есть аккаунт, пожалуйста",
   "login": "авторизуйтесь",
