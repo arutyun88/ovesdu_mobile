@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
-import 'package:ovesdu_mobile/app/domain/entities/user_entity/user_entity.dart';
 
 import '../../../app/data/dio_container.dart';
 import '../../../app/domain/entities/device_entity/device_entity.dart';
+import '../../../app/domain/entities/user_entity/user_entity.dart';
 import '../domain/auth_repository.dart';
 import '../domain/entities/token_entity/token_entity.dart';
 import 'dto/device_dto.dart';
@@ -22,6 +22,7 @@ class NetworkAuthRepository implements AuthRepository {
     required String username,
     required DeviceEntity device,
   }) async {
+    await dioContainer.setHeaderLocale();
     try {
       final UserDto data = username.contains('@')
           ? UserDto(
@@ -48,6 +49,7 @@ class NetworkAuthRepository implements AuthRepository {
     required String password,
     required DeviceEntity device,
   }) async {
+    await dioContainer.setHeaderLocale();
     try {
       final response = await dioContainer.dio.post(
         '/auth/token',
@@ -65,6 +67,7 @@ class NetworkAuthRepository implements AuthRepository {
 
   @override
   Future<bool> checkUsername(String username) async {
+    await dioContainer.setHeaderLocale();
     try {
       final response = await dioContainer.dio.get('/auth/check/$username');
       return response.data['data'] as bool;
@@ -78,6 +81,7 @@ class NetworkAuthRepository implements AuthRepository {
     required String email,
     required String phoneNumber,
   }) async {
+    await dioContainer.setHeaderLocale();
     try {
       final response = await dioContainer.dio.post(
         '/auth/check',
@@ -94,6 +98,7 @@ class NetworkAuthRepository implements AuthRepository {
 
   @override
   Future<TokenEntity> signUp(UserEntity userEntity) async {
+    await dioContainer.setHeaderLocale();
     try {
       final response = await dioContainer.dio.put(
         '/auth/token',

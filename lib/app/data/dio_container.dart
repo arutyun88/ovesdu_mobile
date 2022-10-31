@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ovesdu_mobile/app/domain/app_config.dart';
 
@@ -24,5 +25,16 @@ class DioContainer {
 
   void deleteInterceptor(Type type) {
     dio.interceptors.removeWhere((element) => element.runtimeType == type);
+  }
+
+  Future<void> setHeaderLocale() async {
+    final settings = await Hive.openBox('settings');
+    var locale = settings.get('locale');
+    settings.close();
+    dio.options.headers.addEntries(
+      {
+        'locale': locale,
+      }.entries,
+    );
   }
 }
