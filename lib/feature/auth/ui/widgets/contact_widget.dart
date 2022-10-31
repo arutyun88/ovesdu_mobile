@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,20 +17,23 @@ class ContactWidget extends StatefulWidget {
     Key? key,
     required this.username,
     required this.emailController,
-    required this.phoneController,
+    // required this.phoneController,
     required this.countryCodeController,
     required this.onTapBack,
     required this.onTapConfirm,
     required this.onTapConfirmWhenCorrect,
+    required this.phoneNumberNotifier,
   }) : super(key: key);
 
   final String username;
   final TextEditingController emailController;
-  final TextEditingController phoneController;
+
+  // final TextEditingController phoneController;
   final TextEditingController countryCodeController;
   final Function() onTapBack;
   final Function() onTapConfirm;
   final Function() onTapConfirmWhenCorrect;
+  final ValueNotifier<String> phoneNumberNotifier;
 
   @override
   State<ContactWidget> createState() => _ContactWidgetState();
@@ -43,14 +44,15 @@ class _ContactWidgetState extends State<ContactWidget> {
   late String _errorText = '';
   late bool _emailIsValid = true;
   late bool _phoneIsValid = true;
-  late ValueNotifier<String> _phoneNotifier;
+
+  // late ValueNotifier<String> _phoneNotifier;
   late ValueNotifier<Country> _selectedCountryNotifier;
 
   @override
   void initState() {
     super.initState();
     nextStepEnabled = false;
-    _phoneNotifier = ValueNotifier('');
+    // _phoneNotifier = widget.phoneNumberNotifier;
     _selectedCountryNotifier = ValueNotifier(
       countries.firstWhere((country) => country.code == 'AM'),
     );
@@ -89,13 +91,13 @@ class _ContactWidgetState extends State<ContactWidget> {
                 ),
                 const SizedBox(height: 24),
                 AppPhoneField(
-                  controller: widget.phoneController,
                   hintText: AppLocalizations.of(context)!.phoneHint,
                   labelText: AppLocalizations.of(context)!.phoneLabel,
                   borderColor: _phoneIsValid ? AppColors.orange : AppColors.red,
                   onChanged: _phoneValidate,
-                  phone: _phoneNotifier,
+                  phone: widget.phoneNumberNotifier,
                   selectedCountryNotifier: _selectedCountryNotifier,
+                  otherFunction: _checkEnabled,
                 ),
                 const CustomFlex(flex: 4),
                 Padding(
@@ -112,13 +114,7 @@ class _ContactWidgetState extends State<ContactWidget> {
                       DefaultButton(
                         title: AppLocalizations.of(context)!.confirm,
                         enable: nextStepEnabled,
-                        onPressed: () {
-                          widget.phoneController.text = _phoneNotifier.value;
-                          log(_selectedCountryNotifier.value.code);
-                          widget.countryCodeController.text =
-                              _selectedCountryNotifier.value.code;
-                          widget.onTapConfirm();
-                        },
+                        onPressed: widget.onTapConfirm,
                       ),
                     ],
                   ),
@@ -141,6 +137,8 @@ class _ContactWidgetState extends State<ContactWidget> {
                 _errorText = AppLocalizations.of(context)!.emailOrPhoneExist;
                 nextStepEnabled = false;
               } else {
+                widget.countryCodeController.text =
+                    _selectedCountryNotifier.value.code;
                 widget.onTapConfirmWhenCorrect();
               }
             });
@@ -185,9 +183,11 @@ class _ContactWidgetState extends State<ContactWidget> {
   }
 
   void _checkEnabled() {
-    nextStepEnabled = widget.emailController.text.isNotEmpty &&
-        widget.phoneController.text.isNotEmpty &&
-        _emailIsValid &&
-        _phoneIsValid;
+    setState(
+      () => nextStepEnabled = widget.emailController.text.isNotEmpty &&
+          widget.phoneNumberNotifier.value.isNotEmpty &&
+          _emailIsValid &&
+          _phoneIsValid,
+    );
   }
 }

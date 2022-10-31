@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,22 +14,22 @@ class AppPhoneField extends StatefulWidget {
     Key? key,
     this.focus,
     this.borderColor = AppColors.orange,
-    this.controller,
     this.onChanged,
     this.hintText,
     this.labelText,
     required this.phone,
     required this.selectedCountryNotifier,
+    this.otherFunction,
   }) : super(key: key);
 
   final FocusNode? focus;
   final Color borderColor;
-  final TextEditingController? controller;
   final Function(String)? onChanged;
   final String? hintText;
   final String? labelText;
   final ValueNotifier<String> phone;
   final ValueNotifier<Country> selectedCountryNotifier;
+  final Function()? otherFunction;
 
   @override
   State<AppPhoneField> createState() => _AppPhoneFieldState();
@@ -44,7 +46,7 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
   initState() {
     super.initState();
     node = widget.focus ?? FocusNode();
-    controller = widget.controller ?? TextEditingController();
+    controller = TextEditingController();
     _selectedCountry = countries.firstWhere((country) => country.code == 'AM');
     _countryList = countries;
     _filteredCountries = _countryList;
@@ -139,9 +141,13 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
         countryList: _countryList,
         onCountryChanged: (Country country) {
           _selectedCountry = country;
-          widget.controller?.clear();
+          controller.clear();
+          widget.phone.value = '';
+          log(widget.phone.value);
           widget.selectedCountryNotifier.value = _selectedCountry;
-          setState(() {});
+          if (widget.otherFunction != null) {
+            widget.otherFunction!();
+          }
         },
       ),
     );

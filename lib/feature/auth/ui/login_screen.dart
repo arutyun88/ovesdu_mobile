@@ -30,7 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _usernameController;
   late TextEditingController _passwordController;
   late TextEditingController _emailController;
-  late TextEditingController _phoneController;
   late TextEditingController _countryCodeController;
   late AuthCubit cubit;
 
@@ -39,7 +38,8 @@ class _LoginScreenState extends State<LoginScreen> {
   late String username = '';
   late DeviceEntity device = widget.device;
 
-  late ValueNotifier<bool> isAuth;
+  late ValueNotifier<bool> _isAuth;
+  late ValueNotifier<String> _phoneNotifier;
 
   @override
   void initState() {
@@ -47,7 +47,6 @@ class _LoginScreenState extends State<LoginScreen> {
     _usernameController = TextEditingController();
     _passwordController = TextEditingController();
     _emailController = TextEditingController();
-    _phoneController = TextEditingController();
     _countryCodeController = TextEditingController();
     cubit = context.read<AuthCubit>();
     _pageController = PageController(
@@ -55,7 +54,8 @@ class _LoginScreenState extends State<LoginScreen> {
       keepPage: true,
     );
 
-    isAuth = ValueNotifier(true);
+    _isAuth = ValueNotifier(true);
+    _phoneNotifier = ValueNotifier('');
   }
 
   @override
@@ -63,8 +63,11 @@ class _LoginScreenState extends State<LoginScreen> {
     _usernameController.dispose();
     _passwordController.dispose();
     _emailController.dispose();
-    _phoneController.dispose();
     _countryCodeController.dispose();
+
+    _isAuth.dispose();
+    _phoneNotifier.dispose();
+
     super.dispose();
   }
 
@@ -84,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SliverPersistentHeader(
                     delegate: LogoDelegate(
                       MediaQuery.of(context).size.height / 3,
-                      isAuth,
+                      _isAuth,
                     ),
                   ),
                   SliverFillRemaining(
@@ -107,12 +110,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     return UsernameWidget(
                                       controller: _usernameController,
                                       onTap: () {
-                                        isAuth.value
+                                        _isAuth.value
                                             ? onTapToCheckUsernameSignIn(cubit)
                                             : onTapToCheckUsernameSignUp(cubit);
                                         _unfocused();
                                       },
-                                      isAuth: isAuth,
+                                      isAuth: _isAuth,
                                     );
                                   },
                                   listener: (context, state) {
@@ -128,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     );
                                   },
                                 ),
-                                isAuth.value
+                                _isAuth.value
                                     ? PasswordWidget(
                                         username: username,
                                         controller: _passwordController,
@@ -145,13 +148,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                     : ContactWidget(
                                         username: username,
                                         emailController: _emailController,
-                                        phoneController: _phoneController,
+                                        phoneNumberNotifier: _phoneNotifier,
                                         countryCodeController:
                                             _countryCodeController,
                                         onTapBack: () {
                                           changePage(1);
                                           _emailController.text = '';
-                                          _phoneController.text = '';
+                                          _phoneNotifier.value = '';
                                           _unfocused();
                                         },
                                         onTapConfirm: () {
@@ -199,7 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void onTapToCheckContactSignUp(AuthCubit authCubit) {
     authCubit.checkContactSignUp(
       email: _emailController.text,
-      phoneNumber: _phoneController.text,
+      phoneNumber: _phoneNotifier.value,
     );
   }
 
@@ -227,7 +230,7 @@ class _LoginScreenState extends State<LoginScreen> {
         builder: (context) => RegisterScreen(
           username: _usernameController.text,
           email: _emailController.text,
-          phoneNumber: _phoneController.text,
+          phoneNumber: _phoneNotifier.value,
           device: device,
           phoneCountryCode: _countryCodeController.text,
         ),
@@ -235,10 +238,9 @@ class _LoginScreenState extends State<LoginScreen> {
     )
         .then((value) {
       if (value != null) {
-        isAuth.value = true;
+        _isAuth.value = true;
         _usernameController.clear();
         _emailController.clear();
-        _phoneController.clear();
         _passwordController.clear();
         _usernameController.clear();
         _countryCodeController.clear();
