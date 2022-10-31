@@ -10,7 +10,7 @@ class AuthState with _$AuthState {
 
   factory AuthState.usernameChecked() = _AuthStateUsernameChecked;
 
-  factory AuthState.contactChecked(bool value) = _AuthStateContactChecked;
+  factory AuthState.contactChecked() = _AuthStateContactChecked;
 
   factory AuthState.waiting() = _AuthStateWaiting;
 

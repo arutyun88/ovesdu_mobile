@@ -33,15 +33,13 @@ class MockAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<bool> checkContact({
+  Future<void> checkContact({
     required String email,
     required String phoneNumber,
   }) {
     return Future.delayed(
       const Duration(seconds: 1),
-      () {
-        return email == 'some@some.com' && phoneNumber.length > 6;
-      },
+      () {},
     );
   }
 

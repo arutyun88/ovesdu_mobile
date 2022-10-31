@@ -132,15 +132,10 @@ class _ContactWidgetState extends State<ContactWidget> {
               _errorText = error.message;
               nextStepEnabled = false;
             },
-            contactChecked: (correct) {
-              if (!correct) {
-                _errorText = AppLocalizations.of(context)!.emailOrPhoneExist;
-                nextStepEnabled = false;
-              } else {
-                widget.countryCodeController.text =
-                    _selectedCountryNotifier.value.code;
-                widget.onTapConfirmWhenCorrect();
-              }
+            contactChecked: () {
+              widget.countryCodeController.text =
+                  _selectedCountryNotifier.value.code;
+              widget.onTapConfirmWhenCorrect();
             });
       },
     );

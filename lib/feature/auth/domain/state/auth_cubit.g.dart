@@ -59,14 +59,12 @@ Map<String, dynamic> _$$_AuthStateUsernameCheckedToJson(
 _$_AuthStateContactChecked _$$_AuthStateContactCheckedFromJson(
         Map<String, dynamic> json) =>
     _$_AuthStateContactChecked(
-      json['value'] as bool,
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$_AuthStateContactCheckedToJson(
         _$_AuthStateContactChecked instance) =>
     <String, dynamic>{
-      'value': instance.value,
       'runtimeType': instance.$type,
     };
 

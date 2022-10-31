@@ -76,20 +76,19 @@ class NetworkAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<bool> checkContact({
+  Future<void> checkContact({
     required String email,
     required String phoneNumber,
   }) async {
     await dioContainer.setHeaderLocale();
     try {
-      final response = await dioContainer.dio.post(
+      await dioContainer.dio.post(
         '/auth/check',
         data: UserDto(
           email: email,
           phoneNumber: phoneNumber,
         ).toJson(),
       );
-      return response.data['data'] as bool;
     } catch (_) {
       rethrow;
     }

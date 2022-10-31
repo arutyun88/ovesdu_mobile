@@ -10,7 +10,7 @@ abstract class AuthRepository {
 
   Future<void> checkUsername(String username);
 
-  Future<bool> checkContact({
+  Future<void> checkContact({
     required String email,
     required String phoneNumber,
   });

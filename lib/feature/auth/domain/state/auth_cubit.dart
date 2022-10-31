@@ -52,11 +52,8 @@ class AuthCubit extends HydratedCubit<AuthState> {
   }) async {
     emit(AuthState.waiting());
     try {
-      final result = await authRepository.checkContact(
-        email: email,
-        phoneNumber: phoneNumber,
-      );
-      emit(AuthState.contactChecked(result));
+      await authRepository.checkContact(email: email, phoneNumber: phoneNumber);
+      emit(AuthState.contactChecked());
     } catch (error, stackTrace) {
       addError(error, stackTrace);
     }
