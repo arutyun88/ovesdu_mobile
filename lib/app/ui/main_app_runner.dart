@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
 import '../di/init_di.dart';
@@ -16,6 +17,7 @@ class MainAppRunner implements AppRunner {
   bool isLightTheme = false;
   late DeviceEntity device;
   late bool firstStart;
+  late Directory directory;
 
   final String env;
 
@@ -26,9 +28,8 @@ class MainAppRunner implements AppRunner {
     WidgetsFlutterBinding.ensureInitialized();
     initDi(env);
 
-    final appDocumentDirectory =
-        await path_provider.getApplicationDocumentsDirectory();
-    Hive.init(appDocumentDirectory.path);
+    directory = await path_provider.getApplicationDocumentsDirectory();
+    Hive.init(directory.path);
     final settings = await Hive.openBox('settings');
     locale = settings.get('locale') ?? locale;
     isLightTheme = settings.get('lightTheme') ?? isLightTheme;
@@ -40,7 +41,13 @@ class MainAppRunner implements AppRunner {
   @override
   Future<void> run(AppBuilder appBuilder) async {
     await preloadData();
-    runApp(appBuilder.buildApp(locale, isLightTheme, device, firstStart));
+    final storage = await HydratedStorage.build(storageDirectory: directory);
+    HydratedBlocOverrides.runZoned(
+      () => runApp(
+        appBuilder.buildApp(locale, isLightTheme, device, firstStart),
+      ),
+      storage: storage,
+    );
     log(env);
   }
 

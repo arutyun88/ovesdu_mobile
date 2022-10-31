@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+TokenEntity _$TokenEntityFromJson(Map<String, dynamic> json) {
+  return _TokenEntity.fromJson(json);
+}
+
 /// @nodoc
 mixin _$TokenEntity {
   String get accessToken => throw _privateConstructorUsedError;
   String get refreshToken => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TokenEntityCopyWith<TokenEntity> get copyWith =>
       throw _privateConstructorUsedError;
@@ -97,9 +102,12 @@ class __$$_TokenEntityCopyWithImpl<$Res> extends _$TokenEntityCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_TokenEntity implements _TokenEntity {
   const _$_TokenEntity({required this.accessToken, required this.refreshToken});
+
+  factory _$_TokenEntity.fromJson(Map<String, dynamic> json) =>
+      _$$_TokenEntityFromJson(json);
 
   @override
   final String accessToken;
@@ -122,6 +130,7 @@ class _$_TokenEntity implements _TokenEntity {
                 .equals(other.refreshToken, refreshToken));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -132,12 +141,22 @@ class _$_TokenEntity implements _TokenEntity {
   @override
   _$$_TokenEntityCopyWith<_$_TokenEntity> get copyWith =>
       __$$_TokenEntityCopyWithImpl<_$_TokenEntity>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TokenEntityToJson(
+      this,
+    );
+  }
 }
 
 abstract class _TokenEntity implements TokenEntity {
   const factory _TokenEntity(
       {required final String accessToken,
       required final String refreshToken}) = _$_TokenEntity;
+
+  factory _TokenEntity.fromJson(Map<String, dynamic> json) =
+      _$_TokenEntity.fromJson;
 
   @override
   String get accessToken;
