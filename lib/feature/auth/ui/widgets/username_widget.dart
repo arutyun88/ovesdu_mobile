@@ -180,7 +180,7 @@ class _UsernameWidgetState extends State<UsernameWidget> {
         state.whenOrNull(
           waiting: () => enabled = false,
           error: (error) {
-            errorText = error.toString();
+            errorText = error.message;
             isComplete = false;
           },
           usernameChecked: (value) {

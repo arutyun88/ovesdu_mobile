@@ -84,7 +84,7 @@ Map<String, dynamic> _$$_AuthStateWaitingToJson(_$_AuthStateWaiting instance) =>
 
 _$_AuthStateError _$$_AuthStateErrorFromJson(Map<String, dynamic> json) =>
     _$_AuthStateError(
-      json['error'],
+      ErrorEntity.fromJson(json['error'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 

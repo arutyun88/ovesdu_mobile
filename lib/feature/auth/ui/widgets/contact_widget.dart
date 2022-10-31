@@ -133,7 +133,7 @@ class _ContactWidgetState extends State<ContactWidget> {
         state.whenOrNull(
             waiting: () => nextStepEnabled = false,
             error: (error) {
-              _errorText = error.toString();
+              _errorText = error.message;
               nextStepEnabled = false;
             },
             contactChecked: (correct) {

@@ -159,7 +159,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
         state.whenOrNull(
           waiting: () => nextStepEnabled = false,
           error: (error) {
-            errorText = error.toString();
+            errorText = error.message;
             isComplete = false;
           },
         );

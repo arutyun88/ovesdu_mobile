@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import '../../../../app/domain/entities/device_entity/device_entity.dart';
+import '../../../../app/domain/entities/error_entity/error_entity.dart';
 import '../../../../app/domain/entities/user_entity/user_entity.dart';
 import '../auth_repository.dart';
 import '../entities/token_entity/token_entity.dart';
@@ -28,9 +29,8 @@ class AuthCubit extends HydratedCubit<AuthState> {
         device: device,
       );
       emit(AuthState.checked(result));
-    } catch (error) {
-      emit(AuthState.error(error));
-      rethrow;
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
     }
   }
 
@@ -41,9 +41,8 @@ class AuthCubit extends HydratedCubit<AuthState> {
     try {
       final result = await authRepository.checkUsername(username);
       emit(AuthState.usernameChecked(result));
-    } catch (error) {
-      emit(AuthState.error(error));
-      rethrow;
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
     }
   }
 
@@ -58,9 +57,8 @@ class AuthCubit extends HydratedCubit<AuthState> {
         phoneNumber: phoneNumber,
       );
       emit(AuthState.contactChecked(result));
-    } catch (error) {
-      emit(AuthState.error(error));
-      rethrow;
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
     }
   }
 
@@ -77,9 +75,8 @@ class AuthCubit extends HydratedCubit<AuthState> {
         device: device,
       );
       emit(AuthState.authorized(result));
-    } catch (error) {
-      emit(AuthState.error(error));
-      rethrow;
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
     }
   }
 
@@ -112,9 +109,8 @@ class AuthCubit extends HydratedCubit<AuthState> {
         ),
       );
       emit(AuthState.authorized(result));
-    } catch (error) {
-      emit(AuthState.error(error));
-      rethrow;
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
     }
   }
 
@@ -131,5 +127,11 @@ class AuthCubit extends HydratedCubit<AuthState> {
             .whenOrNull(authorized: (token) => AuthState.authorized(token))
             ?.toJson() ??
         AuthState.notAuthorized().toJson();
+  }
+
+  @override
+  void addError(Object error, [StackTrace? stackTrace]) {
+    emit(AuthState.error(ErrorEntity.fromException(error)));
+    super.addError(error, stackTrace);
   }
 }

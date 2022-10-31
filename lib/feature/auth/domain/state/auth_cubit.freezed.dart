@@ -47,7 +47,7 @@ mixin _$AuthState {
     required TResult Function(bool value) usernameChecked,
     required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
-    required TResult Function(dynamic error) error,
+    required TResult Function(ErrorEntity error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,7 +58,7 @@ mixin _$AuthState {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,7 +69,7 @@ mixin _$AuthState {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -182,7 +182,7 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
     required TResult Function(bool value) usernameChecked,
     required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
-    required TResult Function(dynamic error) error,
+    required TResult Function(ErrorEntity error) error,
   }) {
     return notAuthorized();
   }
@@ -196,7 +196,7 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
   }) {
     return notAuthorized?.call();
   }
@@ -210,7 +210,7 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
     if (notAuthorized != null) {
@@ -370,7 +370,7 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
     required TResult Function(bool value) usernameChecked,
     required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
-    required TResult Function(dynamic error) error,
+    required TResult Function(ErrorEntity error) error,
   }) {
     return authorized(tokenEntity);
   }
@@ -384,7 +384,7 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
   }) {
     return authorized?.call(tokenEntity);
   }
@@ -398,7 +398,7 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
     if (authorized != null) {
@@ -553,7 +553,7 @@ class _$_AuthStateChecked implements _AuthStateChecked {
     required TResult Function(bool value) usernameChecked,
     required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
-    required TResult Function(dynamic error) error,
+    required TResult Function(ErrorEntity error) error,
   }) {
     return checked(name);
   }
@@ -567,7 +567,7 @@ class _$_AuthStateChecked implements _AuthStateChecked {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
   }) {
     return checked?.call(name);
   }
@@ -581,7 +581,7 @@ class _$_AuthStateChecked implements _AuthStateChecked {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
     if (checked != null) {
@@ -738,7 +738,7 @@ class _$_AuthStateUsernameChecked implements _AuthStateUsernameChecked {
     required TResult Function(bool value) usernameChecked,
     required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
-    required TResult Function(dynamic error) error,
+    required TResult Function(ErrorEntity error) error,
   }) {
     return usernameChecked(value);
   }
@@ -752,7 +752,7 @@ class _$_AuthStateUsernameChecked implements _AuthStateUsernameChecked {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
   }) {
     return usernameChecked?.call(value);
   }
@@ -766,7 +766,7 @@ class _$_AuthStateUsernameChecked implements _AuthStateUsernameChecked {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
     if (usernameChecked != null) {
@@ -924,7 +924,7 @@ class _$_AuthStateContactChecked implements _AuthStateContactChecked {
     required TResult Function(bool value) usernameChecked,
     required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
-    required TResult Function(dynamic error) error,
+    required TResult Function(ErrorEntity error) error,
   }) {
     return contactChecked(value);
   }
@@ -938,7 +938,7 @@ class _$_AuthStateContactChecked implements _AuthStateContactChecked {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
   }) {
     return contactChecked?.call(value);
   }
@@ -952,7 +952,7 @@ class _$_AuthStateContactChecked implements _AuthStateContactChecked {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
     if (contactChecked != null) {
@@ -1082,7 +1082,7 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
     required TResult Function(bool value) usernameChecked,
     required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
-    required TResult Function(dynamic error) error,
+    required TResult Function(ErrorEntity error) error,
   }) {
     return waiting();
   }
@@ -1096,7 +1096,7 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
   }) {
     return waiting?.call();
   }
@@ -1110,7 +1110,7 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
     if (waiting != null) {
@@ -1185,7 +1185,9 @@ abstract class _$$_AuthStateErrorCopyWith<$Res> {
   factory _$$_AuthStateErrorCopyWith(
           _$_AuthStateError value, $Res Function(_$_AuthStateError) then) =
       __$$_AuthStateErrorCopyWithImpl<$Res>;
-  $Res call({dynamic error});
+  $Res call({ErrorEntity error});
+
+  $ErrorEntityCopyWith<$Res> get error;
 }
 
 /// @nodoc
@@ -1207,8 +1209,15 @@ class __$$_AuthStateErrorCopyWithImpl<$Res>
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as ErrorEntity,
     ));
+  }
+
+  @override
+  $ErrorEntityCopyWith<$Res> get error {
+    return $ErrorEntityCopyWith<$Res>(_value.error, (value) {
+      return _then(_value.copyWith(error: value));
+    });
   }
 }
 
@@ -1222,7 +1231,7 @@ class _$_AuthStateError implements _AuthStateError {
       _$$_AuthStateErrorFromJson(json);
 
   @override
-  final dynamic error;
+  final ErrorEntity error;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -1259,7 +1268,7 @@ class _$_AuthStateError implements _AuthStateError {
     required TResult Function(bool value) usernameChecked,
     required TResult Function(bool value) contactChecked,
     required TResult Function() waiting,
-    required TResult Function(dynamic error) error,
+    required TResult Function(ErrorEntity error) error,
   }) {
     return error(this.error);
   }
@@ -1273,7 +1282,7 @@ class _$_AuthStateError implements _AuthStateError {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
   }
@@ -1287,7 +1296,7 @@ class _$_AuthStateError implements _AuthStateError {
     TResult Function(bool value)? usernameChecked,
     TResult Function(bool value)? contactChecked,
     TResult Function()? waiting,
-    TResult Function(dynamic error)? error,
+    TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1351,12 +1360,12 @@ class _$_AuthStateError implements _AuthStateError {
 }
 
 abstract class _AuthStateError implements AuthState {
-  factory _AuthStateError(final dynamic error) = _$_AuthStateError;
+  factory _AuthStateError(final ErrorEntity error) = _$_AuthStateError;
 
   factory _AuthStateError.fromJson(Map<String, dynamic> json) =
       _$_AuthStateError.fromJson;
 
-  dynamic get error;
+  ErrorEntity get error;
   @JsonKey(ignore: true)
   _$$_AuthStateErrorCopyWith<_$_AuthStateError> get copyWith =>
       throw _privateConstructorUsedError;
