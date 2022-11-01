@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:ovesdu_mobile/app/const/reg_exr_const.dart';
 import 'package:ovesdu_mobile/app/ui/components/text_fields/formatter/date_text_formatter.dart';
+import 'package:ovesdu_mobile/feature/auth/ui/widgets/error_text_widget.dart';
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
@@ -140,7 +141,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 24.0),
+                    // const SizedBox(height: 24.0),
+                    ErrorTextWidget(errorText: _errorText),
                     AppTextField(
                       controller: _nameController,
                       hintText: dictionary.nameHint,
@@ -232,6 +234,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       },
       listener: (context, state) {
         state.whenOrNull(
+          error: (error) => _errorText = error.message,
           waiting: () => _buttonEnabled = false,
           authorized: (entity) {
             Navigator.of(context).pop();
@@ -376,20 +379,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _passwordConfirmValidate() {
     if (_passwordController.text.isNotEmpty) {
-      if (_passwordConfirmController.text.isEmpty) {
-        _errorText = AppLocalizations.of(context)!.passwordNotCorrect;
+      if (_passwordController.text == _passwordConfirmController.text) {
+        _errorText = '\n';
+        _passwordConfirmIsComplete = true;
+        _passwordConfirmIsValid = true;
+      } else {
+        _errorText = AppLocalizations.of(context)!.passwordNotMatch;
         _passwordConfirmIsComplete = false;
         _passwordConfirmIsValid = false;
-      } else {
-        if (_passwordController.text == _passwordConfirmController.text) {
-          _errorText = '\n';
-          _passwordConfirmIsComplete = true;
-          _passwordConfirmIsValid = true;
-        } else {
-          _errorText = AppLocalizations.of(context)!.passwordNotMatch;
-          _passwordConfirmIsComplete = false;
-          _passwordConfirmIsValid = false;
-        }
       }
     } else {
       _errorText = '\n';
