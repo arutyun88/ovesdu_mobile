@@ -33,6 +33,7 @@ class RootScreen extends StatelessWidget {
         locale: locale,
         supportedLocales: L10n.supportedLocales,
         localizationsDelegates: L10n.localizationsDelegates,
+        debugShowCheckedModeBanner: false,
         home: AuthBuilder(
           isNotAuthorized: (context) => LoginScreen(
             device: device,
