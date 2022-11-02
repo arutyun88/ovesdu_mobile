@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ovesdu_mobile/app/ui/config/app_style.dart';
 
 import '../../../../const/countries.dart';
 import '../../../../helpers/helpers.dart';
@@ -64,15 +65,15 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
               itemBuilder: (context, index) => ListTile(
                 leading: Text(
                   _filteredCountries[index].flag,
-                  style: const TextStyle(fontSize: 32),
+                  style: const TextStyle().withSize(32.0),
                 ),
                 title: Text(
                   _filteredCountries[index].name,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
+                  style: const TextStyle().withWeight(FontWeight.w700),
                 ),
                 trailing: Text(
                   '+${_filteredCountries[index].dialCode}',
-                  style: const TextStyle(fontWeight: FontWeight.w700),
+                  style: const TextStyle().withWeight(FontWeight.w700),
                 ),
                 onTap: () {
                   widget.onCountryChanged(_filteredCountries[index]);

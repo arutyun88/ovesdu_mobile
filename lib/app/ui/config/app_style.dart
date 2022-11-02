@@ -13,4 +13,8 @@ extension TextStyleGoogleFonts on TextStyle {
   TextStyle withSize(double size) => GoogleFonts.ptSans(
         fontSize: size,
       );
+
+  TextStyle withWeight(FontWeight fontWeight) => GoogleFonts.ptSans(
+        fontWeight: fontWeight,
+      );
 }

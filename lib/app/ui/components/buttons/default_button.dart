@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ovesdu_mobile/app/ui/config/app_colors.dart';
+import 'package:ovesdu_mobile/app/ui/config/app_style.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({
@@ -29,9 +30,8 @@ class DefaultButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
         child: Text(
           title,
-          style: TextStyle(
-            color:
-                enable ? Theme.of(context).backgroundColor : AppColors.orange,
+          style: const TextStyle().withColor(
+            enable ? Theme.of(context).backgroundColor : AppColors.orange,
           ),
         ),
       ),

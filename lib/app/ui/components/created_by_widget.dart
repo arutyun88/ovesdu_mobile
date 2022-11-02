@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ovesdu_mobile/app/ui/config/app_colors.dart';
+import 'package:ovesdu_mobile/app/ui/config/app_style.dart';
 
 class CreatedByWidget extends StatelessWidget {
   const CreatedByWidget({
@@ -13,10 +14,10 @@ class CreatedByWidget extends StatelessWidget {
       shaderCallback: (bounds) => AppColors.gradientFlagHorizontal.createShader(
         Rect.fromLTWH(0, 0, bounds.width, bounds.height),
       ),
-      child: const Text(
+      child: Text(
         '© Created by Arutyun Gevorkyan',
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 14.0),
+        style: const TextStyle().withSize(14.0),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ovesdu_mobile/app/ui/config/app_style.dart';
 
 import '../../config/app_colors.dart';
 import 'formatter/date_text_formatter.dart';
@@ -72,7 +73,9 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
-    final labelStyle = Theme.of(context).inputDecorationTheme.hintStyle!;
+    final labelStyle = const TextStyle().withStyle(
+      Theme.of(context).inputDecorationTheme.hintStyle!,
+    );
 
     return Padding(
       padding: const EdgeInsets.only(top: 4),
@@ -95,7 +98,9 @@ class _AppTextFieldState extends State<AppTextField> {
         cursorWidth: 1.0,
         cursorHeight: 20.0,
         cursorColor: labelStyle.color,
-        style: Theme.of(context).textTheme.headline6,
+        style: const TextStyle().withStyle(
+          Theme.of(context).textTheme.headline6,
+        ),
         decoration: InputDecoration(
           isCollapsed: true,
           contentPadding: const EdgeInsets.symmetric(
@@ -106,10 +111,9 @@ class _AppTextFieldState extends State<AppTextField> {
           hintStyle: labelStyle,
           labelText: widget.labelText,
           labelStyle: labelStyle,
-          floatingLabelStyle: TextStyle(
+          floatingLabelStyle: labelStyle.copyWith(
             fontSize: 14,
             fontWeight: FontWeight.w400,
-            color: labelStyle.color,
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),

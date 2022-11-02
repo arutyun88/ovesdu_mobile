@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ovesdu_mobile/app/ui/config/app_style.dart';
 
 import '../../../../const/countries.dart';
 import '../../../../domain/entities/phone_number.dart';
@@ -54,7 +55,9 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
 
   @override
   Widget build(BuildContext context) {
-    final labelStyle = Theme.of(context).inputDecorationTheme.hintStyle!;
+    final labelStyle = const TextStyle().withStyle(
+      Theme.of(context).inputDecorationTheme.hintStyle!,
+    );
 
     return Padding(
       padding: const EdgeInsets.only(top: 4),
@@ -87,7 +90,9 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
               cursorWidth: 1.0,
               cursorHeight: 20.0,
               cursorColor: labelStyle.color,
-              style: Theme.of(context).textTheme.headline6,
+              style: const TextStyle().withStyle(
+                Theme.of(context).textTheme.headline6,
+              ),
               decoration: InputDecoration(
                 isCollapsed: true,
                 contentPadding: const EdgeInsets.symmetric(
@@ -98,10 +103,9 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
                 hintStyle: labelStyle,
                 labelText: widget.labelText,
                 labelStyle: labelStyle,
-                floatingLabelStyle: TextStyle(
+                floatingLabelStyle: labelStyle.copyWith(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
-                  color: labelStyle.color,
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
