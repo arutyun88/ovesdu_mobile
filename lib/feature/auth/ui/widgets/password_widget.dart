@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:ovesdu_mobile/app/const/reg_exr_const.dart';
-import 'package:ovesdu_mobile/app/ui/components/text_fields/formatter/common.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
+import '../../../../app/ui/components/text_fields/formatter/common.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../../../app/ui/components/buttons/default_button.dart';
 import '../../domain/state/auth_cubit.dart';
@@ -71,6 +73,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context).themeData;
     return BlocConsumer<AuthCubit, AuthState>(
       builder: (context, state) {
         return Padding(
@@ -84,7 +87,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                   child: Text(
                     AppLocalizations.of(context)!.famousUser(widget.username),
                     textAlign: TextAlign.start,
-                    style: const TextStyle(fontSize: 14.0),
+                    style: theme.textTheme.bodyText2,
                   ),
                 ),
                 ErrorTextWidget(errorText: errorText),
@@ -124,7 +127,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                       child: Text(
                         AppLocalizations.of(context)!.passwordForgot,
                         textAlign: TextAlign.end,
-                        style: const TextStyle(fontSize: 14.0),
+                        style: theme.textTheme.bodyText2,
                       ),
                     ),
                   ],
@@ -136,10 +139,9 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                     padding: EdgeInsets.zero,
                     child: Text(
                       AppLocalizations.of(context)!.passwordRecoverButton,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
+                      style: theme.textTheme.headline6?.copyWith(
                         color: AppColors.orange,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     onPressed: () {

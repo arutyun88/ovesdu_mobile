@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/const/reg_exr_const.dart';
+import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../domain/state/auth_cubit.dart';
@@ -87,6 +89,7 @@ class _UsernameWidgetState extends State<UsernameWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context).themeData;
     return BlocConsumer<AuthCubit, AuthState>(
       builder: (context, state) {
         return Padding(
@@ -140,7 +143,7 @@ class _UsernameWidgetState extends State<UsernameWidget> {
                             ? AppLocalizations.of(context)!.notHaveAnAccount
                             : AppLocalizations.of(context)!.haveAnAccount,
                         textAlign: TextAlign.end,
-                        style: const TextStyle(fontSize: 14.0),
+                        style: theme.textTheme.bodyText2,
                       ),
                     ),
                   ],
@@ -155,10 +158,9 @@ class _UsernameWidgetState extends State<UsernameWidget> {
                         widget.isAuth.value
                             ? AppLocalizations.of(context)!.register
                             : AppLocalizations.of(context)!.login,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
+                        style: theme.textTheme.headline6?.copyWith(
                           color: AppColors.orange,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                       onPressed: () {

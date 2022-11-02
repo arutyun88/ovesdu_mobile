@@ -4,14 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:ovesdu_mobile/app/const/reg_exr_const.dart';
 import 'package:ovesdu_mobile/app/ui/components/text_fields/formatter/date_text_formatter.dart';
-import 'package:ovesdu_mobile/feature/auth/ui/widgets/error_text_widget.dart';
+import 'package:provider/provider.dart';
 
+import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../app/ui/components/text_fields/formatter/common.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../../app/ui/components/buttons/default_button.dart';
 import '../domain/state/auth_cubit.dart';
+import 'widgets/error_text_widget.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({
@@ -88,6 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final dictionary = AppLocalizations.of(context)!;
+    final theme = Provider.of<ThemeProvider>(context).themeData;
     return BlocConsumer<AuthCubit, AuthState>(
       builder: (context, state) {
         return Scaffold(
@@ -108,10 +111,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           padding: EdgeInsets.zero,
                           child: Text(
                             dictionary.toStart,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
+                            style: theme.textTheme.headline6?.copyWith(
                               color: AppColors.orange,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                           onPressed: () {
@@ -156,7 +158,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Row(
                       children: [
                         SizedBox(
-                          width: 160,
+                          width: 180,
                           child: AppTextField(
                             fieldType: TextFieldType.date,
                             keyboardType: TextInputType.number,
@@ -411,21 +413,20 @@ class _ConfirmedValue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context).themeData.textTheme;
     return RichText(
       text: TextSpan(
         children: [
           TextSpan(
             text: '$name: ',
-            style: const TextStyle(
+            style: theme.bodyText2?.copyWith(
               color: AppColors.unselectedItemColor,
-              fontSize: 14,
             ),
           ),
           TextSpan(
             text: value,
-            style: const TextStyle(
+            style: theme.bodyText1?.copyWith(
               color: AppColors.greenLight,
-              fontSize: 16,
               fontWeight: FontWeight.w700,
             ),
           ),

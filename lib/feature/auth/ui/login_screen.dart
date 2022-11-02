@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Flexible(
                           fit: FlexFit.tight,
                           child: SizedBox(
-                            height: MediaQuery.of(context).size.height / 2.7,
+                            height: MediaQuery.of(context).size.height / 2.6,
                             child: PageView(
                               physics: const NeverScrollableScrollPhysics(),
                               controller: _pageController,
@@ -169,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(
-                            top: 24.0,
+                            top: 12.0,
                             bottom: Platform.isAndroid ? 12.0 : 0.0,
                           ),
                           child: const CreatedByWidget(),

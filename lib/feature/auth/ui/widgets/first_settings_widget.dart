@@ -46,83 +46,81 @@ class _FirstSettingsWidgetState extends State<FirstSettingsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = _themeProvider.themeData.textTheme;
+    final style = textTheme.headline5;
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 50.0),
-          child: SizedBox(
-            height: 100,
-            width: MediaQuery.of(context).size.width,
-            child: Stack(
-              children: [
-                PageView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _supportedLocales.length,
-                  controller: _pageController,
-                  onPageChanged: (index) {
-                    _localProvider
-                        .setLocale(_supportedLocales[index].languageCode);
-                    _currentPage = index;
-                  },
-                  itemBuilder: (context, index) {
-                    final local = _supportedLocales[index];
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Text(
-                              L10n.getLanguage(local.languageCode),
-                              style:
-                                  _themeProvider.themeData.textTheme.subtitle2,
-                            ),
-                          ],
-                        ),
+        SizedBox(
+          height: 100,
+          width: MediaQuery.of(context).size.width,
+          child: Stack(
+            children: [
+              PageView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: _supportedLocales.length,
+                controller: _pageController,
+                onPageChanged: (index) {
+                  _localProvider
+                      .setLocale(_supportedLocales[index].languageCode);
+                  _currentPage = index;
+                },
+                itemBuilder: (context, index) {
+                  final local = _supportedLocales[index];
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Text(
+                            L10n.getLanguage(local.languageCode),
+                            style: style,
+                          ),
+                        ],
                       ),
-                    );
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 24.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: CupertinoButton(
-                      onPressed: _currentPage != 0 ? _backLanguage : null,
-                      minSize: 0,
-                      padding: EdgeInsets.zero,
-                      child: Icon(
-                        Icons.chevron_left_outlined,
-                        size: 40,
-                        color: _currentPage != 0
-                            ? AppColors.orange
-                            : AppColors.orange.withOpacity(.3),
-                      ),
+                    ),
+                  );
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 24.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: CupertinoButton(
+                    onPressed: _currentPage != 0 ? _backLanguage : null,
+                    minSize: 0,
+                    padding: EdgeInsets.zero,
+                    child: Icon(
+                      Icons.chevron_left_outlined,
+                      size: 40,
+                      color: _currentPage != 0
+                          ? AppColors.orange
+                          : AppColors.orange.withOpacity(.3),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 24.0),
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: CupertinoButton(
-                      onPressed: _currentPage != _supportedLocales.length - 1
-                          ? _nextLanguage
-                          : null,
-                      minSize: 0,
-                      padding: EdgeInsets.zero,
-                      child: Icon(
-                        Icons.chevron_right_outlined,
-                        size: 40,
-                        color: _currentPage != _supportedLocales.length - 1
-                            ? AppColors.orange
-                            : AppColors.orange.withOpacity(.3),
-                      ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 24.0),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: CupertinoButton(
+                    onPressed: _currentPage != _supportedLocales.length - 1
+                        ? _nextLanguage
+                        : null,
+                    minSize: 0,
+                    padding: EdgeInsets.zero,
+                    child: Icon(
+                      Icons.chevron_right_outlined,
+                      size: 40,
+                      color: _currentPage != _supportedLocales.length - 1
+                          ? AppColors.orange
+                          : AppColors.orange.withOpacity(.3),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         const CustomFlex(flex: 1),
@@ -141,12 +139,8 @@ class _FirstSettingsWidgetState extends State<FirstSettingsWidget> {
                         : AppLocalizations.of(context)!.stayOnTheDarkSide,
                     textAlign: TextAlign.center,
                     style: _themeProvider.isLightTheme
-                        ? _themeProvider.themeData.textTheme.headline4
-                        : _themeProvider.themeData.textTheme.headline4?.apply(
-                            color: _themeProvider
-                                .themeData.textTheme.headline4?.color
-                                ?.withOpacity(.5),
-                          ),
+                        ? style
+                        : style?.apply(color: style.color?.withOpacity(.5)),
                   ),
                 ),
               ),
@@ -162,19 +156,15 @@ class _FirstSettingsWidgetState extends State<FirstSettingsWidget> {
                         : AppLocalizations.of(context)!.comeToTheBrightSide,
                     textAlign: TextAlign.center,
                     style: _themeProvider.isLightTheme
-                        ? _themeProvider.themeData.textTheme.headline4?.apply(
-                            color: _themeProvider
-                                .themeData.textTheme.headline4?.color
-                                ?.withOpacity(.5),
-                          )
-                        : _themeProvider.themeData.textTheme.headline4,
+                        ? style?.apply(color: style.color?.withOpacity(.5))
+                        : style,
                   ),
                 ),
               ),
             ],
           ),
         ),
-        const CustomFlex(flex: 6),
+        const CustomFlex(flex: 4),
         Align(
           alignment: Alignment.bottomCenter,
           child: DefaultButton(
@@ -188,9 +178,8 @@ class _FirstSettingsWidgetState extends State<FirstSettingsWidget> {
           child: Text(
             AppLocalizations.of(context)!.themAndLangChangeLater,
             textAlign: TextAlign.center,
-            style: _themeProvider.themeData.textTheme.subtitle1?.apply(
-              color: _themeProvider.themeData.textTheme.subtitle1?.color
-                  ?.withOpacity(.5),
+            style: textTheme.bodyText1?.apply(
+              color: textTheme.bodyText1?.color?.withOpacity(.5),
             ),
           ),
         ),

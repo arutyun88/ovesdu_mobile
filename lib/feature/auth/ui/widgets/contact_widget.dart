@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../app/const/countries.dart';
 import '../../../../app/const/reg_exr_const.dart';
+import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/components/text_fields/app_phone_field/app_phone_field.dart';
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/config/app_colors.dart';
@@ -73,13 +75,13 @@ class _ContactWidgetState extends State<ContactWidget> {
                     AppLocalizations.of(context)!
                         .helloUsername(widget.username),
                     textAlign: TextAlign.start,
-                    style: const TextStyle(fontSize: 14.0),
+                    style: Provider.of<ThemeProvider>(context)
+                        .themeData
+                        .textTheme
+                        .bodyText2,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
-                  child: ErrorTextWidget(errorText: _errorText),
-                ),
+                ErrorTextWidget(errorText: _errorText),
                 AppTextField(
                   fieldType: TextFieldType.username,
                   keyboardType: TextInputType.emailAddress,

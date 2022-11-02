@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ovesdu_mobile/app/ui/config/app_colors.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../app/ui/config/app_colors.dart';
 
 class ErrorTextWidget extends StatelessWidget {
   const ErrorTextWidget({
@@ -23,7 +26,11 @@ class ErrorTextWidget extends StatelessWidget {
                 errorText,
                 maxLines: 1,
                 textAlign: TextAlign.right,
-                style: const TextStyle(fontSize: 14.0, color: AppColors.red),
+                style: Provider.of<ThemeProvider>(context)
+                    .themeData
+                    .textTheme
+                    .bodyText1
+                    ?.copyWith(color: AppColors.red),
               ),
             ),
           ),
