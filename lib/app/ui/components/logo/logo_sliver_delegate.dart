@@ -43,7 +43,7 @@ class LogoDelegate extends SliverPersistentHeaderDelegate {
                       Provider.of<ThemeProvider>(context, listen: false)
                           .themeData
                           .textTheme
-                          .subtitle2;
+                          .headline5;
                   return Text(
                     auth
                         ? AppLocalizations.of(context)!.loginTitleSignIn

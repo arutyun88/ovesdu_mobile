@@ -2,9 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ovesdu_mobile/app/ui/config/app_style.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../const/countries.dart';
+import '../../../../data/setting_provider/theme_provider.dart';
 import '../../../../domain/entities/phone_number.dart';
 import '../../../config/app_colors.dart';
 import '../../buttons/country_button.dart';
@@ -55,10 +56,6 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
 
   @override
   Widget build(BuildContext context) {
-    final labelStyle = const TextStyle().withStyle(
-      Theme.of(context).inputDecorationTheme.hintStyle!,
-    );
-
     return Padding(
       padding: const EdgeInsets.only(top: 4),
       child: Row(
@@ -68,7 +65,7 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
             onTap: _changeCountry,
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width - 200,
+            width: MediaQuery.of(context).size.width - 180,
             child: TextField(
               inputFormatters: [
                 LengthLimitingTextInputFormatter(_selectedCountry.maxLength),
@@ -88,11 +85,11 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
                 }
               },
               cursorWidth: 1.0,
-              cursorHeight: 20.0,
-              cursorColor: labelStyle.color,
-              style: const TextStyle().withStyle(
-                Theme.of(context).textTheme.headline6,
-              ),
+              cursorHeight: 30.0,
+              style: Provider.of<ThemeProvider>(context)
+                  .themeData
+                  .textTheme
+                  .headline5,
               decoration: InputDecoration(
                 isCollapsed: true,
                 contentPadding: const EdgeInsets.symmetric(
@@ -100,13 +97,7 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
                   vertical: 16.0,
                 ),
                 hintText: widget.hintText,
-                hintStyle: labelStyle,
                 labelText: widget.labelText,
-                labelStyle: labelStyle,
-                floatingLabelStyle: labelStyle.copyWith(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: BorderSide(

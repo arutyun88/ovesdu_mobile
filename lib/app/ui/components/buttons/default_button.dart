@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:ovesdu_mobile/app/ui/config/app_colors.dart';
-import 'package:ovesdu_mobile/app/ui/config/app_style.dart';
+import 'package:provider/provider.dart';
+
+import '../../../data/setting_provider/theme_provider.dart';
+import '../../config/app_colors.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({
@@ -17,6 +18,7 @@ class DefaultButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context).themeData;
     return CupertinoButton(
       minSize: 0,
       padding: EdgeInsets.zero,
@@ -30,8 +32,8 @@ class DefaultButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
         child: Text(
           title,
-          style: const TextStyle().withColor(
-            enable ? Theme.of(context).backgroundColor : AppColors.orange,
+          style: theme.textTheme.headline6?.copyWith(
+            color: enable ? theme.backgroundColor : AppColors.orange,
           ),
         ),
       ),

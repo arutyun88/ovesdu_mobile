@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:ovesdu_mobile/app/ui/config/app_style.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../const/countries.dart';
+import '../../../../data/setting_provider/theme_provider.dart';
 import '../../../../helpers/helpers.dart';
 import '../app_text_field.dart';
 
@@ -28,15 +29,15 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
   @override
   void initState() {
     _filteredCountries = widget.filteredCountries;
-
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context).themeData;
     return Dialog(
       insetPadding: const EdgeInsets.all(24.0),
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: theme.backgroundColor,
       child: Column(
         children: [
           Padding(
@@ -63,17 +64,13 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
               shrinkWrap: true,
               itemCount: _filteredCountries.length,
               itemBuilder: (context, index) => ListTile(
-                leading: Text(
-                  _filteredCountries[index].flag,
-                  style: const TextStyle().withSize(32.0),
-                ),
                 title: Text(
                   _filteredCountries[index].name,
-                  style: const TextStyle().withWeight(FontWeight.w700),
+                  style: theme.textTheme.headline6,
                 ),
                 trailing: Text(
                   '+${_filteredCountries[index].dialCode}',
-                  style: const TextStyle().withWeight(FontWeight.w700),
+                  style: theme.textTheme.headline6,
                 ),
                 onTap: () {
                   widget.onCountryChanged(_filteredCountries[index]);

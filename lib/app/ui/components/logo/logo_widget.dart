@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ovesdu_mobile/app/ui/config/app_colors.dart';
-import 'package:ovesdu_mobile/app/ui/config/app_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../../../data/setting_provider/theme_provider.dart';
+import '../../config/app_colors.dart';
+import '../../config/app_fonts.dart';
 
 class LogoWidget extends StatelessWidget {
   const LogoWidget({
@@ -28,7 +31,7 @@ class LogoWidget extends StatelessWidget {
       height: 1.0,
     );
     return Container(
-      color: Theme.of(context).backgroundColor,
+      color: Provider.of<ThemeProvider>(context).themeData.backgroundColor,
       child: Stack(
         children: [
           Center(

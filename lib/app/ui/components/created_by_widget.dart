@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ovesdu_mobile/app/ui/config/app_colors.dart';
-import 'package:ovesdu_mobile/app/ui/config/app_style.dart';
+import 'package:provider/provider.dart';
+
+import '../../data/setting_provider/theme_provider.dart';
+import '../config/app_colors.dart';
 
 class CreatedByWidget extends StatelessWidget {
   const CreatedByWidget({
@@ -17,7 +19,8 @@ class CreatedByWidget extends StatelessWidget {
       child: Text(
         '© Created by Arutyun Gevorkyan',
         textAlign: TextAlign.center,
-        style: const TextStyle().withSize(14.0),
+        style:
+            Provider.of<ThemeProvider>(context).themeData.textTheme.bodyText2,
       ),
     );
   }

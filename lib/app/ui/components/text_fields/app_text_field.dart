@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ovesdu_mobile/app/ui/config/app_style.dart';
+import 'package:provider/provider.dart';
 
+import '../../../data/setting_provider/theme_provider.dart';
 import '../../config/app_colors.dart';
 import 'formatter/date_text_formatter.dart';
 import 'formatter/password_text_formatter.dart';
@@ -73,10 +74,6 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
-    final labelStyle = const TextStyle().withStyle(
-      Theme.of(context).inputDecorationTheme.hintStyle!,
-    );
-
     return Padding(
       padding: const EdgeInsets.only(top: 4),
       child: TextField(
@@ -96,11 +93,9 @@ class _AppTextFieldState extends State<AppTextField> {
           setFormatters();
         },
         cursorWidth: 1.0,
-        cursorHeight: 20.0,
-        cursorColor: labelStyle.color,
-        style: const TextStyle().withStyle(
-          Theme.of(context).textTheme.headline6,
-        ),
+        cursorHeight: 30.0,
+        style:
+            Provider.of<ThemeProvider>(context).themeData.textTheme.headline5,
         decoration: InputDecoration(
           isCollapsed: true,
           contentPadding: const EdgeInsets.symmetric(
@@ -108,13 +103,7 @@ class _AppTextFieldState extends State<AppTextField> {
             vertical: 16.0,
           ),
           hintText: widget.hintText,
-          hintStyle: labelStyle,
           labelText: widget.labelText,
-          labelStyle: labelStyle,
-          floatingLabelStyle: labelStyle.copyWith(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-          ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
             borderSide: BorderSide(
