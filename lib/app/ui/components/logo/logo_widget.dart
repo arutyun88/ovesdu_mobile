@@ -17,7 +17,7 @@ class LogoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     const title = ' OvesDu ';
     const gradient = LinearGradient(
-      begin: Alignment(0, -0.3),
+      begin: Alignment(0, -0.4),
       end: Alignment(0, 0.5),
       colors: [AppColors.red, AppColors.blue, AppColors.orange],
     );
