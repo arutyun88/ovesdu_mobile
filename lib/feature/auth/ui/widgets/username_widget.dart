@@ -8,7 +8,6 @@ import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../domain/state/auth_cubit.dart';
-import 'error_text_widget.dart';
 import '../../../../app/ui/components/buttons/default_button.dart';
 import '../../../../app/ui/components/custom_flex.dart';
 
@@ -18,33 +17,44 @@ class UsernameWidget extends StatefulWidget {
     required this.controller,
     required this.onTap,
     required this.isAuth,
-  }) : super(key: key);
+    required ValueNotifier<List<String>> notifications,
+  })  : _notifications = notifications,
+        super(key: key);
 
   final TextEditingController controller;
   final Function() onTap;
   final ValueNotifier<bool> isAuth;
+  final ValueNotifier<List<String>> _notifications;
 
   @override
   State<UsernameWidget> createState() => _UsernameWidgetState();
 }
 
 class _UsernameWidgetState extends State<UsernameWidget> {
-  late bool isComplete;
+  late bool isComplete = true;
   late TextEditingController _usernameController;
-  late bool enabled;
-  late String errorText;
+  late bool enabled = false;
+  late AppLocalizations _dictionary;
+
+  late String serverMessage = '';
 
   @override
   void initState() {
     super.initState();
     _usernameController = widget.controller;
-    _validate();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _dictionary = AppLocalizations.of(context)!;
   }
 
   _validate() {
+    _notificationsRemove(serverMessage);
     var value = _usernameController.text.trim();
     if (value.isEmpty) {
-      errorText = '\n';
+      widget._notifications.value = [];
       isComplete = true;
       enabled = false;
     } else {
@@ -52,34 +62,39 @@ class _UsernameWidgetState extends State<UsernameWidget> {
         if (value.contains('@')) {
           isComplete = RegExp(RegExpConst.email).hasMatch(value);
           if (isComplete) {
-            errorText = '\n';
+            _notificationsRemove(_dictionary.emailNotCorrect);
             enabled = true;
           } else {
-            errorText = AppLocalizations.of(context)!.emailNotCorrect;
+            _notificationsUpdate(_dictionary.emailNotCorrect);
             enabled = false;
           }
         } else {
           if (value.length < 4) {
-            errorText = AppLocalizations.of(context)!.usernameErrorText;
+            _notificationsUpdate(_dictionary.usernameErrorText);
             isComplete = false;
             enabled = false;
           } else {
-            errorText = '\n';
+            _notificationsRemove(_dictionary.usernameErrorText);
             isComplete = true;
             enabled = true;
           }
         }
       } else {
-        if (value.contains('@')) {
-          errorText = AppLocalizations.of(context)!.usernameNotCorrect;
-          isComplete = false;
-          enabled = false;
-        } else if (value.length < 4) {
-          errorText = AppLocalizations.of(context)!.usernameErrorText;
+        if (value.contains('@') || value.length < 4) {
+          if (value.contains('@')) {
+            _notificationsUpdate(_dictionary.usernameNotCorrect);
+          } else {
+            _notificationsRemove(_dictionary.usernameNotCorrect);
+          }
+          if (value.length < 4) {
+            _notificationsUpdate(_dictionary.usernameErrorText);
+          } else {
+            _notificationsRemove(_dictionary.usernameErrorText);
+          }
           isComplete = false;
           enabled = false;
         } else {
-          errorText = '\n';
+          widget._notifications.value = [];
           isComplete = true;
           enabled = true;
         }
@@ -93,14 +108,11 @@ class _UsernameWidgetState extends State<UsernameWidget> {
     return BlocConsumer<AuthCubit, AuthState>(
       builder: (context, state) {
         return Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 35.0,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 35.0),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ErrorTextWidget(errorText: errorText),
                 AppTextField(
                   controller: _usernameController,
                   fieldType: TextFieldType.username,
@@ -108,11 +120,11 @@ class _UsernameWidgetState extends State<UsernameWidget> {
                       ? TextInputType.emailAddress
                       : TextInputType.text,
                   hintText: widget.isAuth.value
-                      ? AppLocalizations.of(context)!.usernameOrEmailHint
-                      : AppLocalizations.of(context)!.usernameHint,
+                      ? _dictionary.usernameOrEmailHint
+                      : _dictionary.usernameHint,
                   labelText: widget.isAuth.value
-                      ? AppLocalizations.of(context)!.usernameOrEmailLabel
-                      : AppLocalizations.of(context)!.usernameLabel,
+                      ? _dictionary.usernameOrEmailLabel
+                      : _dictionary.usernameLabel,
                   borderColor: isComplete ? AppColors.orange : AppColors.red,
                   onChanged: (value) => setState(() => _validate()),
                 ),
@@ -126,7 +138,7 @@ class _UsernameWidgetState extends State<UsernameWidget> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       DefaultButton(
-                        title: AppLocalizations.of(context)!.next,
+                        title: _dictionary.next,
                         enable: enabled,
                         onPressed: widget.onTap,
                       ),
@@ -140,8 +152,8 @@ class _UsernameWidgetState extends State<UsernameWidget> {
                     Flexible(
                       child: Text(
                         widget.isAuth.value
-                            ? AppLocalizations.of(context)!.notHaveAnAccount
-                            : AppLocalizations.of(context)!.haveAnAccount,
+                            ? _dictionary.notHaveAnAccount
+                            : _dictionary.haveAnAccount,
                         textAlign: TextAlign.end,
                         style: theme.textTheme.bodyText2,
                       ),
@@ -156,8 +168,8 @@ class _UsernameWidgetState extends State<UsernameWidget> {
                       padding: EdgeInsets.zero,
                       child: Text(
                         widget.isAuth.value
-                            ? AppLocalizations.of(context)!.register
-                            : AppLocalizations.of(context)!.login,
+                            ? _dictionary.register
+                            : _dictionary.login,
                         style: theme.textTheme.headline6?.copyWith(
                           color: AppColors.orange,
                           fontWeight: FontWeight.w700,
@@ -182,12 +194,32 @@ class _UsernameWidgetState extends State<UsernameWidget> {
         state.whenOrNull(
           waiting: () => enabled = false,
           error: (error) {
-            errorText = error.message;
+            serverMessage = error.message;
+            _notificationsUpdate(serverMessage);
             isComplete = false;
           },
-          usernameChecked: () => isComplete = true,
+          usernameChecked: () {
+            _notificationsRemove(serverMessage);
+            isComplete = true;
+          },
         );
       },
     );
+  }
+
+  void _notificationsUpdate(String message) {
+    if (!widget._notifications.value.contains(message)) {
+      widget._notifications.value.add(message);
+      widget._notifications.value =
+          widget._notifications.value.map((e) => e).toList();
+    }
+  }
+
+  void _notificationsRemove(String message) {
+    if (widget._notifications.value.contains(message)) {
+      widget._notifications.value.remove(message);
+      widget._notifications.value =
+          widget._notifications.value.map((e) => e).toList();
+    }
   }
 }
