@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../data/setting_provider/theme_provider.dart';
 import '../../config/app_colors.dart';
 
-class NotificationSnackBar extends StatefulWidget {
-  const NotificationSnackBar({
+class NotificationTopBar extends StatefulWidget {
+  const NotificationTopBar({
     Key? key,
-    required ValueNotifier<List> notifications,
+    required ValueNotifier<List<String>> notifications,
   })  : _notifications = notifications,
         super(key: key);
 
-  final ValueNotifier<List> _notifications;
+  final ValueNotifier<List<String>> _notifications;
 
   @override
-  State<NotificationSnackBar> createState() => _NotificationSnackBarState();
+  State<NotificationTopBar> createState() => _NotificationTopBarState();
 }
 
-class _NotificationSnackBarState extends State<NotificationSnackBar>
+class _NotificationTopBarState extends State<NotificationTopBar>
     with TickerProviderStateMixin {
   late AnimationController _positionAnimationController;
   late Animation<double> _positionAnimation;
@@ -55,17 +57,31 @@ class _NotificationSnackBarState extends State<NotificationSnackBar>
       children: [
         Positioned(
           top: _positionAnimation.value,
-          child: Container(
-            color: AppColors.red,
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: SafeArea(
               bottom: false,
-              child: Column(
-                children: List.generate(
-                  _changedList.length,
-                  (index) => SizedBox(
-                    height: 50,
-                    child: Text(_changedList[index]),
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  color: AppColors.red.withOpacity(.9),
+                ),
+                child: Column(
+                  children: List.generate(
+                    _changedList.length,
+                    (index) => SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          _changedList[index],
+                          style: Provider.of<ThemeProvider>(context)
+                              .themeData
+                              .textTheme
+                              .headline6,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
