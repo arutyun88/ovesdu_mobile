@@ -13,8 +13,8 @@ class LogoDelegate extends SliverPersistentHeaderDelegate {
   final ValueNotifier<bool> isAuth;
 
   LogoDelegate(double size, this.isAuth)
-      : _maxHeaderSize = size * 0.8,
-        _minHeaderSize = size * 0.8 / 3,
+      : _maxHeaderSize = size,
+        _minHeaderSize = size / 3,
         _maxTextSize = size / 3,
         // _minTextSize = size / 5;
         _minTextSize = size / 3;
@@ -32,7 +32,7 @@ class LogoDelegate extends SliverPersistentHeaderDelegate {
     return Stack(
       children: [
         LogoWidget(fontSize: currentTextSize),
-        if ((1 - percent) > .70)
+        if ((1 - percent) > .60)
           Positioned(
             top: 10,
             left: 34,
