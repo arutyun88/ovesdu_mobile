@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../app/domain/entities/device_entity/device_entity.dart';
+import '../../../app/ui/components/app_scaffold.dart';
 import '../../../app/ui/components/created_by_widget.dart';
 import '../../../app/ui/components/logo/logo_sliver_delegate.dart';
 import '../domain/state/auth_cubit.dart';
@@ -41,6 +42,8 @@ class _LoginScreenState extends State<LoginScreen> {
   late ValueNotifier<bool> _isAuth;
   late ValueNotifier<String> _phoneNotifier;
 
+  late final ValueNotifier<List<String>> _notifications = ValueNotifier([]);
+
   @override
   void initState() {
     super.initState();
@@ -73,7 +76,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
+      notifications: _notifications,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => setState(() => _unfocused()),
@@ -108,6 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 BlocConsumer<AuthCubit, AuthState>(
                                   builder: (context, state) {
                                     return UsernameWidget(
+                                      notifications: _notifications,
                                       controller: _usernameController,
                                       onTap: () {
                                         _isAuth.value
