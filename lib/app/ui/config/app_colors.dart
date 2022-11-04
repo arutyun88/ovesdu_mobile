@@ -16,7 +16,8 @@ class AppColors {
   static const Color orange = Color(0xFFFF9726);
   static const Color green = Color(0xFF407237);
   static const Color greenLight = Color(0xFF109020);
-  static const Color blue = Color(0xFF0000FF);
+  static const Color blue = Color(0xFF0000A9);
+  static const Color blueLight = Color(0xFF0050FF);
   static const Color red = Color(0xFFBF0C34);
   static const Color purple = Color(0xFF3F3772);
 
@@ -32,5 +33,9 @@ class AppColors {
     colors: _flagColors,
   );
 
-  static const _flagColors = [AppColors.red, AppColors.blue, AppColors.orange];
+  static const _flagColors = [
+    AppColors.red,
+    AppColors.blueLight,
+    AppColors.orange,
+  ];
 }

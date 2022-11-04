@@ -13,8 +13,8 @@ class LogoDelegate extends SliverPersistentHeaderDelegate {
   final ValueNotifier<bool> isAuth;
 
   LogoDelegate(double size, this.isAuth)
-      : _maxHeaderSize = size,
-        _minHeaderSize = size / 3,
+      : _maxHeaderSize = size * 0.8,
+        _minHeaderSize = size * 0.8 / 3,
         _maxTextSize = size / 3,
         // _minTextSize = size / 5;
         _minTextSize = size / 3;
@@ -32,25 +32,25 @@ class LogoDelegate extends SliverPersistentHeaderDelegate {
     return Stack(
       children: [
         LogoWidget(fontSize: currentTextSize),
-        if ((1 - percent) > .5)
+        if ((1 - percent) > .70)
           Positioned(
             top: 10,
             left: 34,
             child: ValueListenableBuilder<bool>(
-                valueListenable: isAuth,
-                builder: (context, auth, child) {
-                  final style =
-                      Provider.of<ThemeProvider>(context, listen: false)
-                          .themeData
-                          .textTheme
-                          .headline5;
-                  return Text(
-                    auth
-                        ? AppLocalizations.of(context)!.loginTitleSignIn
-                        : AppLocalizations.of(context)!.loginTitleSignUp,
-                    style: style?.apply(color: style.color?.withOpacity(.3)),
-                  );
-                }),
+              valueListenable: isAuth,
+              builder: (context, auth, child) {
+                final style = Provider.of<ThemeProvider>(context, listen: false)
+                    .themeData
+                    .textTheme
+                    .headline5;
+                return Text(
+                  auth
+                      ? AppLocalizations.of(context)!.loginTitleSignIn
+                      : AppLocalizations.of(context)!.loginTitleSignUp,
+                  style: style?.apply(color: style.color?.withOpacity(.3)),
+                );
+              },
+            ),
           ),
       ],
     );
