@@ -20,7 +20,7 @@
   "passwordHint": "введите ваш пароль",
   "passwordConfirmLabel": "подтверждение пароля",
   "passwordConfirmHint": "подтвердите ваш пароль",
-  "passwordErrorText": "менее 8 знаков",
+  "passwordErrorText": "пароль не может быть короче 8 символов",
   "passwordNotCorrect": "некорректный пароль",
   "passwordNotMatch": "пароли не совпадают",
   "passwordForgot": "Если вы забыли пароль, вы можете",

@@ -138,6 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 _isAuth.value
                                     ? PasswordWidget(
+                                        notifications: _notifications,
                                         username: username,
                                         controller: _passwordController,
                                         onTapBack: () {

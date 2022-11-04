@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:ovesdu_mobile/app/const/reg_exr_const.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../app/const/reg_exr_const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/components/text_fields/formatter/common.dart';
@@ -11,7 +11,6 @@ import '../../../../app/ui/config/app_colors.dart';
 import '../../../../app/ui/components/buttons/default_button.dart';
 import '../../domain/state/auth_cubit.dart';
 import '../../../../app/ui/components/custom_flex.dart';
-import 'error_text_widget.dart';
 
 class PasswordWidget extends StatefulWidget {
   const PasswordWidget({
@@ -20,50 +19,61 @@ class PasswordWidget extends StatefulWidget {
     required this.controller,
     required this.onTapBack,
     required this.onTapAuthorize,
-  }) : super(key: key);
+    required ValueNotifier<List<String>> notifications,
+  })  : _notifications = notifications,
+        super(key: key);
 
   final String username;
   final TextEditingController controller;
   final Function() onTapBack;
   final Function() onTapAuthorize;
+  final ValueNotifier<List<String>> _notifications;
 
   @override
   State<PasswordWidget> createState() => _PasswordWidgetState();
 }
 
 class _PasswordWidgetState extends State<PasswordWidget> {
-  late bool isComplete;
-  late String errorText = '';
-  late bool nextStepEnabled;
+  late bool isComplete = true;
+  late bool nextStepEnabled = false;
+  late AppLocalizations _dictionary;
 
-  late final String passwordErrorText;
+  late String serverMessage = '';
 
   @override
   void initState() {
     super.initState();
-    _validate();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _dictionary = AppLocalizations.of(context)!;
   }
 
   void _validate() {
+    _notificationsRemove(serverMessage);
     widget.controller.text = widget.controller.text.trim();
     var value = widget.controller.text;
     widget.controller.selection = updateCursorSelection(value);
     if (value.isEmpty) {
-      errorText = '\n';
+      widget._notifications.value = [];
       isComplete = true;
       nextStepEnabled = false;
     } else {
       if (value.length < 8) {
-        errorText = AppLocalizations.of(context)!.passwordErrorText;
+        _notificationsUpdate(_dictionary.passwordErrorText);
+        _notificationsRemove(_dictionary.passwordNotCorrect);
         isComplete = false;
         nextStepEnabled = false;
       } else {
+        _notificationsRemove(_dictionary.passwordErrorText);
         if (value.validatePassword()) {
-          errorText = '\n';
+          _notificationsRemove(_dictionary.passwordNotCorrect);
           isComplete = true;
           nextStepEnabled = true;
         } else {
-          errorText = AppLocalizations.of(context)!.passwordNotCorrect;
+          _notificationsUpdate(_dictionary.passwordNotCorrect);
           isComplete = false;
           nextStepEnabled = false;
         }
@@ -82,15 +92,17 @@ class _PasswordWidgetState extends State<PasswordWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    AppLocalizations.of(context)!.famousUser(widget.username),
-                    textAlign: TextAlign.start,
-                    style: theme.textTheme.bodyText2,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      AppLocalizations.of(context)!.famousUser(widget.username),
+                      textAlign: TextAlign.start,
+                      style: theme.textTheme.bodyText2,
+                    ),
                   ),
                 ),
-                ErrorTextWidget(errorText: errorText),
                 AppTextField(
                   fieldType: TextFieldType.password,
                   controller: widget.controller,
@@ -161,11 +173,31 @@ class _PasswordWidgetState extends State<PasswordWidget> {
         state.whenOrNull(
           waiting: () => nextStepEnabled = false,
           error: (error) {
-            errorText = error.message;
+            serverMessage = error.message;
+            _notificationsUpdate(serverMessage);
             isComplete = false;
+          },
+          authorized: (value) {
+            _notificationsRemove(serverMessage);
           },
         );
       },
     );
+  }
+
+  void _notificationsUpdate(String message) {
+    if (!widget._notifications.value.contains(message)) {
+      widget._notifications.value.add(message);
+      widget._notifications.value =
+          widget._notifications.value.map((e) => e).toList();
+    }
+  }
+
+  void _notificationsRemove(String message) {
+    if (widget._notifications.value.contains(message)) {
+      widget._notifications.value.remove(message);
+      widget._notifications.value =
+          widget._notifications.value.map((e) => e).toList();
+    }
   }
 }

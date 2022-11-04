@@ -20,7 +20,7 @@
   "passwordHint": "enter your password",
   "passwordConfirmLabel": "confirm password",
   "passwordConfirmHint": "confirm your password",
-  "passwordErrorText": "less than 8 characters",
+  "passwordErrorText": "password cannot be shorter than 8 characters",
   "passwordNotCorrect": "password not correct",
   "passwordNotMatch": "passwords not match",
   "passwordForgot": "If you forgot your password, you can",
