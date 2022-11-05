@@ -193,7 +193,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 24.0),
                   AppTextField(
                     controller: _countryController,
-                    hintText: dictionary.countryLabel,
+                    hintText: dictionary.countryHint,
                     labelText: dictionary.countryLabel,
                     borderColor:
                         _countryIsComplete ? AppColors.orange : AppColors.red,
@@ -202,7 +202,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 12.0),
                   AppTextField(
                     controller: _cityController,
-                    hintText: dictionary.cityLabel,
+                    hintText: dictionary.cityHint,
                     labelText: dictionary.cityLabel,
                     borderColor:
                         _cityIsComplete ? AppColors.orange : AppColors.red,
