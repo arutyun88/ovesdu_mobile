@@ -152,6 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         },
                                       )
                                     : ContactWidget(
+                                        notifications: _notifications,
                                         username: username,
                                         emailController: _emailController,
                                         phoneNumberNotifier: _phoneNotifier,

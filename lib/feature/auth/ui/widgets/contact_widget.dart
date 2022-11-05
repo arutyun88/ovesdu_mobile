@@ -12,30 +12,31 @@ import '../../../../app/ui/config/app_colors.dart';
 import '../../../../app/ui/components/buttons/default_button.dart';
 import '../../domain/state/auth_cubit.dart';
 import '../../../../app/ui/components/custom_flex.dart';
-import 'error_text_widget.dart';
 
 class ContactWidget extends StatefulWidget {
   const ContactWidget({
     Key? key,
     required this.username,
     required this.emailController,
-    // required this.phoneController,
     required this.countryCodeController,
     required this.onTapBack,
     required this.onTapConfirm,
     required this.onTapConfirmWhenCorrect,
     required this.phoneNumberNotifier,
-  }) : super(key: key);
+    required ValueNotifier<List<String>> notifications,
+  })  : _notifications = notifications,
+        super(key: key);
 
   final String username;
   final TextEditingController emailController;
 
-  // final TextEditingController phoneController;
   final TextEditingController countryCodeController;
   final Function() onTapBack;
   final Function() onTapConfirm;
   final Function() onTapConfirmWhenCorrect;
   final ValueNotifier<String> phoneNumberNotifier;
+
+  final ValueNotifier<List<String>> _notifications;
 
   @override
   State<ContactWidget> createState() => _ContactWidgetState();
@@ -43,21 +44,32 @@ class ContactWidget extends StatefulWidget {
 
 class _ContactWidgetState extends State<ContactWidget> {
   late bool nextStepEnabled;
-  late String _errorText = '';
   late bool _emailIsValid = true;
   late bool _phoneIsValid = true;
 
-  // late ValueNotifier<String> _phoneNotifier;
   late ValueNotifier<Country> _selectedCountryNotifier;
+  late AppLocalizations _dictionary;
+  late String _serverMessage = '';
 
   @override
   void initState() {
     super.initState();
     nextStepEnabled = false;
-    // _phoneNotifier = widget.phoneNumberNotifier;
     _selectedCountryNotifier = ValueNotifier(
       countries.firstWhere((country) => country.code == 'AM'),
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _dictionary = AppLocalizations.of(context)!;
+  }
+
+  @override
+  void dispose() {
+    _selectedCountryNotifier.dispose();
+    super.dispose();
   }
 
   @override
@@ -69,19 +81,21 @@ class _ContactWidgetState extends State<ContactWidget> {
           child: Center(
             child: Column(
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    AppLocalizations.of(context)!
-                        .helloUsername(widget.username),
-                    textAlign: TextAlign.start,
-                    style: Provider.of<ThemeProvider>(context)
-                        .themeData
-                        .textTheme
-                        .bodyText2,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      AppLocalizations.of(context)!
+                          .helloUsername(widget.username),
+                      textAlign: TextAlign.start,
+                      style: Provider.of<ThemeProvider>(context)
+                          .themeData
+                          .textTheme
+                          .bodyText2,
+                    ),
                   ),
                 ),
-                ErrorTextWidget(errorText: _errorText),
                 AppTextField(
                   fieldType: TextFieldType.username,
                   keyboardType: TextInputType.emailAddress,
@@ -131,7 +145,8 @@ class _ContactWidgetState extends State<ContactWidget> {
         state.whenOrNull(
             waiting: () => nextStepEnabled = false,
             error: (error) {
-              _errorText = error.message;
+              _serverMessage = error.message;
+              _notificationsUpdate(_serverMessage);
               nextStepEnabled = false;
             },
             contactChecked: () {
@@ -144,39 +159,37 @@ class _ContactWidgetState extends State<ContactWidget> {
   }
 
   void _emailValidate(String value) {
-    setState(() {
-      if (value.isNotEmpty) {
-        _emailIsValid = RegExp(RegExpConst.email).hasMatch(value);
-        if (_emailIsValid) {
-          _errorText = '';
-        } else {
-          _errorText = AppLocalizations.of(context)!.emailNotCorrect;
-        }
+    _notificationsRemove(_serverMessage);
+    if (value.isNotEmpty) {
+      _emailIsValid = RegExp(RegExpConst.email).hasMatch(value);
+      if (_emailIsValid) {
+        _notificationsRemove(_dictionary.emailNotCorrect);
       } else {
-        _errorText = '';
-        _emailIsValid = true;
+        _notificationsUpdate(_dictionary.emailNotCorrect);
       }
-      _checkEnabled();
-    });
+    } else {
+      _notificationsRemove(_dictionary.emailNotCorrect);
+      _emailIsValid = true;
+    }
+    _checkEnabled();
   }
 
   void _phoneValidate(String value) {
+    _notificationsRemove(_serverMessage);
     Country country = _selectedCountryNotifier.value;
-    setState(() {
-      if (value.isNotEmpty) {
-        if (value.length < country.minLength) {
-          _errorText = AppLocalizations.of(context)!.phoneNotCorrect;
-          _phoneIsValid = false;
-        } else {
-          _errorText = '';
-          _phoneIsValid = true;
-        }
+    if (value.isNotEmpty) {
+      if (value.length < country.minLength) {
+        _notificationsUpdate(_dictionary.phoneNotCorrect);
+        _phoneIsValid = false;
       } else {
-        _errorText = '';
+        _notificationsRemove(_dictionary.phoneNotCorrect);
         _phoneIsValid = true;
       }
-      _checkEnabled();
-    });
+    } else {
+      _notificationsRemove(_dictionary.phoneNotCorrect);
+      _phoneIsValid = true;
+    }
+    _checkEnabled();
   }
 
   void _checkEnabled() {
@@ -186,5 +199,21 @@ class _ContactWidgetState extends State<ContactWidget> {
           _emailIsValid &&
           _phoneIsValid,
     );
+  }
+
+  void _notificationsUpdate(String message) {
+    if (!widget._notifications.value.contains(message)) {
+      widget._notifications.value.add(message);
+      widget._notifications.value =
+          widget._notifications.value.map((e) => e).toList();
+    }
+  }
+
+  void _notificationsRemove(String message) {
+    if (widget._notifications.value.contains(message)) {
+      widget._notifications.value.remove(message);
+      widget._notifications.value =
+          widget._notifications.value.map((e) => e).toList();
+    }
   }
 }

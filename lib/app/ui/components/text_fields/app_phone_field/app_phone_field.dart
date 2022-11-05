@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -138,13 +136,16 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
           _selectedCountry = country;
           controller.clear();
           widget.phone.value = '';
-          log(widget.phone.value);
           widget.selectedCountryNotifier.value = _selectedCountry;
           if (widget.otherFunction != null) {
             widget.otherFunction!();
           }
         },
       ),
+    ).whenComplete(
+      () {
+        if (widget.onChanged != null) widget.onChanged!('');
+      },
     );
   }
 }
