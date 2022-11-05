@@ -33,7 +33,7 @@ class UsernameWidget extends StatefulWidget {
 class _UsernameWidgetState extends State<UsernameWidget> {
   late bool isComplete = true;
   late TextEditingController _usernameController;
-  late bool enabled = false;
+  late bool enabled;
   late AppLocalizations _dictionary;
 
   late String serverMessage = '';
@@ -42,6 +42,7 @@ class _UsernameWidgetState extends State<UsernameWidget> {
   void initState() {
     super.initState();
     _usernameController = widget.controller;
+    enabled = _usernameController.text.isNotEmpty;
   }
 
   @override
@@ -108,91 +109,89 @@ class _UsernameWidgetState extends State<UsernameWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
-    return BlocConsumer<AuthCubit, AuthState>(
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 35.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AppTextField(
-                  controller: _usernameController,
-                  fieldType: TextFieldType.username,
-                  keyboardType: widget.isAuth.value
-                      ? TextInputType.emailAddress
-                      : TextInputType.text,
-                  hintText: widget.isAuth.value
-                      ? _dictionary.usernameOrEmailHint
-                      : _dictionary.usernameHint,
-                  labelText: widget.isAuth.value
-                      ? _dictionary.usernameOrEmailLabel
-                      : _dictionary.usernameLabel,
-                  borderColor: isComplete ? AppColors.orange : AppColors.red,
-                  onChanged: (value) => setState(() => _validate()),
+    return BlocListener<AuthCubit, AuthState>(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 35.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppTextField(
+                controller: _usernameController,
+                fieldType: TextFieldType.username,
+                keyboardType: widget.isAuth.value
+                    ? TextInputType.emailAddress
+                    : TextInputType.text,
+                hintText: widget.isAuth.value
+                    ? _dictionary.usernameOrEmailHint
+                    : _dictionary.usernameHint,
+                labelText: widget.isAuth.value
+                    ? _dictionary.usernameOrEmailLabel
+                    : _dictionary.usernameLabel,
+                borderColor: isComplete ? AppColors.orange : AppColors.red,
+                onChanged: (value) => setState(() => _validate()),
+              ),
+              const CustomFlex(flex: 2),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 40.0,
+                  bottom: 48.0,
                 ),
-                const CustomFlex(flex: 2),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 40.0,
-                    bottom: 48.0,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      DefaultButton(
-                        title: _dictionary.next,
-                        enable: enabled,
-                        onPressed: widget.onTap,
-                      ),
-                    ],
-                  ),
-                ),
-                const CustomFlex(flex: 2),
-                Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Flexible(
-                      child: Text(
-                        widget.isAuth.value
-                            ? _dictionary.notHaveAnAccount
-                            : _dictionary.haveAnAccount,
-                        textAlign: TextAlign.end,
-                        style: theme.textTheme.bodyText2,
-                      ),
+                    DefaultButton(
+                      title: _dictionary.next,
+                      enable: enabled,
+                      onPressed: widget.onTap,
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    CupertinoButton(
-                      minSize: 0,
-                      padding: EdgeInsets.zero,
-                      child: Text(
-                        widget.isAuth.value
-                            ? _dictionary.register
-                            : _dictionary.login,
-                        style: theme.textTheme.headline6?.copyWith(
-                          color: AppColors.orange,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          widget.isAuth.value = !widget.isAuth.value;
-                          FocusManager.instance.primaryFocus?.unfocus();
-                        });
-                      },
+              ),
+              const CustomFlex(flex: 2),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Flexible(
+                    child: Text(
+                      widget.isAuth.value
+                          ? _dictionary.notHaveAnAccount
+                          : _dictionary.haveAnAccount,
+                      textAlign: TextAlign.end,
+                      style: theme.textTheme.bodyText2,
                     ),
-                  ],
-                ),
-                const CustomFlex(flex: 5),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CupertinoButton(
+                    minSize: 0,
+                    padding: EdgeInsets.zero,
+                    child: Text(
+                      widget.isAuth.value
+                          ? _dictionary.register
+                          : _dictionary.login,
+                      style: theme.textTheme.headline6?.copyWith(
+                        color: AppColors.orange,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        widget.isAuth.value = !widget.isAuth.value;
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      });
+                    },
+                  ),
+                ],
+              ),
+              const CustomFlex(flex: 5),
+            ],
           ),
-        );
-      },
+        ),
+      ),
       listener: (context, state) {
         state.whenOrNull(
           waiting: () => enabled = false,
@@ -200,10 +199,17 @@ class _UsernameWidgetState extends State<UsernameWidget> {
             serverMessage = error.message;
             _notificationsUpdate(serverMessage);
             isComplete = false;
+            enabled = true;
+          },
+          checked: (name) {
+            _notificationsRemove(serverMessage);
+            isComplete = true;
+            enabled = true;
           },
           usernameChecked: () {
             _notificationsRemove(serverMessage);
             isComplete = true;
+            enabled = true;
           },
         );
       },

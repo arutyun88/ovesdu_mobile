@@ -146,6 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           changePage(1);
                                           _passwordController.text = '';
                                           _unfocused();
+                                          _notifications.value = [];
                                         },
                                         onTapAuthorize: () {
                                           onTapToAuthorize(cubit);
@@ -164,6 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           _emailController.text = '';
                                           _phoneNotifier.value = '';
                                           _unfocused();
+                                          _notifications.value = [];
                                         },
                                         onTapConfirm: () {
                                           onTapToCheckContactSignUp(cubit);

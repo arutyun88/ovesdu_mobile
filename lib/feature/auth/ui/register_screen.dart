@@ -71,11 +71,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     _nameIsComplete = true;
     _nameIsValid = false;
-    _dateValidate();
-    _countryValidate();
-    _cityValidate();
-    _passwordValidate();
-    _passwordConfirmValidate();
+    _dateIsComplete = true;
+    _dateIsValid = false;
+    _countryIsComplete = true;
+    _countryIsValid = false;
+    _cityIsComplete = true;
+    _cityIsValid = false;
+    _passwordIsComplete = true;
+    _passwordIsValid = false;
+    _passwordConfirmIsComplete = true;
+    _passwordConfirmIsValid = true;
+    _buttonValidate();
   }
 
   @override

@@ -74,80 +74,78 @@ class _ContactWidgetState extends State<ContactWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 35.0),
-          child: Center(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      AppLocalizations.of(context)!
-                          .helloUsername(widget.username),
-                      textAlign: TextAlign.start,
-                      style: Provider.of<ThemeProvider>(context)
-                          .themeData
-                          .textTheme
-                          .bodyText2,
+    return BlocListener<AuthCubit, AuthState>(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 35.0),
+        child: Center(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    AppLocalizations.of(context)!
+                        .helloUsername(widget.username),
+                    textAlign: TextAlign.start,
+                    style: Provider.of<ThemeProvider>(context)
+                        .themeData
+                        .textTheme
+                        .bodyText2,
+                  ),
+                ),
+              ),
+              AppTextField(
+                fieldType: TextFieldType.username,
+                keyboardType: TextInputType.emailAddress,
+                controller: widget.emailController,
+                hintText: AppLocalizations.of(context)!.emailHint,
+                labelText: AppLocalizations.of(context)!.emailLabel,
+                borderColor: _emailIsValid ? AppColors.orange : AppColors.red,
+                onChanged: _emailValidate,
+              ),
+              const SizedBox(height: 24),
+              AppPhoneField(
+                hintText: AppLocalizations.of(context)!.phoneHint,
+                labelText: AppLocalizations.of(context)!.phoneLabel,
+                borderColor: _phoneIsValid ? AppColors.orange : AppColors.red,
+                onChanged: _phoneValidate,
+                phone: widget.phoneNumberNotifier,
+                selectedCountryNotifier: _selectedCountryNotifier,
+                otherFunction: _checkEnabled,
+              ),
+              const CustomFlex(flex: 4),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0, bottom: 30.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    DefaultButton(
+                      title: AppLocalizations.of(context)!.back,
+                      enable: true,
+                      onPressed: widget.onTapBack,
                     ),
-                  ),
+                    const SizedBox(width: 10.0),
+                    DefaultButton(
+                      title: AppLocalizations.of(context)!.confirm,
+                      enable: nextStepEnabled,
+                      onPressed: widget.onTapConfirm,
+                    ),
+                  ],
                 ),
-                AppTextField(
-                  fieldType: TextFieldType.username,
-                  keyboardType: TextInputType.emailAddress,
-                  controller: widget.emailController,
-                  hintText: AppLocalizations.of(context)!.emailHint,
-                  labelText: AppLocalizations.of(context)!.emailLabel,
-                  borderColor: _emailIsValid ? AppColors.orange : AppColors.red,
-                  onChanged: _emailValidate,
-                ),
-                const SizedBox(height: 24),
-                AppPhoneField(
-                  hintText: AppLocalizations.of(context)!.phoneHint,
-                  labelText: AppLocalizations.of(context)!.phoneLabel,
-                  borderColor: _phoneIsValid ? AppColors.orange : AppColors.red,
-                  onChanged: _phoneValidate,
-                  phone: widget.phoneNumberNotifier,
-                  selectedCountryNotifier: _selectedCountryNotifier,
-                  otherFunction: _checkEnabled,
-                ),
-                const CustomFlex(flex: 4),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10.0, bottom: 30.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      DefaultButton(
-                        title: AppLocalizations.of(context)!.back,
-                        enable: true,
-                        onPressed: widget.onTapBack,
-                      ),
-                      const SizedBox(width: 10.0),
-                      DefaultButton(
-                        title: AppLocalizations.of(context)!.confirm,
-                        enable: nextStepEnabled,
-                        onPressed: widget.onTapConfirm,
-                      ),
-                    ],
-                  ),
-                ),
-                const CustomFlex(flex: 5),
-              ],
-            ),
+              ),
+              const CustomFlex(flex: 5),
+            ],
           ),
-        );
-      },
+        ),
+      ),
       listener: (context, state) {
         state.whenOrNull(
             waiting: () => nextStepEnabled = false,
             error: (error) {
               _serverMessage = error.message;
               _notificationsUpdate(_serverMessage);
-              nextStepEnabled = false;
+              nextStepEnabled = true;
             },
             contactChecked: () {
               widget.countryCodeController.text =

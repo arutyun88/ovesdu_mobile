@@ -84,91 +84,89 @@ class _PasswordWidgetState extends State<PasswordWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
-    return BlocConsumer<AuthCubit, AuthState>(
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 35.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      AppLocalizations.of(context)!.famousUser(widget.username),
-                      textAlign: TextAlign.start,
-                      style: theme.textTheme.bodyText2,
-                    ),
+    return BlocListener<AuthCubit, AuthState>(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 35.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    AppLocalizations.of(context)!.famousUser(widget.username),
+                    textAlign: TextAlign.start,
+                    style: theme.textTheme.bodyText2,
                   ),
                 ),
-                AppTextField(
-                  fieldType: TextFieldType.password,
-                  controller: widget.controller,
-                  hintText: AppLocalizations.of(context)!.passwordHint,
-                  labelText: AppLocalizations.of(context)!.passwordLabel,
-                  borderColor: isComplete ? AppColors.orange : AppColors.red,
-                  onChanged: (value) => setState(() => _validate()),
-                ),
-                const CustomFlex(flex: 2),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10.0, bottom: 30.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      DefaultButton(
-                        title: AppLocalizations.of(context)!.back,
-                        enable: true,
-                        onPressed: widget.onTapBack,
-                      ),
-                      const SizedBox(width: 10.0),
-                      DefaultButton(
-                        title: AppLocalizations.of(context)!.authorize,
-                        enable: nextStepEnabled,
-                        onPressed: widget.onTapAuthorize,
-                      ),
-                    ],
-                  ),
-                ),
-                const CustomFlex(flex: 2),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+              ),
+              AppTextField(
+                fieldType: TextFieldType.password,
+                controller: widget.controller,
+                hintText: AppLocalizations.of(context)!.passwordHint,
+                labelText: AppLocalizations.of(context)!.passwordLabel,
+                borderColor: isComplete ? AppColors.orange : AppColors.red,
+                onChanged: (value) => setState(() => _validate()),
+              ),
+              const CustomFlex(flex: 2),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0, bottom: 30.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Flexible(
-                      child: Text(
-                        AppLocalizations.of(context)!.passwordForgot,
-                        textAlign: TextAlign.end,
-                        style: theme.textTheme.bodyText2,
-                      ),
+                    DefaultButton(
+                      title: AppLocalizations.of(context)!.back,
+                      enable: true,
+                      onPressed: widget.onTapBack,
+                    ),
+                    const SizedBox(width: 10.0),
+                    DefaultButton(
+                      title: AppLocalizations.of(context)!.authorize,
+                      enable: nextStepEnabled,
+                      onPressed: widget.onTapAuthorize,
                     ),
                   ],
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: CupertinoButton(
-                    minSize: 0,
-                    padding: EdgeInsets.zero,
+              ),
+              const CustomFlex(flex: 2),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Flexible(
                     child: Text(
-                      AppLocalizations.of(context)!.passwordRecoverButton,
-                      style: theme.textTheme.headline6?.copyWith(
-                        color: AppColors.orange,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      AppLocalizations.of(context)!.passwordForgot,
+                      textAlign: TextAlign.end,
+                      style: theme.textTheme.bodyText2,
                     ),
-                    onPressed: () {
-                      setState(() {
-                        FocusManager.instance.primaryFocus?.unfocus();
-                      });
-                    },
                   ),
+                ],
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: CupertinoButton(
+                  minSize: 0,
+                  padding: EdgeInsets.zero,
+                  child: Text(
+                    AppLocalizations.of(context)!.passwordRecoverButton,
+                    style: theme.textTheme.headline6?.copyWith(
+                      color: AppColors.orange,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  onPressed: () {
+                    setState(
+                      () => FocusManager.instance.primaryFocus?.unfocus(),
+                    );
+                  },
                 ),
-                const CustomFlex(flex: 5),
-              ],
-            ),
+              ),
+              const CustomFlex(flex: 5),
+            ],
           ),
-        );
-      },
+        ),
+      ),
       listener: (context, state) {
         state.whenOrNull(
           waiting: () => nextStepEnabled = false,
@@ -176,6 +174,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
             serverMessage = error.message;
             _notificationsUpdate(serverMessage);
             isComplete = false;
+            nextStepEnabled = true;
           },
           authorized: (value) {
             _notificationsRemove(serverMessage);
