@@ -71,6 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _isAuth.dispose();
     _phoneNotifier.dispose();
 
+    _notifications.dispose();
     super.dispose();
   }
 
