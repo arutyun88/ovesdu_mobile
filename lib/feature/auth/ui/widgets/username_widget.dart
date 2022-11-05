@@ -60,6 +60,7 @@ class _UsernameWidgetState extends State<UsernameWidget> {
     } else {
       if (widget.isAuth.value) {
         if (value.contains('@')) {
+          _notificationsRemove(_dictionary.usernameErrorText);
           isComplete = RegExp(RegExpConst.email).hasMatch(value);
           if (isComplete) {
             _notificationsRemove(_dictionary.emailNotCorrect);
@@ -69,6 +70,7 @@ class _UsernameWidgetState extends State<UsernameWidget> {
             enabled = false;
           }
         } else {
+          _notificationsRemove(_dictionary.emailNotCorrect);
           if (value.length < 4) {
             _notificationsUpdate(_dictionary.usernameErrorText);
             isComplete = false;
@@ -80,6 +82,7 @@ class _UsernameWidgetState extends State<UsernameWidget> {
           }
         }
       } else {
+        _notificationsRemove(_dictionary.emailNotCorrect);
         if (value.contains('@') || value.length < 4) {
           if (value.contains('@')) {
             _notificationsUpdate(_dictionary.usernameNotCorrect);
