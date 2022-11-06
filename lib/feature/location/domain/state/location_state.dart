@@ -6,7 +6,8 @@ class LocationState with _$LocationState {
 
   factory LocationState.requested() = _LocationStateRequested;
 
-  factory LocationState.received(String location) = _LocationStateReceived;
+  factory LocationState.received(List<LocationEntity> locations) =
+      _LocationStateReceived;
 
   factory LocationState.error(ErrorEntity error) = _LocationStateError;
 }

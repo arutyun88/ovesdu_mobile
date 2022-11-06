@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/domain/entities/device_entity/device_entity.dart';
+import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/app_scaffold.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../app/ui/components/text_fields/formatter/common.dart';
@@ -111,7 +112,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         notifications: _notifications,
         body: SafeArea(
           child: GestureDetector(
-            onTap: () => setState(() => _unfocused()),
+            onTap: () => setState(Helpers.unfocused),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35.0),
               child: ListView(
@@ -426,8 +427,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
     _buttonValidate();
   }
-
-  void _unfocused() => FocusManager.instance.primaryFocus?.unfocus();
 
   void _notificationsUpdate(String message) {
     if (!_notifications.value.contains(message)) {

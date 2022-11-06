@@ -1,6 +1,8 @@
 import 'package:injectable/injectable.dart';
+import 'package:ovesdu_mobile/feature/location/data/dto/location_dto.dart';
 
 import '../../../app/data/dio_container.dart';
+import '../domain/entities/location_entity/location_entity.dart';
 import '../domain/location_repository.dart';
 
 int count = 0;
@@ -13,17 +15,14 @@ class LocalLocationRepository implements LocationRepository {
   LocalLocationRepository(this.dioContainer);
 
   @override
-  Future getLocation(String query) async {
+  Future<List<LocationEntity>> getLocations(String query) async {
     await dioContainer.setHeaderLocale();
 
     try {
-      final response = await dioContainer.dio.post(
-        '/auth/location',
-        data: {
-          'query': query,
-        },
-      );
-      return response.data['data'];
+      final response = await dioContainer.dio.get('/auth/location/$query');
+      return (response.data['data'] as List)
+          .map((location) => LocationDto.fromJson(location).toEntity())
+          .toList();
     } catch (_) {
       rethrow;
     }

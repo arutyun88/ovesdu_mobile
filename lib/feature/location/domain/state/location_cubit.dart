@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../app/domain/entities/error_entity/error_entity.dart';
+import '../entities/location_entity/location_entity.dart';
 import '../location_repository.dart';
 
 part 'location_state.dart';
@@ -24,7 +25,7 @@ class LocationCubit extends Bloc<LocationEvent, LocationState> {
   Future<void> getLocation(String query, Emitter emit) async {
     emit(LocationState.requested());
     try {
-      final result = await locationRepository.getLocation(query);
+      final result = await locationRepository.getLocations(query);
       emit(LocationState.received(result));
     } catch (error, stackTrace) {
       emit(LocationState.error(ErrorEntity.fromException(error)));
