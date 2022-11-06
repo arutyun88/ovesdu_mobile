@@ -1,18 +1,21 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:ovesdu_mobile/app/const/reg_exr_const.dart';
-import 'package:ovesdu_mobile/app/ui/components/text_fields/formatter/date_text_formatter.dart';
 import 'package:provider/provider.dart';
 
+import '../../../app/const/reg_exr_const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/app_scaffold.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../app/ui/components/text_fields/formatter/common.dart';
+import '../../../app/ui/components/text_fields/formatter/date_text_formatter.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../../app/ui/components/buttons/default_button.dart';
+import '../../location/domain/entities/location_entity/location_entity.dart';
+import '../../location/ui/location_screen.dart';
 import '../domain/state/auth_cubit.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -47,10 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late bool _dateIsValid = false;
   late bool _nameIsComplete;
   late bool _nameIsValid = false;
-  late bool _countryIsComplete;
-  late bool _countryIsValid = false;
-  late bool _cityIsComplete;
-  late bool _cityIsValid = false;
+  late bool _locationIsValid = false;
   late bool _passwordIsComplete;
   late bool _passwordIsValid = false;
   late bool _passwordConfirmIsComplete;
@@ -74,10 +74,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _nameIsValid = false;
     _dateIsComplete = true;
     _dateIsValid = false;
-    _countryIsComplete = true;
-    _countryIsValid = false;
-    _cityIsComplete = true;
-    _cityIsValid = false;
+    _locationIsValid = false;
     _passwordIsComplete = true;
     _passwordIsValid = false;
     _passwordConfirmIsComplete = true;
@@ -105,7 +102,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final dictionary = AppLocalizations.of(context)!;
     final theme = Provider.of<ThemeProvider>(context).themeData;
     return BlocListener<AuthCubit, AuthState>(
       child: AppScaffold(
@@ -126,7 +122,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         minSize: 0,
                         padding: EdgeInsets.zero,
                         child: Text(
-                          dictionary.toStart,
+                          _dictionary.toStart,
                           style: theme.textTheme.headline6?.copyWith(
                             color: AppColors.orange,
                             fontWeight: FontWeight.w700,
@@ -146,15 +142,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _ConfirmedValue(
-                            name: dictionary.registerConfirmedUsernameLabel,
+                            name: _dictionary.registerConfirmedUsernameLabel,
                             value: widget.username,
                           ),
                           _ConfirmedValue(
-                            name: dictionary.registerConfirmedEmailLabel,
+                            name: _dictionary.registerConfirmedEmailLabel,
                             value: widget.email,
                           ),
                           _ConfirmedValue(
-                            name: dictionary.registerConfirmedPhoneLabel,
+                            name: _dictionary.registerConfirmedPhoneLabel,
                             value:
                                 '${widget.phoneNumber} (${widget.phoneCountryCode})',
                           ),
@@ -164,8 +160,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   AppTextField(
                     controller: _nameController,
-                    hintText: dictionary.nameHint,
-                    labelText: dictionary.nameLabel,
+                    hintText: _dictionary.nameHint,
+                    labelText: _dictionary.nameLabel,
                     borderColor:
                         _nameIsComplete ? AppColors.orange : AppColors.red,
                     textCapitalization: TextCapitalization.words,
@@ -184,8 +180,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           borderColor: _dateIsComplete
                               ? AppColors.orange
                               : AppColors.red,
-                          hintText: dictionary.dateOfBirthLabel,
-                          labelText: dictionary.dateOfBirthLabel,
+                          hintText: _dictionary.dateOfBirthLabel,
+                          labelText: _dictionary.dateOfBirthLabel,
                           onChanged: (value) => setState(_dateValidate),
                         ),
                       ),
@@ -194,27 +190,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 24.0),
                   AppTextField(
                     controller: _countryController,
-                    hintText: dictionary.countryHint,
-                    labelText: dictionary.countryLabel,
-                    borderColor:
-                        _countryIsComplete ? AppColors.orange : AppColors.red,
-                    onChanged: (value) => setState(_countryValidate),
+                    hintText: _dictionary.countryHint,
+                    borderColor: AppColors.orange,
+                    onTap: _changeLocation,
+                    readOnly: true,
                   ),
                   const SizedBox(height: 12.0),
                   AppTextField(
                     controller: _cityController,
-                    hintText: dictionary.cityHint,
-                    labelText: dictionary.cityLabel,
-                    borderColor:
-                        _cityIsComplete ? AppColors.orange : AppColors.red,
-                    onChanged: (value) => setState(_cityValidate),
+                    hintText: _dictionary.cityHint,
+                    borderColor: AppColors.orange,
+                    readOnly: true,
+                    onTap: _changeLocation,
                   ),
                   const SizedBox(height: 24.0),
                   AppTextField(
                     fieldType: TextFieldType.password,
                     controller: _passwordController,
-                    hintText: dictionary.passwordHint,
-                    labelText: dictionary.passwordLabel,
+                    hintText: _dictionary.passwordHint,
+                    labelText: _dictionary.passwordLabel,
                     borderColor:
                         _passwordIsComplete ? AppColors.orange : AppColors.red,
                     onChanged: (value) => setState(_passwordValidate),
@@ -223,8 +217,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   AppTextField(
                     fieldType: TextFieldType.password,
                     controller: _passwordConfirmController,
-                    hintText: dictionary.passwordConfirmHint,
-                    labelText: dictionary.passwordConfirmLabel,
+                    hintText: _dictionary.passwordConfirmHint,
+                    labelText: _dictionary.passwordConfirmLabel,
                     borderColor: _passwordConfirmIsComplete
                         ? AppColors.orange
                         : AppColors.red,
@@ -235,7 +229,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 30.0),
                       child: DefaultButton(
-                        title: dictionary.register,
+                        title: _dictionary.register,
                         enable: _buttonEnabled,
                         onPressed: () {
                           _registerOnPressed(context.read<AuthCubit>());
@@ -269,8 +263,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _nameIsValid &&
         _passwordIsValid &&
         _passwordConfirmIsValid &&
-        _countryIsValid &&
-        _cityIsValid;
+        _locationIsValid;
   }
 
   void _registerOnPressed(AuthCubit authCubit) {
@@ -287,6 +280,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
       device: widget.device,
     );
   }
+
+  void _changeLocation() => Navigator.of(context)
+          .push(
+        MaterialPageRoute(
+          builder: (context) => const LocationScreen(),
+        ),
+      )
+          .then(
+        (value) {
+          Helpers.unfocused();
+          if (value != null) {
+            var location = value as LocationEntity;
+            _cityController.text = location.city;
+            _countryController.text = location.country;
+            _locationValidate();
+          }
+        },
+      );
 
   void _nameValidate() {
     _notificationsRemove(_serverMessage);
@@ -305,40 +316,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 
-  // TODO IT
-  void _countryValidate() {
+  void _locationValidate() {
     _notificationsRemove(_serverMessage);
-    if (_countryController.text.isEmpty) {
+    if (_countryController.text.isEmpty || _cityController.text.isEmpty) {
       _notificationsRemove(_dictionary.countryInvalid);
-      _countryIsComplete = true;
-      _countryIsValid = false;
-    } else if (_countryController.text.trim().length < 2) {
-      _notificationsUpdate(_dictionary.countryInvalid);
-      _countryIsComplete = false;
-      _countryIsValid = false;
+      _locationIsValid = false;
     } else {
       _notificationsRemove(_dictionary.countryInvalid);
-      _countryIsComplete = true;
-      _countryIsValid = true;
-    }
-    _buttonValidate();
-  }
-
-  // TODO IT
-  void _cityValidate() {
-    _notificationsRemove(_serverMessage);
-    if (_cityController.text.isEmpty) {
-      _notificationsRemove(_dictionary.cityInvalid);
-      _cityIsComplete = true;
-      _cityIsValid = false;
-    } else if (_cityController.text.trim().length < 2) {
-      _notificationsUpdate(_dictionary.cityInvalid);
-      _cityIsComplete = false;
-      _cityIsValid = false;
-    } else {
-      _notificationsRemove(_dictionary.cityInvalid);
-      _cityIsComplete = true;
-      _cityIsValid = true;
+      _locationIsValid = true;
     }
     _buttonValidate();
   }

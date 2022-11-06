@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -169,9 +167,7 @@ class _LocationScreenState extends State<_LocationScreen> {
                   child: ListView.builder(
                     itemCount: _values.length,
                     itemBuilder: (context, index) => LocationListTile(
-                      press: () {
-                        log(_values[index].city);
-                      },
+                      press: () => Navigator.of(context).pop(_values[index]),
                       location: _values[index],
                     ),
                   ),
