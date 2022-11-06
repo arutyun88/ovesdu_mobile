@@ -34,38 +34,42 @@ mixin _$ErrorEntity {
 abstract class $ErrorEntityCopyWith<$Res> {
   factory $ErrorEntityCopyWith(
           ErrorEntity value, $Res Function(ErrorEntity) then) =
-      _$ErrorEntityCopyWithImpl<$Res>;
+      _$ErrorEntityCopyWithImpl<$Res, ErrorEntity>;
+  @useResult
   $Res call({String message, String? errorMessage, dynamic error});
 }
 
 /// @nodoc
-class _$ErrorEntityCopyWithImpl<$Res> implements $ErrorEntityCopyWith<$Res> {
+class _$ErrorEntityCopyWithImpl<$Res, $Val extends ErrorEntity>
+    implements $ErrorEntityCopyWith<$Res> {
   _$ErrorEntityCopyWithImpl(this._value, this._then);
 
-  final ErrorEntity _value;
   // ignore: unused_field
-  final $Res Function(ErrorEntity) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
     Object? errorMessage = freezed,
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_value.copyWith(
-      message: message == freezed
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      errorMessage: errorMessage == freezed
+      errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      error: error == freezed
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as dynamic,
-    ));
+    ) as $Val);
   }
 }
 
@@ -76,35 +80,35 @@ abstract class _$$_ErrorEntityCopyWith<$Res>
           _$_ErrorEntity value, $Res Function(_$_ErrorEntity) then) =
       __$$_ErrorEntityCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String message, String? errorMessage, dynamic error});
 }
 
 /// @nodoc
-class __$$_ErrorEntityCopyWithImpl<$Res> extends _$ErrorEntityCopyWithImpl<$Res>
+class __$$_ErrorEntityCopyWithImpl<$Res>
+    extends _$ErrorEntityCopyWithImpl<$Res, _$_ErrorEntity>
     implements _$$_ErrorEntityCopyWith<$Res> {
   __$$_ErrorEntityCopyWithImpl(
       _$_ErrorEntity _value, $Res Function(_$_ErrorEntity) _then)
-      : super(_value, (v) => _then(v as _$_ErrorEntity));
+      : super(_value, _then);
 
-  @override
-  _$_ErrorEntity get _value => super._value as _$_ErrorEntity;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
     Object? errorMessage = freezed,
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$_ErrorEntity(
-      message: message == freezed
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      errorMessage: errorMessage == freezed
+      errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      error: error == freezed
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -137,22 +141,20 @@ class _$_ErrorEntity implements _ErrorEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ErrorEntity &&
-            const DeepCollectionEquality().equals(other.message, message) &&
-            const DeepCollectionEquality()
-                .equals(other.errorMessage, errorMessage) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage) &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(errorMessage),
+  int get hashCode => Object.hash(runtimeType, message, errorMessage,
       const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ErrorEntityCopyWith<_$_ErrorEntity> get copyWith =>
       __$$_ErrorEntityCopyWithImpl<_$_ErrorEntity>(this, _$identity);
 

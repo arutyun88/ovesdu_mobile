@@ -33,6 +33,7 @@ dependencies:
   json_serializable: ^6.5.2
   device_info_plus: ^7.0.1
   hydrated_bloc: ^8.1.0
+  bloc_concurrency: ^0.2.0
 
 dev_dependencies:
   flutter_test:

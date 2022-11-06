@@ -52,13 +52,13 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notAuthorized,
-    TResult Function(TokenEntity tokenEntity)? authorized,
-    TResult Function(String name)? checked,
-    TResult Function()? usernameChecked,
-    TResult Function()? contactChecked,
-    TResult Function()? waiting,
-    TResult Function(ErrorEntity error)? error,
+    TResult? Function()? notAuthorized,
+    TResult? Function(TokenEntity tokenEntity)? authorized,
+    TResult? Function(String name)? checked,
+    TResult? Function()? usernameChecked,
+    TResult? Function()? contactChecked,
+    TResult? Function()? waiting,
+    TResult? Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,13 +86,13 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
-    TResult Function(_AuthStateAuthorized value)? authorized,
-    TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
-    TResult Function(_AuthStateContactChecked value)? contactChecked,
-    TResult Function(_AuthStateWaiting value)? waiting,
-    TResult Function(_AuthStateError value)? error,
+    TResult? Function(_AuthStateNotAuthorized value)? notAuthorized,
+    TResult? Function(_AuthStateAuthorized value)? authorized,
+    TResult? Function(_AuthStateChecked value)? checked,
+    TResult? Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult? Function(_AuthStateContactChecked value)? contactChecked,
+    TResult? Function(_AuthStateWaiting value)? waiting,
+    TResult? Function(_AuthStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -113,16 +113,18 @@ mixin _$AuthState {
 /// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res>;
+      _$AuthStateCopyWithImpl<$Res, AuthState>;
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
+class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
+    implements $AuthStateCopyWith<$Res> {
   _$AuthStateCopyWithImpl(this._value, this._then);
 
-  final AuthState _value;
   // ignore: unused_field
-  final $Res Function(AuthState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -134,15 +136,11 @@ abstract class _$$_AuthStateNotAuthorizedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AuthStateNotAuthorizedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthStateNotAuthorized>
     implements _$$_AuthStateNotAuthorizedCopyWith<$Res> {
   __$$_AuthStateNotAuthorizedCopyWithImpl(_$_AuthStateNotAuthorized _value,
       $Res Function(_$_AuthStateNotAuthorized) _then)
-      : super(_value, (v) => _then(v as _$_AuthStateNotAuthorized));
-
-  @override
-  _$_AuthStateNotAuthorized get _value =>
-      super._value as _$_AuthStateNotAuthorized;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -190,13 +188,13 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notAuthorized,
-    TResult Function(TokenEntity tokenEntity)? authorized,
-    TResult Function(String name)? checked,
-    TResult Function()? usernameChecked,
-    TResult Function()? contactChecked,
-    TResult Function()? waiting,
-    TResult Function(ErrorEntity error)? error,
+    TResult? Function()? notAuthorized,
+    TResult? Function(TokenEntity tokenEntity)? authorized,
+    TResult? Function(String name)? checked,
+    TResult? Function()? usernameChecked,
+    TResult? Function()? contactChecked,
+    TResult? Function()? waiting,
+    TResult? Function(ErrorEntity error)? error,
   }) {
     return notAuthorized?.call();
   }
@@ -236,13 +234,13 @@ class _$_AuthStateNotAuthorized implements _AuthStateNotAuthorized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
-    TResult Function(_AuthStateAuthorized value)? authorized,
-    TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
-    TResult Function(_AuthStateContactChecked value)? contactChecked,
-    TResult Function(_AuthStateWaiting value)? waiting,
-    TResult Function(_AuthStateError value)? error,
+    TResult? Function(_AuthStateNotAuthorized value)? notAuthorized,
+    TResult? Function(_AuthStateAuthorized value)? authorized,
+    TResult? Function(_AuthStateChecked value)? checked,
+    TResult? Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult? Function(_AuthStateContactChecked value)? contactChecked,
+    TResult? Function(_AuthStateWaiting value)? waiting,
+    TResult? Function(_AuthStateError value)? error,
   }) {
     return notAuthorized?.call(this);
   }
@@ -285,6 +283,7 @@ abstract class _$$_AuthStateAuthorizedCopyWith<$Res> {
   factory _$$_AuthStateAuthorizedCopyWith(_$_AuthStateAuthorized value,
           $Res Function(_$_AuthStateAuthorized) then) =
       __$$_AuthStateAuthorizedCopyWithImpl<$Res>;
+  @useResult
   $Res call({TokenEntity tokenEntity});
 
   $TokenEntityCopyWith<$Res> get tokenEntity;
@@ -292,21 +291,19 @@ abstract class _$$_AuthStateAuthorizedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AuthStateAuthorizedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthStateAuthorized>
     implements _$$_AuthStateAuthorizedCopyWith<$Res> {
   __$$_AuthStateAuthorizedCopyWithImpl(_$_AuthStateAuthorized _value,
       $Res Function(_$_AuthStateAuthorized) _then)
-      : super(_value, (v) => _then(v as _$_AuthStateAuthorized));
+      : super(_value, _then);
 
-  @override
-  _$_AuthStateAuthorized get _value => super._value as _$_AuthStateAuthorized;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tokenEntity = freezed,
+    Object? tokenEntity = null,
   }) {
     return _then(_$_AuthStateAuthorized(
-      tokenEntity == freezed
+      null == tokenEntity
           ? _value.tokenEntity
           : tokenEntity // ignore: cast_nullable_to_non_nullable
               as TokenEntity,
@@ -314,6 +311,7 @@ class __$$_AuthStateAuthorizedCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TokenEntityCopyWith<$Res> get tokenEntity {
     return $TokenEntityCopyWith<$Res>(_value.tokenEntity, (value) {
       return _then(_value.copyWith(tokenEntity: value));
@@ -346,17 +344,17 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthStateAuthorized &&
-            const DeepCollectionEquality()
-                .equals(other.tokenEntity, tokenEntity));
+            (identical(other.tokenEntity, tokenEntity) ||
+                other.tokenEntity == tokenEntity));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(tokenEntity));
+  int get hashCode => Object.hash(runtimeType, tokenEntity);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AuthStateAuthorizedCopyWith<_$_AuthStateAuthorized> get copyWith =>
       __$$_AuthStateAuthorizedCopyWithImpl<_$_AuthStateAuthorized>(
           this, _$identity);
@@ -378,13 +376,13 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notAuthorized,
-    TResult Function(TokenEntity tokenEntity)? authorized,
-    TResult Function(String name)? checked,
-    TResult Function()? usernameChecked,
-    TResult Function()? contactChecked,
-    TResult Function()? waiting,
-    TResult Function(ErrorEntity error)? error,
+    TResult? Function()? notAuthorized,
+    TResult? Function(TokenEntity tokenEntity)? authorized,
+    TResult? Function(String name)? checked,
+    TResult? Function()? usernameChecked,
+    TResult? Function()? contactChecked,
+    TResult? Function()? waiting,
+    TResult? Function(ErrorEntity error)? error,
   }) {
     return authorized?.call(tokenEntity);
   }
@@ -424,13 +422,13 @@ class _$_AuthStateAuthorized implements _AuthStateAuthorized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
-    TResult Function(_AuthStateAuthorized value)? authorized,
-    TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
-    TResult Function(_AuthStateContactChecked value)? contactChecked,
-    TResult Function(_AuthStateWaiting value)? waiting,
-    TResult Function(_AuthStateError value)? error,
+    TResult? Function(_AuthStateNotAuthorized value)? notAuthorized,
+    TResult? Function(_AuthStateAuthorized value)? authorized,
+    TResult? Function(_AuthStateChecked value)? checked,
+    TResult? Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult? Function(_AuthStateContactChecked value)? contactChecked,
+    TResult? Function(_AuthStateWaiting value)? waiting,
+    TResult? Function(_AuthStateError value)? error,
   }) {
     return authorized?.call(this);
   }
@@ -479,26 +477,25 @@ abstract class _$$_AuthStateCheckedCopyWith<$Res> {
   factory _$$_AuthStateCheckedCopyWith(
           _$_AuthStateChecked value, $Res Function(_$_AuthStateChecked) then) =
       __$$_AuthStateCheckedCopyWithImpl<$Res>;
+  @useResult
   $Res call({String name});
 }
 
 /// @nodoc
 class __$$_AuthStateCheckedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthStateChecked>
     implements _$$_AuthStateCheckedCopyWith<$Res> {
   __$$_AuthStateCheckedCopyWithImpl(
       _$_AuthStateChecked _value, $Res Function(_$_AuthStateChecked) _then)
-      : super(_value, (v) => _then(v as _$_AuthStateChecked));
+      : super(_value, _then);
 
-  @override
-  _$_AuthStateChecked get _value => super._value as _$_AuthStateChecked;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
+    Object? name = null,
   }) {
     return _then(_$_AuthStateChecked(
-      name == freezed
+      null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
@@ -531,16 +528,16 @@ class _$_AuthStateChecked implements _AuthStateChecked {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthStateChecked &&
-            const DeepCollectionEquality().equals(other.name, name));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AuthStateCheckedCopyWith<_$_AuthStateChecked> get copyWith =>
       __$$_AuthStateCheckedCopyWithImpl<_$_AuthStateChecked>(this, _$identity);
 
@@ -561,13 +558,13 @@ class _$_AuthStateChecked implements _AuthStateChecked {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notAuthorized,
-    TResult Function(TokenEntity tokenEntity)? authorized,
-    TResult Function(String name)? checked,
-    TResult Function()? usernameChecked,
-    TResult Function()? contactChecked,
-    TResult Function()? waiting,
-    TResult Function(ErrorEntity error)? error,
+    TResult? Function()? notAuthorized,
+    TResult? Function(TokenEntity tokenEntity)? authorized,
+    TResult? Function(String name)? checked,
+    TResult? Function()? usernameChecked,
+    TResult? Function()? contactChecked,
+    TResult? Function()? waiting,
+    TResult? Function(ErrorEntity error)? error,
   }) {
     return checked?.call(name);
   }
@@ -607,13 +604,13 @@ class _$_AuthStateChecked implements _AuthStateChecked {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
-    TResult Function(_AuthStateAuthorized value)? authorized,
-    TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
-    TResult Function(_AuthStateContactChecked value)? contactChecked,
-    TResult Function(_AuthStateWaiting value)? waiting,
-    TResult Function(_AuthStateError value)? error,
+    TResult? Function(_AuthStateNotAuthorized value)? notAuthorized,
+    TResult? Function(_AuthStateAuthorized value)? authorized,
+    TResult? Function(_AuthStateChecked value)? checked,
+    TResult? Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult? Function(_AuthStateContactChecked value)? contactChecked,
+    TResult? Function(_AuthStateWaiting value)? waiting,
+    TResult? Function(_AuthStateError value)? error,
   }) {
     return checked?.call(this);
   }
@@ -666,15 +663,11 @@ abstract class _$$_AuthStateUsernameCheckedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AuthStateUsernameCheckedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthStateUsernameChecked>
     implements _$$_AuthStateUsernameCheckedCopyWith<$Res> {
   __$$_AuthStateUsernameCheckedCopyWithImpl(_$_AuthStateUsernameChecked _value,
       $Res Function(_$_AuthStateUsernameChecked) _then)
-      : super(_value, (v) => _then(v as _$_AuthStateUsernameChecked));
-
-  @override
-  _$_AuthStateUsernameChecked get _value =>
-      super._value as _$_AuthStateUsernameChecked;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -722,13 +715,13 @@ class _$_AuthStateUsernameChecked implements _AuthStateUsernameChecked {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notAuthorized,
-    TResult Function(TokenEntity tokenEntity)? authorized,
-    TResult Function(String name)? checked,
-    TResult Function()? usernameChecked,
-    TResult Function()? contactChecked,
-    TResult Function()? waiting,
-    TResult Function(ErrorEntity error)? error,
+    TResult? Function()? notAuthorized,
+    TResult? Function(TokenEntity tokenEntity)? authorized,
+    TResult? Function(String name)? checked,
+    TResult? Function()? usernameChecked,
+    TResult? Function()? contactChecked,
+    TResult? Function()? waiting,
+    TResult? Function(ErrorEntity error)? error,
   }) {
     return usernameChecked?.call();
   }
@@ -768,13 +761,13 @@ class _$_AuthStateUsernameChecked implements _AuthStateUsernameChecked {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
-    TResult Function(_AuthStateAuthorized value)? authorized,
-    TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
-    TResult Function(_AuthStateContactChecked value)? contactChecked,
-    TResult Function(_AuthStateWaiting value)? waiting,
-    TResult Function(_AuthStateError value)? error,
+    TResult? Function(_AuthStateNotAuthorized value)? notAuthorized,
+    TResult? Function(_AuthStateAuthorized value)? authorized,
+    TResult? Function(_AuthStateChecked value)? checked,
+    TResult? Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult? Function(_AuthStateContactChecked value)? contactChecked,
+    TResult? Function(_AuthStateWaiting value)? waiting,
+    TResult? Function(_AuthStateError value)? error,
   }) {
     return usernameChecked?.call(this);
   }
@@ -821,15 +814,11 @@ abstract class _$$_AuthStateContactCheckedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AuthStateContactCheckedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthStateContactChecked>
     implements _$$_AuthStateContactCheckedCopyWith<$Res> {
   __$$_AuthStateContactCheckedCopyWithImpl(_$_AuthStateContactChecked _value,
       $Res Function(_$_AuthStateContactChecked) _then)
-      : super(_value, (v) => _then(v as _$_AuthStateContactChecked));
-
-  @override
-  _$_AuthStateContactChecked get _value =>
-      super._value as _$_AuthStateContactChecked;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -877,13 +866,13 @@ class _$_AuthStateContactChecked implements _AuthStateContactChecked {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notAuthorized,
-    TResult Function(TokenEntity tokenEntity)? authorized,
-    TResult Function(String name)? checked,
-    TResult Function()? usernameChecked,
-    TResult Function()? contactChecked,
-    TResult Function()? waiting,
-    TResult Function(ErrorEntity error)? error,
+    TResult? Function()? notAuthorized,
+    TResult? Function(TokenEntity tokenEntity)? authorized,
+    TResult? Function(String name)? checked,
+    TResult? Function()? usernameChecked,
+    TResult? Function()? contactChecked,
+    TResult? Function()? waiting,
+    TResult? Function(ErrorEntity error)? error,
   }) {
     return contactChecked?.call();
   }
@@ -923,13 +912,13 @@ class _$_AuthStateContactChecked implements _AuthStateContactChecked {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
-    TResult Function(_AuthStateAuthorized value)? authorized,
-    TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
-    TResult Function(_AuthStateContactChecked value)? contactChecked,
-    TResult Function(_AuthStateWaiting value)? waiting,
-    TResult Function(_AuthStateError value)? error,
+    TResult? Function(_AuthStateNotAuthorized value)? notAuthorized,
+    TResult? Function(_AuthStateAuthorized value)? authorized,
+    TResult? Function(_AuthStateChecked value)? checked,
+    TResult? Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult? Function(_AuthStateContactChecked value)? contactChecked,
+    TResult? Function(_AuthStateWaiting value)? waiting,
+    TResult? Function(_AuthStateError value)? error,
   }) {
     return contactChecked?.call(this);
   }
@@ -976,14 +965,11 @@ abstract class _$$_AuthStateWaitingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AuthStateWaitingCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthStateWaiting>
     implements _$$_AuthStateWaitingCopyWith<$Res> {
   __$$_AuthStateWaitingCopyWithImpl(
       _$_AuthStateWaiting _value, $Res Function(_$_AuthStateWaiting) _then)
-      : super(_value, (v) => _then(v as _$_AuthStateWaiting));
-
-  @override
-  _$_AuthStateWaiting get _value => super._value as _$_AuthStateWaiting;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1029,13 +1015,13 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notAuthorized,
-    TResult Function(TokenEntity tokenEntity)? authorized,
-    TResult Function(String name)? checked,
-    TResult Function()? usernameChecked,
-    TResult Function()? contactChecked,
-    TResult Function()? waiting,
-    TResult Function(ErrorEntity error)? error,
+    TResult? Function()? notAuthorized,
+    TResult? Function(TokenEntity tokenEntity)? authorized,
+    TResult? Function(String name)? checked,
+    TResult? Function()? usernameChecked,
+    TResult? Function()? contactChecked,
+    TResult? Function()? waiting,
+    TResult? Function(ErrorEntity error)? error,
   }) {
     return waiting?.call();
   }
@@ -1075,13 +1061,13 @@ class _$_AuthStateWaiting implements _AuthStateWaiting {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
-    TResult Function(_AuthStateAuthorized value)? authorized,
-    TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
-    TResult Function(_AuthStateContactChecked value)? contactChecked,
-    TResult Function(_AuthStateWaiting value)? waiting,
-    TResult Function(_AuthStateError value)? error,
+    TResult? Function(_AuthStateNotAuthorized value)? notAuthorized,
+    TResult? Function(_AuthStateAuthorized value)? authorized,
+    TResult? Function(_AuthStateChecked value)? checked,
+    TResult? Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult? Function(_AuthStateContactChecked value)? contactChecked,
+    TResult? Function(_AuthStateWaiting value)? waiting,
+    TResult? Function(_AuthStateError value)? error,
   }) {
     return waiting?.call(this);
   }
@@ -1124,6 +1110,7 @@ abstract class _$$_AuthStateErrorCopyWith<$Res> {
   factory _$$_AuthStateErrorCopyWith(
           _$_AuthStateError value, $Res Function(_$_AuthStateError) then) =
       __$$_AuthStateErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({ErrorEntity error});
 
   $ErrorEntityCopyWith<$Res> get error;
@@ -1131,21 +1118,19 @@ abstract class _$$_AuthStateErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AuthStateErrorCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthStateError>
     implements _$$_AuthStateErrorCopyWith<$Res> {
   __$$_AuthStateErrorCopyWithImpl(
       _$_AuthStateError _value, $Res Function(_$_AuthStateError) _then)
-      : super(_value, (v) => _then(v as _$_AuthStateError));
+      : super(_value, _then);
 
-  @override
-  _$_AuthStateError get _value => super._value as _$_AuthStateError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$_AuthStateError(
-      error == freezed
+      null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ErrorEntity,
@@ -1153,6 +1138,7 @@ class __$$_AuthStateErrorCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ErrorEntityCopyWith<$Res> get error {
     return $ErrorEntityCopyWith<$Res>(_value.error, (value) {
       return _then(_value.copyWith(error: value));
@@ -1185,16 +1171,16 @@ class _$_AuthStateError implements _AuthStateError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthStateError &&
-            const DeepCollectionEquality().equals(other.error, error));
+            (identical(other.error, error) || other.error == error));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AuthStateErrorCopyWith<_$_AuthStateError> get copyWith =>
       __$$_AuthStateErrorCopyWithImpl<_$_AuthStateError>(this, _$identity);
 
@@ -1215,13 +1201,13 @@ class _$_AuthStateError implements _AuthStateError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? notAuthorized,
-    TResult Function(TokenEntity tokenEntity)? authorized,
-    TResult Function(String name)? checked,
-    TResult Function()? usernameChecked,
-    TResult Function()? contactChecked,
-    TResult Function()? waiting,
-    TResult Function(ErrorEntity error)? error,
+    TResult? Function()? notAuthorized,
+    TResult? Function(TokenEntity tokenEntity)? authorized,
+    TResult? Function(String name)? checked,
+    TResult? Function()? usernameChecked,
+    TResult? Function()? contactChecked,
+    TResult? Function()? waiting,
+    TResult? Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
   }
@@ -1261,13 +1247,13 @@ class _$_AuthStateError implements _AuthStateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AuthStateNotAuthorized value)? notAuthorized,
-    TResult Function(_AuthStateAuthorized value)? authorized,
-    TResult Function(_AuthStateChecked value)? checked,
-    TResult Function(_AuthStateUsernameChecked value)? usernameChecked,
-    TResult Function(_AuthStateContactChecked value)? contactChecked,
-    TResult Function(_AuthStateWaiting value)? waiting,
-    TResult Function(_AuthStateError value)? error,
+    TResult? Function(_AuthStateNotAuthorized value)? notAuthorized,
+    TResult? Function(_AuthStateAuthorized value)? authorized,
+    TResult? Function(_AuthStateChecked value)? checked,
+    TResult? Function(_AuthStateUsernameChecked value)? usernameChecked,
+    TResult? Function(_AuthStateContactChecked value)? contactChecked,
+    TResult? Function(_AuthStateWaiting value)? waiting,
+    TResult? Function(_AuthStateError value)? error,
   }) {
     return error?.call(this);
   }

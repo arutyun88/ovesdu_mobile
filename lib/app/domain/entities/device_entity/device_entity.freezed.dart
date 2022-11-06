@@ -28,33 +28,37 @@ mixin _$DeviceEntity {
 abstract class $DeviceEntityCopyWith<$Res> {
   factory $DeviceEntityCopyWith(
           DeviceEntity value, $Res Function(DeviceEntity) then) =
-      _$DeviceEntityCopyWithImpl<$Res>;
+      _$DeviceEntityCopyWithImpl<$Res, DeviceEntity>;
+  @useResult
   $Res call({String deviceType, String deviceId});
 }
 
 /// @nodoc
-class _$DeviceEntityCopyWithImpl<$Res> implements $DeviceEntityCopyWith<$Res> {
+class _$DeviceEntityCopyWithImpl<$Res, $Val extends DeviceEntity>
+    implements $DeviceEntityCopyWith<$Res> {
   _$DeviceEntityCopyWithImpl(this._value, this._then);
 
-  final DeviceEntity _value;
   // ignore: unused_field
-  final $Res Function(DeviceEntity) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? deviceType = freezed,
-    Object? deviceId = freezed,
+    Object? deviceType = null,
+    Object? deviceId = null,
   }) {
     return _then(_value.copyWith(
-      deviceType: deviceType == freezed
+      deviceType: null == deviceType
           ? _value.deviceType
           : deviceType // ignore: cast_nullable_to_non_nullable
               as String,
-      deviceId: deviceId == freezed
+      deviceId: null == deviceId
           ? _value.deviceId
           : deviceId // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -65,31 +69,30 @@ abstract class _$$_DeviceEntityCopyWith<$Res>
           _$_DeviceEntity value, $Res Function(_$_DeviceEntity) then) =
       __$$_DeviceEntityCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String deviceType, String deviceId});
 }
 
 /// @nodoc
 class __$$_DeviceEntityCopyWithImpl<$Res>
-    extends _$DeviceEntityCopyWithImpl<$Res>
+    extends _$DeviceEntityCopyWithImpl<$Res, _$_DeviceEntity>
     implements _$$_DeviceEntityCopyWith<$Res> {
   __$$_DeviceEntityCopyWithImpl(
       _$_DeviceEntity _value, $Res Function(_$_DeviceEntity) _then)
-      : super(_value, (v) => _then(v as _$_DeviceEntity));
+      : super(_value, _then);
 
-  @override
-  _$_DeviceEntity get _value => super._value as _$_DeviceEntity;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? deviceType = freezed,
-    Object? deviceId = freezed,
+    Object? deviceType = null,
+    Object? deviceId = null,
   }) {
     return _then(_$_DeviceEntity(
-      deviceType: deviceType == freezed
+      deviceType: null == deviceType
           ? _value.deviceType
           : deviceType // ignore: cast_nullable_to_non_nullable
               as String,
-      deviceId: deviceId == freezed
+      deviceId: null == deviceId
           ? _value.deviceId
           : deviceId // ignore: cast_nullable_to_non_nullable
               as String,
@@ -117,19 +120,18 @@ class _$_DeviceEntity implements _DeviceEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DeviceEntity &&
-            const DeepCollectionEquality()
-                .equals(other.deviceType, deviceType) &&
-            const DeepCollectionEquality().equals(other.deviceId, deviceId));
+            (identical(other.deviceType, deviceType) ||
+                other.deviceType == deviceType) &&
+            (identical(other.deviceId, deviceId) ||
+                other.deviceId == deviceId));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(deviceType),
-      const DeepCollectionEquality().hash(deviceId));
+  int get hashCode => Object.hash(runtimeType, deviceType, deviceId);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DeviceEntityCopyWith<_$_DeviceEntity> get copyWith =>
       __$$_DeviceEntityCopyWithImpl<_$_DeviceEntity>(this, _$identity);
 }

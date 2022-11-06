@@ -33,33 +33,37 @@ mixin _$TokenEntity {
 abstract class $TokenEntityCopyWith<$Res> {
   factory $TokenEntityCopyWith(
           TokenEntity value, $Res Function(TokenEntity) then) =
-      _$TokenEntityCopyWithImpl<$Res>;
+      _$TokenEntityCopyWithImpl<$Res, TokenEntity>;
+  @useResult
   $Res call({String accessToken, String refreshToken});
 }
 
 /// @nodoc
-class _$TokenEntityCopyWithImpl<$Res> implements $TokenEntityCopyWith<$Res> {
+class _$TokenEntityCopyWithImpl<$Res, $Val extends TokenEntity>
+    implements $TokenEntityCopyWith<$Res> {
   _$TokenEntityCopyWithImpl(this._value, this._then);
 
-  final TokenEntity _value;
   // ignore: unused_field
-  final $Res Function(TokenEntity) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
+    Object? accessToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_value.copyWith(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: refreshToken == freezed
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -70,30 +74,30 @@ abstract class _$$_TokenEntityCopyWith<$Res>
           _$_TokenEntity value, $Res Function(_$_TokenEntity) then) =
       __$$_TokenEntityCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String accessToken, String refreshToken});
 }
 
 /// @nodoc
-class __$$_TokenEntityCopyWithImpl<$Res> extends _$TokenEntityCopyWithImpl<$Res>
+class __$$_TokenEntityCopyWithImpl<$Res>
+    extends _$TokenEntityCopyWithImpl<$Res, _$_TokenEntity>
     implements _$$_TokenEntityCopyWith<$Res> {
   __$$_TokenEntityCopyWithImpl(
       _$_TokenEntity _value, $Res Function(_$_TokenEntity) _then)
-      : super(_value, (v) => _then(v as _$_TokenEntity));
+      : super(_value, _then);
 
-  @override
-  _$_TokenEntity get _value => super._value as _$_TokenEntity;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
+    Object? accessToken = null,
+    Object? refreshToken = null,
   }) {
     return _then(_$_TokenEntity(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: refreshToken == freezed
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
@@ -124,21 +128,19 @@ class _$_TokenEntity implements _TokenEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TokenEntity &&
-            const DeepCollectionEquality()
-                .equals(other.accessToken, accessToken) &&
-            const DeepCollectionEquality()
-                .equals(other.refreshToken, refreshToken));
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(accessToken),
-      const DeepCollectionEquality().hash(refreshToken));
+  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TokenEntityCopyWith<_$_TokenEntity> get copyWith =>
       __$$_TokenEntityCopyWithImpl<_$_TokenEntity>(this, _$identity);
 

@@ -36,7 +36,8 @@ mixin _$UserEntity {
 abstract class $UserEntityCopyWith<$Res> {
   factory $UserEntityCopyWith(
           UserEntity value, $Res Function(UserEntity) then) =
-      _$UserEntityCopyWithImpl<$Res>;
+      _$UserEntityCopyWithImpl<$Res, UserEntity>;
+  @useResult
   $Res call(
       {String username,
       String email,
@@ -53,74 +54,78 @@ abstract class $UserEntityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
+class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
+    implements $UserEntityCopyWith<$Res> {
   _$UserEntityCopyWithImpl(this._value, this._then);
 
-  final UserEntity _value;
   // ignore: unused_field
-  final $Res Function(UserEntity) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = freezed,
-    Object? email = freezed,
-    Object? phoneNumber = freezed,
-    Object? phoneCountryCode = freezed,
-    Object? name = freezed,
-    Object? dateOfBirth = freezed,
-    Object? country = freezed,
-    Object? city = freezed,
-    Object? password = freezed,
-    Object? device = freezed,
+    Object? username = null,
+    Object? email = null,
+    Object? phoneNumber = null,
+    Object? phoneCountryCode = null,
+    Object? name = null,
+    Object? dateOfBirth = null,
+    Object? country = null,
+    Object? city = null,
+    Object? password = null,
+    Object? device = null,
   }) {
     return _then(_value.copyWith(
-      username: username == freezed
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneCountryCode: phoneCountryCode == freezed
+      phoneCountryCode: null == phoneCountryCode
           ? _value.phoneCountryCode
           : phoneCountryCode // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      dateOfBirth: dateOfBirth == freezed
+      dateOfBirth: null == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String,
-      country: country == freezed
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String,
-      city: city == freezed
+      city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      device: device == freezed
+      device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
               as DeviceEntity,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $DeviceEntityCopyWith<$Res> get device {
     return $DeviceEntityCopyWith<$Res>(_value.device, (value) {
-      return _then(_value.copyWith(device: value));
+      return _then(_value.copyWith(device: value) as $Val);
     });
   }
 }
@@ -132,6 +137,7 @@ abstract class _$$_UserEntityCopyWith<$Res>
           _$_UserEntity value, $Res Function(_$_UserEntity) then) =
       __$$_UserEntityCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String username,
       String email,
@@ -149,66 +155,65 @@ abstract class _$$_UserEntityCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
+class __$$_UserEntityCopyWithImpl<$Res>
+    extends _$UserEntityCopyWithImpl<$Res, _$_UserEntity>
     implements _$$_UserEntityCopyWith<$Res> {
   __$$_UserEntityCopyWithImpl(
       _$_UserEntity _value, $Res Function(_$_UserEntity) _then)
-      : super(_value, (v) => _then(v as _$_UserEntity));
+      : super(_value, _then);
 
-  @override
-  _$_UserEntity get _value => super._value as _$_UserEntity;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = freezed,
-    Object? email = freezed,
-    Object? phoneNumber = freezed,
-    Object? phoneCountryCode = freezed,
-    Object? name = freezed,
-    Object? dateOfBirth = freezed,
-    Object? country = freezed,
-    Object? city = freezed,
-    Object? password = freezed,
-    Object? device = freezed,
+    Object? username = null,
+    Object? email = null,
+    Object? phoneNumber = null,
+    Object? phoneCountryCode = null,
+    Object? name = null,
+    Object? dateOfBirth = null,
+    Object? country = null,
+    Object? city = null,
+    Object? password = null,
+    Object? device = null,
   }) {
     return _then(_$_UserEntity(
-      username: username == freezed
+      username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: phoneNumber == freezed
+      phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneCountryCode: phoneCountryCode == freezed
+      phoneCountryCode: null == phoneCountryCode
           ? _value.phoneCountryCode
           : phoneCountryCode // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      dateOfBirth: dateOfBirth == freezed
+      dateOfBirth: null == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String,
-      country: country == freezed
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String,
-      city: city == freezed
+      city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      device: device == freezed
+      device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
               as DeviceEntity,
@@ -262,37 +267,30 @@ class _$_UserEntity implements _UserEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserEntity &&
-            const DeepCollectionEquality().equals(other.username, username) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality()
-                .equals(other.phoneCountryCode, phoneCountryCode) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.dateOfBirth, dateOfBirth) &&
-            const DeepCollectionEquality().equals(other.country, country) &&
-            const DeepCollectionEquality().equals(other.city, city) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality().equals(other.device, device));
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.phoneCountryCode, phoneCountryCode) ||
+                other.phoneCountryCode == phoneCountryCode) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.dateOfBirth, dateOfBirth) ||
+                other.dateOfBirth == dateOfBirth) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.device, device) || other.device == device));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(username),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(phoneCountryCode),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(dateOfBirth),
-      const DeepCollectionEquality().hash(country),
-      const DeepCollectionEquality().hash(city),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(device));
+  int get hashCode => Object.hash(runtimeType, username, email, phoneNumber,
+      phoneCountryCode, name, dateOfBirth, country, city, password, device);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>
       __$$_UserEntityCopyWithImpl<_$_UserEntity>(this, _$identity);
 }
