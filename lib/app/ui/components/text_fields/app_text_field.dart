@@ -9,20 +9,21 @@ import 'formatter/password_text_formatter.dart';
 import 'formatter/username_text_formatter.dart';
 
 class AppTextField extends StatefulWidget {
-  const AppTextField(
-      {Key? key,
-      this.focus,
-      this.borderColor = AppColors.orange,
-      this.controller,
-      this.onTap,
-      this.onChanged,
-      this.hintText,
-      this.labelText,
-      this.keyboardType = TextInputType.text,
-      this.textCapitalization = TextCapitalization.none,
-      this.fieldType = TextFieldType.simple,
-      this.textAlign = TextAlign.start})
-      : super(key: key);
+  const AppTextField({
+    Key? key,
+    this.focus,
+    this.borderColor = AppColors.orange,
+    this.controller,
+    this.onTap,
+    this.onChanged,
+    this.hintText,
+    this.labelText,
+    this.keyboardType = TextInputType.text,
+    this.textCapitalization = TextCapitalization.none,
+    this.fieldType = TextFieldType.simple,
+    this.textAlign = TextAlign.start,
+    this.readOnly,
+  }) : super(key: key);
 
   final FocusNode? focus;
   final Color borderColor;
@@ -35,6 +36,7 @@ class AppTextField extends StatefulWidget {
   final TextCapitalization textCapitalization;
   final TextFieldType fieldType;
   final TextAlign textAlign;
+  final bool? readOnly;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -77,6 +79,7 @@ class _AppTextFieldState extends State<AppTextField> {
     return Padding(
       padding: const EdgeInsets.only(top: 4),
       child: TextField(
+        readOnly: widget.readOnly ?? false,
         textAlign: widget.textAlign,
         keyboardType: widget.keyboardType,
         obscureText: widget.fieldType == TextFieldType.password,
@@ -122,7 +125,7 @@ class _AppTextFieldState extends State<AppTextField> {
             borderRadius: BorderRadius.circular(10.0),
             borderSide: BorderSide(
               width: .5,
-              color: widget.borderColor.withOpacity(.5),
+              color: widget.borderColor,
             ),
           ),
         ),
