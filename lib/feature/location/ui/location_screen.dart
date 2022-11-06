@@ -70,9 +70,17 @@ class _LocationScreenState extends State<_LocationScreen> {
       listener: (context, state) {
         state.whenOrNull(
           received: (locations) {
+            _notificationsRemove(_serverMessage);
             if (_cityController.text.isEmpty) return;
             _values = locations;
             setState(() {});
+          },
+          requested: () {
+            _notificationsRemove(_serverMessage);
+          },
+          error: (error) {
+            _serverMessage = error.message;
+            _notificationsUpdate(_serverMessage);
           },
         );
       },
@@ -80,94 +88,96 @@ class _LocationScreenState extends State<_LocationScreen> {
         onTap: Helpers.unfocused,
         child: AppScaffold(
           notifications: _notifications,
-          appBar: AppBar(
-            elevation: 0.0,
-            centerTitle: false,
-            backgroundColor: _theme.backgroundColor,
-            automaticallyImplyLeading: false,
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: Text(
-                _dictionary.setLocation,
-                textAlign: TextAlign.start,
-              ),
-            ),
-            actions: [
-              CupertinoButton(
-                minSize: 0,
-                padding: EdgeInsets.zero,
-                onPressed: Navigator.of(context).pop,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 16.0, bottom: 16.0),
-                  child: Text(
-                    _dictionary.back,
-                    style: _theme.textTheme.headline6?.copyWith(
-                      color: AppColors.orange,
-                      fontWeight: FontWeight.w700,
+          body: SafeArea(
+            bottom: false,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 16.0,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        _dictionary.setLocation,
+                        textAlign: TextAlign.start,
+                        style: _theme.textTheme.headline6,
+                      ),
+                      CupertinoButton(
+                        minSize: 0,
+                        padding: EdgeInsets.zero,
+                        onPressed: Navigator.of(context).pop,
+                        child: Text(
+                          _dictionary.back,
+                          style: _theme.textTheme.headline6?.copyWith(
+                            color: AppColors.orange,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: AppTextField(
+                    controller: _cityController,
+                    hintText: _dictionary.locationHint,
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        onChange(
+                          context.read<LocationCubit>(),
+                          value,
+                        );
+                      } else {
+                        _notificationsRemove(_serverMessage);
+                        setState(() => _values = []);
+                      }
+                    },
+                  ),
+                ),
+                Divider(
+                  height: 2,
+                  thickness: 2,
+                  color: AppColors.hintTextColor.withOpacity(.2),
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(16.0),
+                //   child: CupertinoButton(
+                //     minSize: 0,
+                //     padding: EdgeInsets.zero,
+                //     child: Text(
+                //       'use my current location',
+                //       style: _theme.textTheme.headline6?.copyWith(
+                //         color: AppColors.orange,
+                //         fontWeight: FontWeight.w700,
+                //       ),
+                //     ),
+                //     onPressed: () {
+                //       onTapToCurrent(context.read<LocationCubit>());
+                //     },
+                //   ),
+                // ),
+                // Divider(
+                //   height: 2,
+                //   thickness: 2,
+                //   color: AppColors.hintTextColor.withOpacity(.2),
+                // ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _values.length,
+                    itemBuilder: (context, index) => LocationListTile(
+                      press: () {
+                        log(_values[index].city);
+                      },
+                      location: _values[index],
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          body: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: AppTextField(
-                  controller: _cityController,
-                  hintText: _dictionary.locationHint,
-                  onChanged: (value) {
-                    if (value.isNotEmpty) {
-                      onChange(
-                        context.read<LocationCubit>(),
-                        value,
-                      );
-                    } else {
-                      setState(() => _values = []);
-                    }
-                  },
-                ),
-              ),
-              Divider(
-                height: 2,
-                thickness: 2,
-                color: AppColors.hintTextColor.withOpacity(.2),
-              ),
-              // Padding(
-              //   padding: const EdgeInsets.all(16.0),
-              //   child: CupertinoButton(
-              //     minSize: 0,
-              //     padding: EdgeInsets.zero,
-              //     child: Text(
-              //       'use my current location',
-              //       style: _theme.textTheme.headline6?.copyWith(
-              //         color: AppColors.orange,
-              //         fontWeight: FontWeight.w700,
-              //       ),
-              //     ),
-              //     onPressed: () {
-              //       onTapToCurrent(context.read<LocationCubit>());
-              //     },
-              //   ),
-              // ),
-              // Divider(
-              //   height: 2,
-              //   thickness: 2,
-              //   color: AppColors.hintTextColor.withOpacity(.2),
-              // ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _values.length,
-                  itemBuilder: (context, index) => LocationListTile(
-                    press: () {
-                      log(_values[index].city);
-                    },
-                    location: _values[index],
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -181,5 +191,19 @@ class _LocationScreenState extends State<_LocationScreen> {
   void onTapToCurrent(LocationCubit cubit) {
     counter = ++counter;
     cubit.add(LocationEventGet('some query: count: $counter'));
+  }
+
+  void _notificationsUpdate(String message) {
+    if (!_notifications.value.contains(message)) {
+      _notifications.value.add(message);
+      _notifications.value = _notifications.value.map((e) => e).toList();
+    }
+  }
+
+  void _notificationsRemove(String message) {
+    if (_notifications.value.contains(message)) {
+      _notifications.value.remove(message);
+      _notifications.value = _notifications.value.map((e) => e).toList();
+    }
   }
 }
