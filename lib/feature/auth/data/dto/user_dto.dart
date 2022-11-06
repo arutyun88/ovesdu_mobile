@@ -15,8 +15,7 @@ class UserDto {
   final dynamic password;
   final dynamic name;
   final dynamic dateOfBirth;
-  final dynamic country;
-  final dynamic city;
+  final dynamic locationId;
   final List<DeviceDto>? deviceList;
 
   UserDto({
@@ -28,8 +27,7 @@ class UserDto {
     this.password,
     this.name,
     this.dateOfBirth,
-    this.country,
-    this.city,
+    this.locationId,
     this.deviceList,
   });
 
@@ -45,8 +43,7 @@ class UserDto {
         phoneCountryCode: entity.phoneCountryCode,
         name: entity.name,
         dateOfBirth: entity.dateOfBirth,
-        country: entity.country,
-        city: entity.city,
+        locationId: entity.location.id,
         password: entity.password,
         deviceList: [DeviceDto.toDto(entity.device)],
       );

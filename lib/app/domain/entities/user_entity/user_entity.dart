@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../app/domain/entities/device_entity/device_entity.dart';
+import '../../../../feature/location/domain/entities/location_entity/location_entity.dart';
 
 part 'user_entity.freezed.dart';
 
@@ -13,8 +14,7 @@ class UserEntity with _$UserEntity {
     required String phoneCountryCode,
     required String name,
     required String dateOfBirth,
-    required String country,
-    required String city,
+    required LocationEntity location,
     required String password,
     required DeviceEntity device,
   }) = _UserEntity;

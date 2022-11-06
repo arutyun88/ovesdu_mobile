@@ -17,7 +17,7 @@ class NetworkLocationRepository implements LocationRepository {
     await dioContainer.setHeaderLocale();
 
     try {
-      final response = await dioContainer.dio.get('/auth/location/$query');
+      final response = await dioContainer.dio.get('/library/location/$query');
       return (response.data['data'] as List)
           .map((location) => LocationDto.fromJson(location).toEntity())
           .toList();

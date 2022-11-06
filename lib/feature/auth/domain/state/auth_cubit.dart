@@ -4,6 +4,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import '../../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../../app/domain/entities/error_entity/error_entity.dart';
 import '../../../../app/domain/entities/user_entity/user_entity.dart';
+import '../../../location/domain/entities/location_entity/location_entity.dart';
 import '../auth_repository.dart';
 import '../entities/token_entity/token_entity.dart';
 
@@ -84,8 +85,7 @@ class AuthCubit extends HydratedCubit<AuthState> {
     required String phoneCountryCode,
     required String name,
     required String dateOfBirth,
-    required String country,
-    required String city,
+    required LocationEntity location,
     required String password,
     required DeviceEntity device,
   }) async {
@@ -99,8 +99,7 @@ class AuthCubit extends HydratedCubit<AuthState> {
           phoneCountryCode: phoneCountryCode,
           name: name,
           dateOfBirth: dateOfBirth,
-          country: country,
-          city: city,
+          location: location,
           password: password,
           device: device,
         ),

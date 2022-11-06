@@ -22,8 +22,7 @@ mixin _$UserEntity {
   String get phoneCountryCode => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get dateOfBirth => throw _privateConstructorUsedError;
-  String get country => throw _privateConstructorUsedError;
-  String get city => throw _privateConstructorUsedError;
+  LocationEntity get location => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   DeviceEntity get device => throw _privateConstructorUsedError;
 
@@ -45,11 +44,11 @@ abstract class $UserEntityCopyWith<$Res> {
       String phoneCountryCode,
       String name,
       String dateOfBirth,
-      String country,
-      String city,
+      LocationEntity location,
       String password,
       DeviceEntity device});
 
+  $LocationEntityCopyWith<$Res> get location;
   $DeviceEntityCopyWith<$Res> get device;
 }
 
@@ -72,8 +71,7 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? phoneCountryCode = null,
     Object? name = null,
     Object? dateOfBirth = null,
-    Object? country = null,
-    Object? city = null,
+    Object? location = null,
     Object? password = null,
     Object? device = null,
   }) {
@@ -102,14 +100,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String,
-      country: null == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as LocationEntity,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -119,6 +113,14 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           : device // ignore: cast_nullable_to_non_nullable
               as DeviceEntity,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationEntityCopyWith<$Res> get location {
+    return $LocationEntityCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value) as $Val);
+    });
   }
 
   @override
@@ -145,11 +147,12 @@ abstract class _$$_UserEntityCopyWith<$Res>
       String phoneCountryCode,
       String name,
       String dateOfBirth,
-      String country,
-      String city,
+      LocationEntity location,
       String password,
       DeviceEntity device});
 
+  @override
+  $LocationEntityCopyWith<$Res> get location;
   @override
   $DeviceEntityCopyWith<$Res> get device;
 }
@@ -171,8 +174,7 @@ class __$$_UserEntityCopyWithImpl<$Res>
     Object? phoneCountryCode = null,
     Object? name = null,
     Object? dateOfBirth = null,
-    Object? country = null,
-    Object? city = null,
+    Object? location = null,
     Object? password = null,
     Object? device = null,
   }) {
@@ -201,14 +203,10 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String,
-      country: null == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      city: null == city
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as LocationEntity,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -231,8 +229,7 @@ class _$_UserEntity implements _UserEntity {
       required this.phoneCountryCode,
       required this.name,
       required this.dateOfBirth,
-      required this.country,
-      required this.city,
+      required this.location,
       required this.password,
       required this.device});
 
@@ -249,9 +246,7 @@ class _$_UserEntity implements _UserEntity {
   @override
   final String dateOfBirth;
   @override
-  final String country;
-  @override
-  final String city;
+  final LocationEntity location;
   @override
   final String password;
   @override
@@ -259,7 +254,7 @@ class _$_UserEntity implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(username: $username, email: $email, phoneNumber: $phoneNumber, phoneCountryCode: $phoneCountryCode, name: $name, dateOfBirth: $dateOfBirth, country: $country, city: $city, password: $password, device: $device)';
+    return 'UserEntity(username: $username, email: $email, phoneNumber: $phoneNumber, phoneCountryCode: $phoneCountryCode, name: $name, dateOfBirth: $dateOfBirth, location: $location, password: $password, device: $device)';
   }
 
   @override
@@ -277,8 +272,8 @@ class _$_UserEntity implements _UserEntity {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
                 other.dateOfBirth == dateOfBirth) &&
-            (identical(other.country, country) || other.country == country) &&
-            (identical(other.city, city) || other.city == city) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.device, device) || other.device == device));
@@ -286,7 +281,7 @@ class _$_UserEntity implements _UserEntity {
 
   @override
   int get hashCode => Object.hash(runtimeType, username, email, phoneNumber,
-      phoneCountryCode, name, dateOfBirth, country, city, password, device);
+      phoneCountryCode, name, dateOfBirth, location, password, device);
 
   @JsonKey(ignore: true)
   @override
@@ -303,8 +298,7 @@ abstract class _UserEntity implements UserEntity {
       required final String phoneCountryCode,
       required final String name,
       required final String dateOfBirth,
-      required final String country,
-      required final String city,
+      required final LocationEntity location,
       required final String password,
       required final DeviceEntity device}) = _$_UserEntity;
 
@@ -321,9 +315,7 @@ abstract class _UserEntity implements UserEntity {
   @override
   String get dateOfBirth;
   @override
-  String get country;
-  @override
-  String get city;
+  LocationEntity get location;
   @override
   String get password;
   @override

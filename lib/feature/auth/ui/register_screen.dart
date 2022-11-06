@@ -45,6 +45,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late final TextEditingController _dateOfBirthController;
   late final TextEditingController _countryController;
   late final TextEditingController _cityController;
+  late LocationEntity location;
 
   late bool _dateIsComplete;
   late bool _dateIsValid = false;
@@ -274,8 +275,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       phoneCountryCode: widget.phoneCountryCode,
       name: _nameController.text,
       dateOfBirth: _dateOfBirthController.text,
-      country: _countryController.text,
-      city: _cityController.text,
+      location: location,
       password: _passwordController.text,
       device: widget.device,
     );
@@ -291,7 +291,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         (value) {
           Helpers.unfocused();
           if (value != null) {
-            var location = value as LocationEntity;
+            location = value as LocationEntity;
             _cityController.text = location.city;
             _countryController.text = location.country;
             _locationValidate();
