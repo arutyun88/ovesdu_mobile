@@ -1,0 +1,185 @@
+import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../app/data/setting_provider/theme_provider.dart';
+import '../../../app/di/init_di.dart';
+import '../../../app/helpers/helpers.dart';
+import '../../../app/ui/components/app_scaffold.dart';
+import '../../../app/ui/components/text_fields/app_text_field.dart';
+import '../../../app/ui/config/app_colors.dart';
+import '../domain/entities/location_entity/location_entity.dart';
+import '../domain/location_repository.dart';
+import '../domain/state/location_cubit.dart';
+import 'components/location_list_tile.dart';
+
+class LocationScreen extends StatelessWidget {
+  const LocationScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => LocationCubit(locator<LocationRepository>()),
+      child: const _LocationScreen(),
+    );
+  }
+}
+
+class _LocationScreen extends StatefulWidget {
+  const _LocationScreen({Key? key}) : super(key: key);
+
+  @override
+  State<_LocationScreen> createState() => _LocationScreenState();
+}
+
+class _LocationScreenState extends State<_LocationScreen> {
+  late ThemeData _theme;
+  late int counter = 0;
+  late List<LocationEntity> _values = [];
+  late TextEditingController _cityController;
+  late final ValueNotifier<List<String>> _notifications = ValueNotifier([]);
+  late AppLocalizations _dictionary;
+  late String _serverMessage = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _cityController = TextEditingController();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _theme = Provider.of<ThemeProvider>(context).themeData;
+    _dictionary = AppLocalizations.of(context)!;
+  }
+
+  @override
+  void dispose() {
+    _notifications.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<LocationCubit, LocationState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          received: (locations) {
+            if (_cityController.text.isEmpty) return;
+            _values = locations;
+            setState(() {});
+          },
+        );
+      },
+      child: GestureDetector(
+        onTap: Helpers.unfocused,
+        child: AppScaffold(
+          notifications: _notifications,
+          appBar: AppBar(
+            elevation: 0.0,
+            centerTitle: false,
+            backgroundColor: _theme.backgroundColor,
+            automaticallyImplyLeading: false,
+            title: Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: Text(
+                _dictionary.setLocation,
+                textAlign: TextAlign.start,
+              ),
+            ),
+            actions: [
+              CupertinoButton(
+                minSize: 0,
+                padding: EdgeInsets.zero,
+                onPressed: Navigator.of(context).pop,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 16.0, bottom: 16.0),
+                  child: Text(
+                    _dictionary.back,
+                    style: _theme.textTheme.headline6?.copyWith(
+                      color: AppColors.orange,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: AppTextField(
+                  controller: _cityController,
+                  hintText: _dictionary.locationHint,
+                  onChanged: (value) {
+                    if (value.isNotEmpty) {
+                      onChange(
+                        context.read<LocationCubit>(),
+                        value,
+                      );
+                    } else {
+                      setState(() => _values = []);
+                    }
+                  },
+                ),
+              ),
+              Divider(
+                height: 2,
+                thickness: 2,
+                color: AppColors.hintTextColor.withOpacity(.2),
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(16.0),
+              //   child: CupertinoButton(
+              //     minSize: 0,
+              //     padding: EdgeInsets.zero,
+              //     child: Text(
+              //       'use my current location',
+              //       style: _theme.textTheme.headline6?.copyWith(
+              //         color: AppColors.orange,
+              //         fontWeight: FontWeight.w700,
+              //       ),
+              //     ),
+              //     onPressed: () {
+              //       onTapToCurrent(context.read<LocationCubit>());
+              //     },
+              //   ),
+              // ),
+              // Divider(
+              //   height: 2,
+              //   thickness: 2,
+              //   color: AppColors.hintTextColor.withOpacity(.2),
+              // ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _values.length,
+                  itemBuilder: (context, index) => LocationListTile(
+                    press: () {
+                      log(_values[index].city);
+                    },
+                    location: _values[index],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void onChange(LocationCubit cubit, String value) {
+    cubit.add(LocationEventGet(value));
+  }
+
+  void onTapToCurrent(LocationCubit cubit) {
+    counter = ++counter;
+    cubit.add(LocationEventGet('some query: count: $counter'));
+  }
+}
