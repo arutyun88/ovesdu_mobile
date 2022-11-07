@@ -628,19 +628,20 @@ abstract class _LocationStateError implements LocationState {
 /// @nodoc
 mixin _$LocationEvent {
   String get query => throw _privateConstructorUsedError;
+  bool get remote => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String query) get,
+    required TResult Function(String query, bool remote) get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String query)? get,
+    TResult? Function(String query, bool remote)? get,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String query)? get,
+    TResult Function(String query, bool remote)? get,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -672,7 +673,7 @@ abstract class $LocationEventCopyWith<$Res> {
           LocationEvent value, $Res Function(LocationEvent) then) =
       _$LocationEventCopyWithImpl<$Res, LocationEvent>;
   @useResult
-  $Res call({String query});
+  $Res call({String query, bool remote});
 }
 
 /// @nodoc
@@ -689,12 +690,17 @@ class _$LocationEventCopyWithImpl<$Res, $Val extends LocationEvent>
   @override
   $Res call({
     Object? query = null,
+    Object? remote = null,
   }) {
     return _then(_value.copyWith(
       query: null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as String,
+      remote: null == remote
+          ? _value.remote
+          : remote // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -707,7 +713,7 @@ abstract class _$$LocationEventGetCopyWith<$Res>
       __$$LocationEventGetCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String query});
+  $Res call({String query, bool remote});
 }
 
 /// @nodoc
@@ -722,12 +728,17 @@ class __$$LocationEventGetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? query = null,
+    Object? remote = null,
   }) {
     return _then(_$LocationEventGet(
       null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as String,
+      null == remote
+          ? _value.remote
+          : remote // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -735,14 +746,16 @@ class __$$LocationEventGetCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LocationEventGet implements LocationEventGet {
-  const _$LocationEventGet(this.query);
+  const _$LocationEventGet(this.query, this.remote);
 
   @override
   final String query;
+  @override
+  final bool remote;
 
   @override
   String toString() {
-    return 'LocationEvent.get(query: $query)';
+    return 'LocationEvent.get(query: $query, remote: $remote)';
   }
 
   @override
@@ -750,11 +763,12 @@ class _$LocationEventGet implements LocationEventGet {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LocationEventGet &&
-            (identical(other.query, query) || other.query == query));
+            (identical(other.query, query) || other.query == query) &&
+            (identical(other.remote, remote) || other.remote == remote));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, query);
+  int get hashCode => Object.hash(runtimeType, query, remote);
 
   @JsonKey(ignore: true)
   @override
@@ -765,27 +779,27 @@ class _$LocationEventGet implements LocationEventGet {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String query) get,
+    required TResult Function(String query, bool remote) get,
   }) {
-    return get(query);
+    return get(query, remote);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String query)? get,
+    TResult? Function(String query, bool remote)? get,
   }) {
-    return get?.call(query);
+    return get?.call(query, remote);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String query)? get,
+    TResult Function(String query, bool remote)? get,
     required TResult orElse(),
   }) {
     if (get != null) {
-      return get(query);
+      return get(query, remote);
     }
     return orElse();
   }
@@ -820,10 +834,13 @@ class _$LocationEventGet implements LocationEventGet {
 }
 
 abstract class LocationEventGet implements LocationEvent {
-  const factory LocationEventGet(final String query) = _$LocationEventGet;
+  const factory LocationEventGet(final String query, final bool remote) =
+      _$LocationEventGet;
 
   @override
   String get query;
+  @override
+  bool get remote;
   @override
   @JsonKey(ignore: true)
   _$$LocationEventGetCopyWith<_$LocationEventGet> get copyWith =>

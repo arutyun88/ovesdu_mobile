@@ -25,4 +25,18 @@ class NetworkLocationRepository implements LocationRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<List<LocationEntity>> saveLocations(String query) async {
+    await dioContainer.setHeaderLocale();
+
+    try {
+      final response = await dioContainer.dio.post('/library/location/$query');
+      return (response.data['data'] as List)
+          .map((location) => LocationDto.fromJson(location).toEntity())
+          .toList();
+    } catch (_) {
+      rethrow;
+    }
+  }
 }

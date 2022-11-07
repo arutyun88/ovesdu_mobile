@@ -15,17 +15,19 @@ part 'location_cubit.freezed.dart';
 class LocationCubit extends Bloc<LocationEvent, LocationState> {
   LocationCubit(this.locationRepository) : super(LocationState.init()) {
     on<LocationEventGet>(
-      (event, emit) => getLocation(event.query, emit),
+      (event, emit) => getLocation(event.query, event.remote, emit),
       transformer: restartable(),
     );
   }
 
   final LocationRepository locationRepository;
 
-  Future<void> getLocation(String query, Emitter emit) async {
+  Future<void> getLocation(String query, bool remote, Emitter emit) async {
     emit(LocationState.requested());
     try {
-      final result = await locationRepository.getLocations(query);
+      final result = remote
+          ? await locationRepository.saveLocations(query)
+          : await locationRepository.getLocations(query);
       emit(LocationState.received(result));
     } catch (error, stackTrace) {
       emit(LocationState.error(ErrorEntity.fromException(error)));

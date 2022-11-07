@@ -42,6 +42,7 @@ class _LocationScreenState extends State<_LocationScreen> {
   late final ValueNotifier<List<String>> _notifications = ValueNotifier([]);
   late AppLocalizations _dictionary;
   late String _serverMessage = '';
+  late bool _remote = false;
 
   @override
   void initState() {
@@ -141,28 +142,28 @@ class _LocationScreenState extends State<_LocationScreen> {
                   thickness: 2,
                   color: AppColors.hintTextColor.withOpacity(.2),
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.all(16.0),
-                //   child: CupertinoButton(
-                //     minSize: 0,
-                //     padding: EdgeInsets.zero,
-                //     child: Text(
-                //       'use my current location',
-                //       style: _theme.textTheme.headline6?.copyWith(
-                //         color: AppColors.orange,
-                //         fontWeight: FontWeight.w700,
-                //       ),
-                //     ),
-                //     onPressed: () {
-                //       onTapToCurrent(context.read<LocationCubit>());
-                //     },
-                //   ),
-                // ),
-                // Divider(
-                //   height: 2,
-                //   thickness: 2,
-                //   color: AppColors.hintTextColor.withOpacity(.2),
-                // ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: CupertinoButton(
+                    minSize: 0,
+                    padding: EdgeInsets.zero,
+                    child: Text(
+                      _dictionary.locationResourceChange,
+                      style: _theme.textTheme.headline6?.copyWith(
+                        color: AppColors.orange,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    onPressed: () {
+                      onTapToCurrent(context.read<LocationCubit>());
+                    },
+                  ),
+                ),
+                Divider(
+                  height: 2,
+                  thickness: 2,
+                  color: AppColors.hintTextColor.withOpacity(.2),
+                ),
                 Expanded(
                   child: ListView.builder(
                     itemCount: _values.length,
@@ -181,12 +182,12 @@ class _LocationScreenState extends State<_LocationScreen> {
   }
 
   void onChange(LocationCubit cubit, String value) {
-    cubit.add(LocationEventGet(value));
+    cubit.add(LocationEventGet(value, _remote));
   }
 
   void onTapToCurrent(LocationCubit cubit) {
-    counter = ++counter;
-    cubit.add(LocationEventGet('some query: count: $counter'));
+    _remote = true;
+    cubit.add(LocationEventGet(_cityController.text, _remote));
   }
 
   void _notificationsUpdate(String message) {

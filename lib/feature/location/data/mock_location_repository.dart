@@ -33,6 +33,31 @@ class MockLocationRepository implements LocationRepository {
       rethrow;
     }
   }
+  @override
+  Future<List<LocationEntity>> saveLocations(String query) async {
+    try {
+      var values = _cities.map((e) => LocationDto.fromJson(e)).toList();
+      var result = values
+          .where((element) => _check(element, query))
+          .map((e) => e.toJson())
+          .toList();
+
+      var response =
+          await Future.delayed(const Duration(seconds: 1)).then((value) {
+        return Response<dynamic>(
+          data: {
+            "data": result,
+          },
+          requestOptions: RequestOptions(path: ''),
+        );
+      });
+      return (response.data['data'] as List)
+          .map((location) => LocationDto.fromJson(location).toEntity())
+          .toList();
+    } catch (_) {
+      rethrow;
+    }
+  }
 
   bool _check(LocationDto element, String query) =>
       _checkValue(element.country, query) ||

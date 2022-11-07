@@ -76,6 +76,7 @@
   "cityLabel": "city",
   "setLocation": "location",
   "locationHint": "search your location",
+  "locationResourceChange": "not found? click me",
   "dateInvalid": "incorrect date of birth",
   "isUnderage": "registration is not possible because you are a minor",
   "nameInvalid": "incorrect first or last name",
