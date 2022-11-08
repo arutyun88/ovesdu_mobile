@@ -19,6 +19,7 @@ UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
       deviceList: (json['deviceList'] as List<dynamic>?)
           ?.map((e) => DeviceDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      gender: json['gender'],
     );
 
 Map<String, dynamic> _$UserDtoToJson(UserDto instance) => <String, dynamic>{
@@ -32,4 +33,5 @@ Map<String, dynamic> _$UserDtoToJson(UserDto instance) => <String, dynamic>{
       'dateOfBirth': instance.dateOfBirth,
       'locationId': instance.locationId,
       'deviceList': instance.deviceList,
+      'gender': instance.gender,
     };

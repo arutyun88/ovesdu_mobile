@@ -88,6 +88,7 @@ class AuthCubit extends HydratedCubit<AuthState> {
     required LocationEntity location,
     required String password,
     required DeviceEntity device,
+    required bool genderIsMale,
   }) async {
     emit(AuthState.waiting());
     try {
@@ -102,6 +103,7 @@ class AuthCubit extends HydratedCubit<AuthState> {
           location: location,
           password: password,
           device: device,
+          genderIsMale: genderIsMale,
         ),
       );
       emit(AuthState.authorized(result));

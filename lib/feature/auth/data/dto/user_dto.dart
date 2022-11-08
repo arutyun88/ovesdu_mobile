@@ -17,6 +17,7 @@ class UserDto {
   final dynamic dateOfBirth;
   final dynamic locationId;
   final List<DeviceDto>? deviceList;
+  final dynamic gender;
 
   UserDto({
     this.id,
@@ -29,6 +30,7 @@ class UserDto {
     this.dateOfBirth,
     this.locationId,
     this.deviceList,
+    this.gender,
   });
 
   factory UserDto.fromJson(Map<String, dynamic> json) =>
@@ -46,5 +48,6 @@ class UserDto {
         locationId: entity.location.id,
         password: entity.password,
         deviceList: [DeviceDto.toDto(entity.device)],
+        gender: entity.genderIsMale ? 'male' : 'female',
       );
 }

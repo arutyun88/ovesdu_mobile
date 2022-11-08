@@ -17,5 +17,6 @@ class UserEntity with _$UserEntity {
     required LocationEntity location,
     required String password,
     required DeviceEntity device,
+    required bool genderIsMale,
   }) = _UserEntity;
 }

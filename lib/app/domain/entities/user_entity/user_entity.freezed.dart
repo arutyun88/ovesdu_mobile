@@ -25,6 +25,7 @@ mixin _$UserEntity {
   LocationEntity get location => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   DeviceEntity get device => throw _privateConstructorUsedError;
+  bool get genderIsMale => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserEntityCopyWith<UserEntity> get copyWith =>
@@ -46,7 +47,8 @@ abstract class $UserEntityCopyWith<$Res> {
       String dateOfBirth,
       LocationEntity location,
       String password,
-      DeviceEntity device});
+      DeviceEntity device,
+      bool genderIsMale});
 
   $LocationEntityCopyWith<$Res> get location;
   $DeviceEntityCopyWith<$Res> get device;
@@ -74,6 +76,7 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? location = null,
     Object? password = null,
     Object? device = null,
+    Object? genderIsMale = null,
   }) {
     return _then(_value.copyWith(
       username: null == username
@@ -112,6 +115,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
               as DeviceEntity,
+      genderIsMale: null == genderIsMale
+          ? _value.genderIsMale
+          : genderIsMale // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -149,7 +156,8 @@ abstract class _$$_UserEntityCopyWith<$Res>
       String dateOfBirth,
       LocationEntity location,
       String password,
-      DeviceEntity device});
+      DeviceEntity device,
+      bool genderIsMale});
 
   @override
   $LocationEntityCopyWith<$Res> get location;
@@ -177,6 +185,7 @@ class __$$_UserEntityCopyWithImpl<$Res>
     Object? location = null,
     Object? password = null,
     Object? device = null,
+    Object? genderIsMale = null,
   }) {
     return _then(_$_UserEntity(
       username: null == username
@@ -215,6 +224,10 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
               as DeviceEntity,
+      genderIsMale: null == genderIsMale
+          ? _value.genderIsMale
+          : genderIsMale // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -231,7 +244,8 @@ class _$_UserEntity implements _UserEntity {
       required this.dateOfBirth,
       required this.location,
       required this.password,
-      required this.device});
+      required this.device,
+      required this.genderIsMale});
 
   @override
   final String username;
@@ -251,10 +265,12 @@ class _$_UserEntity implements _UserEntity {
   final String password;
   @override
   final DeviceEntity device;
+  @override
+  final bool genderIsMale;
 
   @override
   String toString() {
-    return 'UserEntity(username: $username, email: $email, phoneNumber: $phoneNumber, phoneCountryCode: $phoneCountryCode, name: $name, dateOfBirth: $dateOfBirth, location: $location, password: $password, device: $device)';
+    return 'UserEntity(username: $username, email: $email, phoneNumber: $phoneNumber, phoneCountryCode: $phoneCountryCode, name: $name, dateOfBirth: $dateOfBirth, location: $location, password: $password, device: $device, genderIsMale: $genderIsMale)';
   }
 
   @override
@@ -276,12 +292,24 @@ class _$_UserEntity implements _UserEntity {
                 other.location == location) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.device, device) || other.device == device));
+            (identical(other.device, device) || other.device == device) &&
+            (identical(other.genderIsMale, genderIsMale) ||
+                other.genderIsMale == genderIsMale));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, username, email, phoneNumber,
-      phoneCountryCode, name, dateOfBirth, location, password, device);
+  int get hashCode => Object.hash(
+      runtimeType,
+      username,
+      email,
+      phoneNumber,
+      phoneCountryCode,
+      name,
+      dateOfBirth,
+      location,
+      password,
+      device,
+      genderIsMale);
 
   @JsonKey(ignore: true)
   @override
@@ -300,7 +328,8 @@ abstract class _UserEntity implements UserEntity {
       required final String dateOfBirth,
       required final LocationEntity location,
       required final String password,
-      required final DeviceEntity device}) = _$_UserEntity;
+      required final DeviceEntity device,
+      required final bool genderIsMale}) = _$_UserEntity;
 
   @override
   String get username;
@@ -320,6 +349,8 @@ abstract class _UserEntity implements UserEntity {
   String get password;
   @override
   DeviceEntity get device;
+  @override
+  bool get genderIsMale;
   @override
   @JsonKey(ignore: true)
   _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>

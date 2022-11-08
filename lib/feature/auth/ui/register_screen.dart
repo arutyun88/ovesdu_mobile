@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/const/reg_exr_const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/domain/entities/device_entity/device_entity.dart';
+import '../../../app/helpers/app_icons.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/app_scaffold.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
@@ -60,6 +62,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late final ValueNotifier<List<String>> _notifications = ValueNotifier([]);
   late AppLocalizations _dictionary;
   late String _serverMessage = '';
+
+  late bool _genderSelected = false;
+  late bool _isMale;
 
   @override
   void initState() {
@@ -170,6 +175,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   const SizedBox(height: 24.0),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
                         width: 180,
@@ -185,6 +191,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           labelText: _dictionary.dateOfBirthLabel,
                           onChanged: (value) => setState(_dateValidate),
                         ),
+                      ),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () => _genderChanged(true),
+                            child: SvgPicture.asset(
+                              AppIcons.maleIcon,
+                              height: 60,
+                              width: 60,
+                              color: _genderSelected
+                                  ? _isMale
+                                      ? theme.textTheme.headline6?.color
+                                      : theme.textTheme.headline6?.color
+                                          ?.withOpacity(.3)
+                                  : theme.textTheme.headline6?.color
+                                      ?.withOpacity(.1),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => _genderChanged(false),
+                            child: SvgPicture.asset(
+                              AppIcons.femaleIcon,
+                              height: 60,
+                              width: 60,
+                              color: _genderSelected
+                                  ? !_isMale
+                                      ? theme.textTheme.headline6?.color
+                                      : theme.textTheme.headline6?.color
+                                          ?.withOpacity(.3)
+                                  : theme.textTheme.headline6?.color
+                                      ?.withOpacity(.1),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -264,7 +304,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _nameIsValid &&
         _passwordIsValid &&
         _passwordConfirmIsValid &&
-        _locationIsValid;
+        _locationIsValid && _genderSelected;
   }
 
   void _registerOnPressed(AuthCubit authCubit) {
@@ -278,6 +318,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       location: location,
       password: _passwordController.text,
       device: widget.device,
+      genderIsMale: _isMale,
     );
   }
 
@@ -298,6 +339,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
           }
         },
       );
+
+  void _genderChanged(bool value) {
+    _notificationsRemove(_serverMessage);
+    setState(() {
+      if (!_genderSelected) _genderSelected = true;
+      _isMale = value;
+      _buttonValidate();
+    });
+  }
 
   void _nameValidate() {
     _notificationsRemove(_serverMessage);
