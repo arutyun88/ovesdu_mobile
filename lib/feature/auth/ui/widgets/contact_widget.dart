@@ -151,6 +151,7 @@ class _ContactWidgetState extends State<ContactWidget> {
               widget.countryCodeController.text =
                   _selectedCountryNotifier.value.code;
               widget.onTapConfirmWhenCorrect();
+              nextStepEnabled = true;
             });
       },
     );
