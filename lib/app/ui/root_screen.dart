@@ -10,7 +10,7 @@ import '../data/setting_provider/locale_provider.dart';
 import '../data/setting_provider/theme_provider.dart';
 import '../domain/entities/device_entity/device_entity.dart';
 
-class RootScreen extends StatelessWidget {
+class RootScreen extends StatefulWidget {
   const RootScreen({
     Key? key,
     required this.device,
@@ -20,9 +20,22 @@ class RootScreen extends StatelessWidget {
   final bool firstStart;
 
   @override
+  State<RootScreen> createState() => _RootScreenState();
+}
+
+class _RootScreenState extends State<RootScreen> {
+  late Locale locale;
+  late ThemeData theme;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    locale = Provider.of<LocaleProvider>(context).locale;
+    theme = Provider.of<ThemeProvider>(context).themeData;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final locale = Provider.of<LocaleProvider>(context).locale;
-    final theme = Provider.of<ThemeProvider>(context).themeData;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: theme.brightness == Brightness.light
           ? SystemUiOverlayStyle.dark
@@ -36,8 +49,8 @@ class RootScreen extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: AuthBuilder(
           isNotAuthorized: (context) => LoginScreen(
-            device: device,
-            firstStart: firstStart,
+            device: widget.device,
+            firstStart: widget.firstStart,
           ),
           isAuthorized: (context, value, child) => const MainScreen(),
         ),

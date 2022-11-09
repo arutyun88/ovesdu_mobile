@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:ovesdu_mobile/l10n/l10n.dart';
 
+import '../../helpers/setting_key.dart';
+
 class LocaleProvider extends ChangeNotifier {
   String _locale;
 
@@ -12,9 +14,9 @@ class LocaleProvider extends ChangeNotifier {
         .firstWhere((element) => element.languageCode == _locale);
   }
 
-  void setLocale(String locale) async {
-    final settings = await Hive.openBox('settings');
-    settings.put('locale', locale);
+  Future<void> setLocale(String locale) async {
+    final settings = await Hive.openBox(SettingKey.settings);
+    settings.put(SettingKey.locale, locale);
     _locale = locale;
     notifyListeners();
   }

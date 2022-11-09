@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:ovesdu_mobile/app/ui/config/app_theme.dart';
+
+import '../../helpers/setting_key.dart';
+import '../../ui/config/app_theme.dart';
 
 class ThemeProvider extends ChangeNotifier {
   bool isLightTheme;
@@ -10,8 +12,8 @@ class ThemeProvider extends ChangeNotifier {
   ThemeData get themeData => isLightTheme ? AppTheme.light : AppTheme.dark;
 
   void setTheme() async {
-    final settings = await Hive.openBox('settings');
-    settings.put('lightTheme', !isLightTheme);
+    final settings = await Hive.openBox(SettingKey.settings);
+    settings.put(SettingKey.theme, !isLightTheme);
     isLightTheme = !isLightTheme;
     settings.close();
     notifyListeners();

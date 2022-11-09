@@ -364,6 +364,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _nameIsComplete = true;
       _nameIsValid = true;
     }
+    _buttonValidate();
   }
 
   void _locationValidate() {

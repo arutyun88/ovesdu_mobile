@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -11,10 +12,11 @@ import '../di/init_di.dart';
 import '../domain/app_builder.dart';
 import '../domain/app_runner.dart';
 import '../domain/entities/device_entity/device_entity.dart';
+import '../helpers/setting_key.dart';
 
 class MainAppRunner implements AppRunner {
-  String locale = Platform.localeName.split('_').first;
-  bool isLightTheme = false;
+  late String locale;
+  late bool isLightTheme;
   late DeviceEntity device;
   late bool firstStart;
   late Directory directory;
@@ -27,15 +29,33 @@ class MainAppRunner implements AppRunner {
   Future<void> preloadData() async {
     WidgetsFlutterBinding.ensureInitialized();
     initDi(env);
-
     directory = await path_provider.getApplicationDocumentsDirectory();
     Hive.init(directory.path);
-    final settings = await Hive.openBox('settings');
-    locale = settings.get('locale') ?? locale;
-    isLightTheme = settings.get('lightTheme') ?? isLightTheme;
+    final settings = await Hive.openBox(SettingKey.settings);
+
+    locale = settings.get(SettingKey.locale) ??
+        _setSetting(
+          settings,
+          SettingKey.locale,
+          Platform.localeName.split('_').first,
+        );
+
+    isLightTheme = settings.get(SettingKey.theme) ??
+        _setSetting(
+          settings,
+          SettingKey.theme,
+          SchedulerBinding.instance.window.platformBrightness ==
+              Brightness.light,
+        );
+
     device = await _getDeviceInfo();
-    firstStart = settings.get('firstStart') ?? true;
-    settings.put('firstStart', false);
+
+    firstStart = settings.get(SettingKey.firstStart) ?? true;
+    _setSetting(
+      settings,
+      SettingKey.firstStart,
+      false,
+    );
   }
 
   @override
@@ -69,5 +89,10 @@ class MainAppRunner implements AppRunner {
     }
 
     return DeviceEntity(deviceType: deviceType, deviceId: deviceId);
+  }
+
+  dynamic _setSetting(Box<dynamic> settings, String key, dynamic value) {
+    settings.put(key, value);
+    return settings.get(key);
   }
 }
