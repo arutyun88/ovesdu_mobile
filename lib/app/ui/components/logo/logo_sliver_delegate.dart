@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/setting_provider/theme_provider.dart';
+import '../setting_widget.dart';
 import 'logo_widget.dart';
 
 class LogoDelegate extends SliverPersistentHeaderDelegate {
@@ -39,7 +40,7 @@ class LogoDelegate extends SliverPersistentHeaderDelegate {
             child: ValueListenableBuilder<bool>(
               valueListenable: isAuth,
               builder: (context, auth, child) {
-                final style = Provider.of<ThemeProvider>(context, listen: false)
+                final style = Provider.of<ThemeProvider>(context)
                     .themeData
                     .textTheme
                     .headline5;
@@ -51,6 +52,12 @@ class LogoDelegate extends SliverPersistentHeaderDelegate {
                 );
               },
             ),
+          ),
+        if ((1 - percent) > .60)
+          const Positioned(
+            top: 10,
+            right: 34,
+            child: SettingWidget(),
           ),
       ],
     );

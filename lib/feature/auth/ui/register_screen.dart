@@ -11,6 +11,7 @@ import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/helpers/app_icons.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/app_scaffold.dart';
+import '../../../app/ui/components/setting_widget.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../app/ui/components/text_fields/formatter/common.dart';
 import '../../../app/ui/components/text_fields/formatter/date_text_formatter.dart';
@@ -120,163 +121,184 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: ListView(
                 physics: const ClampingScrollPhysics(),
                 children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0),
-                      child: CupertinoButton(
-                        minSize: 0,
-                        padding: EdgeInsets.zero,
-                        child: Text(
-                          _dictionary.toStart,
-                          style: theme.textTheme.headline6?.copyWith(
-                            color: AppColors.orange,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop(false);
-                        },
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _ConfirmedValue(
-                            name: _dictionary.registerConfirmedUsernameLabel,
-                            value: widget.username,
-                          ),
-                          _ConfirmedValue(
-                            name: _dictionary.registerConfirmedEmailLabel,
-                            value: widget.email,
-                          ),
-                          _ConfirmedValue(
-                            name: _dictionary.registerConfirmedPhoneLabel,
-                            value:
-                                '${widget.phoneNumber} (${widget.phoneCountryCode})',
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  AppTextField(
-                    controller: _nameController,
-                    hintText: _dictionary.nameHint,
-                    labelText: _dictionary.nameLabel,
-                    borderColor:
-                        _nameIsComplete ? AppColors.orange : AppColors.red,
-                    textCapitalization: TextCapitalization.words,
-                    onChanged: (value) => setState(_nameValidate),
-                  ),
-                  const SizedBox(height: 24.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Stack(
                     children: [
-                      SizedBox(
-                        width: 180,
-                        child: AppTextField(
-                          fieldType: TextFieldType.date,
-                          keyboardType: TextInputType.number,
-                          textAlign: TextAlign.center,
-                          controller: _dateOfBirthController,
-                          borderColor: _dateIsComplete
-                              ? AppColors.orange
-                              : AppColors.red,
-                          hintText: _dictionary.dateOfBirthLabel,
-                          labelText: _dictionary.dateOfBirthLabel,
-                          onChanged: (value) => setState(_dateValidate),
-                        ),
-                      ),
-                      Row(
+                      Column(
                         children: [
-                          GestureDetector(
-                            onTap: () => _genderChanged(true),
-                            child: SvgPicture.asset(
-                              AppIcons.maleIcon,
-                              height: 60,
-                              width: 60,
-                              color: _genderSelected
-                                  ? _isMale
-                                      ? theme.textTheme.headline6?.color
-                                      : theme.textTheme.headline6?.color
-                                          ?.withOpacity(.3)
-                                  : theme.textTheme.headline6?.color
-                                      ?.withOpacity(.1),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 12.0),
+                              child: CupertinoButton(
+                                minSize: 0,
+                                padding: EdgeInsets.zero,
+                                child: Text(
+                                  _dictionary.toStart,
+                                  style: theme.textTheme.headline6?.copyWith(
+                                    color: AppColors.orange,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop(false);
+                                },
+                              ),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () => _genderChanged(false),
-                            child: SvgPicture.asset(
-                              AppIcons.femaleIcon,
-                              height: 60,
-                              width: 60,
-                              color: _genderSelected
-                                  ? !_isMale
-                                      ? theme.textTheme.headline6?.color
-                                      : theme.textTheme.headline6?.color
-                                          ?.withOpacity(.3)
-                                  : theme.textTheme.headline6?.color
-                                      ?.withOpacity(.1),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _ConfirmedValue(
+                                    name: _dictionary
+                                        .registerConfirmedUsernameLabel,
+                                    value: widget.username,
+                                  ),
+                                  _ConfirmedValue(
+                                    name:
+                                        _dictionary.registerConfirmedEmailLabel,
+                                    value: widget.email,
+                                  ),
+                                  _ConfirmedValue(
+                                    name:
+                                        _dictionary.registerConfirmedPhoneLabel,
+                                    value:
+                                        '${widget.phoneNumber} (${widget.phoneCountryCode})',
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          AppTextField(
+                            controller: _nameController,
+                            hintText: _dictionary.nameHint,
+                            labelText: _dictionary.nameLabel,
+                            borderColor: _nameIsComplete
+                                ? AppColors.orange
+                                : AppColors.red,
+                            textCapitalization: TextCapitalization.words,
+                            onChanged: (value) => setState(_nameValidate),
+                          ),
+                          const SizedBox(height: 24.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: 180,
+                                child: AppTextField(
+                                  fieldType: TextFieldType.date,
+                                  keyboardType: TextInputType.number,
+                                  textAlign: TextAlign.center,
+                                  controller: _dateOfBirthController,
+                                  borderColor: _dateIsComplete
+                                      ? AppColors.orange
+                                      : AppColors.red,
+                                  hintText: _dictionary.dateOfBirthLabel,
+                                  labelText: _dictionary.dateOfBirthLabel,
+                                  onChanged: (value) => setState(_dateValidate),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () => _genderChanged(true),
+                                    child: SvgPicture.asset(
+                                      AppIcons.maleIcon,
+                                      height: 60,
+                                      width: 60,
+                                      color: _genderSelected
+                                          ? _isMale
+                                              ? theme.textTheme.headline6?.color
+                                              : theme.textTheme.headline6?.color
+                                                  ?.withOpacity(.3)
+                                          : theme.textTheme.headline6?.color
+                                              ?.withOpacity(.1),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () => _genderChanged(false),
+                                    child: SvgPicture.asset(
+                                      AppIcons.femaleIcon,
+                                      height: 60,
+                                      width: 60,
+                                      color: _genderSelected
+                                          ? !_isMale
+                                              ? theme.textTheme.headline6?.color
+                                              : theme.textTheme.headline6?.color
+                                                  ?.withOpacity(.3)
+                                          : theme.textTheme.headline6?.color
+                                              ?.withOpacity(.1),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 24.0),
+                          AppTextField(
+                            controller: _countryController,
+                            hintText: _dictionary.countryHint,
+                            borderColor: AppColors.orange,
+                            onTap: _changeLocation,
+                            readOnly: true,
+                          ),
+                          const SizedBox(height: 12.0),
+                          AppTextField(
+                            controller: _cityController,
+                            hintText: _dictionary.cityHint,
+                            borderColor: AppColors.orange,
+                            readOnly: true,
+                            onTap: _changeLocation,
+                          ),
+                          const SizedBox(height: 24.0),
+                          AppTextField(
+                            fieldType: TextFieldType.password,
+                            controller: _passwordController,
+                            hintText: _dictionary.passwordHint,
+                            labelText: _dictionary.passwordLabel,
+                            borderColor: _passwordIsComplete
+                                ? AppColors.orange
+                                : AppColors.red,
+                            onChanged: (value) => setState(_passwordValidate),
+                          ),
+                          const SizedBox(height: 12.0),
+                          AppTextField(
+                            fieldType: TextFieldType.password,
+                            controller: _passwordConfirmController,
+                            hintText: _dictionary.passwordConfirmHint,
+                            labelText: _dictionary.passwordConfirmLabel,
+                            borderColor: _passwordConfirmIsComplete
+                                ? AppColors.orange
+                                : AppColors.red,
+                            onChanged: (value) =>
+                                setState(_passwordConfirmValidate),
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 30.0),
+                              child: DefaultButton(
+                                title: _dictionary.register,
+                                enable: _buttonEnabled,
+                                onPressed: () {
+                                  _registerOnPressed(context.read<AuthCubit>());
+                                },
+                              ),
                             ),
                           ),
                         ],
+                      ),
+                      const Positioned(
+                        top: 10,
+                        right: 0,
+                        child: SettingWidget(),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 24.0),
-                  AppTextField(
-                    controller: _countryController,
-                    hintText: _dictionary.countryHint,
-                    borderColor: AppColors.orange,
-                    onTap: _changeLocation,
-                    readOnly: true,
-                  ),
-                  const SizedBox(height: 12.0),
-                  AppTextField(
-                    controller: _cityController,
-                    hintText: _dictionary.cityHint,
-                    borderColor: AppColors.orange,
-                    readOnly: true,
-                    onTap: _changeLocation,
-                  ),
-                  const SizedBox(height: 24.0),
-                  AppTextField(
-                    fieldType: TextFieldType.password,
-                    controller: _passwordController,
-                    hintText: _dictionary.passwordHint,
-                    labelText: _dictionary.passwordLabel,
-                    borderColor:
-                        _passwordIsComplete ? AppColors.orange : AppColors.red,
-                    onChanged: (value) => setState(_passwordValidate),
-                  ),
-                  const SizedBox(height: 12.0),
-                  AppTextField(
-                    fieldType: TextFieldType.password,
-                    controller: _passwordConfirmController,
-                    hintText: _dictionary.passwordConfirmHint,
-                    labelText: _dictionary.passwordConfirmLabel,
-                    borderColor: _passwordConfirmIsComplete
-                        ? AppColors.orange
-                        : AppColors.red,
-                    onChanged: (value) => setState(_passwordConfirmValidate),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 30.0),
-                      child: DefaultButton(
-                        title: _dictionary.register,
-                        enable: _buttonEnabled,
-                        onPressed: () {
-                          _registerOnPressed(context.read<AuthCubit>());
-                        },
-                      ),
-                    ),
                   ),
                 ],
               ),
@@ -304,7 +326,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _nameIsValid &&
         _passwordIsValid &&
         _passwordConfirmIsValid &&
-        _locationIsValid && _genderSelected;
+        _locationIsValid &&
+        _genderSelected;
   }
 
   void _registerOnPressed(AuthCubit authCubit) {
