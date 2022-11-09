@@ -169,6 +169,7 @@ class _UsernameWidgetState extends State<UsernameWidget> {
                   CupertinoButton(
                     minSize: 0,
                     padding: EdgeInsets.zero,
+                    onPressed: _isAuthChanged,
                     child: Text(
                       widget.isAuth.value
                           ? _dictionary.register
@@ -178,12 +179,6 @@ class _UsernameWidgetState extends State<UsernameWidget> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    onPressed: () {
-                      setState(() {
-                        widget.isAuth.value = !widget.isAuth.value;
-                        FocusManager.instance.primaryFocus?.unfocus();
-                      });
-                    },
                   ),
                 ],
               ),
@@ -214,6 +209,15 @@ class _UsernameWidgetState extends State<UsernameWidget> {
         );
       },
     );
+  }
+
+  void _isAuthChanged() {
+    setState(() {
+      widget.isAuth.value = !widget.isAuth.value;
+      FocusManager.instance.primaryFocus?.unfocus();
+      _notificationsRemove(serverMessage);
+      isComplete = true;
+    });
   }
 
   void _notificationsUpdate(String message) {

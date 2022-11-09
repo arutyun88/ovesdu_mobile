@@ -68,7 +68,7 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
               inputFormatters: [
                 LengthLimitingTextInputFormatter(_selectedCountry.maxLength),
               ],
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.phone,
               controller: controller,
               focusNode: node,
               onChanged: (phone) {

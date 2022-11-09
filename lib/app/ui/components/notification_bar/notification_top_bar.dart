@@ -23,6 +23,7 @@ class _NotificationTopBarState extends State<NotificationTopBar>
   late Animation<double> _positionAnimation;
   late Tween<double> _tween;
   late List _changedList;
+  late ThemeProvider theme;
 
   @override
   void initState() {
@@ -52,6 +53,12 @@ class _NotificationTopBarState extends State<NotificationTopBar>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    theme = Provider.of<ThemeProvider>(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
@@ -62,10 +69,21 @@ class _NotificationTopBarState extends State<NotificationTopBar>
             child: SafeArea(
               bottom: false,
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 24),
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: AppColors.red.withOpacity(.9),
+                  boxShadow: [
+                    BoxShadow(
+                      color: theme.themeData.hintColor,
+                      blurRadius: 5.0,
+                    )
+                  ],
+                  color: theme.isLightTheme
+                      ? AppColors.red.withOpacity(.6)
+                      : AppColors.red.withOpacity(.9),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
