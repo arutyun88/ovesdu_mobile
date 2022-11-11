@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ovesdu_mobile/app/ui/components/buttons/language_button/language_button.dart';
 import 'package:ovesdu_mobile/feature/auth/domain/state/auth_cubit.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +14,7 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('MainScreen'),
         actions: [
+          const LanguageButton(),
           IconButton(
             onPressed: () => context.read<AuthCubit>().logOut(),
             icon: const Icon(Icons.exit_to_app),

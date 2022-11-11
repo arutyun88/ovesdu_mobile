@@ -11,7 +11,7 @@ import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/helpers/app_icons.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/app_scaffold.dart';
-import '../../../app/ui/components/setting_widget.dart';
+import '../../../app/ui/components/buttons/language_button/language_button.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../app/ui/components/text_fields/formatter/common.dart';
 import '../../../app/ui/components/text_fields/formatter/date_text_formatter.dart';
@@ -296,7 +296,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const Positioned(
                         top: 10,
                         right: 0,
-                        child: SettingWidget(),
+                        child: LanguageButton(),
                       ),
                     ],
                   ),

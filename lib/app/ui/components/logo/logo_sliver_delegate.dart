@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/setting_provider/theme_provider.dart';
-import '../setting_widget.dart';
+import '../buttons/language_button/language_button.dart';
 import 'logo_widget.dart';
 
 class LogoDelegate extends SliverPersistentHeaderDelegate {
@@ -57,7 +57,7 @@ class LogoDelegate extends SliverPersistentHeaderDelegate {
           const Positioned(
             top: 10,
             right: 34,
-            child: SettingWidget(),
+            child: LanguageButton(),
           ),
       ],
     );
