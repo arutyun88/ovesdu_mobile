@@ -20,7 +20,7 @@
   "passwordHint": "enter your password",
   "passwordConfirmLabel": "confirm password",
   "passwordConfirmHint": "confirm your password",
-  "passwordErrorText": "password cannot be shorter than 8 characters",
+  "passwordErrorText": "the password must be at least 8 characters and contain at least one:\n• capital letters of the Latin alphabet\n• lowercase letters of the Latin alphabet\n• numbers\n• special character !@#*/|\\%+=<>",
   "passwordNotCorrect": "password not correct",
   "passwordNotMatch": "passwords not match",
   "passwordForgot": "If you forgot your password, you can",
