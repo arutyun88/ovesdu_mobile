@@ -23,6 +23,7 @@ class AppTextField extends StatefulWidget {
     this.fieldType = TextFieldType.simple,
     this.textAlign = TextAlign.start,
     this.readOnly,
+    this.obscure = false,
   }) : super(key: key);
 
   final FocusNode? focus;
@@ -37,6 +38,7 @@ class AppTextField extends StatefulWidget {
   final TextFieldType fieldType;
   final TextAlign textAlign;
   final bool? readOnly;
+  final bool obscure;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -82,7 +84,7 @@ class _AppTextFieldState extends State<AppTextField> {
         readOnly: widget.readOnly ?? false,
         textAlign: widget.textAlign,
         keyboardType: widget.keyboardType,
-        obscureText: widget.fieldType == TextFieldType.password,
+        obscureText: widget.obscure,
         autocorrect: false,
         textCapitalization: widget.textCapitalization,
         inputFormatters: formatters,

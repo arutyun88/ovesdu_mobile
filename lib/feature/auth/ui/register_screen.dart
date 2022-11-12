@@ -68,6 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   late bool _genderSelected = false;
   late bool _isMale;
+  late bool _passwordObscure = true;
 
   @override
   void initState() {
@@ -113,13 +114,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
     return BlocListener<AuthCubit, AuthState>(
-      child: AppScaffold(
-        notifications: _notifications,
-        body: SafeArea(
-          child: GestureDetector(
-            onTap: () => setState(Helpers.unfocused),
+      child: GestureDetector(
+        onTap: () => setState(Helpers.unfocused),
+        child: AppScaffold(
+          notifications: _notifications,
+          body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 35.0),
+              padding: const EdgeInsets.symmetric(horizontal: mainPadding),
               child: ListView(
                 physics: const ClampingScrollPhysics(),
                 children: [
@@ -257,15 +258,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             onTap: _changeLocation,
                           ),
                           const SizedBox(height: 24.0),
-                          AppTextField(
-                            fieldType: TextFieldType.password,
-                            controller: _passwordController,
-                            hintText: _dictionary.passwordHint,
-                            labelText: _dictionary.passwordLabel,
-                            borderColor: _passwordIsComplete
-                                ? AppColors.orange
-                                : AppColors.red,
-                            onChanged: (value) => setState(_passwordValidate),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width -
+                                    buttonHeight -
+                                    mainPadding * 2 -
+                                    verticalPadding,
+                                child: AppTextField(
+                                  fieldType: TextFieldType.password,
+                                  controller: _passwordController,
+                                  hintText: _dictionary.passwordHint,
+                                  labelText: _dictionary.passwordLabel,
+                                  borderColor: _passwordIsComplete
+                                      ? AppColors.orange
+                                      : AppColors.red,
+                                  onChanged: (value) =>
+                                      setState(_passwordValidate),
+                                  obscure: _passwordObscure,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: _obscured,
+                                child: SizedBox(
+                                  height: buttonHeight,
+                                  width: buttonHeight,
+                                  child: Icon(
+                                    _passwordObscure
+                                        ? Icons.remove_red_eye_outlined
+                                        : Icons.remove_red_eye,
+                                    color: _passwordObscure
+                                        ? theme.hintColor
+                                        : theme.hintColor.withOpacity(.3),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 12.0),
                           AppTextField(
@@ -278,6 +307,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 : AppColors.red,
                             onChanged: (value) =>
                                 setState(_passwordConfirmValidate),
+                            obscure: _passwordObscure,
                           ),
                           Align(
                             alignment: Alignment.centerRight,
@@ -493,6 +523,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
     _buttonValidate();
   }
+
+  void _obscured() => setState(() => _passwordObscure = !_passwordObscure);
 
   void _notificationsUpdate(String message) {
     if (!_notifications.value.contains(message)) {

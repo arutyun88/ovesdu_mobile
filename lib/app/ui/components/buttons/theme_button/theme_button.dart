@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../const/const.dart';
 import '../../../../data/setting_provider/theme_provider.dart';
 import '../../../../helpers/app_icons.dart';
-
-const double buttonHeight = 46.0;
 
 class ThemeButton extends StatefulWidget {
   const ThemeButton({Key? key}) : super(key: key);

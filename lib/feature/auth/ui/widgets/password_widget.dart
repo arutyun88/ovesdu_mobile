@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../app/const/const.dart';
 import '../../../../app/const/reg_exr_const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
@@ -39,6 +41,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
   late AppLocalizations _dictionary;
 
   late String serverMessage = '';
+  late bool _passwordObscure = true;
 
   @override
   void initState() {
@@ -102,13 +105,41 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                   ),
                 ),
               ),
-              AppTextField(
-                fieldType: TextFieldType.password,
-                controller: widget.controller,
-                hintText: AppLocalizations.of(context)!.passwordHint,
-                labelText: AppLocalizations.of(context)!.passwordLabel,
-                borderColor: isComplete ? AppColors.orange : AppColors.red,
-                onChanged: (value) => setState(() => _validate()),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width -
+                        buttonHeight -
+                        mainPadding * 2 -
+                        verticalPadding,
+                    child: AppTextField(
+                      fieldType: TextFieldType.password,
+                      controller: widget.controller,
+                      hintText: AppLocalizations.of(context)!.passwordHint,
+                      labelText: AppLocalizations.of(context)!.passwordLabel,
+                      borderColor:
+                          isComplete ? AppColors.orange : AppColors.red,
+                      onChanged: (value) => setState(() => _validate()),
+                      obscure: _passwordObscure,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: _obscured,
+                    child: SizedBox(
+                      height: buttonHeight,
+                      width: buttonHeight,
+                      child: Icon(
+                        _passwordObscure
+                            ? Icons.remove_red_eye_outlined
+                            : Icons.remove_red_eye,
+                        color: _passwordObscure
+                            ? theme.hintColor
+                            : theme.hintColor.withOpacity(.3),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const CustomFlex(flex: 2),
               Padding(
@@ -183,6 +214,8 @@ class _PasswordWidgetState extends State<PasswordWidget> {
       },
     );
   }
+
+  void _obscured() => setState(() => _passwordObscure = !_passwordObscure);
 
   void _notificationsUpdate(String message) {
     if (!widget._notifications.value.contains(message)) {
