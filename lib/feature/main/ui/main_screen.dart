@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ovesdu_mobile/app/ui/components/buttons/language_button/language_button.dart';
-import 'package:ovesdu_mobile/feature/auth/domain/state/auth_cubit.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../app/const/const.dart';
+import '../../../app/data/setting_provider/theme_provider.dart';
+import '../../../app/ui/components/app_scaffold.dart';
+import '../../../app/ui/components/buttons/language_button/language_button.dart';
+import '../../../app/ui/components/buttons/theme_button/theme_button.dart';
+import '../../auth/domain/state/auth_cubit.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({
@@ -10,16 +16,102 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('MainScreen'),
-        actions: [
-          const LanguageButton(),
-          IconButton(
-            onPressed: () => context.read<AuthCubit>().logOut(),
-            icon: const Icon(Icons.exit_to_app),
-          ),
-        ],
+    return AppScaffold(
+      notifications: ValueNotifier([]),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: mainPadding),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: verticalPadding),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.only(right: verticalPadding),
+                            child: ThemeButton(),
+                          ),
+                          LanguageButton(),
+                        ],
+                      ),
+                      GestureDetector(
+                        onTap: () => context.read<AuthCubit>().logOut(),
+                        child: Icon(
+                          Icons.exit_to_app,
+                          size: buttonHeight,
+                          color: Provider.of<ThemeProvider>(context)
+                              .themeData
+                              .hintColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const Flexible(
+              fit: FlexFit.tight,
+              flex: 2,
+              child: SizedBox.shrink(),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: mainPadding),
+                child: Text(
+                  AppLocalizations.of(context)!.soonWillBeInteresting,
+                  style: Provider.of<ThemeProvider>(context)
+                      .themeData
+                      .textTheme
+                      .headline5,
+                ),
+              ),
+            ),
+            const Flexible(
+              fit: FlexFit.tight,
+              flex: 1,
+              child: SizedBox.shrink(),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: mainPadding),
+                child: Text(
+                  AppLocalizations.of(context)!.comeAgain,
+                  textAlign: TextAlign.end,
+                  style: Provider.of<ThemeProvider>(context)
+                      .themeData
+                      .textTheme
+                      .headline5,
+                ),
+              ),
+            ),
+            const Flexible(
+              fit: FlexFit.tight,
+              flex: 3,
+              child: SizedBox.shrink(),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: mainPadding),
+                child: Text(
+                  AppLocalizations.of(context)!.necessarily,
+                  textAlign: TextAlign.end,
+                  style: Provider.of<ThemeProvider>(context)
+                      .themeData
+                      .textTheme
+                      .headline5,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
