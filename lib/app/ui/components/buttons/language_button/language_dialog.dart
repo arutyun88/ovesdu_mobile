@@ -6,9 +6,7 @@ import '../../../../const/const.dart';
 import '../../../../data/setting_provider/theme_provider.dart';
 import '../../../config/app_colors.dart';
 
-const double buttonHeight = 46.0;
 const double itemHeight = 40;
-const double verticalPadding = 8;
 
 class LanguageDialog extends StatelessWidget {
   const LanguageDialog({
@@ -73,15 +71,17 @@ class LanguageDialog extends StatelessWidget {
                 (constraints.maxWidth - xOffset)
             : constraints.maxWidth - xOffset - mainPadding;
 
-        final availableVerticalSpace =
-            constraints.maxHeight - yOffset - buttonHeight - verticalPadding;
+        final availableVerticalSpace = constraints.maxHeight -
+            yOffset -
+            languageButtonSize -
+            verticalPadding;
 
         final showAtTop = openedHeight > availableVerticalSpace &&
             yOffset > constraints.maxHeight / 2;
 
         var calculatedYOffset = showAtTop
             ? yOffset - openedHeight - verticalPadding
-            : yOffset + buttonHeight + verticalPadding;
+            : yOffset + languageButtonSize + verticalPadding;
 
         final wouldOverlay =
             calculatedYOffset + openedHeight > constraints.maxHeight - bottom ||

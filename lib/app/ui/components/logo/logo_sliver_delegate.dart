@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../../../const/const.dart';
 import '../../../data/setting_provider/theme_provider.dart';
 import '../buttons/language_button/language_button.dart';
+import '../buttons/theme_button/theme_button.dart';
 import 'logo_widget.dart';
 
 class LogoDelegate extends SliverPersistentHeaderDelegate {
@@ -55,9 +57,15 @@ class LogoDelegate extends SliverPersistentHeaderDelegate {
           ),
         if ((1 - percent) > .60)
           const Positioned(
-            top: 10,
-            right: 34,
+            top: verticalPadding,
+            right: mainPadding,
             child: LanguageButton(),
+          ),
+        if ((1 - percent) > .60)
+          const Positioned(
+            top: verticalPadding,
+            right: mainPadding + languageButtonSize + mainPadding / 2,
+            child: ThemeButton(),
           ),
       ],
     );

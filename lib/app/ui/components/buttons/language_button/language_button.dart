@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../l10n/l10n.dart';
+import '../../../../const/const.dart';
 import '../../../../data/setting_provider/locale_provider.dart';
 import '../../../../data/setting_provider/theme_provider.dart';
 import 'language_dialog.dart';
@@ -62,8 +63,8 @@ class _LanguageButtonState extends State<LanguageButton> {
       key: _key,
       onTap: _open,
       child: Container(
-        height: buttonHeight,
-        width: buttonHeight,
+        height: languageButtonSize,
+        width: languageButtonSize,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(

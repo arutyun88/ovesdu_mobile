@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ovesdu_mobile/app/const/const.dart';
+import 'package:ovesdu_mobile/app/ui/components/buttons/theme_button/theme_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/const/reg_exr_const.dart';
@@ -129,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             alignment: Alignment.centerLeft,
                             child: Padding(
                               padding:
-                                  const EdgeInsets.symmetric(vertical: 12.0),
+                                  const EdgeInsets.symmetric(vertical: 16.0),
                               child: CupertinoButton(
                                 minSize: 0,
                                 padding: EdgeInsets.zero,
@@ -294,9 +296,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       ),
                       const Positioned(
-                        top: 10,
+                        top: verticalPadding,
                         right: 0,
                         child: LanguageButton(),
+                      ),
+                      const Positioned(
+                        top: verticalPadding,
+                        right: mainPadding / 2 + languageButtonSize,
+                        child: ThemeButton(),
                       ),
                     ],
                   ),

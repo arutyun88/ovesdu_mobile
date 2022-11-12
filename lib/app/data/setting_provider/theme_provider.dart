@@ -15,7 +15,6 @@ class ThemeProvider extends ChangeNotifier {
     final settings = await Hive.openBox(SettingKey.settings);
     settings.put(SettingKey.theme, !isLightTheme);
     isLightTheme = !isLightTheme;
-    settings.close();
     notifyListeners();
   }
 }
