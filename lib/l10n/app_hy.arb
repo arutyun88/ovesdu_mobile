@@ -63,7 +63,7 @@
   "stayOnTheDarkSide": "մնալ մութ կողմում",
   "stayOnTheBrightSide": "մնալ լուսավոր կողմում",
   "themAndLangChangeLater": "հավելվածի թեման և լեզուն կարող է փոխվել ավելի ուշ՝ կարգավորումներում",
-  "soonWillBeInteresting": "Բարև!\n\nԱյստեղ շատ շուտով հետաքրքիր բան կլինի...",
+  "soonWillBeInteresting": "Բարև{username}!\n\nԱյստեղ շատ շուտով հետաքրքիր բան կլինի...",
   "comeAgain": "...կրկին համեցեք...",
   "necessarily": "...պարտադիր"
 }

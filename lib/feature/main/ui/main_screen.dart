@@ -35,6 +35,8 @@ class _MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<_MainScreen> {
+  late String _name = '';
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -43,6 +45,9 @@ class _MainScreenState extends State<_MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ProfileCubit>().state.whenOrNull(received: (userEntity) {
+      _name = ' ${userEntity.name}';
+    });
     return AppScaffold(
       notifications: ValueNotifier([]),
       body: SafeArea(
@@ -91,7 +96,7 @@ class _MainScreenState extends State<_MainScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: mainPadding),
                 child: Text(
-                  AppLocalizations.of(context)!.soonWillBeInteresting,
+                  AppLocalizations.of(context)!.soonWillBeInteresting(_name),
                   style: Provider.of<ThemeProvider>(context)
                       .themeData
                       .textTheme

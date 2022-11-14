@@ -90,7 +90,14 @@
   "stayOnTheDarkSide": "stay on the dark side",
   "stayOnTheBrightSide": "stay on the bright side",
   "themAndLangChangeLater": "the theme and language of the application can be changed later in the settings",
-  "soonWillBeInteresting": "Hello!\n\nThere will be something interesting here very soon...",
+  "soonWillBeInteresting": "Hello{username}!\n\nThere will be something interesting here very soon...",
+  "@soonWillBeInteresting": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
   "comeAgain": "...come again...",
   "necessarily": "...necessarily"
 }
