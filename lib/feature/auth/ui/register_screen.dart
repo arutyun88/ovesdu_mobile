@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,6 +12,7 @@ import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/helpers/app_icons.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/app_scaffold.dart';
+import '../../../app/ui/components/buttons/empty_button.dart';
 import '../../../app/ui/components/buttons/language_button/language_button.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../app/ui/components/text_fields/formatter/common.dart';
@@ -48,9 +48,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late final TextEditingController _passwordController;
   late final TextEditingController _passwordConfirmController;
   late final TextEditingController _dateOfBirthController;
-  late final TextEditingController _countryController;
-  late final TextEditingController _cityController;
   late LocationEntity location;
+  late String _locationToString = '';
 
   late bool _dateIsComplete;
   late bool _dateIsValid = false;
@@ -77,18 +76,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _passwordController = TextEditingController();
     _passwordConfirmController = TextEditingController();
     _dateOfBirthController = TextEditingController();
-    _countryController = TextEditingController();
-    _cityController = TextEditingController();
 
     _nameIsComplete = true;
-    _nameIsValid = false;
     _dateIsComplete = true;
-    _dateIsValid = false;
-    _locationIsValid = false;
     _passwordIsComplete = true;
-    _passwordIsValid = false;
     _passwordConfirmIsComplete = true;
-    _passwordConfirmIsValid = true;
     _buttonValidate();
   }
 
@@ -104,8 +96,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _passwordController.dispose();
     _passwordConfirmController.dispose();
     _dateOfBirthController.dispose();
-    _countryController.dispose();
-    _cityController.dispose();
     _notifications.dispose();
     super.dispose();
   }
@@ -133,9 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 16.0),
-                              child: CupertinoButton(
-                                minSize: 0,
-                                padding: EdgeInsets.zero,
+                              child: EmptyButton(
                                 child: Text(
                                   _dictionary.toStart,
                                   style: theme.textTheme.headline6?.copyWith(
@@ -242,20 +230,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ],
                           ),
                           const SizedBox(height: 24.0),
-                          AppTextField(
-                            controller: _countryController,
-                            hintText: _dictionary.countryHint,
-                            borderColor: AppColors.orange,
-                            onTap: _changeLocation,
-                            readOnly: true,
-                          ),
-                          const SizedBox(height: 12.0),
-                          AppTextField(
-                            controller: _cityController,
-                            hintText: _dictionary.cityHint,
-                            borderColor: AppColors.orange,
-                            readOnly: true,
-                            onTap: _changeLocation,
+                          EmptyButton(
+                            onPressed: _changeLocation,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0,
+                                vertical: 16.0,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(
+                                  width: .5,
+                                  color: AppColors.orange,
+                                ),
+                              ),
+                              child: Align(
+                                alignment: _locationToString.isNotEmpty
+                                    ? Alignment.centerLeft
+                                    : Alignment.centerRight,
+                                child: Text(
+                                  _locationToString.isNotEmpty
+                                      ? _locationToString
+                                      : _dictionary.locationChoose,
+                                  textAlign: _locationToString.isNotEmpty
+                                      ? TextAlign.start
+                                      : TextAlign.end,
+                                  style: _locationToString.isNotEmpty
+                                      ? theme.textTheme.headline5
+                                      : theme.textTheme.headline5?.copyWith(
+                                          fontStyle: FontStyle.italic,
+                                          color: theme
+                                              .textTheme.headline5?.color
+                                              ?.withOpacity(.5),
+                                        ),
+                                ),
+                              ),
+                            ),
                           ),
                           const SizedBox(height: 24.0),
                           Row(
@@ -393,12 +404,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Helpers.unfocused();
           if (value != null) {
             location = value as LocationEntity;
-            _cityController.text = location.city;
-            _countryController.text = location.country;
-            _locationValidate();
+            _locationToString = _location(location);
+            setState(() {});
+            _locationIsValid = true;
+            _buttonValidate();
           }
         },
       );
+
+  String _location(LocationEntity location) {
+    String city = '';
+    String area = '';
+    String country = '';
+    if (location.city.isNotEmpty) {
+      city = location.city;
+    }
+    if (location.area.isNotEmpty) {
+      area = '${city.isNotEmpty ? ', ' : ''}${location.area}';
+    }
+    if (location.country.isNotEmpty) {
+      country = '${area.isNotEmpty ? ', ' : ''}${location.country}';
+    }
+    return '$city$area$country';
+  }
 
   void _genderChanged(bool value) {
     _notificationsRemove(_serverMessage);
@@ -423,18 +451,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _notificationsRemove(_dictionary.nameInvalid);
       _nameIsComplete = true;
       _nameIsValid = true;
-    }
-    _buttonValidate();
-  }
-
-  void _locationValidate() {
-    _notificationsRemove(_serverMessage);
-    if (_countryController.text.isEmpty || _cityController.text.isEmpty) {
-      _notificationsRemove(_dictionary.countryInvalid);
-      _locationIsValid = false;
-    } else {
-      _notificationsRemove(_dictionary.countryInvalid);
-      _locationIsValid = true;
     }
     _buttonValidate();
   }
