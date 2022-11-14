@@ -12,6 +12,8 @@ _$_LocationEntity _$$_LocationEntityFromJson(Map<String, dynamic> json) =>
       country: json['country'] as String,
       area: json['area'] as String,
       city: json['city'] as String,
+      lat: json['lat'] as String?,
+      lon: json['lon'] as String?,
     );
 
 Map<String, dynamic> _$$_LocationEntityToJson(_$_LocationEntity instance) =>
@@ -20,4 +22,6 @@ Map<String, dynamic> _$$_LocationEntityToJson(_$_LocationEntity instance) =>
       'country': instance.country,
       'area': instance.area,
       'city': instance.city,
+      'lat': instance.lat,
+      'lon': instance.lon,
     };

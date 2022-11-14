@@ -10,12 +10,16 @@ class LocationDto {
   final dynamic country;
   final dynamic area;
   final dynamic city;
+  final dynamic lat;
+  final dynamic lon;
 
   LocationDto({
     this.id,
     this.country,
     this.area,
     this.city,
+    this.lat,
+    this.lon,
   });
 
   factory LocationDto.fromJson(Map<String, dynamic> json) =>
@@ -28,5 +32,7 @@ class LocationDto {
         country: country.toString(),
         area: area.toString(),
         city: city.toString(),
+        lat: lat.toString(),
+        lon: lon.toString(),
       );
 }

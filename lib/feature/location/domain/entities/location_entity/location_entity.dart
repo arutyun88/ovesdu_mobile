@@ -11,6 +11,8 @@ class LocationEntity with _$LocationEntity {
     required String country,
     required String area,
     required String city,
+    String? lat,
+    String? lon,
   }) = _LocationEntity;
 
   factory LocationEntity.fromJson(Map<String, dynamic> json) =>

@@ -24,6 +24,8 @@ mixin _$LocationEntity {
   String get country => throw _privateConstructorUsedError;
   String get area => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
+  String? get lat => throw _privateConstructorUsedError;
+  String? get lon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +39,13 @@ abstract class $LocationEntityCopyWith<$Res> {
           LocationEntity value, $Res Function(LocationEntity) then) =
       _$LocationEntityCopyWithImpl<$Res, LocationEntity>;
   @useResult
-  $Res call({String id, String country, String area, String city});
+  $Res call(
+      {String id,
+      String country,
+      String area,
+      String city,
+      String? lat,
+      String? lon});
 }
 
 /// @nodoc
@@ -57,6 +65,8 @@ class _$LocationEntityCopyWithImpl<$Res, $Val extends LocationEntity>
     Object? country = null,
     Object? area = null,
     Object? city = null,
+    Object? lat = freezed,
+    Object? lon = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -75,6 +85,14 @@ class _$LocationEntityCopyWithImpl<$Res, $Val extends LocationEntity>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
+      lat: freezed == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lon: freezed == lon
+          ? _value.lon
+          : lon // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -87,7 +105,13 @@ abstract class _$$_LocationEntityCopyWith<$Res>
       __$$_LocationEntityCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String country, String area, String city});
+  $Res call(
+      {String id,
+      String country,
+      String area,
+      String city,
+      String? lat,
+      String? lon});
 }
 
 /// @nodoc
@@ -105,6 +129,8 @@ class __$$_LocationEntityCopyWithImpl<$Res>
     Object? country = null,
     Object? area = null,
     Object? city = null,
+    Object? lat = freezed,
+    Object? lon = freezed,
   }) {
     return _then(_$_LocationEntity(
       id: null == id
@@ -123,6 +149,14 @@ class __$$_LocationEntityCopyWithImpl<$Res>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
+      lat: freezed == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lon: freezed == lon
+          ? _value.lon
+          : lon // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -134,7 +168,9 @@ class _$_LocationEntity implements _LocationEntity {
       {required this.id,
       required this.country,
       required this.area,
-      required this.city});
+      required this.city,
+      this.lat,
+      this.lon});
 
   factory _$_LocationEntity.fromJson(Map<String, dynamic> json) =>
       _$$_LocationEntityFromJson(json);
@@ -147,10 +183,14 @@ class _$_LocationEntity implements _LocationEntity {
   final String area;
   @override
   final String city;
+  @override
+  final String? lat;
+  @override
+  final String? lon;
 
   @override
   String toString() {
-    return 'LocationEntity(id: $id, country: $country, area: $area, city: $city)';
+    return 'LocationEntity(id: $id, country: $country, area: $area, city: $city, lat: $lat, lon: $lon)';
   }
 
   @override
@@ -161,12 +201,15 @@ class _$_LocationEntity implements _LocationEntity {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.area, area) || other.area == area) &&
-            (identical(other.city, city) || other.city == city));
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lon, lon) || other.lon == lon));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, country, area, city);
+  int get hashCode =>
+      Object.hash(runtimeType, id, country, area, city, lat, lon);
 
   @JsonKey(ignore: true)
   @override
@@ -187,7 +230,9 @@ abstract class _LocationEntity implements LocationEntity {
       {required final String id,
       required final String country,
       required final String area,
-      required final String city}) = _$_LocationEntity;
+      required final String city,
+      final String? lat,
+      final String? lon}) = _$_LocationEntity;
 
   factory _LocationEntity.fromJson(Map<String, dynamic> json) =
       _$_LocationEntity.fromJson;
@@ -200,6 +245,10 @@ abstract class _LocationEntity implements LocationEntity {
   String get area;
   @override
   String get city;
+  @override
+  String? get lat;
+  @override
+  String? get lon;
   @override
   @JsonKey(ignore: true)
   _$$_LocationEntityCopyWith<_$_LocationEntity> get copyWith =>
