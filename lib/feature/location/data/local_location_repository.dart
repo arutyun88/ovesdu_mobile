@@ -29,7 +29,7 @@ class LocalLocationRepository implements LocationRepository {
   }
 
   @override
-  Future<List<LocationEntity>> saveLocations(String query) async {
+  Future<List<LocationEntity>> searchLocations(String query) async {
     await dioContainer.setHeaderLocale();
 
     try {
@@ -37,6 +37,24 @@ class LocalLocationRepository implements LocationRepository {
       return (response.data['data'] as List)
           .map((location) => LocationDto.fromJson(location).toEntity())
           .toList();
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<LocationEntity> saveLocation(String lat, String lon) async {
+    await dioContainer.setHeaderLocale();
+
+    try {
+      final response = await dioContainer.dio.put(
+        '/library/location',
+        queryParameters: {
+          'lat': lat,
+          'lon': lon,
+        },
+      );
+      return LocationDto.fromJson(response.data['data']).toEntity();
     } catch (_) {
       rethrow;
     }

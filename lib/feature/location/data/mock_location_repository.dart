@@ -34,7 +34,7 @@ class MockLocationRepository implements LocationRepository {
     }
   }
   @override
-  Future<List<LocationEntity>> saveLocations(String query) async {
+  Future<List<LocationEntity>> searchLocations(String query) async {
     try {
       var values = _cities.map((e) => LocationDto.fromJson(e)).toList();
       var result = values
@@ -66,6 +66,12 @@ class MockLocationRepository implements LocationRepository {
 
   bool _checkValue(dynamic value, String query) =>
       (value as String).toLowerCase().contains(query.toLowerCase());
+
+  @override
+  Future<LocationEntity> saveLocation(String lat, String lon) {
+    // TODO: implement saveLocation
+    throw UnimplementedError();
+  }
 }
 
 final _cities = [

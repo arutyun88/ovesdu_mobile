@@ -26,7 +26,7 @@ class LocationCubit extends Bloc<LocationEvent, LocationState> {
     emit(LocationState.requested());
     try {
       final result = remote
-          ? await locationRepository.saveLocations(query)
+          ? await locationRepository.searchLocations(query)
           : await locationRepository.getLocations(query);
       emit(LocationState.received(result));
     } catch (error, stackTrace) {
