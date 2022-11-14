@@ -16,10 +16,7 @@ class NetworkProfileRepository implements ProfileRepository {
   Future<UserEntity> getProfile() async {
     await dioContainer.setHeaderLocale();
     try {
-      final response = await dioContainer.dio.get(
-        // '/auth/user',
-        ':6100/user',
-      );
+      final response = await dioContainer.dio.get('/auth/user');
       return UserDto.fromJson(response.data['data']).toEntity(
         LocationEntity(
           id: '1',

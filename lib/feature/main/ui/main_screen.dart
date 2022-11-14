@@ -45,9 +45,6 @@ class _MainScreenState extends State<_MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    context.read<ProfileCubit>().state.whenOrNull(received: (userEntity) {
-      _name = ' ${userEntity.name}';
-    });
     return AppScaffold(
       notifications: ValueNotifier([]),
       body: SafeArea(
@@ -91,16 +88,27 @@ class _MainScreenState extends State<_MainScreen> {
               flex: 2,
               child: SizedBox.shrink(),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: mainPadding),
-                child: Text(
-                  AppLocalizations.of(context)!.soonWillBeInteresting(_name),
-                  style: Provider.of<ThemeProvider>(context)
-                      .themeData
-                      .textTheme
-                      .headline5,
+            BlocListener<ProfileCubit, ProfileState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  received: (userEntity) {
+                    setState(() {
+                      _name = ' ${userEntity.name}';
+                    });
+                  },
+                );
+              },
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: mainPadding),
+                  child: Text(
+                    AppLocalizations.of(context)!.soonWillBeInteresting(_name),
+                    style: Provider.of<ThemeProvider>(context)
+                        .themeData
+                        .textTheme
+                        .headline5,
+                  ),
                 ),
               ),
             ),
