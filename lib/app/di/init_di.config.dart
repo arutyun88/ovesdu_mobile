@@ -8,18 +8,21 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../feature/auth/data/local_auth_repository.dart' as _i14;
-import '../../feature/auth/data/mock_auth_repository.dart' as _i8;
-import '../../feature/auth/data/network_auth_repository.dart' as _i15;
-import '../../feature/auth/domain/auth_repository.dart' as _i7;
-import '../../feature/location/data/local_location_repository.dart' as _i12;
-import '../../feature/location/data/mock_location_repository.dart' as _i11;
-import '../../feature/location/data/network_location_repository.dart' as _i13;
-import '../../feature/location/domain/location_repository.dart' as _i10;
+import '../../feature/auth/data/local_auth_repository.dart' as _i15;
+import '../../feature/auth/data/mock_auth_repository.dart' as _i16;
+import '../../feature/auth/data/network_auth_repository.dart' as _i17;
+import '../../feature/auth/domain/auth_repository.dart' as _i14;
+import '../../feature/auth/domain/state/auth_cubit.dart' as _i18;
+import '../../feature/location/data/local_location_repository.dart' as _i10;
+import '../../feature/location/data/mock_location_repository.dart' as _i9;
+import '../../feature/location/data/network_location_repository.dart' as _i11;
+import '../../feature/location/domain/location_repository.dart' as _i8;
+import '../../feature/profile/data/network_profile_repository.dart' as _i13;
+import '../../feature/profile/domain/profile_repository.dart' as _i12;
 import '../data/config/dev_app_config.dart' as _i4;
 import '../data/config/prod_app_config.dart' as _i5;
 import '../data/config/test_app_config.dart' as _i6;
-import '../data/dio_container.dart' as _i9;
+import '../data/dio_container.dart' as _i7;
 import '../domain/app_config.dart' as _i3;
 
 const String _dev = 'dev';
@@ -50,30 +53,33 @@ _i1.GetIt $initGetIt(
     _i6.TestAppConfig(),
     registerFor: {_test},
   );
-  gh.factory<_i7.AuthRepository>(
-    () => _i8.MockAuthRepository(),
+  gh.singleton<_i7.DioContainer>(_i7.DioContainer(get<_i3.AppConfig>()));
+  gh.factory<_i8.LocationRepository>(
+    () => _i9.MockLocationRepository(),
     registerFor: {_test},
   );
-  gh.singleton<_i9.DioContainer>(_i9.DioContainer(get<_i3.AppConfig>()));
-  gh.factory<_i10.LocationRepository>(
-    () => _i11.MockLocationRepository(),
+  gh.factory<_i8.LocationRepository>(
+    () => _i10.LocalLocationRepository(get<_i7.DioContainer>()),
+    registerFor: {_dev},
+  );
+  gh.factory<_i8.LocationRepository>(
+    () => _i11.NetworkLocationRepository(get<_i7.DioContainer>()),
+    registerFor: {_prod},
+  );
+  gh.factory<_i12.ProfileRepository>(
+      () => _i13.NetworkProfileRepository(get<_i7.DioContainer>()));
+  gh.factory<_i14.AuthRepository>(
+    () => _i15.LocalAuthRepository(get<_i7.DioContainer>()),
+    registerFor: {_dev},
+  );
+  gh.factory<_i14.AuthRepository>(
+    () => _i16.MockAuthRepository(get<_i7.DioContainer>()),
     registerFor: {_test},
   );
-  gh.factory<_i10.LocationRepository>(
-    () => _i12.LocalLocationRepository(get<_i9.DioContainer>()),
-    registerFor: {_dev},
-  );
-  gh.factory<_i10.LocationRepository>(
-    () => _i13.NetworkLocationRepository(get<_i9.DioContainer>()),
+  gh.factory<_i14.AuthRepository>(
+    () => _i17.NetworkAuthRepository(get<_i7.DioContainer>()),
     registerFor: {_prod},
   );
-  gh.factory<_i7.AuthRepository>(
-    () => _i14.LocalAuthRepository(get<_i9.DioContainer>()),
-    registerFor: {_dev},
-  );
-  gh.factory<_i7.AuthRepository>(
-    () => _i15.NetworkAuthRepository(get<_i9.DioContainer>()),
-    registerFor: {_prod},
-  );
+  gh.singleton<_i18.AuthCubit>(_i18.AuthCubit(get<_i14.AuthRepository>()));
   return get;
 }

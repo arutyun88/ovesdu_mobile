@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../../app/domain/entities/error_entity/error_entity.dart';
@@ -14,6 +15,7 @@ part 'auth_cubit.freezed.dart';
 
 part 'auth_cubit.g.dart';
 
+@Singleton()
 class AuthCubit extends HydratedCubit<AuthState> {
   AuthCubit(this.authRepository) : super(AuthState.notAuthorized());
 

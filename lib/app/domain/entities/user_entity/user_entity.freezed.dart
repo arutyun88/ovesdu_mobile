@@ -23,8 +23,8 @@ mixin _$UserEntity {
   String get name => throw _privateConstructorUsedError;
   String get dateOfBirth => throw _privateConstructorUsedError;
   LocationEntity get location => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  DeviceEntity get device => throw _privateConstructorUsedError;
+  String? get password => throw _privateConstructorUsedError;
+  DeviceEntity? get device => throw _privateConstructorUsedError;
   bool get genderIsMale => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -46,12 +46,12 @@ abstract class $UserEntityCopyWith<$Res> {
       String name,
       String dateOfBirth,
       LocationEntity location,
-      String password,
-      DeviceEntity device,
+      String? password,
+      DeviceEntity? device,
       bool genderIsMale});
 
   $LocationEntityCopyWith<$Res> get location;
-  $DeviceEntityCopyWith<$Res> get device;
+  $DeviceEntityCopyWith<$Res>? get device;
 }
 
 /// @nodoc
@@ -74,8 +74,8 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? name = null,
     Object? dateOfBirth = null,
     Object? location = null,
-    Object? password = null,
-    Object? device = null,
+    Object? password = freezed,
+    Object? device = freezed,
     Object? genderIsMale = null,
   }) {
     return _then(_value.copyWith(
@@ -107,14 +107,14 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as LocationEntity,
-      password: null == password
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      device: null == device
+              as String?,
+      device: freezed == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
-              as DeviceEntity,
+              as DeviceEntity?,
       genderIsMale: null == genderIsMale
           ? _value.genderIsMale
           : genderIsMale // ignore: cast_nullable_to_non_nullable
@@ -132,8 +132,12 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
 
   @override
   @pragma('vm:prefer-inline')
-  $DeviceEntityCopyWith<$Res> get device {
-    return $DeviceEntityCopyWith<$Res>(_value.device, (value) {
+  $DeviceEntityCopyWith<$Res>? get device {
+    if (_value.device == null) {
+      return null;
+    }
+
+    return $DeviceEntityCopyWith<$Res>(_value.device!, (value) {
       return _then(_value.copyWith(device: value) as $Val);
     });
   }
@@ -155,14 +159,14 @@ abstract class _$$_UserEntityCopyWith<$Res>
       String name,
       String dateOfBirth,
       LocationEntity location,
-      String password,
-      DeviceEntity device,
+      String? password,
+      DeviceEntity? device,
       bool genderIsMale});
 
   @override
   $LocationEntityCopyWith<$Res> get location;
   @override
-  $DeviceEntityCopyWith<$Res> get device;
+  $DeviceEntityCopyWith<$Res>? get device;
 }
 
 /// @nodoc
@@ -183,8 +187,8 @@ class __$$_UserEntityCopyWithImpl<$Res>
     Object? name = null,
     Object? dateOfBirth = null,
     Object? location = null,
-    Object? password = null,
-    Object? device = null,
+    Object? password = freezed,
+    Object? device = freezed,
     Object? genderIsMale = null,
   }) {
     return _then(_$_UserEntity(
@@ -216,14 +220,14 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as LocationEntity,
-      password: null == password
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      device: null == device
+              as String?,
+      device: freezed == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
-              as DeviceEntity,
+              as DeviceEntity?,
       genderIsMale: null == genderIsMale
           ? _value.genderIsMale
           : genderIsMale // ignore: cast_nullable_to_non_nullable
@@ -243,8 +247,8 @@ class _$_UserEntity implements _UserEntity {
       required this.name,
       required this.dateOfBirth,
       required this.location,
-      required this.password,
-      required this.device,
+      this.password,
+      this.device,
       required this.genderIsMale});
 
   @override
@@ -262,9 +266,9 @@ class _$_UserEntity implements _UserEntity {
   @override
   final LocationEntity location;
   @override
-  final String password;
+  final String? password;
   @override
-  final DeviceEntity device;
+  final DeviceEntity? device;
   @override
   final bool genderIsMale;
 
@@ -327,8 +331,8 @@ abstract class _UserEntity implements UserEntity {
       required final String name,
       required final String dateOfBirth,
       required final LocationEntity location,
-      required final String password,
-      required final DeviceEntity device,
+      final String? password,
+      final DeviceEntity? device,
       required final bool genderIsMale}) = _$_UserEntity;
 
   @override
@@ -346,9 +350,9 @@ abstract class _UserEntity implements UserEntity {
   @override
   LocationEntity get location;
   @override
-  String get password;
+  String? get password;
   @override
-  DeviceEntity get device;
+  DeviceEntity? get device;
   @override
   bool get genderIsMale;
   @override

@@ -27,7 +27,6 @@ class MainAppRunner implements AppRunner {
 
   @override
   Future<void> preloadData() async {
-    WidgetsFlutterBinding.ensureInitialized();
     initDi(env);
     directory = await path_provider.getApplicationDocumentsDirectory();
     Hive.init(directory.path);
@@ -60,12 +59,14 @@ class MainAppRunner implements AppRunner {
 
   @override
   Future<void> run(AppBuilder appBuilder) async {
-    await preloadData();
-    final storage = await HydratedStorage.build(storageDirectory: directory);
+    final storage = await HydratedStorage.build(
+      storageDirectory: await path_provider.getApplicationDocumentsDirectory(),
+    );
     HydratedBlocOverrides.runZoned(
-      () => runApp(
-        appBuilder.buildApp(locale, isLightTheme, device, firstStart),
-      ),
+      () async {
+        await preloadData();
+        runApp(appBuilder.buildApp(locale, isLightTheme, device, firstStart));
+      },
       storage: storage,
     );
     log(env);

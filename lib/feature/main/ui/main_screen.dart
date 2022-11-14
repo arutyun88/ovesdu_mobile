@@ -1,18 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../app/const/const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
+import '../../../app/di/init_di.dart';
 import '../../../app/ui/components/app_scaffold.dart';
 import '../../../app/ui/components/buttons/language_button/language_button.dart';
 import '../../../app/ui/components/buttons/theme_button/theme_button.dart';
 import '../../auth/domain/state/auth_cubit.dart';
+import '../../profile/domain/profile_repository.dart';
+import '../../profile/domain/state/profile_cubit.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({
+  const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => ProfileCubit(locator<ProfileRepository>()),
+      child: const _MainScreen(),
+    );
+  }
+}
+
+class _MainScreen extends StatefulWidget {
+  const _MainScreen({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<_MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<_MainScreen> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    context.read<ProfileCubit>().getProfile();
+  }
 
   @override
   Widget build(BuildContext context) {

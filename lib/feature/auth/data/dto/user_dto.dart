@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ovesdu_mobile/feature/location/domain/entities/location_entity/location_entity.dart';
 
 import '../../../../app/domain/entities/user_entity/user_entity.dart';
 import 'device_dto.dart';
@@ -47,7 +48,19 @@ class UserDto {
         dateOfBirth: entity.dateOfBirth,
         locationId: entity.location.uuid,
         password: entity.password,
-        deviceList: [DeviceDto.toDto(entity.device)],
+        deviceList: [DeviceDto.toDto(entity.device!)],
         gender: entity.genderIsMale ? 'male' : 'female',
+      );
+
+  UserEntity toEntity(LocationEntity location) => UserEntity(
+        username: username,
+        email: email,
+        phoneNumber: phoneNumber,
+        phoneCountryCode: phoneCountryCode,
+        name: name,
+        dateOfBirth: dateOfBirth,
+        location: location,
+        password: '',
+        genderIsMale: gender == 'male',
       );
 }

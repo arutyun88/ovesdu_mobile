@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 
+import '../../../app/data/dio_container.dart';
 import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/domain/entities/user_entity/user_entity.dart';
 import '../domain/auth_repository.dart';
@@ -8,6 +9,10 @@ import '../domain/entities/token_entity/token_entity.dart';
 @Injectable(as: AuthRepository)
 @test
 class MockAuthRepository implements AuthRepository {
+  final DioContainer dioContainer;
+
+  MockAuthRepository(this.dioContainer);
+
   @override
   Future getName({
     required String username,

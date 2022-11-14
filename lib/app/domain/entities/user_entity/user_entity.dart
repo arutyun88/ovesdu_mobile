@@ -15,8 +15,8 @@ class UserEntity with _$UserEntity {
     required String name,
     required String dateOfBirth,
     required LocationEntity location,
-    required String password,
-    required DeviceEntity device,
+    String? password,
+    DeviceEntity? device,
     required bool genderIsMale,
   }) = _UserEntity;
 }

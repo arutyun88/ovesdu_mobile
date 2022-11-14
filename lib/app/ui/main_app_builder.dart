@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../../feature/auth/domain/auth_repository.dart';
 import '../../feature/auth/domain/state/auth_cubit.dart';
 import '../data/setting_provider/locale_provider.dart';
 import '../data/setting_provider/theme_provider.dart';
@@ -43,7 +42,7 @@ class _GlobalProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        BlocProvider(create: (context) => AuthCubit(locator<AuthRepository>())),
+        BlocProvider(create: (context) => locator.get<AuthCubit>()),
         ChangeNotifierProvider(create: (_) => LocaleProvider(locale)),
         ChangeNotifierProvider(create: (_) => ThemeProvider(isLightTheme)),
       ],
