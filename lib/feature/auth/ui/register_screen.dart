@@ -494,26 +494,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _passwordController.selection = updateCursorSelection(value);
     if (value.isEmpty) {
       _notificationsRemove(_dictionary.passwordErrorText);
-      _notificationsRemove(_dictionary.passwordNotCorrect);
       _passwordIsComplete = true;
       _passwordIsValid = false;
     } else {
-      if (value.length < 8) {
+      if (value.validatePassword()) {
+        _notificationsRemove(_dictionary.passwordErrorText);
+        _passwordIsComplete = true;
+        _passwordIsValid = true;
+      } else {
         _notificationsUpdate(_dictionary.passwordErrorText);
-        _notificationsRemove(_dictionary.passwordNotCorrect);
         _passwordIsComplete = false;
         _passwordIsValid = false;
-      } else {
-        _notificationsRemove(_dictionary.passwordErrorText);
-        if (value.validatePassword()) {
-          _notificationsRemove(_dictionary.passwordNotCorrect);
-          _passwordIsComplete = true;
-          _passwordIsValid = true;
-        } else {
-          _notificationsUpdate(_dictionary.passwordNotCorrect);
-          _passwordIsComplete = false;
-          _passwordIsValid = false;
-        }
       }
     }
     _passwordConfirmValidate();

@@ -64,22 +64,14 @@ class _PasswordWidgetState extends State<PasswordWidget> {
       isComplete = true;
       nextStepEnabled = false;
     } else {
-      if (value.length < 8) {
+      if (value.validatePassword()) {
+        _notificationsRemove(_dictionary.passwordErrorText);
+        isComplete = true;
+        nextStepEnabled = true;
+      } else {
         _notificationsUpdate(_dictionary.passwordErrorText);
-        _notificationsRemove(_dictionary.passwordNotCorrect);
         isComplete = false;
         nextStepEnabled = false;
-      } else {
-        _notificationsRemove(_dictionary.passwordErrorText);
-        if (value.validatePassword()) {
-          _notificationsRemove(_dictionary.passwordNotCorrect);
-          isComplete = true;
-          nextStepEnabled = true;
-        } else {
-          _notificationsUpdate(_dictionary.passwordNotCorrect);
-          isComplete = false;
-          nextStepEnabled = false;
-        }
       }
     }
   }
