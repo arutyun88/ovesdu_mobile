@@ -13,6 +13,7 @@ LocationDto _$LocationDtoFromJson(Map<String, dynamic> json) => LocationDto(
       city: json['city'],
       lat: json['lat'],
       lon: json['lon'],
+      uuid: json['uuid'],
     );
 
 Map<String, dynamic> _$LocationDtoToJson(LocationDto instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$LocationDtoToJson(LocationDto instance) =>
       'city': instance.city,
       'lat': instance.lat,
       'lon': instance.lon,
+      'uuid': instance.uuid,
     };

@@ -26,6 +26,7 @@ mixin _$LocationEntity {
   String get city => throw _privateConstructorUsedError;
   String? get lat => throw _privateConstructorUsedError;
   String? get lon => throw _privateConstructorUsedError;
+  String? get uuid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $LocationEntityCopyWith<$Res> {
       String area,
       String city,
       String? lat,
-      String? lon});
+      String? lon,
+      String? uuid});
 }
 
 /// @nodoc
@@ -67,6 +69,7 @@ class _$LocationEntityCopyWithImpl<$Res, $Val extends LocationEntity>
     Object? city = null,
     Object? lat = freezed,
     Object? lon = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -93,6 +96,10 @@ class _$LocationEntityCopyWithImpl<$Res, $Val extends LocationEntity>
           ? _value.lon
           : lon // ignore: cast_nullable_to_non_nullable
               as String?,
+      uuid: freezed == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -111,7 +118,8 @@ abstract class _$$_LocationEntityCopyWith<$Res>
       String area,
       String city,
       String? lat,
-      String? lon});
+      String? lon,
+      String? uuid});
 }
 
 /// @nodoc
@@ -131,6 +139,7 @@ class __$$_LocationEntityCopyWithImpl<$Res>
     Object? city = null,
     Object? lat = freezed,
     Object? lon = freezed,
+    Object? uuid = freezed,
   }) {
     return _then(_$_LocationEntity(
       id: null == id
@@ -157,6 +166,10 @@ class __$$_LocationEntityCopyWithImpl<$Res>
           ? _value.lon
           : lon // ignore: cast_nullable_to_non_nullable
               as String?,
+      uuid: freezed == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -170,7 +183,8 @@ class _$_LocationEntity implements _LocationEntity {
       required this.area,
       required this.city,
       this.lat,
-      this.lon});
+      this.lon,
+      this.uuid});
 
   factory _$_LocationEntity.fromJson(Map<String, dynamic> json) =>
       _$$_LocationEntityFromJson(json);
@@ -187,10 +201,12 @@ class _$_LocationEntity implements _LocationEntity {
   final String? lat;
   @override
   final String? lon;
+  @override
+  final String? uuid;
 
   @override
   String toString() {
-    return 'LocationEntity(id: $id, country: $country, area: $area, city: $city, lat: $lat, lon: $lon)';
+    return 'LocationEntity(id: $id, country: $country, area: $area, city: $city, lat: $lat, lon: $lon, uuid: $uuid)';
   }
 
   @override
@@ -203,13 +219,14 @@ class _$_LocationEntity implements _LocationEntity {
             (identical(other.area, area) || other.area == area) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.lat, lat) || other.lat == lat) &&
-            (identical(other.lon, lon) || other.lon == lon));
+            (identical(other.lon, lon) || other.lon == lon) &&
+            (identical(other.uuid, uuid) || other.uuid == uuid));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, country, area, city, lat, lon);
+      Object.hash(runtimeType, id, country, area, city, lat, lon, uuid);
 
   @JsonKey(ignore: true)
   @override
@@ -232,7 +249,8 @@ abstract class _LocationEntity implements LocationEntity {
       required final String area,
       required final String city,
       final String? lat,
-      final String? lon}) = _$_LocationEntity;
+      final String? lon,
+      final String? uuid}) = _$_LocationEntity;
 
   factory _LocationEntity.fromJson(Map<String, dynamic> json) =
       _$_LocationEntity.fromJson;
@@ -249,6 +267,8 @@ abstract class _LocationEntity implements LocationEntity {
   String? get lat;
   @override
   String? get lon;
+  @override
+  String? get uuid;
   @override
   @JsonKey(ignore: true)
   _$$_LocationEntityCopyWith<_$_LocationEntity> get copyWith =>

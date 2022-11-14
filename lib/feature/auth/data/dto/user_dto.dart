@@ -45,7 +45,7 @@ class UserDto {
         phoneCountryCode: entity.phoneCountryCode,
         name: entity.name,
         dateOfBirth: entity.dateOfBirth,
-        locationId: entity.location.id,
+        locationId: entity.location.uuid,
         password: entity.password,
         deviceList: [DeviceDto.toDto(entity.device)],
         gender: entity.genderIsMale ? 'male' : 'female',

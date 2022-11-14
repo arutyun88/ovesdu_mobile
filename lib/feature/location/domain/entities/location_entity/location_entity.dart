@@ -13,6 +13,7 @@ class LocationEntity with _$LocationEntity {
     required String city,
     String? lat,
     String? lon,
+    String? uuid,
   }) = _LocationEntity;
 
   factory LocationEntity.fromJson(Map<String, dynamic> json) =>
