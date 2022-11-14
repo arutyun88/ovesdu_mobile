@@ -11,7 +11,7 @@ class LocationListTile extends StatelessWidget {
   }) : super(key: key);
 
   final LocationEntity location;
-  final VoidCallback press;
+  final VoidCallback? press;
 
   @override
   Widget build(BuildContext context) {

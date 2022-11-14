@@ -77,6 +77,7 @@
   "setLocation": "location",
   "locationHint": "search your location",
   "locationResourceChange": "not found? click me",
+  "locationResourceChanged": "search on third party resources",
   "dateInvalid": "incorrect date of birth",
   "isUnderage": "registration is not possible because you are a minor",
   "nameInvalid": "incorrect first or last name",

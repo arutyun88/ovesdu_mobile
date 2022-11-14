@@ -50,6 +50,7 @@
   "setLocation": "գտնվելու վայրը",
   "locationHint": "որոնել ձեր գտնվելու վայրը",
   "locationResourceChange": "չի գտնվել? սեղմիր ինձ",
+  "locationResourceChanged": "երրորդ կողմի ռեսուրսներում որոնում",
   "dateInvalid": "ծննդյան սխալ ամսաթիվ",
   "isUnderage": "գրանցումը հնարավոր չէ, քանի որ դուք անչափահաս եք",
   "nameInvalid": "սխալ անուն կամ ազգանուն",

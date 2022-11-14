@@ -50,6 +50,7 @@
   "setLocation": "местоположение",
   "locationHint": "поиск вашего местоположения",
   "locationResourceChange": "не нашёл? нажми",
+  "locationResourceChanged": "поиск на сторонних ресурсах",
   "dateInvalid": "некорректная дата рождения",
   "isUnderage": "регистрация невозможна, так как вы несовершеннолетний",
   "nameInvalid": "некорректное имя или фамилия",
