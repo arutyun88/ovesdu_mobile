@@ -22,4 +22,8 @@ abstract class AuthRepository {
   });
 
   Future<TokenEntity> signUp(UserEntity userEntity);
+
+  Future<TokenEntity> refreshToken({
+    String? refreshToken,
+  });
 }

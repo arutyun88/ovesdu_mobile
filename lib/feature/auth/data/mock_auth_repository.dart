@@ -72,4 +72,12 @@ class MockAuthRepository implements AuthRepository {
       },
     );
   }
+
+  @override
+  Future<TokenEntity> refreshToken({
+    String? refreshToken,
+  }) {
+    // TODO: implement refreshToken
+    throw UnimplementedError();
+  }
 }
