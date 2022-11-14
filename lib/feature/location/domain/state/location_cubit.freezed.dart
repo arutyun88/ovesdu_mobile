@@ -21,6 +21,7 @@ mixin _$LocationState {
     required TResult Function() init,
     required TResult Function() requested,
     required TResult Function(List<LocationEntity> locations) received,
+    required TResult Function(LocationEntity location) saved,
     required TResult Function(ErrorEntity error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +30,7 @@ mixin _$LocationState {
     TResult? Function()? init,
     TResult? Function()? requested,
     TResult? Function(List<LocationEntity> locations)? received,
+    TResult? Function(LocationEntity location)? saved,
     TResult? Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +39,7 @@ mixin _$LocationState {
     TResult Function()? init,
     TResult Function()? requested,
     TResult Function(List<LocationEntity> locations)? received,
+    TResult Function(LocationEntity location)? saved,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) =>
@@ -46,6 +49,7 @@ mixin _$LocationState {
     required TResult Function(_LocationStateInit value) init,
     required TResult Function(_LocationStateRequested value) requested,
     required TResult Function(_LocationStateReceived value) received,
+    required TResult Function(_LocationStateSaved value) saved,
     required TResult Function(_LocationStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +58,7 @@ mixin _$LocationState {
     TResult? Function(_LocationStateInit value)? init,
     TResult? Function(_LocationStateRequested value)? requested,
     TResult? Function(_LocationStateReceived value)? received,
+    TResult? Function(_LocationStateSaved value)? saved,
     TResult? Function(_LocationStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +67,7 @@ mixin _$LocationState {
     TResult Function(_LocationStateInit value)? init,
     TResult Function(_LocationStateRequested value)? requested,
     TResult Function(_LocationStateReceived value)? received,
+    TResult Function(_LocationStateSaved value)? saved,
     TResult Function(_LocationStateError value)? error,
     required TResult orElse(),
   }) =>
@@ -127,6 +133,7 @@ class _$_LocationStateInit implements _LocationStateInit {
     required TResult Function() init,
     required TResult Function() requested,
     required TResult Function(List<LocationEntity> locations) received,
+    required TResult Function(LocationEntity location) saved,
     required TResult Function(ErrorEntity error) error,
   }) {
     return init();
@@ -138,6 +145,7 @@ class _$_LocationStateInit implements _LocationStateInit {
     TResult? Function()? init,
     TResult? Function()? requested,
     TResult? Function(List<LocationEntity> locations)? received,
+    TResult? Function(LocationEntity location)? saved,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return init?.call();
@@ -149,6 +157,7 @@ class _$_LocationStateInit implements _LocationStateInit {
     TResult Function()? init,
     TResult Function()? requested,
     TResult Function(List<LocationEntity> locations)? received,
+    TResult Function(LocationEntity location)? saved,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -164,6 +173,7 @@ class _$_LocationStateInit implements _LocationStateInit {
     required TResult Function(_LocationStateInit value) init,
     required TResult Function(_LocationStateRequested value) requested,
     required TResult Function(_LocationStateReceived value) received,
+    required TResult Function(_LocationStateSaved value) saved,
     required TResult Function(_LocationStateError value) error,
   }) {
     return init(this);
@@ -175,6 +185,7 @@ class _$_LocationStateInit implements _LocationStateInit {
     TResult? Function(_LocationStateInit value)? init,
     TResult? Function(_LocationStateRequested value)? requested,
     TResult? Function(_LocationStateReceived value)? received,
+    TResult? Function(_LocationStateSaved value)? saved,
     TResult? Function(_LocationStateError value)? error,
   }) {
     return init?.call(this);
@@ -186,6 +197,7 @@ class _$_LocationStateInit implements _LocationStateInit {
     TResult Function(_LocationStateInit value)? init,
     TResult Function(_LocationStateRequested value)? requested,
     TResult Function(_LocationStateReceived value)? received,
+    TResult Function(_LocationStateSaved value)? saved,
     TResult Function(_LocationStateError value)? error,
     required TResult orElse(),
   }) {
@@ -242,6 +254,7 @@ class _$_LocationStateRequested implements _LocationStateRequested {
     required TResult Function() init,
     required TResult Function() requested,
     required TResult Function(List<LocationEntity> locations) received,
+    required TResult Function(LocationEntity location) saved,
     required TResult Function(ErrorEntity error) error,
   }) {
     return requested();
@@ -253,6 +266,7 @@ class _$_LocationStateRequested implements _LocationStateRequested {
     TResult? Function()? init,
     TResult? Function()? requested,
     TResult? Function(List<LocationEntity> locations)? received,
+    TResult? Function(LocationEntity location)? saved,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return requested?.call();
@@ -264,6 +278,7 @@ class _$_LocationStateRequested implements _LocationStateRequested {
     TResult Function()? init,
     TResult Function()? requested,
     TResult Function(List<LocationEntity> locations)? received,
+    TResult Function(LocationEntity location)? saved,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -279,6 +294,7 @@ class _$_LocationStateRequested implements _LocationStateRequested {
     required TResult Function(_LocationStateInit value) init,
     required TResult Function(_LocationStateRequested value) requested,
     required TResult Function(_LocationStateReceived value) received,
+    required TResult Function(_LocationStateSaved value) saved,
     required TResult Function(_LocationStateError value) error,
   }) {
     return requested(this);
@@ -290,6 +306,7 @@ class _$_LocationStateRequested implements _LocationStateRequested {
     TResult? Function(_LocationStateInit value)? init,
     TResult? Function(_LocationStateRequested value)? requested,
     TResult? Function(_LocationStateReceived value)? received,
+    TResult? Function(_LocationStateSaved value)? saved,
     TResult? Function(_LocationStateError value)? error,
   }) {
     return requested?.call(this);
@@ -301,6 +318,7 @@ class _$_LocationStateRequested implements _LocationStateRequested {
     TResult Function(_LocationStateInit value)? init,
     TResult Function(_LocationStateRequested value)? requested,
     TResult Function(_LocationStateReceived value)? received,
+    TResult Function(_LocationStateSaved value)? saved,
     TResult Function(_LocationStateError value)? error,
     required TResult orElse(),
   }) {
@@ -390,6 +408,7 @@ class _$_LocationStateReceived implements _LocationStateReceived {
     required TResult Function() init,
     required TResult Function() requested,
     required TResult Function(List<LocationEntity> locations) received,
+    required TResult Function(LocationEntity location) saved,
     required TResult Function(ErrorEntity error) error,
   }) {
     return received(locations);
@@ -401,6 +420,7 @@ class _$_LocationStateReceived implements _LocationStateReceived {
     TResult? Function()? init,
     TResult? Function()? requested,
     TResult? Function(List<LocationEntity> locations)? received,
+    TResult? Function(LocationEntity location)? saved,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return received?.call(locations);
@@ -412,6 +432,7 @@ class _$_LocationStateReceived implements _LocationStateReceived {
     TResult Function()? init,
     TResult Function()? requested,
     TResult Function(List<LocationEntity> locations)? received,
+    TResult Function(LocationEntity location)? saved,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -427,6 +448,7 @@ class _$_LocationStateReceived implements _LocationStateReceived {
     required TResult Function(_LocationStateInit value) init,
     required TResult Function(_LocationStateRequested value) requested,
     required TResult Function(_LocationStateReceived value) received,
+    required TResult Function(_LocationStateSaved value) saved,
     required TResult Function(_LocationStateError value) error,
   }) {
     return received(this);
@@ -438,6 +460,7 @@ class _$_LocationStateReceived implements _LocationStateReceived {
     TResult? Function(_LocationStateInit value)? init,
     TResult? Function(_LocationStateRequested value)? requested,
     TResult? Function(_LocationStateReceived value)? received,
+    TResult? Function(_LocationStateSaved value)? saved,
     TResult? Function(_LocationStateError value)? error,
   }) {
     return received?.call(this);
@@ -449,6 +472,7 @@ class _$_LocationStateReceived implements _LocationStateReceived {
     TResult Function(_LocationStateInit value)? init,
     TResult Function(_LocationStateRequested value)? requested,
     TResult Function(_LocationStateReceived value)? received,
+    TResult Function(_LocationStateSaved value)? saved,
     TResult Function(_LocationStateError value)? error,
     required TResult orElse(),
   }) {
@@ -466,6 +490,170 @@ abstract class _LocationStateReceived implements LocationState {
   List<LocationEntity> get locations;
   @JsonKey(ignore: true)
   _$$_LocationStateReceivedCopyWith<_$_LocationStateReceived> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LocationStateSavedCopyWith<$Res> {
+  factory _$$_LocationStateSavedCopyWith(_$_LocationStateSaved value,
+          $Res Function(_$_LocationStateSaved) then) =
+      __$$_LocationStateSavedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LocationEntity location});
+
+  $LocationEntityCopyWith<$Res> get location;
+}
+
+/// @nodoc
+class __$$_LocationStateSavedCopyWithImpl<$Res>
+    extends _$LocationStateCopyWithImpl<$Res, _$_LocationStateSaved>
+    implements _$$_LocationStateSavedCopyWith<$Res> {
+  __$$_LocationStateSavedCopyWithImpl(
+      _$_LocationStateSaved _value, $Res Function(_$_LocationStateSaved) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = null,
+  }) {
+    return _then(_$_LocationStateSaved(
+      null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as LocationEntity,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationEntityCopyWith<$Res> get location {
+    return $LocationEntityCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_LocationStateSaved implements _LocationStateSaved {
+  _$_LocationStateSaved(this.location);
+
+  @override
+  final LocationEntity location;
+
+  @override
+  String toString() {
+    return 'LocationState.saved(location: $location)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LocationStateSaved &&
+            (identical(other.location, location) ||
+                other.location == location));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, location);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LocationStateSavedCopyWith<_$_LocationStateSaved> get copyWith =>
+      __$$_LocationStateSavedCopyWithImpl<_$_LocationStateSaved>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() requested,
+    required TResult Function(List<LocationEntity> locations) received,
+    required TResult Function(LocationEntity location) saved,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return saved(location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? requested,
+    TResult? Function(List<LocationEntity> locations)? received,
+    TResult? Function(LocationEntity location)? saved,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return saved?.call(location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? requested,
+    TResult Function(List<LocationEntity> locations)? received,
+    TResult Function(LocationEntity location)? saved,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (saved != null) {
+      return saved(location);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LocationStateInit value) init,
+    required TResult Function(_LocationStateRequested value) requested,
+    required TResult Function(_LocationStateReceived value) received,
+    required TResult Function(_LocationStateSaved value) saved,
+    required TResult Function(_LocationStateError value) error,
+  }) {
+    return saved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LocationStateInit value)? init,
+    TResult? Function(_LocationStateRequested value)? requested,
+    TResult? Function(_LocationStateReceived value)? received,
+    TResult? Function(_LocationStateSaved value)? saved,
+    TResult? Function(_LocationStateError value)? error,
+  }) {
+    return saved?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LocationStateInit value)? init,
+    TResult Function(_LocationStateRequested value)? requested,
+    TResult Function(_LocationStateReceived value)? received,
+    TResult Function(_LocationStateSaved value)? saved,
+    TResult Function(_LocationStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (saved != null) {
+      return saved(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LocationStateSaved implements LocationState {
+  factory _LocationStateSaved(final LocationEntity location) =
+      _$_LocationStateSaved;
+
+  LocationEntity get location;
+  @JsonKey(ignore: true)
+  _$$_LocationStateSavedCopyWith<_$_LocationStateSaved> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -547,6 +735,7 @@ class _$_LocationStateError implements _LocationStateError {
     required TResult Function() init,
     required TResult Function() requested,
     required TResult Function(List<LocationEntity> locations) received,
+    required TResult Function(LocationEntity location) saved,
     required TResult Function(ErrorEntity error) error,
   }) {
     return error(this.error);
@@ -558,6 +747,7 @@ class _$_LocationStateError implements _LocationStateError {
     TResult? Function()? init,
     TResult? Function()? requested,
     TResult? Function(List<LocationEntity> locations)? received,
+    TResult? Function(LocationEntity location)? saved,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
@@ -569,6 +759,7 @@ class _$_LocationStateError implements _LocationStateError {
     TResult Function()? init,
     TResult Function()? requested,
     TResult Function(List<LocationEntity> locations)? received,
+    TResult Function(LocationEntity location)? saved,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -584,6 +775,7 @@ class _$_LocationStateError implements _LocationStateError {
     required TResult Function(_LocationStateInit value) init,
     required TResult Function(_LocationStateRequested value) requested,
     required TResult Function(_LocationStateReceived value) received,
+    required TResult Function(_LocationStateSaved value) saved,
     required TResult Function(_LocationStateError value) error,
   }) {
     return error(this);
@@ -595,6 +787,7 @@ class _$_LocationStateError implements _LocationStateError {
     TResult? Function(_LocationStateInit value)? init,
     TResult? Function(_LocationStateRequested value)? requested,
     TResult? Function(_LocationStateReceived value)? received,
+    TResult? Function(_LocationStateSaved value)? saved,
     TResult? Function(_LocationStateError value)? error,
   }) {
     return error?.call(this);
@@ -606,6 +799,7 @@ class _$_LocationStateError implements _LocationStateError {
     TResult Function(_LocationStateInit value)? init,
     TResult Function(_LocationStateRequested value)? requested,
     TResult Function(_LocationStateReceived value)? received,
+    TResult Function(_LocationStateSaved value)? saved,
     TResult Function(_LocationStateError value)? error,
     required TResult orElse(),
   }) {
@@ -627,43 +821,43 @@ abstract class _LocationStateError implements LocationState {
 
 /// @nodoc
 mixin _$LocationEvent {
-  String get query => throw _privateConstructorUsedError;
-  bool get remote => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query, bool remote) get,
+    required TResult Function(String lat, String lon) save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query, bool remote)? get,
+    TResult? Function(String lat, String lon)? save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query, bool remote)? get,
+    TResult Function(String lat, String lon)? save,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LocationEventGet value) get,
+    required TResult Function(LocationEventSave value) save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LocationEventGet value)? get,
+    TResult? Function(LocationEventSave value)? save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LocationEventGet value)? get,
+    TResult Function(LocationEventSave value)? save,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $LocationEventCopyWith<LocationEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -672,8 +866,6 @@ abstract class $LocationEventCopyWith<$Res> {
   factory $LocationEventCopyWith(
           LocationEvent value, $Res Function(LocationEvent) then) =
       _$LocationEventCopyWithImpl<$Res, LocationEvent>;
-  @useResult
-  $Res call({String query, bool remote});
 }
 
 /// @nodoc
@@ -685,33 +877,13 @@ class _$LocationEventCopyWithImpl<$Res, $Val extends LocationEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? query = null,
-    Object? remote = null,
-  }) {
-    return _then(_value.copyWith(
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      remote: null == remote
-          ? _value.remote
-          : remote // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$LocationEventGetCopyWith<$Res>
-    implements $LocationEventCopyWith<$Res> {
+abstract class _$$LocationEventGetCopyWith<$Res> {
   factory _$$LocationEventGetCopyWith(
           _$LocationEventGet value, $Res Function(_$LocationEventGet) then) =
       __$$LocationEventGetCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String query, bool remote});
 }
@@ -780,6 +952,7 @@ class _$LocationEventGet implements LocationEventGet {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query, bool remote) get,
+    required TResult Function(String lat, String lon) save,
   }) {
     return get(query, remote);
   }
@@ -788,6 +961,7 @@ class _$LocationEventGet implements LocationEventGet {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query, bool remote)? get,
+    TResult? Function(String lat, String lon)? save,
   }) {
     return get?.call(query, remote);
   }
@@ -796,6 +970,7 @@ class _$LocationEventGet implements LocationEventGet {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query, bool remote)? get,
+    TResult Function(String lat, String lon)? save,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -808,6 +983,7 @@ class _$LocationEventGet implements LocationEventGet {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LocationEventGet value) get,
+    required TResult Function(LocationEventSave value) save,
   }) {
     return get(this);
   }
@@ -816,6 +992,7 @@ class _$LocationEventGet implements LocationEventGet {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LocationEventGet value)? get,
+    TResult? Function(LocationEventSave value)? save,
   }) {
     return get?.call(this);
   }
@@ -824,6 +1001,7 @@ class _$LocationEventGet implements LocationEventGet {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LocationEventGet value)? get,
+    TResult Function(LocationEventSave value)? save,
     required TResult orElse(),
   }) {
     if (get != null) {
@@ -837,12 +1015,152 @@ abstract class LocationEventGet implements LocationEvent {
   const factory LocationEventGet(final String query, final bool remote) =
       _$LocationEventGet;
 
-  @override
   String get query;
-  @override
   bool get remote;
-  @override
   @JsonKey(ignore: true)
   _$$LocationEventGetCopyWith<_$LocationEventGet> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LocationEventSaveCopyWith<$Res> {
+  factory _$$LocationEventSaveCopyWith(
+          _$LocationEventSave value, $Res Function(_$LocationEventSave) then) =
+      __$$LocationEventSaveCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String lat, String lon});
+}
+
+/// @nodoc
+class __$$LocationEventSaveCopyWithImpl<$Res>
+    extends _$LocationEventCopyWithImpl<$Res, _$LocationEventSave>
+    implements _$$LocationEventSaveCopyWith<$Res> {
+  __$$LocationEventSaveCopyWithImpl(
+      _$LocationEventSave _value, $Res Function(_$LocationEventSave) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? lat = null,
+    Object? lon = null,
+  }) {
+    return _then(_$LocationEventSave(
+      null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == lon
+          ? _value.lon
+          : lon // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LocationEventSave implements LocationEventSave {
+  const _$LocationEventSave(this.lat, this.lon);
+
+  @override
+  final String lat;
+  @override
+  final String lon;
+
+  @override
+  String toString() {
+    return 'LocationEvent.save(lat: $lat, lon: $lon)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationEventSave &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lon, lon) || other.lon == lon));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, lat, lon);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocationEventSaveCopyWith<_$LocationEventSave> get copyWith =>
+      __$$LocationEventSaveCopyWithImpl<_$LocationEventSave>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String query, bool remote) get,
+    required TResult Function(String lat, String lon) save,
+  }) {
+    return save(lat, lon);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String query, bool remote)? get,
+    TResult? Function(String lat, String lon)? save,
+  }) {
+    return save?.call(lat, lon);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String query, bool remote)? get,
+    TResult Function(String lat, String lon)? save,
+    required TResult orElse(),
+  }) {
+    if (save != null) {
+      return save(lat, lon);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LocationEventGet value) get,
+    required TResult Function(LocationEventSave value) save,
+  }) {
+    return save(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LocationEventGet value)? get,
+    TResult? Function(LocationEventSave value)? save,
+  }) {
+    return save?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LocationEventGet value)? get,
+    TResult Function(LocationEventSave value)? save,
+    required TResult orElse(),
+  }) {
+    if (save != null) {
+      return save(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LocationEventSave implements LocationEvent {
+  const factory LocationEventSave(final String lat, final String lon) =
+      _$LocationEventSave;
+
+  String get lat;
+  String get lon;
+  @JsonKey(ignore: true)
+  _$$LocationEventSaveCopyWith<_$LocationEventSave> get copyWith =>
       throw _privateConstructorUsedError;
 }

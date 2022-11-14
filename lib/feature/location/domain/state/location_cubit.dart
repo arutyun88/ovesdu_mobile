@@ -18,6 +18,10 @@ class LocationCubit extends Bloc<LocationEvent, LocationState> {
       (event, emit) => getLocation(event.query, event.remote, emit),
       transformer: restartable(),
     );
+    on<LocationEventSave>(
+      (event, emit) => saveLocation(event.lat, event.lon, emit),
+      transformer: restartable(),
+    );
   }
 
   final LocationRepository locationRepository;
@@ -29,6 +33,17 @@ class LocationCubit extends Bloc<LocationEvent, LocationState> {
           ? await locationRepository.searchLocations(query)
           : await locationRepository.getLocations(query);
       emit(LocationState.received(result));
+    } catch (error, stackTrace) {
+      emit(LocationState.error(ErrorEntity.fromException(error)));
+      addError(error, stackTrace);
+    }
+  }
+
+  Future<void> saveLocation(String lat, String lon, Emitter emit) async {
+    emit(LocationState.requested());
+    try {
+      final result = await locationRepository.saveLocation(lat, lon);
+      emit(LocationState.saved(result));
     } catch (error, stackTrace) {
       emit(LocationState.error(ErrorEntity.fromException(error)));
       addError(error, stackTrace);
