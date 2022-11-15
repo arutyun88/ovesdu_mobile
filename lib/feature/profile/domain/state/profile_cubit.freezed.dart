@@ -20,7 +20,7 @@ mixin _$ProfileState {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(UserEntity userEntity) received,
+    required TResult Function(UserProfileEntity userEntity) received,
     required TResult Function(ErrorEntity error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$ProfileState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(UserEntity userEntity)? received,
+    TResult? Function(UserProfileEntity userEntity)? received,
     TResult? Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$ProfileState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(UserEntity userEntity)? received,
+    TResult Function(UserProfileEntity userEntity)? received,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +126,7 @@ class _$_ProfileStateInit implements _ProfileStateInit {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(UserEntity userEntity) received,
+    required TResult Function(UserProfileEntity userEntity) received,
     required TResult Function(ErrorEntity error) error,
   }) {
     return init();
@@ -137,7 +137,7 @@ class _$_ProfileStateInit implements _ProfileStateInit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(UserEntity userEntity)? received,
+    TResult? Function(UserProfileEntity userEntity)? received,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return init?.call();
@@ -148,7 +148,7 @@ class _$_ProfileStateInit implements _ProfileStateInit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(UserEntity userEntity)? received,
+    TResult Function(UserProfileEntity userEntity)? received,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +240,7 @@ class _$_ProfileStateWaiting implements _ProfileStateWaiting {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(UserEntity userEntity) received,
+    required TResult Function(UserProfileEntity userEntity) received,
     required TResult Function(ErrorEntity error) error,
   }) {
     return waiting();
@@ -251,7 +251,7 @@ class _$_ProfileStateWaiting implements _ProfileStateWaiting {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(UserEntity userEntity)? received,
+    TResult? Function(UserProfileEntity userEntity)? received,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return waiting?.call();
@@ -262,7 +262,7 @@ class _$_ProfileStateWaiting implements _ProfileStateWaiting {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(UserEntity userEntity)? received,
+    TResult Function(UserProfileEntity userEntity)? received,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -320,9 +320,9 @@ abstract class _$$_ProfileStateReceivedCopyWith<$Res> {
           $Res Function(_$_ProfileStateReceived) then) =
       __$$_ProfileStateReceivedCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserEntity userEntity});
+  $Res call({UserProfileEntity userEntity});
 
-  $UserEntityCopyWith<$Res> get userEntity;
+  $UserProfileEntityCopyWith<$Res> get userEntity;
 }
 
 /// @nodoc
@@ -342,14 +342,14 @@ class __$$_ProfileStateReceivedCopyWithImpl<$Res>
       null == userEntity
           ? _value.userEntity
           : userEntity // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
+              as UserProfileEntity,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserEntityCopyWith<$Res> get userEntity {
-    return $UserEntityCopyWith<$Res>(_value.userEntity, (value) {
+  $UserProfileEntityCopyWith<$Res> get userEntity {
+    return $UserProfileEntityCopyWith<$Res>(_value.userEntity, (value) {
       return _then(_value.copyWith(userEntity: value));
     });
   }
@@ -361,7 +361,7 @@ class _$_ProfileStateReceived implements _ProfileStateReceived {
   _$_ProfileStateReceived(this.userEntity);
 
   @override
-  final UserEntity userEntity;
+  final UserProfileEntity userEntity;
 
   @override
   String toString() {
@@ -392,7 +392,7 @@ class _$_ProfileStateReceived implements _ProfileStateReceived {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(UserEntity userEntity) received,
+    required TResult Function(UserProfileEntity userEntity) received,
     required TResult Function(ErrorEntity error) error,
   }) {
     return received(userEntity);
@@ -403,7 +403,7 @@ class _$_ProfileStateReceived implements _ProfileStateReceived {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(UserEntity userEntity)? received,
+    TResult? Function(UserProfileEntity userEntity)? received,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return received?.call(userEntity);
@@ -414,7 +414,7 @@ class _$_ProfileStateReceived implements _ProfileStateReceived {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(UserEntity userEntity)? received,
+    TResult Function(UserProfileEntity userEntity)? received,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -463,10 +463,10 @@ class _$_ProfileStateReceived implements _ProfileStateReceived {
 }
 
 abstract class _ProfileStateReceived implements ProfileState {
-  factory _ProfileStateReceived(final UserEntity userEntity) =
+  factory _ProfileStateReceived(final UserProfileEntity userEntity) =
       _$_ProfileStateReceived;
 
-  UserEntity get userEntity;
+  UserProfileEntity get userEntity;
   @JsonKey(ignore: true)
   _$$_ProfileStateReceivedCopyWith<_$_ProfileStateReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -549,7 +549,7 @@ class _$_ProfileStateError implements _ProfileStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(UserEntity userEntity) received,
+    required TResult Function(UserProfileEntity userEntity) received,
     required TResult Function(ErrorEntity error) error,
   }) {
     return error(this.error);
@@ -560,7 +560,7 @@ class _$_ProfileStateError implements _ProfileStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(UserEntity userEntity)? received,
+    TResult? Function(UserProfileEntity userEntity)? received,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
@@ -571,7 +571,7 @@ class _$_ProfileStateError implements _ProfileStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(UserEntity userEntity)? received,
+    TResult Function(UserProfileEntity userEntity)? received,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {

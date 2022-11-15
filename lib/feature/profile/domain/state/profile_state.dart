@@ -6,7 +6,8 @@ class ProfileState with _$ProfileState {
 
   factory ProfileState.waiting() = _ProfileStateWaiting;
 
-  factory ProfileState.received(UserEntity userEntity) = _ProfileStateReceived;
+  factory ProfileState.received(UserProfileEntity userEntity) =
+      _ProfileStateReceived;
 
   factory ProfileState.error(ErrorEntity error) = _ProfileStateError;
 }

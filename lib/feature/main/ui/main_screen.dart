@@ -93,7 +93,7 @@ class _MainScreenState extends State<_MainScreen> {
                 state.whenOrNull(
                   received: (userEntity) {
                     setState(() {
-                      _name = ' ${userEntity.name}';
+                      _name = ' ${userEntity.firstName}';
                     });
                   },
                 );
