@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:ovesdu_mobile/app/data/dio_container.dart';
 import 'package:ovesdu_mobile/feature/auth/domain/state/auth_cubit.dart';
 
 import '../di/init_di.dart';
@@ -15,6 +16,23 @@ class AuthInterceptor extends QueuedInterceptor {
       final headers = options.headers;
       headers['Authorization'] = 'Bearer $accessToken';
       super.onRequest(options.copyWith(headers: headers), handler);
+    }
+  }
+
+  @override
+  void onError(DioError err, ErrorInterceptorHandler handler) async {
+    if (err.response?.statusCode == 401) {
+      try {
+        await locator.get<AuthCubit>().refreshToken();
+        final response = await locator.get<DioContainer>().dio.request(
+              err.requestOptions.path,
+            );
+        return handler.resolve(response);
+      } catch (_) {
+        super.onError(err, handler);
+      }
+    } else {
+      super.onError(err, handler);
     }
   }
 }
