@@ -40,10 +40,19 @@ class UserProfileDto {
         phoneNumber: phoneNumber.toString(),
         firstName: firstName.toString(),
         lastName: lastName.toString(),
-        dateOfBirth: DateTime.parse(dateOfBirth.toString()),
+        dateOfBirth: _dateParse(dateOfBirth.toString()),
         country: country.toString(),
         area: area.toString(),
         city: city.toString(),
         isMale: gender.toString() == 'male',
       );
+
+  DateTime _dateParse(String date) {
+    var splitDate = date.split('/');
+    return DateTime(
+      int.parse(splitDate[2]),
+      int.parse(splitDate[1]),
+      int.parse(splitDate[0]),
+    );
+  }
 }
