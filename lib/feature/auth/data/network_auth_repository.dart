@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../app/data/dio_container.dart';
+import '../../../app/domain/app_api.dart';
 import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/domain/entities/user_entity/user_entity.dart';
 import '../domain/auth_repository.dart';
@@ -11,18 +11,17 @@ import 'dto/user_dto.dart';
 import 'dto/user_info_dto.dart';
 
 @Injectable(as: AuthRepository)
-@prod
 class NetworkAuthRepository implements AuthRepository {
-  final DioContainer dioContainer;
+  final AppApi _api;
 
-  NetworkAuthRepository(this.dioContainer);
+  NetworkAuthRepository(AppApi api) : _api = api;
 
   @override
   Future<String> getName({
     required String username,
     required DeviceEntity device,
   }) async {
-    await dioContainer.setHeaderLocale();
+    await _api.setHeaderLocale();
     try {
       final UserDto data = username.contains('@')
           ? UserDto(
@@ -33,10 +32,7 @@ class NetworkAuthRepository implements AuthRepository {
               username: username,
               deviceList: [DeviceDto.toDto(device)],
             );
-      final response = await dioContainer.dio.post(
-        '/auth/info',
-        data: data.toJson(),
-      );
+      final response = await _api.getName(data.toJson());
       return UserInfoDto.fromJson(response.data['data']).toString();
     } catch (_) {
       rethrow;
@@ -49,11 +45,10 @@ class NetworkAuthRepository implements AuthRepository {
     required String password,
     required DeviceEntity device,
   }) async {
-    await dioContainer.setHeaderLocale();
+    await _api.setHeaderLocale();
     try {
-      final response = await dioContainer.dio.post(
-        '/auth/token',
-        data: UserDto(
+      final response = await _api.signIn(
+        UserDto(
           username: username,
           password: password,
           deviceList: [DeviceDto.toDto(device)],
@@ -67,9 +62,9 @@ class NetworkAuthRepository implements AuthRepository {
 
   @override
   Future<void> checkUsername(String username) async {
-    await dioContainer.setHeaderLocale();
+    await _api.setHeaderLocale();
     try {
-      await dioContainer.dio.get('/auth/check/$username');
+      await _api.checkUsername(username);
     } catch (_) {
       rethrow;
     }
@@ -80,14 +75,10 @@ class NetworkAuthRepository implements AuthRepository {
     required String email,
     required String phoneNumber,
   }) async {
-    await dioContainer.setHeaderLocale();
+    await _api.setHeaderLocale();
     try {
-      await dioContainer.dio.post(
-        '/auth/check',
-        data: UserDto(
-          email: email,
-          phoneNumber: phoneNumber,
-        ).toJson(),
+      await _api.checkContact(
+        UserDto(email: email, phoneNumber: phoneNumber).toJson(),
       );
     } catch (_) {
       rethrow;
@@ -96,12 +87,9 @@ class NetworkAuthRepository implements AuthRepository {
 
   @override
   Future<TokenEntity> signUp(UserEntity userEntity) async {
-    await dioContainer.setHeaderLocale();
+    await _api.setHeaderLocale();
     try {
-      final response = await dioContainer.dio.put(
-        '/auth/token',
-        data: UserDto.toDto(userEntity).toJson(),
-      );
+      final response = await _api.signUp(UserDto.toDto(userEntity).toJson());
       return TokenDto.fromJson(response.data['data']).toEntity();
     } catch (_) {
       rethrow;
@@ -112,9 +100,9 @@ class NetworkAuthRepository implements AuthRepository {
   Future<TokenEntity> refreshToken({
     String? refreshToken,
   }) async {
-    await dioContainer.setHeaderLocale();
+    await _api.setHeaderLocale();
     try {
-      final response = await dioContainer.dio.post('/auth/token/$refreshToken');
+      final response = await _api.refreshToken(refreshToken);
       return TokenDto.fromJson(response.data['data']).toEntity();
     } catch (_) {
       rethrow;

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:ovesdu_mobile/app/data/dio_container.dart';
-import 'package:ovesdu_mobile/feature/auth/domain/state/auth_cubit.dart';
 
+import '../../feature/auth/domain/state/auth_cubit.dart';
 import '../di/init_di.dart';
+import '../domain/app_api.dart';
 
 class AuthInterceptor extends QueuedInterceptor {
   @override
@@ -24,7 +24,7 @@ class AuthInterceptor extends QueuedInterceptor {
     if (err.response?.statusCode == 401) {
       try {
         await locator.get<AuthCubit>().refreshToken();
-        final response = await locator.get<DioContainer>().dio.request(
+        final response = await locator.get<AppApi>().request(
               err.requestOptions.path,
             );
         return handler.resolve(response);
