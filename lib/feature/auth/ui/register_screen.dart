@@ -258,7 +258,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               padding: EdgeInsets.symmetric(
                                 horizontal: 20.0,
                                 vertical:
-                                    _locationToString.isNotEmpty ? 16.0 : 22.0,
+                                    _locationToString.isNotEmpty ? 16.0 : 20.0,
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
@@ -279,12 +279,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       ? TextAlign.start
                                       : TextAlign.end,
                                   style: _locationToString.isNotEmpty
-                                      ? theme.textTheme.headline5
-                                      : theme.textTheme.headline5?.copyWith(
+                                      ? theme.textTheme.headline6
+                                      : theme.textTheme.headline6?.copyWith(
                                           fontStyle: FontStyle.italic,
                                           fontSize: 14.0,
                                           color: theme
-                                              .textTheme.headline5?.color
+                                              .textTheme.headline6?.color
                                               ?.withOpacity(.5),
                                         ),
                                 ),

@@ -85,36 +85,41 @@ class _NotificationTopBarState extends State<NotificationTopBar>
                       ? AppColors.red.withOpacity(.6)
                       : AppColors.red.withOpacity(.9),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(
-                    _changedList.length,
-                    (index) => Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12, horizontal: 12),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(right: 10, top: 8),
-                            width: 8,
-                            height: 8,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.hintTextColor.withOpacity(.7),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12.0,
+                    horizontal: 24.0,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List.generate(
+                      _changedList.length,
+                      (index) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 3.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(right: 10, top: 8),
+                              width: 8,
+                              height: 8,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.hintTextColor.withOpacity(.7),
+                              ),
                             ),
-                          ),
-                          Flexible(
-                            child: Text(
-                              _changedList[index],
-                              textAlign: TextAlign.left,
-                              style: Provider.of<ThemeProvider>(context)
-                                  .themeData
-                                  .textTheme
-                                  .bodyText1,
+                            Flexible(
+                              child: Text(
+                                _changedList[index],
+                                textAlign: TextAlign.left,
+                                style: Provider.of<ThemeProvider>(context)
+                                    .themeData
+                                    .textTheme
+                                    .bodyText2,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

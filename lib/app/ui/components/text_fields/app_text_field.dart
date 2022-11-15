@@ -100,7 +100,7 @@ class _AppTextFieldState extends State<AppTextField> {
         cursorWidth: 1.0,
         cursorHeight: 30.0,
         style:
-            Provider.of<ThemeProvider>(context).themeData.textTheme.headline5,
+            Provider.of<ThemeProvider>(context).themeData.textTheme.headline6,
         decoration: InputDecoration(
           isCollapsed: true,
           contentPadding: const EdgeInsets.symmetric(

@@ -87,7 +87,7 @@ class _AppPhoneFieldState extends State<AppPhoneField> {
               style: Provider.of<ThemeProvider>(context)
                   .themeData
                   .textTheme
-                  .headline5,
+                  .headline6,
               decoration: InputDecoration(
                 isCollapsed: true,
                 contentPadding: const EdgeInsets.symmetric(
