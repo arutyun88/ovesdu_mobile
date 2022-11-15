@@ -56,6 +56,15 @@ class DioAppApi implements AppApi {
   }
 
   @override
+  Future<Response> fetch(RequestOptions requestOptions) {
+    try {
+      return dio.fetch(requestOptions);
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<Response> checkContact(Map<String, dynamic> data) {
     try {
       return dio.post('/auth/check', data: data);

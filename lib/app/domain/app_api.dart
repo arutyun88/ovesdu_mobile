@@ -5,6 +5,8 @@ abstract class AppApi {
 
   Future<Response> request(String path);
 
+  Future<Response> fetch(RequestOptions requestOptions);
+
   Future<Response> getName(Map<String, dynamic> data);
 
   Future<Response> checkUsername(String username);
