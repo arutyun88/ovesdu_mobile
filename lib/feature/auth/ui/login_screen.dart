@@ -248,6 +248,7 @@ class _LoginScreenState extends State<LoginScreen> {
     )
         .then((value) {
       if (value != null) {
+        _notifications.value.clear();
         _isAuth.value = true;
         _usernameController.clear();
         _emailController.clear();

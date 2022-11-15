@@ -44,7 +44,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  late final TextEditingController _nameController;
+  late final TextEditingController _firstNameController;
+  late final TextEditingController _lastNameController;
   late final TextEditingController _passwordController;
   late final TextEditingController _passwordConfirmController;
   late final TextEditingController _dateOfBirthController;
@@ -53,8 +54,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   late bool _dateIsComplete;
   late bool _dateIsValid = false;
-  late bool _nameIsComplete;
-  late bool _nameIsValid = false;
+  late bool _firstNameIsComplete;
+  late bool _lastNameIsComplete;
+  late bool _firstNameIsValid = false;
+  late bool _lastNameIsValid = false;
   late bool _locationIsValid = false;
   late bool _passwordIsComplete;
   late bool _passwordIsValid = false;
@@ -72,12 +75,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController();
+    _firstNameController = TextEditingController();
+    _lastNameController = TextEditingController();
     _passwordController = TextEditingController();
     _passwordConfirmController = TextEditingController();
     _dateOfBirthController = TextEditingController();
 
-    _nameIsComplete = true;
+    _firstNameIsComplete = true;
+    _lastNameIsComplete = true;
     _dateIsComplete = true;
     _passwordIsComplete = true;
     _passwordConfirmIsComplete = true;
@@ -92,7 +97,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
     _passwordController.dispose();
     _passwordConfirmController.dispose();
     _dateOfBirthController.dispose();
@@ -105,7 +111,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final theme = Provider.of<ThemeProvider>(context).themeData;
     return BlocListener<AuthCubit, AuthState>(
       child: GestureDetector(
-        onTap: () => setState(Helpers.unfocused),
+        onTap: () {
+          _notificationsRemove(_serverMessage);
+          setState(Helpers.unfocused);
+        },
         child: AppScaffold(
           notifications: _notifications,
           body: SafeArea(
@@ -132,6 +141,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),
                                 ),
                                 onPressed: () {
+                                  _notifications.value.clear();
                                   Navigator.of(context).pop(false);
                                 },
                               ),
@@ -165,14 +175,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ),
                           AppTextField(
-                            controller: _nameController,
-                            hintText: _dictionary.nameHint,
-                            labelText: _dictionary.nameLabel,
-                            borderColor: _nameIsComplete
+                            controller: _firstNameController,
+                            hintText: _dictionary.firstNameHint,
+                            labelText: _dictionary.firstNameLabel,
+                            borderColor: _firstNameIsComplete
                                 ? AppColors.orange
                                 : AppColors.red,
                             textCapitalization: TextCapitalization.words,
-                            onChanged: (value) => setState(_nameValidate),
+                            onChanged: (value) => setState(_firstNameValidate),
+                          ),
+                          const SizedBox(height: 12.0),
+                          AppTextField(
+                            controller: _lastNameController,
+                            hintText: _dictionary.lastNameHint,
+                            labelText: _dictionary.lastNameLabel,
+                            borderColor: _lastNameIsComplete
+                                ? AppColors.orange
+                                : AppColors.red,
+                            textCapitalization: TextCapitalization.words,
+                            onChanged: (value) => setState(_lastNameValidate),
                           ),
                           const SizedBox(height: 24.0),
                           Row(
@@ -234,9 +255,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             onPressed: _changeLocation,
                             child: Container(
                               width: MediaQuery.of(context).size.width,
-                              padding: const EdgeInsets.symmetric(
+                              padding: EdgeInsets.symmetric(
                                 horizontal: 20.0,
-                                vertical: 16.0,
+                                vertical:
+                                    _locationToString.isNotEmpty ? 16.0 : 22.0,
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
@@ -260,6 +282,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       ? theme.textTheme.headline5
                                       : theme.textTheme.headline5?.copyWith(
                                           fontStyle: FontStyle.italic,
+                                          fontSize: 14.0,
                                           color: theme
                                               .textTheme.headline5?.color
                                               ?.withOpacity(.5),
@@ -371,7 +394,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _buttonValidate() {
     _buttonEnabled = _dateIsValid &&
-        _nameIsValid &&
+        _firstNameIsValid &&
+        _lastNameIsValid &&
         _passwordIsValid &&
         _passwordConfirmIsValid &&
         _locationIsValid &&
@@ -384,7 +408,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       email: widget.email,
       phoneNumber: widget.phoneNumber,
       phoneCountryCode: widget.phoneCountryCode,
-      name: _nameController.text,
+      name: _firstNameController.text,
       dateOfBirth: _dateOfBirthController.text,
       location: location,
       password: _passwordController.text,
@@ -437,20 +461,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
-  void _nameValidate() {
+  void _firstNameValidate() {
     _notificationsRemove(_serverMessage);
-    if (_nameController.text.isEmpty) {
-      _notificationsRemove(_dictionary.nameInvalid);
-      _nameIsComplete = true;
-      _nameIsValid = false;
-    } else if (_nameController.text.trim().split(' ').length < 2) {
-      _notificationsUpdate(_dictionary.nameInvalid);
-      _nameIsComplete = false;
-      _nameIsValid = false;
+    if (_firstNameController.text.isEmpty) {
+      _notificationsRemove(_dictionary.firstNameInvalid);
+      _firstNameIsComplete = true;
+      _firstNameIsValid = false;
+    } else if (_firstNameController.text.length < 2) {
+      _notificationsUpdate(_dictionary.firstNameInvalid);
+      _firstNameIsComplete = false;
+      _firstNameIsValid = false;
     } else {
-      _notificationsRemove(_dictionary.nameInvalid);
-      _nameIsComplete = true;
-      _nameIsValid = true;
+      _notificationsRemove(_dictionary.firstNameInvalid);
+      _firstNameIsComplete = true;
+      _firstNameIsValid = true;
+    }
+    _buttonValidate();
+  }
+
+  void _lastNameValidate() {
+    _notificationsRemove(_serverMessage);
+    if (_lastNameController.text.isEmpty) {
+      _notificationsRemove(_dictionary.lastNameInvalid);
+      _lastNameIsComplete = true;
+      _lastNameIsValid = false;
+    } else if (_lastNameController.text.length < 2) {
+      _notificationsUpdate(_dictionary.lastNameInvalid);
+      _lastNameIsComplete = false;
+      _lastNameIsValid = false;
+    } else {
+      _notificationsRemove(_dictionary.lastNameInvalid);
+      _lastNameIsComplete = true;
+      _lastNameIsValid = true;
     }
     _buttonValidate();
   }
