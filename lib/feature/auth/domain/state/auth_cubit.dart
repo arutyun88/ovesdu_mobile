@@ -100,7 +100,9 @@ class AuthCubit extends HydratedCubit<AuthState> {
           email: email,
           phoneNumber: phoneNumber,
           phoneCountryCode: phoneCountryCode,
-          name: name,
+          // todo it
+          firstName: name,
+          lastName: name,
           dateOfBirth: dateOfBirth,
           location: location,
           password: password,

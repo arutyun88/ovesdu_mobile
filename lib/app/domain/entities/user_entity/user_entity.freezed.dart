@@ -20,7 +20,8 @@ mixin _$UserEntity {
   String get email => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get phoneCountryCode => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
   String get dateOfBirth => throw _privateConstructorUsedError;
   LocationEntity get location => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
@@ -43,7 +44,8 @@ abstract class $UserEntityCopyWith<$Res> {
       String email,
       String phoneNumber,
       String phoneCountryCode,
-      String name,
+      String firstName,
+      String lastName,
       String dateOfBirth,
       LocationEntity location,
       String? password,
@@ -71,7 +73,8 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? email = null,
     Object? phoneNumber = null,
     Object? phoneCountryCode = null,
-    Object? name = null,
+    Object? firstName = null,
+    Object? lastName = null,
     Object? dateOfBirth = null,
     Object? location = null,
     Object? password = freezed,
@@ -95,9 +98,13 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.phoneCountryCode
           : phoneCountryCode // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String,
       dateOfBirth: null == dateOfBirth
           ? _value.dateOfBirth
@@ -156,7 +163,8 @@ abstract class _$$_UserEntityCopyWith<$Res>
       String email,
       String phoneNumber,
       String phoneCountryCode,
-      String name,
+      String firstName,
+      String lastName,
       String dateOfBirth,
       LocationEntity location,
       String? password,
@@ -184,7 +192,8 @@ class __$$_UserEntityCopyWithImpl<$Res>
     Object? email = null,
     Object? phoneNumber = null,
     Object? phoneCountryCode = null,
-    Object? name = null,
+    Object? firstName = null,
+    Object? lastName = null,
     Object? dateOfBirth = null,
     Object? location = null,
     Object? password = freezed,
@@ -208,9 +217,13 @@ class __$$_UserEntityCopyWithImpl<$Res>
           ? _value.phoneCountryCode
           : phoneCountryCode // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String,
       dateOfBirth: null == dateOfBirth
           ? _value.dateOfBirth
@@ -244,7 +257,8 @@ class _$_UserEntity implements _UserEntity {
       required this.email,
       required this.phoneNumber,
       required this.phoneCountryCode,
-      required this.name,
+      required this.firstName,
+      required this.lastName,
       required this.dateOfBirth,
       required this.location,
       this.password,
@@ -260,7 +274,9 @@ class _$_UserEntity implements _UserEntity {
   @override
   final String phoneCountryCode;
   @override
-  final String name;
+  final String firstName;
+  @override
+  final String lastName;
   @override
   final String dateOfBirth;
   @override
@@ -274,7 +290,7 @@ class _$_UserEntity implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(username: $username, email: $email, phoneNumber: $phoneNumber, phoneCountryCode: $phoneCountryCode, name: $name, dateOfBirth: $dateOfBirth, location: $location, password: $password, device: $device, genderIsMale: $genderIsMale)';
+    return 'UserEntity(username: $username, email: $email, phoneNumber: $phoneNumber, phoneCountryCode: $phoneCountryCode, firstName: $firstName, lastName: $lastName, dateOfBirth: $dateOfBirth, location: $location, password: $password, device: $device, genderIsMale: $genderIsMale)';
   }
 
   @override
@@ -289,7 +305,10 @@ class _$_UserEntity implements _UserEntity {
                 other.phoneNumber == phoneNumber) &&
             (identical(other.phoneCountryCode, phoneCountryCode) ||
                 other.phoneCountryCode == phoneCountryCode) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
                 other.dateOfBirth == dateOfBirth) &&
             (identical(other.location, location) ||
@@ -308,7 +327,8 @@ class _$_UserEntity implements _UserEntity {
       email,
       phoneNumber,
       phoneCountryCode,
-      name,
+      firstName,
+      lastName,
       dateOfBirth,
       location,
       password,
@@ -328,7 +348,8 @@ abstract class _UserEntity implements UserEntity {
       required final String email,
       required final String phoneNumber,
       required final String phoneCountryCode,
-      required final String name,
+      required final String firstName,
+      required final String lastName,
       required final String dateOfBirth,
       required final LocationEntity location,
       final String? password,
@@ -344,7 +365,9 @@ abstract class _UserEntity implements UserEntity {
   @override
   String get phoneCountryCode;
   @override
-  String get name;
+  String get firstName;
+  @override
+  String get lastName;
   @override
   String get dateOfBirth;
   @override
