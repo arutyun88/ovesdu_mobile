@@ -5,36 +5,22 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../app/const/const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
-import '../../../app/di/init_di.dart';
 import '../../../app/ui/components/app_scaffold.dart';
 import '../../../app/ui/components/buttons/language_button/language_button.dart';
 import '../../../app/ui/components/buttons/theme_button/theme_button.dart';
-import '../../auth/domain/state/auth_cubit.dart';
-import '../../profile/domain/profile_repository.dart';
 import '../../profile/domain/state/profile_cubit.dart';
+import '../../profile/ui/user_screen.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProfileCubit(locator<ProfileRepository>()),
-      child: const _MainScreen(),
-    );
-  }
-}
-
-class _MainScreen extends StatefulWidget {
-  const _MainScreen({
+class MainScreen extends StatefulWidget {
+  const MainScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<_MainScreen> createState() => _MainScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<_MainScreen> {
+class _MainScreenState extends State<MainScreen> {
   late String _name = '';
 
   @override
@@ -69,9 +55,13 @@ class _MainScreenState extends State<_MainScreen> {
                         ],
                       ),
                       GestureDetector(
-                        onTap: () => context.read<AuthCubit>().logOut(),
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const UserScreen(),
+                          ),
+                        ),
                         child: Icon(
-                          Icons.exit_to_app,
+                          Icons.person,
                           size: buttonHeight,
                           color: Provider.of<ThemeProvider>(context)
                               .themeData

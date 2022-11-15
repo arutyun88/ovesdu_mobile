@@ -15,6 +15,7 @@ import '../../feature/location/data/network_location_repository.dart' as _i12;
 import '../../feature/location/domain/location_repository.dart' as _i11;
 import '../../feature/profile/data/network_profile_repository.dart' as _i14;
 import '../../feature/profile/domain/profile_repository.dart' as _i13;
+import '../../feature/profile/domain/state/profile_cubit.dart' as _i16;
 import '../data/config/dev_app_config.dart' as _i4;
 import '../data/config/prod_app_config.dart' as _i5;
 import '../data/config/test_app_config.dart' as _i6;
@@ -58,5 +59,7 @@ _i1.GetIt $initGetIt(
   gh.factory<_i13.ProfileRepository>(
       () => _i14.NetworkProfileRepository(get<_i7.AppApi>()));
   gh.singleton<_i15.AuthCubit>(_i15.AuthCubit(get<_i9.AuthRepository>()));
+  gh.singleton<_i16.ProfileCubit>(
+      _i16.ProfileCubit(get<_i13.ProfileRepository>()));
   return get;
 }

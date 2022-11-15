@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../feature/auth/domain/state/auth_cubit.dart';
+import '../../feature/profile/domain/state/profile_cubit.dart';
 import '../data/setting_provider/locale_provider.dart';
 import '../data/setting_provider/theme_provider.dart';
 import '../di/init_di.dart';
@@ -43,6 +44,7 @@ class _GlobalProviders extends StatelessWidget {
     return MultiProvider(
       providers: [
         BlocProvider(create: (context) => locator.get<AuthCubit>()),
+        BlocProvider(create: (context) => locator.get<ProfileCubit>()),
         ChangeNotifierProvider(create: (_) => LocaleProvider(locale)),
         ChangeNotifierProvider(create: (_) => ThemeProvider(isLightTheme)),
       ],
