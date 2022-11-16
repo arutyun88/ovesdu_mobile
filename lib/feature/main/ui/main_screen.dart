@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ import '../../../app/ui/components/app_scaffold.dart';
 import '../../../app/ui/components/buttons/language_button/language_button.dart';
 import '../../../app/ui/components/buttons/theme_button/theme_button.dart';
 import '../../profile/domain/state/profile_cubit.dart';
+import '../../profile/ui/profile_screen.dart';
 import '../../profile/ui/user_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -53,6 +55,20 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                           LanguageButton(),
                         ],
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const ProfileScreen(),
+                          ),
+                        ),
+                        child: Icon(
+                          CupertinoIcons.profile_circled,
+                          size: buttonHeight,
+                          color: Provider.of<ThemeProvider>(context)
+                              .themeData
+                              .hintColor,
+                        ),
                       ),
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(
