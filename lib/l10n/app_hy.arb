@@ -68,5 +68,12 @@
   "themAndLangChangeLater": "հավելվածի թեման և լեզուն կարող է փոխվել ավելի ուշ՝ կարգավորումներում",
   "soonWillBeInteresting": "Բարև{username}!\n\nԱյստեղ շատ շուտով հետաքրքիր բան կլինի...",
   "comeAgain": "...կրկին համեցեք...",
-  "necessarily": "...պարտադիր"
+  "necessarily": "...պարտադիր",
+  "year": "{year} տարեկան",
+  "subscribe": "հետևել",
+  "unsubscribe": "հետևում",
+  "marriedM": "ամուսնացած",
+  "unmarriedM": "չամուսնացած",
+  "marriedW": "ամուսնացած",
+  "unmarriedW": "չամուսնացած"
 }

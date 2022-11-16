@@ -102,5 +102,19 @@
     }
   },
   "comeAgain": "...come again...",
-  "necessarily": "...necessarily"
+  "necessarily": "...necessarily",
+  "year": "{year} year",
+  "@year": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "subscribe": "subscribe",
+  "unsubscribe": "unsubscribe",
+  "marriedM": "married",
+  "unmarriedM": "unmarried",
+  "marriedW": "married",
+  "unmarriedW": "unmarried"
 }

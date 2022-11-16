@@ -68,5 +68,12 @@
   "themAndLangChangeLater": "the theme and language of the application can be changed later in the settings",
   "soonWillBeInteresting": "Hello{username}!\n\nThere will be something interesting here very soon...",
   "comeAgain": "...come again...",
-  "necessarily": "...necessarily"
+  "necessarily": "...necessarily",
+  "year": "{year} year",
+  "subscribe": "subscribe",
+  "unsubscribe": "unsubscribe",
+  "marriedM": "married",
+  "unmarriedM": "unmarried",
+  "marriedW": "married",
+  "unmarriedW": "unmarried"
 }

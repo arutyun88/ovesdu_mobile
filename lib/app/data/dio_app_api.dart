@@ -38,7 +38,6 @@ class DioAppApi implements AppApi {
   Future<void> setHeaderLocale() async {
     final settings = await Hive.openBox('settings');
     var locale = settings.get('locale');
-    settings.close();
     dio.options.headers.addEntries(
       {
         'locale': locale,

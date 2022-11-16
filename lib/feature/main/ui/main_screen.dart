@@ -62,12 +62,15 @@ class _MainScreenState extends State<MainScreen> {
                             builder: (context) => const ProfileScreen(),
                           ),
                         ),
-                        child: Icon(
-                          CupertinoIcons.profile_circled,
-                          size: buttonHeight,
-                          color: Provider.of<ThemeProvider>(context)
-                              .themeData
-                              .hintColor,
+                        child: Hero(
+                          tag: 'some',
+                          child: Icon(
+                            CupertinoIcons.profile_circled,
+                            size: buttonHeight,
+                            color: Provider.of<ThemeProvider>(context)
+                                .themeData
+                                .hintColor,
+                          ),
                         ),
                       ),
                       GestureDetector(

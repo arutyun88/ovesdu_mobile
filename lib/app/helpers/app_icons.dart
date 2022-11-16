@@ -5,4 +5,5 @@ abstract class AppIcons {
   static const String femaleIcon = 'assets/icons/female_icon.svg';
   static const String moonIcon = 'assets/icons/moon_icon.svg';
   static const String sunIcon = 'assets/icons/sun_icon.svg';
+  static const String messageIcon = 'assets/icons/message_icon.svg';
 }

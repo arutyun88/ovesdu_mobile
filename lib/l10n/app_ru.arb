@@ -68,5 +68,12 @@
   "themAndLangChangeLater": "тему и язык приложения возможно будет изменить позднее в настройках",
   "soonWillBeInteresting": "Привет{username}!\n\nСовсем скоро здесь будет что-то интересное...",
   "comeAgain": "...заходи снова...",
-  "necessarily": "...обязательно"
+  "necessarily": "...обязательно",
+  "year": "{year} лет",
+  "subscribe": "подписаться",
+  "unsubscribe": "отписаться",
+  "marriedM": "женат",
+  "unmarriedM": "не женат",
+  "marriedW": "замужем",
+  "unmarriedW": "не замужем"
 }
