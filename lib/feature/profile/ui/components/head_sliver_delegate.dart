@@ -171,7 +171,7 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
             width: MediaQuery.of(context).size.width,
             color: zero >= 120
                 ? AppColors.transparent
-                : AppColors.hintTextColor.withOpacity(.3),
+                : AppColors.hintTextColor.withOpacity(.05),
           ),
         )
       ],
