@@ -160,16 +160,18 @@ class DioAppApi implements AppApi {
         const Duration(seconds: 1),
         () {
           Map<String, dynamic> user = {
-            'username': 'somePerson',
-            'email': 'somePerson@Email.com',
-            'phoneNumber': '+37455816382',
-            'firstName': 'Some',
-            'lastName': 'Person',
-            'dateOfBirth': '12/12/2000',
-            'country': 'Russia',
-            'area': 'Voronezh',
-            'city': 'Novovoronezh',
-            'gender': 'male',
+            'data': {
+              'username': 'somePerson',
+              'email': 'somePerson@Email.com',
+              'phoneNumber': '+37455816382',
+              'firstName': 'Some',
+              'lastName': 'Person',
+              'dateOfBirth': '12/12/2000',
+              'country': 'Russia',
+              'area': 'Voronezh',
+              'city': 'Novovoronezh',
+              'gender': 'male',
+            },
           };
           return Response(
             requestOptions: RequestOptions(path: ''),
