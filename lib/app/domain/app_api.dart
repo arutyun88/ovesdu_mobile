@@ -26,4 +26,6 @@ abstract class AppApi {
   Future<Response> saveLocation(Map<String, dynamic> data);
 
   Future<Response> getProfile();
+
+  Future<Response> getUserProfile(String username);
 }

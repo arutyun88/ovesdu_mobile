@@ -28,6 +28,16 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
+  Future<void> getUserProfile(String username) async {
+    emit(ProfileState.waiting());
+    try {
+      final result = await _profileRepository.getUserProfile(username);
+      emit(ProfileState.received(result));
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   @override
   void addError(Object error, [StackTrace? stackTrace]) {
     emit(ProfileState.error(ErrorEntity.fromException(error)));
