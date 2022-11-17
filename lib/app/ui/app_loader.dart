@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ovesdu_mobile/app/data/setting_provider/theme_provider.dart';
+import 'package:ovesdu_mobile/app/ui/config/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class AppLoader extends StatelessWidget {
@@ -15,7 +16,7 @@ class AppLoader extends StatelessWidget {
           .backgroundColor
           .withOpacity(.5),
       child: const Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(color: AppColors.orange),
       ),
     );
   }

@@ -11,6 +11,7 @@ import '../../../app/ui/components/buttons/language_button/language_button.dart'
 import '../../../app/ui/components/buttons/theme_button/theme_button.dart';
 import '../../profile/domain/state/profile_cubit.dart';
 import '../../profile/ui/profile_screen.dart';
+import '../../profile/ui/user_profile_screen.dart';
 import '../../profile/ui/user_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -55,6 +56,21 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                           LanguageButton(),
                         ],
+                      ),
+                      GestureDetector(
+                        onTap: () async => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const UserProfileScreen(username: 'some'),
+                          ),
+                        ),
+                        child: Icon(
+                          CupertinoIcons.person,
+                          size: buttonHeight,
+                          color: Provider.of<ThemeProvider>(context)
+                              .themeData
+                              .hintColor,
+                        ),
                       ),
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(
