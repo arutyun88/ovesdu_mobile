@@ -163,6 +163,17 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
             ),
           ),
         ),
+        Positioned(
+          bottom: 0.0,
+          child: AnimatedContainer(
+            duration: _animationDuration * .5,
+            height: 2,
+            width: MediaQuery.of(context).size.width,
+            color: zero >= 120
+                ? AppColors.transparent
+                : AppColors.hintTextColor.withOpacity(.3),
+          ),
+        )
       ],
     );
   }
