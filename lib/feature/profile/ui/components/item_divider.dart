@@ -9,12 +9,28 @@ class ItemDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
-      child: Divider(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Container(
         color: AppColors.orange,
-        thickness: .3,
         height: 0.3,
+      ),
+    );
+  }
+}
+
+class VerticalItemDivider extends StatelessWidget {
+  const VerticalItemDivider({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Container(
+        color: AppColors.orange,
+        width: 0.1,
       ),
     );
   }
