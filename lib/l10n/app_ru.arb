@@ -75,5 +75,13 @@
   "marriedM": "женат",
   "unmarriedM": "не женат",
   "marriedW": "замужем",
-  "unmarriedW": "не замужем"
+  "unmarriedW": "не замужем",
+  "trust": "доверие",
+  "followers": "подписчики",
+  "following": "подписки",
+  "coins": "монеты",
+  "participant": "участник",
+  "gifts": "подарки",
+  "photos": "фотографии",
+  "showMore": "...ещё"
 }

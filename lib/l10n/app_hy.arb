@@ -75,5 +75,13 @@
   "marriedM": "ամուսնացած",
   "unmarriedM": "չամուսնացած",
   "marriedW": "ամուսնացած",
-  "unmarriedW": "չամուսնացած"
+  "unmarriedW": "չամուսնացած",
+  "trust": "վստահություն",
+  "followers": "հետևորդներ",
+  "following": "հետևում",
+  "coins": "դրամներ",
+  "participant": "մասնակից",
+  "gifts": "նվերներ",
+  "photos": "նկարներ",
+  "showMore": "...ավելին"
 }

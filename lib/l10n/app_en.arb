@@ -116,5 +116,13 @@
   "marriedM": "married",
   "unmarriedM": "unmarried",
   "marriedW": "married",
-  "unmarriedW": "unmarried"
+  "unmarriedW": "unmarried",
+  "trust": "trust",
+  "followers": "followers",
+  "following": "following",
+  "coins": "coins",
+  "participant": "participant",
+  "gifts": "gifts",
+  "photos": "photos",
+  "showMore": "...more"
 }
