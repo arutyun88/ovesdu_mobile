@@ -27,7 +27,7 @@ class ProfilePosts extends StatelessWidget {
         ...List.generate(
           posts.length,
           (index) => Container(
-            margin: const EdgeInsets.only(bottom: 2),
+            margin: const EdgeInsets.only(bottom: 8),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: theme.backgroundColor,
@@ -35,6 +35,8 @@ class ProfilePosts extends StatelessWidget {
                 BoxShadow(
                   offset: const Offset(0, 2),
                   color: AppColors.purple.withOpacity(.05),
+                  blurRadius: 4.0,
+                  blurStyle: BlurStyle.outer,
                 ),
               ],
             ),
