@@ -44,14 +44,18 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
         ),
         Positioned(
           top: top >= 0 ? top : 0.0,
-          child: Container(
+          child: AnimatedContainer(
+            duration: _animationDuration,
+            curve: Curves.ease,
             width: MediaQuery.of(context).size.width,
             height: _titleMaxHeight,
             decoration: BoxDecoration(
               color: theme.backgroundColor,
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(mainPadding),
-              ),
+              borderRadius: zero > paddingTop + 100
+                  ? const BorderRadius.vertical(
+                      top: Radius.circular(mainPadding),
+                    )
+                  : null,
             ),
             child: Stack(
               children: [
