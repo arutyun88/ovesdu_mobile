@@ -122,18 +122,14 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
                     duration: _animationDuration,
                     opacity: zero > 220 ? 0.0 : 1.0,
                     curve: Curves.ease,
-                    // child: CircleAvatar(
-                    //   backgroundImage: NetworkImage(url),
-                    //   radius: 30.0,
-                    // ),
                     child: GestureDetector(
                       onTap: () {
                         Provider.of<SettingProvider>(context, listen: false)
                             .setCircleAvatar();
                       },
                       child: Container(
-                        height: 64,
-                        width: 64,
+                        height: 60,
+                        width: 60,
                         decoration: BoxDecoration(
                           shape: avatar ? BoxShape.circle : BoxShape.rectangle,
                           borderRadius:

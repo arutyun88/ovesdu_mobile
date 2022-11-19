@@ -137,8 +137,8 @@ class PostHeader extends StatelessWidget {
                   .setCircleAvatar();
             },
             child: Container(
-              height: 64,
-              width: 64,
+              height: 60,
+              width: 60,
               decoration: BoxDecoration(
                 shape: avatar ? BoxShape.circle : BoxShape.rectangle,
                 borderRadius: avatar ? null : BorderRadius.circular(16),
