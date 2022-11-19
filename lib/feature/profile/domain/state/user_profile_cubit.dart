@@ -16,10 +16,10 @@ class UserProfileCubit extends Cubit<UserProfileState> {
 
   final ProfileRepository _profileRepository;
 
-  Future<void> getUserProfile(String username) async {
+  Future<void> getUserProfile(String userId) async {
     emit(UserProfileState.waiting());
     try {
-      final result = await _profileRepository.getUserProfile(username);
+      final result = await _profileRepository.getUserProfile(userId);
       emit(UserProfileState.received(result));
     } catch (error, stackTrace) {
       addError(error, stackTrace);

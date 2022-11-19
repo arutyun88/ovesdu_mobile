@@ -60,8 +60,14 @@ class _MainScreenState extends State<MainScreen> {
                       GestureDetector(
                         onTap: () async => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const UserProfileScreen(username: 'some'),
+                            builder: (context) => const UserProfileScreen(
+                              userId: '13',
+                              firsName: 'Some',
+                              lastName: 'Person',
+                              image: 'https://caknowledge.com/wp-content/'
+                                  'uploads/2022/05/Chuck-'
+                                  'Norris-Net-Worth-100-million.jpg',
+                            ),
                           ),
                         ),
                         child: Icon(

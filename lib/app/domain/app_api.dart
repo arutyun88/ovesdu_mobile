@@ -27,5 +27,5 @@ abstract class AppApi {
 
   Future<Response> getProfile();
 
-  Future<Response> getUserProfile(String username);
+  Future<Response> getUserProfile(String userId);
 }

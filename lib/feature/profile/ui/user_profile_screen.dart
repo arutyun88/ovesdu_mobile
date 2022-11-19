@@ -18,15 +18,26 @@ import 'components/profile_statistic.dart';
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({
     Key? key,
-    required this.username,
+    required this.userId,
+    required this.firsName,
+    required this.lastName,
+    required this.image,
   }) : super(key: key);
-  final String username;
+  final String userId;
+  final String firsName;
+  final String lastName;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UserProfileCubit(locator.get<ProfileRepository>()),
-      child: _UserProfileScreen(username: username),
+      child: _UserProfileScreen(
+        userId: userId,
+        firsName: firsName,
+        lastName: lastName,
+        image: image,
+      ),
     );
   }
 }
@@ -34,9 +45,15 @@ class UserProfileScreen extends StatelessWidget {
 class _UserProfileScreen extends StatefulWidget {
   const _UserProfileScreen({
     Key? key,
-    required this.username,
+    required this.userId,
+    required this.firsName,
+    required this.lastName,
+    required this.image,
   }) : super(key: key);
-  final String username;
+  final String userId;
+  final String firsName;
+  final String lastName;
+  final String image;
 
   @override
   State<_UserProfileScreen> createState() => _ProfileScreenState();
@@ -45,14 +62,14 @@ class _UserProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<_UserProfileScreen> {
   late ThemeData theme;
   late AppLocalizations dictionary;
-  final imageUrl = 'https://caknowledge.com/wp-content/uploads/2022/05/Chuck-'
-      'Norris-Net-Worth-100-million.jpg';
+  late String imageUrl;
 
   late double expandedHeight;
 
   @override
   void initState() {
     super.initState();
+    imageUrl = widget.image;
   }
 
   @override
@@ -71,7 +88,7 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
         ? 420
         : MediaQuery.of(context).size.height * .6;
 
-    context.read<UserProfileCubit>().getUserProfile(widget.username);
+    context.read<UserProfileCubit>().getUserProfile(widget.userId);
   }
 
   @override
@@ -122,7 +139,8 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
                         author:
                             '${userEntity.firstName} ${userEntity.lastName}',
                         time: 'time',
-                        text: 'Some very long text. It\'s really very long text, '
+                        text:
+                            'Some very long text. It\'s really very long text, '
                             'but I don\'t speak english.\n\nI share your point of view'
                             'A friend in need is a friend indeed.\n'
                             'Easy come, easy go. Time is money. Better late than never.'
@@ -134,7 +152,8 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
                         author:
                             '${userEntity.firstName} ${userEntity.lastName}',
                         time: 'time',
-                        text: 'Some very long text. It\'s really very long text, '
+                        text:
+                            'Some very long text. It\'s really very long text, '
                             'but I don\'t speak english.\n\nI share your point of view'
                             'A friend in need is a friend indeed.\n'
                             'Easy come, easy go. Time is money. Better late than never.'

@@ -23,11 +23,11 @@ class NetworkProfileRepository implements ProfileRepository {
   }
 
   @override
-  Future<UserProfileEntity> getUserProfile(String username) async {
+  Future<UserProfileEntity> getUserProfile(String userId) async {
     await _api.setHeaderLocale();
     try {
-      final response = await _api.getUserProfile(username);
-      return UserProfileDto.fromJson(response.data['data']).toEntity();
+      final response = await _api.getUserProfile(userId);
+      return UserProfileDto.fromJson(response.data['data']).toOtherEntity();
     } catch (_) {
       rethrow;
     }
