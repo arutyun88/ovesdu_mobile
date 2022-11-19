@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -22,6 +23,10 @@ class UserProfileCubit extends Cubit<UserProfileState> {
       final result = await _profileRepository.getUserProfile(userId);
       emit(UserProfileState.received(result));
     } catch (error, stackTrace) {
+      if (error is DioError && error.response?.statusCode == 403) {
+        emit(UserProfileState.forbidden());
+        return;
+      }
       addError(error, stackTrace);
     }
   }

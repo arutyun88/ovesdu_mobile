@@ -21,6 +21,7 @@ mixin _$UserProfileState {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserProfileEntity userEntity) received,
+    required TResult Function() forbidden,
     required TResult Function(ErrorEntity error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +30,7 @@ mixin _$UserProfileState {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserProfileEntity userEntity)? received,
+    TResult? Function()? forbidden,
     TResult? Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +39,7 @@ mixin _$UserProfileState {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserProfileEntity userEntity)? received,
+    TResult Function()? forbidden,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) =>
@@ -46,6 +49,7 @@ mixin _$UserProfileState {
     required TResult Function(_UserProfileStateInit value) init,
     required TResult Function(_UserProfileStateWaiting value) waiting,
     required TResult Function(_UserProfileStateReceived value) received,
+    required TResult Function(_UserProfileStateForbidden value) forbidden,
     required TResult Function(_UserProfileStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +58,7 @@ mixin _$UserProfileState {
     TResult? Function(_UserProfileStateInit value)? init,
     TResult? Function(_UserProfileStateWaiting value)? waiting,
     TResult? Function(_UserProfileStateReceived value)? received,
+    TResult? Function(_UserProfileStateForbidden value)? forbidden,
     TResult? Function(_UserProfileStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +67,7 @@ mixin _$UserProfileState {
     TResult Function(_UserProfileStateInit value)? init,
     TResult Function(_UserProfileStateWaiting value)? waiting,
     TResult Function(_UserProfileStateReceived value)? received,
+    TResult Function(_UserProfileStateForbidden value)? forbidden,
     TResult Function(_UserProfileStateError value)? error,
     required TResult orElse(),
   }) =>
@@ -127,6 +133,7 @@ class _$_UserProfileStateInit implements _UserProfileStateInit {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserProfileEntity userEntity) received,
+    required TResult Function() forbidden,
     required TResult Function(ErrorEntity error) error,
   }) {
     return init();
@@ -138,6 +145,7 @@ class _$_UserProfileStateInit implements _UserProfileStateInit {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserProfileEntity userEntity)? received,
+    TResult? Function()? forbidden,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return init?.call();
@@ -149,6 +157,7 @@ class _$_UserProfileStateInit implements _UserProfileStateInit {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserProfileEntity userEntity)? received,
+    TResult Function()? forbidden,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -164,6 +173,7 @@ class _$_UserProfileStateInit implements _UserProfileStateInit {
     required TResult Function(_UserProfileStateInit value) init,
     required TResult Function(_UserProfileStateWaiting value) waiting,
     required TResult Function(_UserProfileStateReceived value) received,
+    required TResult Function(_UserProfileStateForbidden value) forbidden,
     required TResult Function(_UserProfileStateError value) error,
   }) {
     return init(this);
@@ -175,6 +185,7 @@ class _$_UserProfileStateInit implements _UserProfileStateInit {
     TResult? Function(_UserProfileStateInit value)? init,
     TResult? Function(_UserProfileStateWaiting value)? waiting,
     TResult? Function(_UserProfileStateReceived value)? received,
+    TResult? Function(_UserProfileStateForbidden value)? forbidden,
     TResult? Function(_UserProfileStateError value)? error,
   }) {
     return init?.call(this);
@@ -186,6 +197,7 @@ class _$_UserProfileStateInit implements _UserProfileStateInit {
     TResult Function(_UserProfileStateInit value)? init,
     TResult Function(_UserProfileStateWaiting value)? waiting,
     TResult Function(_UserProfileStateReceived value)? received,
+    TResult Function(_UserProfileStateForbidden value)? forbidden,
     TResult Function(_UserProfileStateError value)? error,
     required TResult orElse(),
   }) {
@@ -242,6 +254,7 @@ class _$_UserProfileStateWaiting implements _UserProfileStateWaiting {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserProfileEntity userEntity) received,
+    required TResult Function() forbidden,
     required TResult Function(ErrorEntity error) error,
   }) {
     return waiting();
@@ -253,6 +266,7 @@ class _$_UserProfileStateWaiting implements _UserProfileStateWaiting {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserProfileEntity userEntity)? received,
+    TResult? Function()? forbidden,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return waiting?.call();
@@ -264,6 +278,7 @@ class _$_UserProfileStateWaiting implements _UserProfileStateWaiting {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserProfileEntity userEntity)? received,
+    TResult Function()? forbidden,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -279,6 +294,7 @@ class _$_UserProfileStateWaiting implements _UserProfileStateWaiting {
     required TResult Function(_UserProfileStateInit value) init,
     required TResult Function(_UserProfileStateWaiting value) waiting,
     required TResult Function(_UserProfileStateReceived value) received,
+    required TResult Function(_UserProfileStateForbidden value) forbidden,
     required TResult Function(_UserProfileStateError value) error,
   }) {
     return waiting(this);
@@ -290,6 +306,7 @@ class _$_UserProfileStateWaiting implements _UserProfileStateWaiting {
     TResult? Function(_UserProfileStateInit value)? init,
     TResult? Function(_UserProfileStateWaiting value)? waiting,
     TResult? Function(_UserProfileStateReceived value)? received,
+    TResult? Function(_UserProfileStateForbidden value)? forbidden,
     TResult? Function(_UserProfileStateError value)? error,
   }) {
     return waiting?.call(this);
@@ -301,6 +318,7 @@ class _$_UserProfileStateWaiting implements _UserProfileStateWaiting {
     TResult Function(_UserProfileStateInit value)? init,
     TResult Function(_UserProfileStateWaiting value)? waiting,
     TResult Function(_UserProfileStateReceived value)? received,
+    TResult Function(_UserProfileStateForbidden value)? forbidden,
     TResult Function(_UserProfileStateError value)? error,
     required TResult orElse(),
   }) {
@@ -395,6 +413,7 @@ class _$_UserProfileStateReceived implements _UserProfileStateReceived {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserProfileEntity userEntity) received,
+    required TResult Function() forbidden,
     required TResult Function(ErrorEntity error) error,
   }) {
     return received(userEntity);
@@ -406,6 +425,7 @@ class _$_UserProfileStateReceived implements _UserProfileStateReceived {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserProfileEntity userEntity)? received,
+    TResult? Function()? forbidden,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return received?.call(userEntity);
@@ -417,6 +437,7 @@ class _$_UserProfileStateReceived implements _UserProfileStateReceived {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserProfileEntity userEntity)? received,
+    TResult Function()? forbidden,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -432,6 +453,7 @@ class _$_UserProfileStateReceived implements _UserProfileStateReceived {
     required TResult Function(_UserProfileStateInit value) init,
     required TResult Function(_UserProfileStateWaiting value) waiting,
     required TResult Function(_UserProfileStateReceived value) received,
+    required TResult Function(_UserProfileStateForbidden value) forbidden,
     required TResult Function(_UserProfileStateError value) error,
   }) {
     return received(this);
@@ -443,6 +465,7 @@ class _$_UserProfileStateReceived implements _UserProfileStateReceived {
     TResult? Function(_UserProfileStateInit value)? init,
     TResult? Function(_UserProfileStateWaiting value)? waiting,
     TResult? Function(_UserProfileStateReceived value)? received,
+    TResult? Function(_UserProfileStateForbidden value)? forbidden,
     TResult? Function(_UserProfileStateError value)? error,
   }) {
     return received?.call(this);
@@ -454,6 +477,7 @@ class _$_UserProfileStateReceived implements _UserProfileStateReceived {
     TResult Function(_UserProfileStateInit value)? init,
     TResult Function(_UserProfileStateWaiting value)? waiting,
     TResult Function(_UserProfileStateReceived value)? received,
+    TResult Function(_UserProfileStateForbidden value)? forbidden,
     TResult Function(_UserProfileStateError value)? error,
     required TResult orElse(),
   }) {
@@ -472,6 +496,129 @@ abstract class _UserProfileStateReceived implements UserProfileState {
   @JsonKey(ignore: true)
   _$$_UserProfileStateReceivedCopyWith<_$_UserProfileStateReceived>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UserProfileStateForbiddenCopyWith<$Res> {
+  factory _$$_UserProfileStateForbiddenCopyWith(
+          _$_UserProfileStateForbidden value,
+          $Res Function(_$_UserProfileStateForbidden) then) =
+      __$$_UserProfileStateForbiddenCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_UserProfileStateForbiddenCopyWithImpl<$Res>
+    extends _$UserProfileStateCopyWithImpl<$Res, _$_UserProfileStateForbidden>
+    implements _$$_UserProfileStateForbiddenCopyWith<$Res> {
+  __$$_UserProfileStateForbiddenCopyWithImpl(
+      _$_UserProfileStateForbidden _value,
+      $Res Function(_$_UserProfileStateForbidden) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_UserProfileStateForbidden implements _UserProfileStateForbidden {
+  _$_UserProfileStateForbidden();
+
+  @override
+  String toString() {
+    return 'UserProfileState.forbidden()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserProfileStateForbidden);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() waiting,
+    required TResult Function(UserProfileEntity userEntity) received,
+    required TResult Function() forbidden,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return forbidden();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? waiting,
+    TResult? Function(UserProfileEntity userEntity)? received,
+    TResult? Function()? forbidden,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return forbidden?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? waiting,
+    TResult Function(UserProfileEntity userEntity)? received,
+    TResult Function()? forbidden,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (forbidden != null) {
+      return forbidden();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserProfileStateInit value) init,
+    required TResult Function(_UserProfileStateWaiting value) waiting,
+    required TResult Function(_UserProfileStateReceived value) received,
+    required TResult Function(_UserProfileStateForbidden value) forbidden,
+    required TResult Function(_UserProfileStateError value) error,
+  }) {
+    return forbidden(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserProfileStateInit value)? init,
+    TResult? Function(_UserProfileStateWaiting value)? waiting,
+    TResult? Function(_UserProfileStateReceived value)? received,
+    TResult? Function(_UserProfileStateForbidden value)? forbidden,
+    TResult? Function(_UserProfileStateError value)? error,
+  }) {
+    return forbidden?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserProfileStateInit value)? init,
+    TResult Function(_UserProfileStateWaiting value)? waiting,
+    TResult Function(_UserProfileStateReceived value)? received,
+    TResult Function(_UserProfileStateForbidden value)? forbidden,
+    TResult Function(_UserProfileStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (forbidden != null) {
+      return forbidden(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserProfileStateForbidden implements UserProfileState {
+  factory _UserProfileStateForbidden() = _$_UserProfileStateForbidden;
 }
 
 /// @nodoc
@@ -552,6 +699,7 @@ class _$_UserProfileStateError implements _UserProfileStateError {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserProfileEntity userEntity) received,
+    required TResult Function() forbidden,
     required TResult Function(ErrorEntity error) error,
   }) {
     return error(this.error);
@@ -563,6 +711,7 @@ class _$_UserProfileStateError implements _UserProfileStateError {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserProfileEntity userEntity)? received,
+    TResult? Function()? forbidden,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
@@ -574,6 +723,7 @@ class _$_UserProfileStateError implements _UserProfileStateError {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserProfileEntity userEntity)? received,
+    TResult Function()? forbidden,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -589,6 +739,7 @@ class _$_UserProfileStateError implements _UserProfileStateError {
     required TResult Function(_UserProfileStateInit value) init,
     required TResult Function(_UserProfileStateWaiting value) waiting,
     required TResult Function(_UserProfileStateReceived value) received,
+    required TResult Function(_UserProfileStateForbidden value) forbidden,
     required TResult Function(_UserProfileStateError value) error,
   }) {
     return error(this);
@@ -600,6 +751,7 @@ class _$_UserProfileStateError implements _UserProfileStateError {
     TResult? Function(_UserProfileStateInit value)? init,
     TResult? Function(_UserProfileStateWaiting value)? waiting,
     TResult? Function(_UserProfileStateReceived value)? received,
+    TResult? Function(_UserProfileStateForbidden value)? forbidden,
     TResult? Function(_UserProfileStateError value)? error,
   }) {
     return error?.call(this);
@@ -611,6 +763,7 @@ class _$_UserProfileStateError implements _UserProfileStateError {
     TResult Function(_UserProfileStateInit value)? init,
     TResult Function(_UserProfileStateWaiting value)? waiting,
     TResult Function(_UserProfileStateReceived value)? received,
+    TResult Function(_UserProfileStateForbidden value)? forbidden,
     TResult Function(_UserProfileStateError value)? error,
     required TResult orElse(),
   }) {

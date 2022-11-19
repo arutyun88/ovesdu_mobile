@@ -9,5 +9,7 @@ class UserProfileState with _$UserProfileState {
   factory UserProfileState.received(UserProfileEntity userEntity) =
       _UserProfileStateReceived;
 
+  factory UserProfileState.forbidden() = _UserProfileStateForbidden;
+
   factory UserProfileState.error(ErrorEntity error) = _UserProfileStateError;
 }
