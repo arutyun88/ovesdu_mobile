@@ -84,5 +84,6 @@
   "gifts": "gifts",
   "photos": "photos",
   "posts": "posts",
-  "showMore": "...more"
+  "showMore": "...more",
+  "forbidden": "{name} has restricted your access to his page"
 }
