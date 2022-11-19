@@ -26,6 +26,7 @@ mixin _$UserProfileEntity {
   String get area => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   bool get isMale => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserProfileEntityCopyWith<UserProfileEntity> get copyWith =>
@@ -48,7 +49,8 @@ abstract class $UserProfileEntityCopyWith<$Res> {
       String country,
       String area,
       String city,
-      bool isMale});
+      bool isMale,
+      String? image});
 }
 
 /// @nodoc
@@ -74,6 +76,7 @@ class _$UserProfileEntityCopyWithImpl<$Res, $Val extends UserProfileEntity>
     Object? area = null,
     Object? city = null,
     Object? isMale = null,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       username: null == username
@@ -116,6 +119,10 @@ class _$UserProfileEntityCopyWithImpl<$Res, $Val extends UserProfileEntity>
           ? _value.isMale
           : isMale // ignore: cast_nullable_to_non_nullable
               as bool,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -138,7 +145,8 @@ abstract class _$$_UserProfileEntityCopyWith<$Res>
       String country,
       String area,
       String city,
-      bool isMale});
+      bool isMale,
+      String? image});
 }
 
 /// @nodoc
@@ -162,6 +170,7 @@ class __$$_UserProfileEntityCopyWithImpl<$Res>
     Object? area = null,
     Object? city = null,
     Object? isMale = null,
+    Object? image = freezed,
   }) {
     return _then(_$_UserProfileEntity(
       username: null == username
@@ -204,6 +213,10 @@ class __$$_UserProfileEntityCopyWithImpl<$Res>
           ? _value.isMale
           : isMale // ignore: cast_nullable_to_non_nullable
               as bool,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -221,7 +234,8 @@ class _$_UserProfileEntity implements _UserProfileEntity {
       required this.country,
       required this.area,
       required this.city,
-      required this.isMale});
+      required this.isMale,
+      this.image});
 
   @override
   final String username;
@@ -243,10 +257,12 @@ class _$_UserProfileEntity implements _UserProfileEntity {
   final String city;
   @override
   final bool isMale;
+  @override
+  final String? image;
 
   @override
   String toString() {
-    return 'UserProfileEntity(username: $username, email: $email, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, dateOfBirth: $dateOfBirth, country: $country, area: $area, city: $city, isMale: $isMale)';
+    return 'UserProfileEntity(username: $username, email: $email, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, dateOfBirth: $dateOfBirth, country: $country, area: $area, city: $city, isMale: $isMale, image: $image)';
   }
 
   @override
@@ -268,12 +284,13 @@ class _$_UserProfileEntity implements _UserProfileEntity {
             (identical(other.country, country) || other.country == country) &&
             (identical(other.area, area) || other.area == area) &&
             (identical(other.city, city) || other.city == city) &&
-            (identical(other.isMale, isMale) || other.isMale == isMale));
+            (identical(other.isMale, isMale) || other.isMale == isMale) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, username, email, phoneNumber,
-      firstName, lastName, dateOfBirth, country, area, city, isMale);
+      firstName, lastName, dateOfBirth, country, area, city, isMale, image);
 
   @JsonKey(ignore: true)
   @override
@@ -294,7 +311,8 @@ abstract class _UserProfileEntity implements UserProfileEntity {
       required final String country,
       required final String area,
       required final String city,
-      required final bool isMale}) = _$_UserProfileEntity;
+      required final bool isMale,
+      final String? image}) = _$_UserProfileEntity;
 
   @override
   String get username;
@@ -316,6 +334,8 @@ abstract class _UserProfileEntity implements UserProfileEntity {
   String get city;
   @override
   bool get isMale;
+  @override
+  String? get image;
   @override
   @JsonKey(ignore: true)
   _$$_UserProfileEntityCopyWith<_$_UserProfileEntity> get copyWith =>

@@ -15,5 +15,6 @@ class UserProfileEntity with _$UserProfileEntity {
     required String area,
     required String city,
     required bool isMale,
+    String? image,
   }) = _UserProfileEntity;
 }
