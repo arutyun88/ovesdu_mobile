@@ -156,30 +156,10 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getUserProfile(String userId) {
     try {
-      // return Future.delayed(
-      //   const Duration(seconds: 1),
-      //   () {
-      //     Map<String, dynamic> user = {
-      //       'data': {
-      //         'username': 'somePerson',
-      //         'email': 'somePerson@Email.com',
-      //         'phoneNumber': '+37455816382',
-      //         'firstName': 'Some',
-      //         'lastName': 'Person',
-      //         'dateOfBirth': '12/12/2000',
-      //         'country': 'Russia',
-      //         'area': 'Voronezh',
-      //         'city': 'Novovoronezh',
-      //         'gender': 'male',
-      //       },
-      //     };
-      //     return Response(
-      //       requestOptions: RequestOptions(path: ''),
-      //       data: user,
-      //     );
-      //   },
-      // );
-      return dio.get('/auth/profile', queryParameters: {'userId': userId});
+      return dio.get(
+        '/auth/profile',
+        queryParameters: {'userId': userId},
+      );
     } catch (_) {
       rethrow;
     }
