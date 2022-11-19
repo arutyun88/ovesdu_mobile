@@ -8,5 +8,6 @@ abstract class AppBuilder {
     bool isLightTheme,
     DeviceEntity device,
     bool firstStart,
+    bool isCircleAvatar,
   );
 }

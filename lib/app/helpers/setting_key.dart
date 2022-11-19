@@ -5,4 +5,5 @@ abstract class SettingKey {
   static const String theme = 'lightTheme';
   static const String locale = 'locale';
   static const String firstStart = 'firstStart';
+  static const String avatar = 'avatar';
 }

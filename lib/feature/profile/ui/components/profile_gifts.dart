@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../app/data/setting_provider/setting_provider.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import 'item_divider.dart';
@@ -58,6 +59,7 @@ class _GiftItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
+    final avatar = Provider.of<SettingProvider>(context).isCircleAvatar;
     return Container(
       height: _giftSize,
       width: _giftSize,
@@ -94,16 +96,17 @@ class _GiftItem extends StatelessWidget {
             child: Container(
               height: 42,
               width: 42,
-              clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
+                shape: avatar ? BoxShape.circle : BoxShape.rectangle,
+                borderRadius: avatar ? null : BorderRadius.circular(16),
+                color: AppColors.hintTextColor.withOpacity(.7),
                 border: Border.all(
                   color: AppColors.orange,
                   width: 4,
                   strokeAlign: StrokeAlign.outside,
                 ),
-                shape: BoxShape.circle,
-                color: AppColors.hintTextColor.withOpacity(.7),
               ),
+              clipBehavior: Clip.hardEdge,
               child: item.sender != null
                   ? Image.network(
                       'http://zornet.ru/_fr/82/0090372.jpg',

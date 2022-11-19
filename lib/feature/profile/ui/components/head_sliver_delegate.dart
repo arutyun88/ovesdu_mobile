@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../app/const/const.dart';
+import '../../../../app/data/setting_provider/setting_provider.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/helpers/date_helper.dart';
 import '../../../../app/ui/config/app_colors.dart';
@@ -28,6 +29,7 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
   ) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
     final dictionary = AppLocalizations.of(context)!;
+    final avatar = Provider.of<SettingProvider>(context).isCircleAvatar;
 
     final paddingTop = MediaQuery.of(context).padding.top;
 
@@ -120,9 +122,35 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
                     duration: _animationDuration,
                     opacity: zero > 220 ? 0.0 : 1.0,
                     curve: Curves.ease,
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(url),
-                      radius: 30.0,
+                    // child: CircleAvatar(
+                    //   backgroundImage: NetworkImage(url),
+                    //   radius: 30.0,
+                    // ),
+                    child: GestureDetector(
+                      onTap: () {
+                        Provider.of<SettingProvider>(context, listen: false)
+                            .setCircleAvatar();
+                      },
+                      child: Container(
+                        height: 64,
+                        width: 64,
+                        decoration: BoxDecoration(
+                          shape: avatar ? BoxShape.circle : BoxShape.rectangle,
+                          borderRadius:
+                              avatar ? null : BorderRadius.circular(16),
+                          color: AppColors.hintTextColor,
+                          border: Border.all(
+                            color: AppColors.orange,
+                            width: 2,
+                            strokeAlign: StrokeAlign.outside,
+                          ),
+                        ),
+                        clipBehavior: Clip.hardEdge,
+                        child: Image.network(
+                          url,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                 ),

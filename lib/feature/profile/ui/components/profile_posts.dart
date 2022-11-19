@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ovesdu_mobile/app/data/setting_provider/setting_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/data/setting_provider/theme_provider.dart';
@@ -120,6 +121,7 @@ class PostHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
+    final avatar = Provider.of<SettingProvider>(context).isCircleAvatar;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
@@ -129,23 +131,30 @@ class PostHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            height: 64,
-            width: 64,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: AppColors.hintTextColor,
-              border: Border.all(
-                color: AppColors.orange,
-                width: 2,
-                strokeAlign: StrokeAlign.outside,
+          GestureDetector(
+            onTap: () {
+              Provider.of<SettingProvider>(context, listen: false)
+                  .setCircleAvatar();
+            },
+            child: Container(
+              height: 64,
+              width: 64,
+              decoration: BoxDecoration(
+                shape: avatar ? BoxShape.circle : BoxShape.rectangle,
+                borderRadius: avatar ? null : BorderRadius.circular(16),
+                color: AppColors.hintTextColor,
+                border: Border.all(
+                  color: AppColors.orange,
+                  width: 2,
+                  strokeAlign: StrokeAlign.outside,
+                ),
               ),
-            ),
-            clipBehavior: Clip.hardEdge,
-            child: Image.network(
-              'https://caknowledge.com/wp-content/uploads/2022/05/Chuck-'
-              'Norris-Net-Worth-100-million.jpg',
-              fit: BoxFit.cover,
+              clipBehavior: Clip.hardEdge,
+              child: Image.network(
+                'https://caknowledge.com/wp-content/uploads/2022/05/Chuck-'
+                'Norris-Net-Worth-100-million.jpg',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Padding(

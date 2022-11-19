@@ -19,6 +19,7 @@ class MainAppRunner implements AppRunner {
   late bool isLightTheme;
   late DeviceEntity device;
   late bool firstStart;
+  late bool isCircleAvatar;
   late Directory directory;
 
   final String env;
@@ -47,6 +48,13 @@ class MainAppRunner implements AppRunner {
               Brightness.light,
         );
 
+    isCircleAvatar = settings.get(SettingKey.avatar) ??
+        _setSetting(
+          settings,
+          SettingKey.avatar,
+          false,
+        );
+
     device = await _getDeviceInfo();
 
     firstStart = settings.get(SettingKey.firstStart) ?? true;
@@ -65,7 +73,15 @@ class MainAppRunner implements AppRunner {
     HydratedBlocOverrides.runZoned(
       () async {
         await preloadData();
-        runApp(appBuilder.buildApp(locale, isLightTheme, device, firstStart));
+        runApp(
+          appBuilder.buildApp(
+            locale,
+            isLightTheme,
+            device,
+            firstStart,
+            isCircleAvatar,
+          ),
+        );
       },
       storage: storage,
     );
