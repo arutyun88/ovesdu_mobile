@@ -19,18 +19,46 @@ class ErrorEntity with _$ErrorEntity {
   factory ErrorEntity.fromException(dynamic error) {
     if (error is ErrorEntity) return error;
 
-    const entity = ErrorEntity(message: 'Unknown error');
     if (error is DioError) {
+      final locale = error.response?.requestOptions.headers['locale'] ?? 'en';
       try {
         return ErrorEntity(
-          message: error.response?.data['message'] ?? 'Unknown error',
-          errorMessage: error.response?.data['error'] ?? 'Unknown error',
+          message: error.response?.data['message'] ??
+              _getLocalizedErrorMessage(locale),
+          errorMessage: error.response?.data['error'] ??
+              _getLocalizedErrorMessage(locale),
           error: error,
         );
       } catch (_) {
-        return entity;
+        return ErrorEntity(
+          message: _getLocalizedErrorMessage(locale),
+        );
       }
     }
-    return entity;
+    return ErrorEntity(message: _getLocalizedUnknownErrorMessage('en'));
+  }
+
+  static String _getLocalizedErrorMessage(String locale) {
+    if (locale == 'ru') {
+      return 'Ошибка подключения к серверу';
+    } else if (locale == 'hy') {
+      return 'Սերվերի միացման սխալ';
+    } else if (locale == 'fr') {
+      return 'Erreur de connexion au serveur';
+    } else {
+      return 'Server connection error';
+    }
+  }
+
+  static String _getLocalizedUnknownErrorMessage(String locale) {
+    if (locale == 'ru') {
+      return 'Неизвестная ошибка';
+    } else if (locale == 'hy') {
+      return 'Անհայտ սխալ';
+    } else if (locale == 'fr') {
+      return 'Erreur inconnue';
+    } else {
+      return 'Unknown error';
+    }
   }
 }
