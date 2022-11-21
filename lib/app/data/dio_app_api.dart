@@ -164,4 +164,16 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> getUserProfileStatistic(String userId) {
+    try {
+      return dio.get(
+        '/data/statistic',
+        queryParameters: {'userId': userId},
+      );
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
