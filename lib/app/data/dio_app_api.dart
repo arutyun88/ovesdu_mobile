@@ -178,12 +178,9 @@ class DioAppApi implements AppApi {
   }
 
   @override
-  Future<Response> getUserProfileFollowers(List<int> followers) {
+  Future<Response> getUserProfileFollowers(Map<String, dynamic> data) {
     try {
-      return dio.post(
-        '/auth/profile/simple',
-        data: followers,
-      );
+      return dio.post('/auth/profile/simple', data: data);
     } catch (_) {
       rethrow;
     }
