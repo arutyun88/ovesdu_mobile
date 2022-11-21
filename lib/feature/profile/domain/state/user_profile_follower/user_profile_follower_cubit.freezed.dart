@@ -20,8 +20,7 @@ mixin _$UserProfileFollowersState {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserProfileFollowerEntity> followers)
-        received,
+    required TResult Function(UserProfileFollowersEntity followers) received,
     required TResult Function(ErrorEntity error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,7 +28,7 @@ mixin _$UserProfileFollowersState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserProfileFollowerEntity> followers)? received,
+    TResult? Function(UserProfileFollowersEntity followers)? received,
     TResult? Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,7 +36,7 @@ mixin _$UserProfileFollowersState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserProfileFollowerEntity> followers)? received,
+    TResult Function(UserProfileFollowersEntity followers)? received,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) =>
@@ -134,8 +133,7 @@ class _$_UserProfileFollowersStateInit
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserProfileFollowerEntity> followers)
-        received,
+    required TResult Function(UserProfileFollowersEntity followers) received,
     required TResult Function(ErrorEntity error) error,
   }) {
     return init();
@@ -146,7 +144,7 @@ class _$_UserProfileFollowersStateInit
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserProfileFollowerEntity> followers)? received,
+    TResult? Function(UserProfileFollowersEntity followers)? received,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return init?.call();
@@ -157,7 +155,7 @@ class _$_UserProfileFollowersStateInit
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserProfileFollowerEntity> followers)? received,
+    TResult Function(UserProfileFollowersEntity followers)? received,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -256,8 +254,7 @@ class _$_UserProfileFollowersStateWaiting
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserProfileFollowerEntity> followers)
-        received,
+    required TResult Function(UserProfileFollowersEntity followers) received,
     required TResult Function(ErrorEntity error) error,
   }) {
     return waiting();
@@ -268,7 +265,7 @@ class _$_UserProfileFollowersStateWaiting
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserProfileFollowerEntity> followers)? received,
+    TResult? Function(UserProfileFollowersEntity followers)? received,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return waiting?.call();
@@ -279,7 +276,7 @@ class _$_UserProfileFollowersStateWaiting
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserProfileFollowerEntity> followers)? received,
+    TResult Function(UserProfileFollowersEntity followers)? received,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -341,7 +338,7 @@ abstract class _$$_UserProfileFollowersStateReceivedCopyWith<$Res> {
           $Res Function(_$_UserProfileFollowersStateReceived) then) =
       __$$_UserProfileFollowersStateReceivedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<UserProfileFollowerEntity> followers});
+  $Res call({UserProfileFollowersEntity followers});
 }
 
 /// @nodoc
@@ -361,9 +358,9 @@ class __$$_UserProfileFollowersStateReceivedCopyWithImpl<$Res>
   }) {
     return _then(_$_UserProfileFollowersStateReceived(
       null == followers
-          ? _value._followers
+          ? _value.followers
           : followers // ignore: cast_nullable_to_non_nullable
-              as List<UserProfileFollowerEntity>,
+              as UserProfileFollowersEntity,
     ));
   }
 }
@@ -372,16 +369,10 @@ class __$$_UserProfileFollowersStateReceivedCopyWithImpl<$Res>
 
 class _$_UserProfileFollowersStateReceived
     implements _UserProfileFollowersStateReceived {
-  _$_UserProfileFollowersStateReceived(
-      final List<UserProfileFollowerEntity> followers)
-      : _followers = followers;
+  _$_UserProfileFollowersStateReceived(this.followers);
 
-  final List<UserProfileFollowerEntity> _followers;
   @override
-  List<UserProfileFollowerEntity> get followers {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_followers);
-  }
+  final UserProfileFollowersEntity followers;
 
   @override
   String toString() {
@@ -393,13 +384,12 @@ class _$_UserProfileFollowersStateReceived
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserProfileFollowersStateReceived &&
-            const DeepCollectionEquality()
-                .equals(other._followers, _followers));
+            (identical(other.followers, followers) ||
+                other.followers == followers));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_followers));
+  int get hashCode => Object.hash(runtimeType, followers);
 
   @JsonKey(ignore: true)
   @override
@@ -414,8 +404,7 @@ class _$_UserProfileFollowersStateReceived
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserProfileFollowerEntity> followers)
-        received,
+    required TResult Function(UserProfileFollowersEntity followers) received,
     required TResult Function(ErrorEntity error) error,
   }) {
     return received(followers);
@@ -426,7 +415,7 @@ class _$_UserProfileFollowersStateReceived
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserProfileFollowerEntity> followers)? received,
+    TResult? Function(UserProfileFollowersEntity followers)? received,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return received?.call(followers);
@@ -437,7 +426,7 @@ class _$_UserProfileFollowersStateReceived
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserProfileFollowerEntity> followers)? received,
+    TResult Function(UserProfileFollowersEntity followers)? received,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -489,10 +478,10 @@ class _$_UserProfileFollowersStateReceived
 abstract class _UserProfileFollowersStateReceived
     implements UserProfileFollowersState {
   factory _UserProfileFollowersStateReceived(
-          final List<UserProfileFollowerEntity> followers) =
+          final UserProfileFollowersEntity followers) =
       _$_UserProfileFollowersStateReceived;
 
-  List<UserProfileFollowerEntity> get followers;
+  UserProfileFollowersEntity get followers;
   @JsonKey(ignore: true)
   _$$_UserProfileFollowersStateReceivedCopyWith<
           _$_UserProfileFollowersStateReceived>
@@ -580,8 +569,7 @@ class _$_UserProfileFollowersStateError
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserProfileFollowerEntity> followers)
-        received,
+    required TResult Function(UserProfileFollowersEntity followers) received,
     required TResult Function(ErrorEntity error) error,
   }) {
     return error(this.error);
@@ -592,7 +580,7 @@ class _$_UserProfileFollowersStateError
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserProfileFollowerEntity> followers)? received,
+    TResult? Function(UserProfileFollowersEntity followers)? received,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
@@ -603,7 +591,7 @@ class _$_UserProfileFollowersStateError
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserProfileFollowerEntity> followers)? received,
+    TResult Function(UserProfileFollowersEntity followers)? received,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {

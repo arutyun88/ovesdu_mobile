@@ -1,5 +1,5 @@
 import 'entities/user_profile/user_profile_entity.dart';
-import 'entities/user_profile_follower/user_profile_follower_entity.dart';
+import 'entities/user_profile_follower/user_profile_followers_entity.dart';
 import 'entities/user_profile_statistic/user_profile_statistic_entity.dart';
 
 abstract class ProfileRepository {
@@ -9,7 +9,8 @@ abstract class ProfileRepository {
 
   Future<UserProfileStatisticEntity> getUserProfileStatistic(String userId);
 
-  Future<List<UserProfileFollowerEntity>> getUserProfileFollowers(
+  Future<UserProfileFollowersEntity> getUserProfileFollowers(
     List<int> followers,
+    List<int> following,
   );
 }

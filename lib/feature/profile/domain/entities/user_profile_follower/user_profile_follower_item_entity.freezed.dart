@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'user_profile_follower_entity.dart';
+part of 'user_profile_follower_item_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,31 +15,33 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UserProfileFollowerEntity {
+mixin _$UserProfileFollowerItemEntity {
   String get id => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UserProfileFollowerEntityCopyWith<UserProfileFollowerEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UserProfileFollowerItemEntityCopyWith<UserProfileFollowerItemEntity>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserProfileFollowerEntityCopyWith<$Res> {
-  factory $UserProfileFollowerEntityCopyWith(UserProfileFollowerEntity value,
-          $Res Function(UserProfileFollowerEntity) then) =
-      _$UserProfileFollowerEntityCopyWithImpl<$Res, UserProfileFollowerEntity>;
+abstract class $UserProfileFollowerItemEntityCopyWith<$Res> {
+  factory $UserProfileFollowerItemEntityCopyWith(
+          UserProfileFollowerItemEntity value,
+          $Res Function(UserProfileFollowerItemEntity) then) =
+      _$UserProfileFollowerItemEntityCopyWithImpl<$Res,
+          UserProfileFollowerItemEntity>;
   @useResult
   $Res call({String id, String firstName, String lastName, String image});
 }
 
 /// @nodoc
-class _$UserProfileFollowerEntityCopyWithImpl<$Res,
-        $Val extends UserProfileFollowerEntity>
-    implements $UserProfileFollowerEntityCopyWith<$Res> {
-  _$UserProfileFollowerEntityCopyWithImpl(this._value, this._then);
+class _$UserProfileFollowerItemEntityCopyWithImpl<$Res,
+        $Val extends UserProfileFollowerItemEntity>
+    implements $UserProfileFollowerItemEntityCopyWith<$Res> {
+  _$UserProfileFollowerItemEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -76,25 +78,25 @@ class _$UserProfileFollowerEntityCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_UserProfileFollowerEntityCopyWith<$Res>
-    implements $UserProfileFollowerEntityCopyWith<$Res> {
-  factory _$$_UserProfileFollowerEntityCopyWith(
-          _$_UserProfileFollowerEntity value,
-          $Res Function(_$_UserProfileFollowerEntity) then) =
-      __$$_UserProfileFollowerEntityCopyWithImpl<$Res>;
+abstract class _$$_UserProfileFollowerItemEntityCopyWith<$Res>
+    implements $UserProfileFollowerItemEntityCopyWith<$Res> {
+  factory _$$_UserProfileFollowerItemEntityCopyWith(
+          _$_UserProfileFollowerItemEntity value,
+          $Res Function(_$_UserProfileFollowerItemEntity) then) =
+      __$$_UserProfileFollowerItemEntityCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String firstName, String lastName, String image});
 }
 
 /// @nodoc
-class __$$_UserProfileFollowerEntityCopyWithImpl<$Res>
-    extends _$UserProfileFollowerEntityCopyWithImpl<$Res,
-        _$_UserProfileFollowerEntity>
-    implements _$$_UserProfileFollowerEntityCopyWith<$Res> {
-  __$$_UserProfileFollowerEntityCopyWithImpl(
-      _$_UserProfileFollowerEntity _value,
-      $Res Function(_$_UserProfileFollowerEntity) _then)
+class __$$_UserProfileFollowerItemEntityCopyWithImpl<$Res>
+    extends _$UserProfileFollowerItemEntityCopyWithImpl<$Res,
+        _$_UserProfileFollowerItemEntity>
+    implements _$$_UserProfileFollowerItemEntityCopyWith<$Res> {
+  __$$_UserProfileFollowerItemEntityCopyWithImpl(
+      _$_UserProfileFollowerItemEntity _value,
+      $Res Function(_$_UserProfileFollowerItemEntity) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -105,7 +107,7 @@ class __$$_UserProfileFollowerEntityCopyWithImpl<$Res>
     Object? lastName = null,
     Object? image = null,
   }) {
-    return _then(_$_UserProfileFollowerEntity(
+    return _then(_$_UserProfileFollowerItemEntity(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -128,8 +130,9 @@ class __$$_UserProfileFollowerEntityCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UserProfileFollowerEntity implements _UserProfileFollowerEntity {
-  const _$_UserProfileFollowerEntity(
+class _$_UserProfileFollowerItemEntity
+    implements _UserProfileFollowerItemEntity {
+  const _$_UserProfileFollowerItemEntity(
       {required this.id,
       required this.firstName,
       required this.lastName,
@@ -146,14 +149,14 @@ class _$_UserProfileFollowerEntity implements _UserProfileFollowerEntity {
 
   @override
   String toString() {
-    return 'UserProfileFollowerEntity(id: $id, firstName: $firstName, lastName: $lastName, image: $image)';
+    return 'UserProfileFollowerItemEntity(id: $id, firstName: $firstName, lastName: $lastName, image: $image)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserProfileFollowerEntity &&
+            other is _$_UserProfileFollowerItemEntity &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
@@ -168,17 +171,18 @@ class _$_UserProfileFollowerEntity implements _UserProfileFollowerEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserProfileFollowerEntityCopyWith<_$_UserProfileFollowerEntity>
-      get copyWith => __$$_UserProfileFollowerEntityCopyWithImpl<
-          _$_UserProfileFollowerEntity>(this, _$identity);
+  _$$_UserProfileFollowerItemEntityCopyWith<_$_UserProfileFollowerItemEntity>
+      get copyWith => __$$_UserProfileFollowerItemEntityCopyWithImpl<
+          _$_UserProfileFollowerItemEntity>(this, _$identity);
 }
 
-abstract class _UserProfileFollowerEntity implements UserProfileFollowerEntity {
-  const factory _UserProfileFollowerEntity(
+abstract class _UserProfileFollowerItemEntity
+    implements UserProfileFollowerItemEntity {
+  const factory _UserProfileFollowerItemEntity(
       {required final String id,
       required final String firstName,
       required final String lastName,
-      required final String image}) = _$_UserProfileFollowerEntity;
+      required final String image}) = _$_UserProfileFollowerItemEntity;
 
   @override
   String get id;
@@ -190,6 +194,6 @@ abstract class _UserProfileFollowerEntity implements UserProfileFollowerEntity {
   String get image;
   @override
   @JsonKey(ignore: true)
-  _$$_UserProfileFollowerEntityCopyWith<_$_UserProfileFollowerEntity>
+  _$$_UserProfileFollowerItemEntityCopyWith<_$_UserProfileFollowerItemEntity>
       get copyWith => throw _privateConstructorUsedError;
 }

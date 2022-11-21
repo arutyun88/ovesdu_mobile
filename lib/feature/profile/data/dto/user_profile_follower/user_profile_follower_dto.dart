@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/entities/user_profile_follower/user_profile_follower_entity.dart';
+import '../../../domain/entities/user_profile_follower/user_profile_follower_item_entity.dart';
 
 part 'user_profile_follower_dto.g.dart';
 
@@ -23,7 +23,7 @@ class UserProfileFollowerDto {
 
   Map<String, dynamic> toJson() => _$UserProfileFollowerDtoToJson(this);
 
-  UserProfileFollowerEntity toEntity() => UserProfileFollowerEntity(
+  UserProfileFollowerItemEntity toEntity() => UserProfileFollowerItemEntity(
         id: id.toString(),
         firstName: firstName.toString(),
         lastName: lastName.toString(),

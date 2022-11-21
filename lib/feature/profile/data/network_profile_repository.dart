@@ -1,9 +1,9 @@
 import 'package:injectable/injectable.dart';
-import 'package:ovesdu_mobile/feature/profile/domain/entities/user_profile_statistic/user_profile_statistic_entity.dart';
 
 import '../../../app/domain/app_api.dart';
 import '../domain/entities/user_profile/user_profile_entity.dart';
-import '../domain/entities/user_profile_follower/user_profile_follower_entity.dart';
+import '../domain/entities/user_profile_follower/user_profile_followers_entity.dart';
+import '../domain/entities/user_profile_statistic/user_profile_statistic_entity.dart';
 import '../domain/profile_repository.dart';
 import 'dto/user_profile/user_profile_dto.dart';
 import 'dto/user_profile_follower/user_profile_follower_dto.dart';
@@ -51,18 +51,31 @@ class NetworkProfileRepository implements ProfileRepository {
   }
 
   @override
-  Future<List<UserProfileFollowerEntity>> getUserProfileFollowers(
+  Future<UserProfileFollowersEntity> getUserProfileFollowers(
     List<int> followers,
+    List<int> following,
   ) async {
     await _api.setHeaderLocale();
     try {
-      final response = await _api.getUserProfileFollowers(followers);
+      final response = await _api.getUserProfileFollowers(
+        {'followers': followers, 'following': following},
+      );
 
-      return (response.data['data'] as List)
+      final data = response.data['data'];
+
+      final followersResult = (data['followers'] as List)
           .map(
             (follower) => UserProfileFollowerDto.fromJson(follower).toEntity(),
           )
           .toList();
+
+      final followingResult = (data['following'] as List)
+          .map(
+            (follower) => UserProfileFollowerDto.fromJson(follower).toEntity(),
+          )
+          .toList();
+
+      return UserProfileFollowersEntity(followersResult, followingResult);
     } catch (_) {
       rethrow;
     }

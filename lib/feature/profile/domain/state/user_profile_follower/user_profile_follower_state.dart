@@ -8,7 +8,7 @@ class UserProfileFollowersState with _$UserProfileFollowersState {
       _UserProfileFollowersStateWaiting;
 
   factory UserProfileFollowersState.received(
-          List<UserProfileFollowerEntity> followers) =
+          UserProfileFollowersEntity followers) =
       _UserProfileFollowersStateReceived;
 
   factory UserProfileFollowersState.error(ErrorEntity error) =

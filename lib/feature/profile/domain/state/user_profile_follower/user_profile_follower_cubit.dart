@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../app/domain/entities/error_entity/error_entity.dart';
-import '../../entities/user_profile_follower/user_profile_follower_entity.dart';
+import '../../entities/user_profile_follower/user_profile_followers_entity.dart';
 import '../../profile_repository.dart';
 
 part 'user_profile_follower_state.dart';
@@ -16,11 +16,16 @@ class UserProfileFollowersCubit extends Cubit<UserProfileFollowersState> {
 
   final ProfileRepository _profileRepository;
 
-  Future<void> getUserProfileStatistic(List<int> followers) async {
+  Future<void> getUserProfileFollowers(
+    List<int> followers,
+    List<int> following,
+  ) async {
     emit(UserProfileFollowersState.waiting());
     try {
-      final result =
-          await _profileRepository.getUserProfileFollowers(followers);
+      final result = await _profileRepository.getUserProfileFollowers(
+        followers,
+        following,
+      );
       emit(UserProfileFollowersState.received(result));
     } catch (error, stackTrace) {
       addError(error, stackTrace);
