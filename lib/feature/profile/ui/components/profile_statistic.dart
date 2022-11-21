@@ -14,43 +14,81 @@ class ProfileStatistic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dictionary = AppLocalizations.of(context)!;
-    return Column(
-      children: [
-        const ItemDivider(),
-        SizedBox(
-          height: 80,
-          width: MediaQuery.of(context).size.width,
-          child: Center(
-            child: ListView(
-              shrinkWrap: true,
+    return SizedBox(
+      height: 80.3,
+      child: Column(
+        children: [
+          const ItemDivider(),
+          SizedBox(
+            height: 80,
+            width: MediaQuery.of(context).size.width,
+            child: CustomScrollView(
               scrollDirection: Axis.horizontal,
-              children: [
-                const SizedBox(width: 16.0),
-                _ProfileStatisticItem(
-                  itemKey: dictionary.trust,
-                  itemValue: '180',
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        _ProfileStatisticItem(
+                          itemKey: dictionary.coins,
+                          itemValue: '9999',
+                        ),
+                        const VerticalItemDivider(),
+                        _ProfileStatisticItem(
+                          itemKey: dictionary.trust,
+                          itemValue: '180',
+                        ),
+                        const VerticalItemDivider(),
+                        _ProfileStatisticItem(
+                          itemKey: dictionary.followers,
+                          itemValue: '253',
+                        ),
+                        const VerticalItemDivider(),
+                        _ProfileStatisticItem(
+                          itemKey: dictionary.following,
+                          itemValue: '12',
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                const VerticalItemDivider(),
-                _ProfileStatisticItem(
-                  itemKey: dictionary.followers,
-                  itemValue: '253',
-                ),
-                const VerticalItemDivider(),
-                _ProfileStatisticItem(
-                  itemKey: dictionary.following,
-                  itemValue: '12',
-                ),
-                const VerticalItemDivider(),
-                _ProfileStatisticItem(
-                  itemKey: dictionary.coins,
-                  itemValue: '9999',
-                ),
-                const SizedBox(width: 16.0),
               ],
             ),
+            // child: Center(
+            //   child: ListView(
+            //     shrinkWrap: true,
+            //     scrollDirection: Axis.horizontal,
+            //     physics: const ClampingScrollPhysics(),
+            //     children: [
+            //       _ProfileStatisticItem(
+            //         itemKey: dictionary.coins,
+            //         itemValue: '9999',
+            //       ),
+            //       const VerticalItemDivider(),
+            //       _ProfileStatisticItem(
+            //         itemKey: dictionary.trust,
+            //         itemValue: '180',
+            //       ),
+            //       const VerticalItemDivider(),
+            //       _ProfileStatisticItem(
+            //         itemKey: dictionary.followers,
+            //         itemValue: '253',
+            //       ),
+            //       const VerticalItemDivider(),
+            //       _ProfileStatisticItem(
+            //         itemKey: dictionary.following,
+            //         itemValue: '12',
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -80,7 +118,7 @@ class _ProfileStatisticItem extends StatelessWidget {
             Text(
               itemKey,
               maxLines: 1,
-              style: theme.textTheme.headline6?.copyWith(
+              style: theme.textTheme.bodyText1?.copyWith(
                 fontWeight: FontWeight.w400,
                 color: AppColors.hintTextColor,
               ),

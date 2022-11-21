@@ -62,8 +62,8 @@ class _MainScreenState extends State<MainScreen> {
                           MaterialPageRoute(
                             builder: (context) => const UserProfileScreen(
                               userId: '13',
-                              firsName: 'Some',
-                              lastName: 'Person',
+                              firsName: 'Чак',
+                              lastName: 'Норрис',
                               image: 'https://caknowledge.com/wp-content/'
                                   'uploads/2022/05/Chuck-'
                                   'Norris-Net-Worth-100-million.jpg',
