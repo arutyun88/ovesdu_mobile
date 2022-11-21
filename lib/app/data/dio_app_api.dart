@@ -182,7 +182,7 @@ class DioAppApi implements AppApi {
     try {
       return dio.post(
         '/auth/profile/simple',
-        queryParameters: {'usersId': followers},
+        data: followers,
       );
     } catch (_) {
       rethrow;
