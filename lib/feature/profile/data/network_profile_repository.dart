@@ -3,8 +3,10 @@ import 'package:ovesdu_mobile/feature/profile/domain/entities/user_profile_stati
 
 import '../../../app/domain/app_api.dart';
 import '../domain/entities/user_profile/user_profile_entity.dart';
+import '../domain/entities/user_profile_follower/user_profile_follower_entity.dart';
 import '../domain/profile_repository.dart';
 import 'dto/user_profile/user_profile_dto.dart';
+import 'dto/user_profile_follower/user_profile_follower_dto.dart';
 import 'dto/user_profile_statistic/user_profile_statistic_dto.dart';
 
 @Injectable(as: ProfileRepository)
@@ -43,6 +45,24 @@ class NetworkProfileRepository implements ProfileRepository {
     try {
       final response = await _api.getUserProfileStatistic(userId);
       return UserProfileStatisticDto.fromJson(response.data['data']).toEntity();
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<UserProfileFollowerEntity>> getUserProfileFollowers(
+    List<int> followers,
+  ) async {
+    await _api.setHeaderLocale();
+    try {
+      final response = await _api.getUserProfileFollowers(followers);
+
+      return (response.data['data'] as List)
+          .map(
+            (follower) => UserProfileFollowerDto.fromJson(follower).toEntity(),
+          )
+          .toList();
     } catch (_) {
       rethrow;
     }
