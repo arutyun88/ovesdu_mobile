@@ -176,4 +176,16 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> getUserProfileFollowers(List<int> followers) {
+    try {
+      return dio.post(
+        '/auth/profile/simple',
+        queryParameters: {'usersId': followers},
+      );
+    } catch (_) {
+      rethrow;
+    }
+  }
 }

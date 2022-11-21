@@ -30,4 +30,6 @@ abstract class AppApi {
   Future<Response> getUserProfile(String userId);
 
   Future<Response> getUserProfileStatistic(String userId);
+
+  Future<Response> getUserProfileFollowers(List<int> followers);
 }
