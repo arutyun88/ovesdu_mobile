@@ -10,6 +10,7 @@ import '../../../app/ui/config/app_colors.dart';
 import '../domain/entities/user_profile/user_profile_entity.dart';
 import '../domain/profile_repository.dart';
 import '../domain/state/user_profile_cubit.dart';
+import '../domain/state/user_profile_statistic/user_profile_statistic_cubit.dart';
 import 'components/head_sliver_delegate.dart';
 import 'components/item_divider.dart';
 import 'components/profile_gifts.dart';
@@ -33,8 +34,19 @@ class UserProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UserProfileCubit(locator.get<ProfileRepository>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => UserProfileCubit(
+            locator.get<ProfileRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => UserProfileStatisticCubit(
+            locator.get<ProfileRepository>(),
+          ),
+        ),
+      ],
       child: _UserProfileScreen(
         userId: userId,
         firsName: firsName,
@@ -138,6 +150,10 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
               SliverToBoxAdapter(
                 child: state.maybeWhen(
                   received: (receivedUserEntity) {
+                    context
+                        .read<UserProfileStatisticCubit>()
+                        .getUserProfileStatistic(widget.userId);
+
                     return Column(
                       children: [
                         const ProfileStatistic(),

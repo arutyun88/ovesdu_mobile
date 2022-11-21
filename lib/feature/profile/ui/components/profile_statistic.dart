@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../app/const/const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/config/app_colors.dart';
+import '../../domain/state/user_profile_statistic/user_profile_statistic_cubit.dart';
 import 'item_divider.dart';
 
 class ProfileStatistic extends StatelessWidget {
@@ -14,81 +17,82 @@ class ProfileStatistic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dictionary = AppLocalizations.of(context)!;
-    return SizedBox(
-      height: 80.3,
-      child: Column(
-        children: [
-          const ItemDivider(),
-          SizedBox(
-            height: 80,
-            width: MediaQuery.of(context).size.width,
-            child: CustomScrollView(
-              scrollDirection: Axis.horizontal,
-              slivers: [
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        _ProfileStatisticItem(
-                          itemKey: dictionary.coins,
-                          itemValue: '9999',
+    final theme = Provider.of<ThemeProvider>(context).themeData;
+
+    return Column(
+      children: [
+        const ItemDivider(),
+        SizedBox(
+          height: 80,
+          width: MediaQuery.of(context).size.width,
+          child: BlocBuilder<UserProfileStatisticCubit,
+              UserProfileStatisticState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                received: (statistic) => CustomScrollView(
+                  scrollDirection: Axis.horizontal,
+                  slivers: [
+                    SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            _ProfileStatisticItem(
+                              itemKey: dictionary.coins,
+                              itemValue: statistic.coins,
+                            ),
+                            const VerticalItemDivider(),
+                            _ProfileStatisticItem(
+                              itemKey: dictionary.trust,
+                              itemValue: statistic.trust,
+                            ),
+                            const VerticalItemDivider(),
+                            _ProfileStatisticItem(
+                              itemKey: dictionary.followers,
+                              itemValue:
+                                  statistic.followers.length.toString(),
+                            ),
+                            const VerticalItemDivider(),
+                            _ProfileStatisticItem(
+                              itemKey: dictionary.following,
+                              itemValue:
+                                  statistic.following.length.toString(),
+                            ),
+                          ],
                         ),
-                        const VerticalItemDivider(),
-                        _ProfileStatisticItem(
-                          itemKey: dictionary.trust,
-                          itemValue: '180',
-                        ),
-                        const VerticalItemDivider(),
-                        _ProfileStatisticItem(
-                          itemKey: dictionary.followers,
-                          itemValue: '253',
-                        ),
-                        const VerticalItemDivider(),
-                        _ProfileStatisticItem(
-                          itemKey: dictionary.following,
-                          itemValue: '12',
-                        ),
-                      ],
+                      ),
+                    ),
+                  ],
+                ),
+                error: (error) => Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: mainPadding,
+                  ),
+                  child: Center(
+                    child: Text(
+                      error.message,
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.headline6?.copyWith(
+                        fontStyle: FontStyle.italic,
+                        color:
+                            theme.textTheme.headline6?.color?.withOpacity(.5),
+                      ),
                     ),
                   ),
                 ),
-              ],
-            ),
-            // child: Center(
-            //   child: ListView(
-            //     shrinkWrap: true,
-            //     scrollDirection: Axis.horizontal,
-            //     physics: const ClampingScrollPhysics(),
-            //     children: [
-            //       _ProfileStatisticItem(
-            //         itemKey: dictionary.coins,
-            //         itemValue: '9999',
-            //       ),
-            //       const VerticalItemDivider(),
-            //       _ProfileStatisticItem(
-            //         itemKey: dictionary.trust,
-            //         itemValue: '180',
-            //       ),
-            //       const VerticalItemDivider(),
-            //       _ProfileStatisticItem(
-            //         itemKey: dictionary.followers,
-            //         itemValue: '253',
-            //       ),
-            //       const VerticalItemDivider(),
-            //       _ProfileStatisticItem(
-            //         itemKey: dictionary.following,
-            //         itemValue: '12',
-            //       ),
-            //     ],
-            //   ),
-            // ),
+                orElse: () => const Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.orange,
+                  ),
+                ),
+              );
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
