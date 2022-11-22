@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import '../../../app/domain/app_api.dart';
 import '../domain/entities/user_profile/user_profile_entity.dart';
 import '../domain/entities/user_profile_follower/user_profile_followers_entity.dart';
+import '../domain/entities/user_profile_follower/user_simple_followers_entity.dart';
 import '../domain/entities/user_profile_statistic/user_profile_statistic_entity.dart';
 import '../domain/profile_repository.dart';
 import 'dto/user_profile/user_profile_dto.dart';
@@ -76,6 +77,26 @@ class NetworkProfileRepository implements ProfileRepository {
           .toList();
 
       return UserProfileFollowersEntity(followersResult, followingResult);
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<UserSimpleFollowersEntity> getMyFollowersIds() async {
+    await _api.setHeaderLocale();
+    try {
+      final response = await _api.getMyFollowersIds();
+
+      final data = response.data['data'];
+
+      final followersResult =
+          (data['followers'] as List).map((e) => e as int).toList();
+
+      final followingResult =
+          (data['following'] as List).map((e) => e as int).toList();
+
+      return UserSimpleFollowersEntity(followersResult, followingResult);
     } catch (_) {
       rethrow;
     }
