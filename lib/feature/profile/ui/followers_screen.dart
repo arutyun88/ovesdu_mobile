@@ -152,9 +152,26 @@ class _FollowList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userId = locator
+            .get<ProfileCubit>()
+            .state
+            .whenOrNull(received: (profile) => profile.id) ??
+        0;
+    final list = <UserProfileFollowerItemEntity>[];
+    final i = items.where((e) => int.parse(e.id) == userId).toList();
+    if (i.isNotEmpty) {
+      list.add(i.first);
+      items.remove(i.first);
+    }
+    items.sort(
+      (left, right) => left.firstName.toLowerCase().compareTo(
+            right.firstName.toLowerCase(),
+          ),
+    );
+    list.addAll(items);
     return ListView(
       key: PageStorageKey<String>(itemsKey),
-      children: items
+      children: list
           .map(
             (item) => _FollowerItem(item),
           )
