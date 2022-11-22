@@ -9,6 +9,7 @@ import '../../../app/di/init_di.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../domain/entities/user_profile/user_profile_entity.dart';
 import '../domain/profile_repository.dart';
+import '../domain/state/user_blocked/user_blocked_cubit.dart';
 import '../domain/state/user_profile_cubit.dart';
 import '../domain/state/user_profile_follower/my_followers_cubit.dart';
 import '../domain/state/user_profile_follower/user_profile_follower_cubit.dart';
@@ -55,6 +56,11 @@ class UserProfileScreen extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => MyFollowersCubit(
+            locator.get<ProfileRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => UserBlockedCubit(
             locator.get<ProfileRepository>(),
           ),
         ),
