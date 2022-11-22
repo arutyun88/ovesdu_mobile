@@ -101,4 +101,20 @@ class NetworkProfileRepository implements ProfileRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<List<int>> getBlockedIds() async {
+    await _api.setHeaderLocale();
+    try {
+      final response = await _api.getBlockedIds();
+
+      final data = response.data['data'] as List;
+
+      final result = data.map((e) => e as int).toList();
+
+      return result;
+    } catch (_) {
+      rethrow;
+    }
+  }
 }

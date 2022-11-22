@@ -196,7 +196,7 @@ class DioAppApi implements AppApi {
   }
 
   @override
-  Future<Response> getMyBlockedIds() {
+  Future<Response> getBlockedIds() {
     try {
       return dio.get('/auth/profile/block');
     } catch (_) {

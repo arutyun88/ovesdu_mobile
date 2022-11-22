@@ -16,4 +16,6 @@ abstract class ProfileRepository {
   );
 
   Future<UserSimpleFollowersEntity> getMyFollowersIds();
+
+  Future<List<int>> getBlockedIds();
 }
