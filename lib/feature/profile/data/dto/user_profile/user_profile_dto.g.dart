@@ -8,6 +8,7 @@ part of 'user_profile_dto.dart';
 
 UserProfileDto _$UserProfileDtoFromJson(Map<String, dynamic> json) =>
     UserProfileDto(
+      id: json['id'],
       username: json['username'],
       email: json['email'],
       phoneNumber: json['phoneNumber'],
@@ -23,6 +24,7 @@ UserProfileDto _$UserProfileDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$UserProfileDtoToJson(UserProfileDto instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'username': instance.username,
       'email': instance.email,
       'phoneNumber': instance.phoneNumber,

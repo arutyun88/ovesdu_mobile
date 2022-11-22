@@ -27,6 +27,6 @@ class UserProfileStatisticDto {
         trust: trust.toString(),
         coins: coins.toString(),
         followers: (followers as List).map((e) => e as int).toList(),
-        following: (followers as List).map((e) => e as int).toList(),
+        following: (following as List).map((e) => e as int).toList(),
       );
 }

@@ -5,6 +5,7 @@ part 'user_profile_dto.g.dart';
 
 @JsonSerializable()
 class UserProfileDto {
+  final dynamic id;
   final dynamic username;
   final dynamic email;
   final dynamic phoneNumber;
@@ -18,6 +19,7 @@ class UserProfileDto {
   final dynamic isMale;
 
   UserProfileDto({
+    this.id,
     this.username,
     this.email,
     this.phoneNumber,
@@ -37,6 +39,7 @@ class UserProfileDto {
   Map<String, dynamic> toJson() => _$UserProfileDtoToJson(this);
 
   UserProfileEntity toEntity() => UserProfileEntity(
+        id: id,
         username: username.toString(),
         email: email.toString(),
         phoneNumber: phoneNumber.toString(),
@@ -50,6 +53,7 @@ class UserProfileDto {
       );
 
   UserProfileEntity toOtherEntity() => UserProfileEntity(
+        id: id,
         username: username.toString(),
         email: email.toString(),
         phoneNumber: phoneNumber.toString(),
