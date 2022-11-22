@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ovesdu_mobile/feature/profile/domain/state/user_blocked/user_blocked_cubit.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/const/const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/config/app_colors.dart';
+import '../../domain/state/user_profile_follower/my_followers_cubit.dart';
 import '../../domain/state/user_profile_follower/user_profile_follower_cubit.dart';
 import '../../domain/state/user_profile_statistic/user_profile_statistic_cubit.dart';
 import '../followers_screen.dart';
@@ -60,6 +62,9 @@ class ProfileStatistic extends StatelessWidget {
                                 clickedIsFollowers: true,
                                 cubit:
                                     context.read<UserProfileFollowersCubit>(),
+                                myFollowersCubit:
+                                    context.read<MyFollowersCubit>(),
+                                blockedCubit: context.read<UserBlockedCubit>(),
                               ),
                               child: _ProfileStatisticItem(
                                 itemKey: dictionary.followers,
@@ -76,6 +81,9 @@ class ProfileStatistic extends StatelessWidget {
                                 clickedIsFollowers: false,
                                 cubit:
                                     context.read<UserProfileFollowersCubit>(),
+                                myFollowersCubit:
+                                    context.read<MyFollowersCubit>(),
+                                blockedCubit: context.read<UserBlockedCubit>(),
                               ),
                               child: _ProfileStatisticItem(
                                 itemKey: dictionary.following,
@@ -124,6 +132,8 @@ class ProfileStatistic extends StatelessWidget {
     required List<int> following,
     required bool clickedIsFollowers,
     required UserProfileFollowersCubit cubit,
+    required MyFollowersCubit myFollowersCubit,
+    required UserBlockedCubit blockedCubit,
   }) {
     final media = MediaQuery.of(context);
     final height = media.size.height - media.padding.vertical - mainPadding;
@@ -131,18 +141,31 @@ class ProfileStatistic extends StatelessWidget {
 
     cubit.getUserProfileFollowers(followers, following).then(
       (value) {
-        return showDialog(
-          context: context,
-          useSafeArea: false,
-          builder: (context) {
-            return cubit.state.maybeWhen(
-              received: (follow) => FollowersScreen(
-                followers: follow.followers,
-                following: follow.following,
-                clickedIsFollowers: clickedIsFollowers,
-                size: Size(width, height),
-              ),
-              orElse: () => const SizedBox(),
+        myFollowersCubit.getMyFollowersIds().then(
+          (value) async {
+            final myFollowers = myFollowersCubit.state
+                .whenOrNull(received: (received) => received);
+            await blockedCubit.getMyFollowersIds();
+            final blackList = blockedCubit.state.maybeWhen(
+              received: (received) => received,
+              orElse: () => <int>[],
+            );
+            return showDialog(
+              context: context,
+              useSafeArea: false,
+              builder: (context) {
+                return cubit.state.maybeWhen(
+                  received: (follow) => FollowersScreen(
+                    followers: follow.followers,
+                    following: follow.following,
+                    clickedIsFollowers: clickedIsFollowers,
+                    size: Size(width, height),
+                    myFollowers: myFollowers,
+                    blackList: blackList,
+                  ),
+                  orElse: () => const SizedBox(),
+                );
+              },
             );
           },
         );

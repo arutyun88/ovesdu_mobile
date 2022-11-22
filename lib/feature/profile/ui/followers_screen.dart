@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../domain/entities/user_profile_follower/user_profile_follower_item_entity.dart';
+import '../domain/entities/user_profile_follower/user_simple_followers_entity.dart';
 
 class FollowersScreen extends StatefulWidget {
   const FollowersScreen({
@@ -18,12 +19,16 @@ class FollowersScreen extends StatefulWidget {
     required this.following,
     required this.clickedIsFollowers,
     required this.size,
+    required this.myFollowers,
+    required this.blackList,
   }) : super(key: key);
 
   final List<UserProfileFollowerItemEntity> followers;
   final List<UserProfileFollowerItemEntity> following;
   final bool clickedIsFollowers;
   final Size size;
+  final UserSimpleFollowersEntity? myFollowers;
+  final List<int> blackList;
 
   @override
   State<FollowersScreen> createState() => _FollowersScreenState();
@@ -62,12 +67,16 @@ class _FollowersScreenState extends State<FollowersScreen> {
         followersKey: _FollowList(
           itemsKey: followersKey,
           items: widget.followers,
+          myFollowers: widget.myFollowers,
+          blackList: widget.blackList,
         ),
       },
       {
         followingKey: _FollowList(
           itemsKey: followingKey,
           items: widget.following,
+          myFollowers: widget.myFollowers,
+          blackList: widget.blackList,
         ),
       }
     ];
@@ -145,10 +154,38 @@ class _FollowList extends StatelessWidget {
     Key? key,
     required this.itemsKey,
     required this.items,
+    required this.myFollowers,
+    required this.blackList,
   }) : super(key: key);
 
   final String itemsKey;
   final List<UserProfileFollowerItemEntity> items;
+  final UserSimpleFollowersEntity? myFollowers;
+  final List<int> blackList;
+
+  List<UserProfileFollowerItemEntity> _sort(
+    List<UserProfileFollowerItemEntity> items,
+    int currentUserId,
+  ) {
+    final result = <UserProfileFollowerItemEntity>[];
+
+    final copy = items.map((e) => e).toList();
+
+    final its = copy.where((e) => int.parse(e.id) == currentUserId).toList();
+    if (its.isNotEmpty) {
+      result.add(its.first);
+      copy.remove(its.first);
+    }
+
+    copy.sort(
+      (left, right) => left.firstName.toLowerCase().compareTo(
+            right.firstName.toLowerCase(),
+          ),
+    );
+    result.addAll(copy);
+
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -157,23 +194,14 @@ class _FollowList extends StatelessWidget {
             .state
             .whenOrNull(received: (profile) => profile.id) ??
         0;
-    final list = <UserProfileFollowerItemEntity>[];
-    final i = items.where((e) => int.parse(e.id) == userId).toList();
-    if (i.isNotEmpty) {
-      list.add(i.first);
-      items.remove(i.first);
-    }
-    items.sort(
-      (left, right) => left.firstName.toLowerCase().compareTo(
-            right.firstName.toLowerCase(),
-          ),
-    );
-    list.addAll(items);
+
+    var sortedList = _sort(items, userId);
+
     return ListView(
       key: PageStorageKey<String>(itemsKey),
-      children: list
+      children: sortedList
           .map(
-            (item) => _FollowerItem(item),
+            (item) => _FollowerItem(item, myFollowers, blackList),
           )
           .toList(),
     );
@@ -182,11 +210,15 @@ class _FollowList extends StatelessWidget {
 
 class _FollowerItem extends StatelessWidget {
   const _FollowerItem(
-    this.item, {
+    this.item,
+    this.myFollowers,
+    this.blackList, {
     Key? key,
   }) : super(key: key);
 
   final UserProfileFollowerItemEntity item;
+  final UserSimpleFollowersEntity? myFollowers;
+  final List<int> blackList;
 
   @override
   Widget build(BuildContext context) {
@@ -271,9 +303,30 @@ class _FollowerItem extends StatelessWidget {
                     ),
               const Spacer(),
               if (userId != int.parse(item.id))
-                const Text(
-                  'following',
-                ),
+                blackList.contains(int.parse(item.id))
+                    ? Text(
+                        'заблокирован',
+                        style: theme.textTheme.bodyText2?.apply(
+                          color: AppColors.hintTextColor,
+                        ),
+                      )
+                    : (myFollowers?.following ?? [])
+                            .contains(int.parse(item.id))
+                        ? Text(
+                            'вы подписаны',
+                            style: theme.textTheme.bodyText2?.apply(
+                              color: AppColors.hintTextColor,
+                            ),
+                          )
+                        : (myFollowers?.followers ?? [])
+                                .contains(int.parse(item.id))
+                            ? const Text(
+                                'подписан на вас\nподписаться в ответ?',
+                                textAlign: TextAlign.right,
+                              )
+                            : const Text(
+                                'подписаться',
+                              ),
             ],
           ),
         ),
