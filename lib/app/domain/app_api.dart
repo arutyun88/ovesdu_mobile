@@ -32,4 +32,6 @@ abstract class AppApi {
   Future<Response> getUserProfileStatistic(String userId);
 
   Future<Response> getUserProfileFollowers(Map<String, dynamic> data);
+
+  Future<Response> getMyFollowersIds();
 }

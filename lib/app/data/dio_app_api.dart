@@ -185,4 +185,13 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> getMyFollowersIds() {
+    try {
+      return dio.get('/data/followers');
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
