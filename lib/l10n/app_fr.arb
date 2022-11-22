@@ -85,5 +85,6 @@
   "photos": "photos",
   "posts": "posts",
   "showMore": "...more",
-  "forbidden": "{name} has restricted your access to his page"
+  "forbidden": "{name} has restricted your access to his page",
+  "i": "I"
 }
