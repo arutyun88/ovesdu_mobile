@@ -6,7 +6,9 @@ import 'package:provider/provider.dart';
 import '../../../../app/const/const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/config/app_colors.dart';
+import '../../domain/state/user_profile_follower/user_profile_follower_cubit.dart';
 import '../../domain/state/user_profile_statistic/user_profile_statistic_cubit.dart';
+import '../followers_screen.dart';
 import 'item_divider.dart';
 
 class ProfileStatistic extends StatelessWidget {
@@ -25,8 +27,8 @@ class ProfileStatistic extends StatelessWidget {
         SizedBox(
           height: 80,
           width: MediaQuery.of(context).size.width,
-          child: BlocBuilder<UserProfileStatisticCubit,
-              UserProfileStatisticState>(
+          child:
+              BlocBuilder<UserProfileStatisticCubit, UserProfileStatisticState>(
             builder: (context, state) {
               return state.maybeWhen(
                 received: (statistic) => CustomScrollView(
@@ -50,16 +52,36 @@ class ProfileStatistic extends StatelessWidget {
                               itemValue: statistic.trust,
                             ),
                             const VerticalItemDivider(),
-                            _ProfileStatisticItem(
-                              itemKey: dictionary.followers,
-                              itemValue:
-                                  statistic.followers.length.toString(),
+                            GestureDetector(
+                              onTap: () => _followersOnPressed(
+                                context: context,
+                                followers: statistic.followers,
+                                following: statistic.following,
+                                clickedIsFollowers: true,
+                                cubit:
+                                    context.read<UserProfileFollowersCubit>(),
+                              ),
+                              child: _ProfileStatisticItem(
+                                itemKey: dictionary.followers,
+                                itemValue:
+                                    statistic.followers.length.toString(),
+                              ),
                             ),
                             const VerticalItemDivider(),
-                            _ProfileStatisticItem(
-                              itemKey: dictionary.following,
-                              itemValue:
-                                  statistic.following.length.toString(),
+                            GestureDetector(
+                              onTap: () => _followersOnPressed(
+                                context: context,
+                                followers: statistic.followers,
+                                following: statistic.following,
+                                clickedIsFollowers: false,
+                                cubit:
+                                    context.read<UserProfileFollowersCubit>(),
+                              ),
+                              child: _ProfileStatisticItem(
+                                itemKey: dictionary.following,
+                                itemValue:
+                                    statistic.following.length.toString(),
+                              ),
                             ),
                           ],
                         ),
@@ -95,6 +117,38 @@ class ProfileStatistic extends StatelessWidget {
       ],
     );
   }
+
+  void _followersOnPressed({
+    required BuildContext context,
+    required List<int> followers,
+    required List<int> following,
+    required bool clickedIsFollowers,
+    required UserProfileFollowersCubit cubit,
+  }) {
+    final media = MediaQuery.of(context);
+    final height = media.size.height - media.padding.vertical - mainPadding;
+    final width = MediaQuery.of(context).size.width;
+
+    cubit.getUserProfileFollowers(followers, following).then(
+      (value) {
+        return showDialog(
+          context: context,
+          useSafeArea: false,
+          builder: (context) {
+            return cubit.state.maybeWhen(
+              received: (follow) => FollowersScreen(
+                followers: follow.followers,
+                following: follow.following,
+                clickedIsFollowers: clickedIsFollowers,
+                size: Size(width, height),
+              ),
+              orElse: () => const SizedBox(),
+            );
+          },
+        );
+      },
+    );
+  }
 }
 
 class _ProfileStatisticItem extends StatelessWidget {
@@ -110,31 +164,30 @@ class _ProfileStatisticItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
-    return Padding(
+    return Container(
+      color: AppColors.transparent,
       padding: const EdgeInsets.all(8.0),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width / 3,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              itemKey,
-              maxLines: 1,
-              style: theme.textTheme.bodyText1?.copyWith(
-                fontWeight: FontWeight.w400,
-                color: AppColors.hintTextColor,
-              ),
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width / 3,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            itemKey,
+            maxLines: 1,
+            style: theme.textTheme.bodyText1?.copyWith(
+              fontWeight: FontWeight.w400,
+              color: AppColors.hintTextColor,
             ),
-            Text(
-              itemValue,
-              style: theme.textTheme.headline6?.copyWith(
-                fontWeight: FontWeight.w400,
-              ),
+          ),
+          Text(
+            itemValue,
+            style: theme.textTheme.headline6?.copyWith(
+              fontWeight: FontWeight.w400,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

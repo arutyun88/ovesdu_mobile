@@ -94,6 +94,7 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
     super.initState();
     imageUrl = widget.image;
     userEntity = UserProfileEntity(
+      id: int.parse(widget.userId),
       firstName: widget.firsName,
       lastName: widget.lastName,
       image: widget.image,
