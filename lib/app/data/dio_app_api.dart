@@ -203,4 +203,22 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> createFollowing(int id) {
+    try {
+      return dio.put('/data/followers/$id');
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Response> deleteFollowing(int id) {
+    try {
+      return dio.delete('/data/followers/$id');
+    } catch (_) {
+      rethrow;
+    }
+  }
 }

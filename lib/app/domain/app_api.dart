@@ -36,4 +36,8 @@ abstract class AppApi {
   Future<Response> getMyFollowersIds();
 
   Future<Response> getBlockedIds();
+
+  Future<Response> createFollowing(int id);
+
+  Future<Response> deleteFollowing(int id);
 }
