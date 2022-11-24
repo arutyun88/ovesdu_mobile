@@ -117,4 +117,32 @@ class NetworkProfileRepository implements ProfileRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<int> createFollowing(int id) async {
+    await _api.setHeaderLocale();
+    try {
+      final response = await _api.createFollowing(id);
+
+      final data = response.data['data'] as int;
+
+      return data;
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> deleteFollowing(int id) async {
+    await _api.setHeaderLocale();
+    try {
+      final response = await _api.deleteFollowing(id);
+
+      final data = response.data['data'] as int;
+
+      return data;
+    } catch (_) {
+      rethrow;
+    }
+  }
 }

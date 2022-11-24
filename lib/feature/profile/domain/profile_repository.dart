@@ -18,4 +18,8 @@ abstract class ProfileRepository {
   Future<UserSimpleFollowersEntity> getMyFollowersIds();
 
   Future<List<int>> getBlockedIds();
+
+  Future<int> createFollowing(int id);
+
+  Future<int> deleteFollowing(int id);
 }
