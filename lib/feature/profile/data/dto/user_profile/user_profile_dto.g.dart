@@ -20,6 +20,7 @@ UserProfileDto _$UserProfileDtoFromJson(Map<String, dynamic> json) =>
       city: json['city'],
       gender: json['gender'],
       isMale: json['isMale'],
+      blockedUsersId: json['blockedUsersId'],
     );
 
 Map<String, dynamic> _$UserProfileDtoToJson(UserProfileDto instance) =>
@@ -36,4 +37,5 @@ Map<String, dynamic> _$UserProfileDtoToJson(UserProfileDto instance) =>
       'city': instance.city,
       'gender': instance.gender,
       'isMale': instance.isMale,
+      'blockedUsersId': instance.blockedUsersId,
     };

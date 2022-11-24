@@ -16,6 +16,7 @@ class UserProfileEntity with _$UserProfileEntity {
     required String area,
     required String city,
     required bool isMale,
+    required List<int> blockedUsersId,
     String? image,
   }) = _UserProfileEntity;
 }

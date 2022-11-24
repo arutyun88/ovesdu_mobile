@@ -118,6 +118,7 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
       area: '',
       city: '',
       isMale: true,
+      blockedUsersId: <int>[],
     );
   }
 

@@ -17,6 +17,7 @@ class UserProfileDto {
   final dynamic city;
   final dynamic gender;
   final dynamic isMale;
+  final dynamic blockedUsersId;
 
   UserProfileDto({
     this.id,
@@ -31,6 +32,7 @@ class UserProfileDto {
     this.city,
     this.gender,
     this.isMale,
+    this.blockedUsersId,
   });
 
   factory UserProfileDto.fromJson(Map<String, dynamic> json) =>
@@ -50,6 +52,7 @@ class UserProfileDto {
         area: area.toString(),
         city: city.toString(),
         isMale: gender.toString() == 'male',
+        blockedUsersId: (blockedUsersId as List).map((e) => e as int).toList(),
       );
 
   UserProfileEntity toOtherEntity() => UserProfileEntity(
@@ -64,6 +67,7 @@ class UserProfileDto {
         area: area.toString(),
         city: city.toString(),
         isMale: isMale,
+        blockedUsersId: blockedUsersId,
       );
 
   DateTime _dateParse(String date) {
