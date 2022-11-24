@@ -138,5 +138,6 @@
   "blocked": "blocked",
   "waiting": "waiting...",
   "subscribed": "you subscribed\nunsubscribe?",
-  "subscribedToYou": "subscribed to you\nsubscribe to reply?"
+  "subscribedToYou": "subscribed to you\nsubscribe to reply?",
+  "deadlock": "...and you to him"
 }
