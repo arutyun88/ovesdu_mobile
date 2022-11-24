@@ -86,5 +86,9 @@
   "posts": "posts",
   "showMore": "...more",
   "forbidden": "{name} has restricted your access to his page",
-  "i": "I"
+  "i": "I",
+  "blocked": "blocked",
+  "waiting": "waiting...",
+  "subscribed": "you subscribed\nunsubscribe?",
+  "subscribedToYou": "subscribed to you\nsubscribe to reply?"
 }
