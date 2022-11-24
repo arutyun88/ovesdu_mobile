@@ -162,6 +162,7 @@ class ProfileStatistic extends StatelessWidget {
                     size: Size(width, height),
                     myFollowers: myFollowers,
                     blackList: blackList,
+                    cubit: myFollowersCubit,
                   ),
                   orElse: () => const SizedBox(),
                 );

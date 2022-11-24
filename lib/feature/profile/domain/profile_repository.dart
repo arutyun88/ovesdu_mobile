@@ -19,7 +19,7 @@ abstract class ProfileRepository {
 
   Future<List<int>> getBlockedIds();
 
-  Future<int> createFollowing(int id);
+  Future<int> createFollowing(String id);
 
-  Future<int> deleteFollowing(int id);
+  Future<int> deleteFollowing(String id);
 }

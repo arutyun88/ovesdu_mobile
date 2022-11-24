@@ -26,7 +26,7 @@ class MyFollowersCubit extends Cubit<MyFollowersState> {
     }
   }
 
-  Future<void> createFollowing(int id) async {
+  Future<void> createFollowing(String id) async {
     try {
       final result = await _profileRepository.createFollowing(id);
       emit(MyFollowersState.created(result));
@@ -35,7 +35,7 @@ class MyFollowersCubit extends Cubit<MyFollowersState> {
     }
   }
 
-  Future<void> deleteFollowing(int id) async {
+  Future<void> deleteFollowing(String id) async {
     try {
       final result = await _profileRepository.deleteFollowing(id);
       emit(MyFollowersState.deleted(result));

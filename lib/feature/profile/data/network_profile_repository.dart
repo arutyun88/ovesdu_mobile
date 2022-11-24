@@ -119,7 +119,7 @@ class NetworkProfileRepository implements ProfileRepository {
   }
 
   @override
-  Future<int> createFollowing(int id) async {
+  Future<int> createFollowing(String id) async {
     await _api.setHeaderLocale();
     try {
       final response = await _api.createFollowing(id);
@@ -133,7 +133,7 @@ class NetworkProfileRepository implements ProfileRepository {
   }
 
   @override
-  Future<int> deleteFollowing(int id) async {
+  Future<int> deleteFollowing(String id) async {
     await _api.setHeaderLocale();
     try {
       final response = await _api.deleteFollowing(id);

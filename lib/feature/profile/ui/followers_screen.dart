@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ovesdu_mobile/app/ui/components/buttons/empty_button.dart';
+import 'package:ovesdu_mobile/feature/profile/domain/state/user_profile_follower/my_followers_cubit.dart';
 import 'package:ovesdu_mobile/feature/profile/ui/user_profile_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +24,7 @@ class FollowersScreen extends StatefulWidget {
     required this.size,
     required this.myFollowers,
     required this.blackList,
+    required this.cubit,
   }) : super(key: key);
 
   final List<UserProfileFollowerItemEntity> followers;
@@ -30,6 +33,7 @@ class FollowersScreen extends StatefulWidget {
   final Size size;
   final UserSimpleFollowersEntity? myFollowers;
   final List<int> blackList;
+  final MyFollowersCubit cubit;
 
   @override
   State<FollowersScreen> createState() => _FollowersScreenState();
@@ -70,6 +74,7 @@ class _FollowersScreenState extends State<FollowersScreen> {
           items: widget.followers,
           myFollowers: widget.myFollowers,
           blackList: widget.blackList,
+          cubit: widget.cubit,
         ),
       },
       {
@@ -78,6 +83,7 @@ class _FollowersScreenState extends State<FollowersScreen> {
           items: widget.following,
           myFollowers: widget.myFollowers,
           blackList: widget.blackList,
+          cubit: widget.cubit,
         ),
       }
     ];
@@ -157,12 +163,14 @@ class _FollowList extends StatelessWidget {
     required this.items,
     required this.myFollowers,
     required this.blackList,
+    required this.cubit,
   }) : super(key: key);
 
   final String itemsKey;
   final List<UserProfileFollowerItemEntity> items;
   final UserSimpleFollowersEntity? myFollowers;
   final List<int> blackList;
+  final MyFollowersCubit cubit;
 
   List<UserProfileFollowerItemEntity> _sort(
     List<UserProfileFollowerItemEntity> items,
@@ -208,6 +216,7 @@ class _FollowList extends StatelessWidget {
             item,
             myFollowers,
             isBlocked: isBlocked,
+            cubit: cubit,
           );
         },
       ).toList(),
@@ -221,16 +230,20 @@ class _FollowerItem extends StatelessWidget {
     this.myFollowers, {
     Key? key,
     required this.isBlocked,
+    required this.cubit,
   }) : super(key: key);
 
   final UserProfileFollowerItemEntity item;
   final UserSimpleFollowersEntity? myFollowers;
   final bool isBlocked;
+  final MyFollowersCubit cubit;
 
   @override
   Widget build(BuildContext context) {
     final avatarCircle = Provider.of<SettingProvider>(context).isCircleAvatar;
     final theme = Provider.of<ThemeProvider>(context).themeData;
+    final buttonStyle = theme.textTheme.bodyText1;
+
     final userId = locator
             .get<ProfileCubit>()
             .state
@@ -348,26 +361,44 @@ class _FollowerItem extends StatelessWidget {
                     isBlocked
                         ? Text(
                             'заблокирован',
-                            style: theme.textTheme.bodyText2?.apply(
+                            style: buttonStyle?.copyWith(
                               color: AppColors.hintTextColor,
                             ),
                           )
                         : (myFollowers?.following ?? [])
                                 .contains(int.parse(item.id))
-                            ? Text(
-                                'вы подписаны',
-                                style: theme.textTheme.bodyText2?.apply(
-                                  color: AppColors.hintTextColor,
+                            ? EmptyButton(
+                                onPressed: () => cubit.deleteFollowing(item.id),
+                                child: Text(
+                                  'вы подписаны\nотписаться?',
+                                  textAlign: TextAlign.right,
+                                  style: buttonStyle?.copyWith(
+                                    color: AppColors.hintTextColor,
+                                  ),
                                 ),
                               )
                             : (myFollowers?.followers ?? [])
                                     .contains(int.parse(item.id))
-                                ? const Text(
-                                    'подписан на вас\nподписаться в ответ?',
-                                    textAlign: TextAlign.right,
+                                ? EmptyButton(
+                                    onPressed: () =>
+                                        cubit.createFollowing(item.id),
+                                    child: Text(
+                                      'подписан на вас\nподписаться в ответ?',
+                                      textAlign: TextAlign.right,
+                                      style: buttonStyle?.copyWith(
+                                        color: AppColors.orange,
+                                      ),
+                                    ),
                                   )
-                                : const Text(
-                                    'подписаться',
+                                : EmptyButton(
+                                    onPressed: () =>
+                                        cubit.createFollowing(item.id),
+                                    child: Text(
+                                      'подписаться',
+                                      style: buttonStyle?.copyWith(
+                                        color: AppColors.orange,
+                                      ),
+                                    ),
                                   ),
                 ],
               ),

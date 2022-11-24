@@ -205,7 +205,7 @@ class DioAppApi implements AppApi {
   }
 
   @override
-  Future<Response> createFollowing(int id) {
+  Future<Response> createFollowing(String id) {
     try {
       return dio.put('/data/followers/$id');
     } catch (_) {
@@ -214,7 +214,7 @@ class DioAppApi implements AppApi {
   }
 
   @override
-  Future<Response> deleteFollowing(int id) {
+  Future<Response> deleteFollowing(String id) {
     try {
       return dio.delete('/data/followers/$id');
     } catch (_) {
