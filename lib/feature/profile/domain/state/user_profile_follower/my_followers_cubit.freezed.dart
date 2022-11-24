@@ -21,6 +21,8 @@ mixin _$MyFollowersState {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserSimpleFollowersEntity followers) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) deleted,
     required TResult Function(ErrorEntity error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +31,8 @@ mixin _$MyFollowersState {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserSimpleFollowersEntity followers)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? deleted,
     TResult? Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +41,8 @@ mixin _$MyFollowersState {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserSimpleFollowersEntity followers)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? deleted,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) =>
@@ -46,6 +52,8 @@ mixin _$MyFollowersState {
     required TResult Function(_MyFollowersStateInit value) init,
     required TResult Function(_MyFollowersStateWaiting value) waiting,
     required TResult Function(_MyFollowersStateReceived value) received,
+    required TResult Function(_MyFollowersStateCreated value) created,
+    required TResult Function(_MyFollowersStateDeleted value) deleted,
     required TResult Function(_MyFollowersStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +62,8 @@ mixin _$MyFollowersState {
     TResult? Function(_MyFollowersStateInit value)? init,
     TResult? Function(_MyFollowersStateWaiting value)? waiting,
     TResult? Function(_MyFollowersStateReceived value)? received,
+    TResult? Function(_MyFollowersStateCreated value)? created,
+    TResult? Function(_MyFollowersStateDeleted value)? deleted,
     TResult? Function(_MyFollowersStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +72,8 @@ mixin _$MyFollowersState {
     TResult Function(_MyFollowersStateInit value)? init,
     TResult Function(_MyFollowersStateWaiting value)? waiting,
     TResult Function(_MyFollowersStateReceived value)? received,
+    TResult Function(_MyFollowersStateCreated value)? created,
+    TResult Function(_MyFollowersStateDeleted value)? deleted,
     TResult Function(_MyFollowersStateError value)? error,
     required TResult orElse(),
   }) =>
@@ -127,6 +139,8 @@ class _$_MyFollowersStateInit implements _MyFollowersStateInit {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserSimpleFollowersEntity followers) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) deleted,
     required TResult Function(ErrorEntity error) error,
   }) {
     return init();
@@ -138,6 +152,8 @@ class _$_MyFollowersStateInit implements _MyFollowersStateInit {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserSimpleFollowersEntity followers)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? deleted,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return init?.call();
@@ -149,6 +165,8 @@ class _$_MyFollowersStateInit implements _MyFollowersStateInit {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserSimpleFollowersEntity followers)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? deleted,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -164,6 +182,8 @@ class _$_MyFollowersStateInit implements _MyFollowersStateInit {
     required TResult Function(_MyFollowersStateInit value) init,
     required TResult Function(_MyFollowersStateWaiting value) waiting,
     required TResult Function(_MyFollowersStateReceived value) received,
+    required TResult Function(_MyFollowersStateCreated value) created,
+    required TResult Function(_MyFollowersStateDeleted value) deleted,
     required TResult Function(_MyFollowersStateError value) error,
   }) {
     return init(this);
@@ -175,6 +195,8 @@ class _$_MyFollowersStateInit implements _MyFollowersStateInit {
     TResult? Function(_MyFollowersStateInit value)? init,
     TResult? Function(_MyFollowersStateWaiting value)? waiting,
     TResult? Function(_MyFollowersStateReceived value)? received,
+    TResult? Function(_MyFollowersStateCreated value)? created,
+    TResult? Function(_MyFollowersStateDeleted value)? deleted,
     TResult? Function(_MyFollowersStateError value)? error,
   }) {
     return init?.call(this);
@@ -186,6 +208,8 @@ class _$_MyFollowersStateInit implements _MyFollowersStateInit {
     TResult Function(_MyFollowersStateInit value)? init,
     TResult Function(_MyFollowersStateWaiting value)? waiting,
     TResult Function(_MyFollowersStateReceived value)? received,
+    TResult Function(_MyFollowersStateCreated value)? created,
+    TResult Function(_MyFollowersStateDeleted value)? deleted,
     TResult Function(_MyFollowersStateError value)? error,
     required TResult orElse(),
   }) {
@@ -242,6 +266,8 @@ class _$_MyFollowersStateWaiting implements _MyFollowersStateWaiting {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserSimpleFollowersEntity followers) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) deleted,
     required TResult Function(ErrorEntity error) error,
   }) {
     return waiting();
@@ -253,6 +279,8 @@ class _$_MyFollowersStateWaiting implements _MyFollowersStateWaiting {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserSimpleFollowersEntity followers)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? deleted,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return waiting?.call();
@@ -264,6 +292,8 @@ class _$_MyFollowersStateWaiting implements _MyFollowersStateWaiting {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserSimpleFollowersEntity followers)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? deleted,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -279,6 +309,8 @@ class _$_MyFollowersStateWaiting implements _MyFollowersStateWaiting {
     required TResult Function(_MyFollowersStateInit value) init,
     required TResult Function(_MyFollowersStateWaiting value) waiting,
     required TResult Function(_MyFollowersStateReceived value) received,
+    required TResult Function(_MyFollowersStateCreated value) created,
+    required TResult Function(_MyFollowersStateDeleted value) deleted,
     required TResult Function(_MyFollowersStateError value) error,
   }) {
     return waiting(this);
@@ -290,6 +322,8 @@ class _$_MyFollowersStateWaiting implements _MyFollowersStateWaiting {
     TResult? Function(_MyFollowersStateInit value)? init,
     TResult? Function(_MyFollowersStateWaiting value)? waiting,
     TResult? Function(_MyFollowersStateReceived value)? received,
+    TResult? Function(_MyFollowersStateCreated value)? created,
+    TResult? Function(_MyFollowersStateDeleted value)? deleted,
     TResult? Function(_MyFollowersStateError value)? error,
   }) {
     return waiting?.call(this);
@@ -301,6 +335,8 @@ class _$_MyFollowersStateWaiting implements _MyFollowersStateWaiting {
     TResult Function(_MyFollowersStateInit value)? init,
     TResult Function(_MyFollowersStateWaiting value)? waiting,
     TResult Function(_MyFollowersStateReceived value)? received,
+    TResult Function(_MyFollowersStateCreated value)? created,
+    TResult Function(_MyFollowersStateDeleted value)? deleted,
     TResult Function(_MyFollowersStateError value)? error,
     required TResult orElse(),
   }) {
@@ -385,6 +421,8 @@ class _$_MyFollowersStateReceived implements _MyFollowersStateReceived {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserSimpleFollowersEntity followers) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) deleted,
     required TResult Function(ErrorEntity error) error,
   }) {
     return received(followers);
@@ -396,6 +434,8 @@ class _$_MyFollowersStateReceived implements _MyFollowersStateReceived {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserSimpleFollowersEntity followers)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? deleted,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return received?.call(followers);
@@ -407,6 +447,8 @@ class _$_MyFollowersStateReceived implements _MyFollowersStateReceived {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserSimpleFollowersEntity followers)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? deleted,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -422,6 +464,8 @@ class _$_MyFollowersStateReceived implements _MyFollowersStateReceived {
     required TResult Function(_MyFollowersStateInit value) init,
     required TResult Function(_MyFollowersStateWaiting value) waiting,
     required TResult Function(_MyFollowersStateReceived value) received,
+    required TResult Function(_MyFollowersStateCreated value) created,
+    required TResult Function(_MyFollowersStateDeleted value) deleted,
     required TResult Function(_MyFollowersStateError value) error,
   }) {
     return received(this);
@@ -433,6 +477,8 @@ class _$_MyFollowersStateReceived implements _MyFollowersStateReceived {
     TResult? Function(_MyFollowersStateInit value)? init,
     TResult? Function(_MyFollowersStateWaiting value)? waiting,
     TResult? Function(_MyFollowersStateReceived value)? received,
+    TResult? Function(_MyFollowersStateCreated value)? created,
+    TResult? Function(_MyFollowersStateDeleted value)? deleted,
     TResult? Function(_MyFollowersStateError value)? error,
   }) {
     return received?.call(this);
@@ -444,6 +490,8 @@ class _$_MyFollowersStateReceived implements _MyFollowersStateReceived {
     TResult Function(_MyFollowersStateInit value)? init,
     TResult Function(_MyFollowersStateWaiting value)? waiting,
     TResult Function(_MyFollowersStateReceived value)? received,
+    TResult Function(_MyFollowersStateCreated value)? created,
+    TResult Function(_MyFollowersStateDeleted value)? deleted,
     TResult Function(_MyFollowersStateError value)? error,
     required TResult orElse(),
   }) {
@@ -461,6 +509,324 @@ abstract class _MyFollowersStateReceived implements MyFollowersState {
   UserSimpleFollowersEntity get followers;
   @JsonKey(ignore: true)
   _$$_MyFollowersStateReceivedCopyWith<_$_MyFollowersStateReceived>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_MyFollowersStateCreatedCopyWith<$Res> {
+  factory _$$_MyFollowersStateCreatedCopyWith(_$_MyFollowersStateCreated value,
+          $Res Function(_$_MyFollowersStateCreated) then) =
+      __$$_MyFollowersStateCreatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$_MyFollowersStateCreatedCopyWithImpl<$Res>
+    extends _$MyFollowersStateCopyWithImpl<$Res, _$_MyFollowersStateCreated>
+    implements _$$_MyFollowersStateCreatedCopyWith<$Res> {
+  __$$_MyFollowersStateCreatedCopyWithImpl(_$_MyFollowersStateCreated _value,
+      $Res Function(_$_MyFollowersStateCreated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$_MyFollowersStateCreated(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_MyFollowersStateCreated implements _MyFollowersStateCreated {
+  _$_MyFollowersStateCreated(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'MyFollowersState.created(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_MyFollowersStateCreated &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_MyFollowersStateCreatedCopyWith<_$_MyFollowersStateCreated>
+      get copyWith =>
+          __$$_MyFollowersStateCreatedCopyWithImpl<_$_MyFollowersStateCreated>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() waiting,
+    required TResult Function(UserSimpleFollowersEntity followers) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) deleted,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return created(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? waiting,
+    TResult? Function(UserSimpleFollowersEntity followers)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? deleted,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return created?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? waiting,
+    TResult Function(UserSimpleFollowersEntity followers)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? deleted,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (created != null) {
+      return created(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MyFollowersStateInit value) init,
+    required TResult Function(_MyFollowersStateWaiting value) waiting,
+    required TResult Function(_MyFollowersStateReceived value) received,
+    required TResult Function(_MyFollowersStateCreated value) created,
+    required TResult Function(_MyFollowersStateDeleted value) deleted,
+    required TResult Function(_MyFollowersStateError value) error,
+  }) {
+    return created(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_MyFollowersStateInit value)? init,
+    TResult? Function(_MyFollowersStateWaiting value)? waiting,
+    TResult? Function(_MyFollowersStateReceived value)? received,
+    TResult? Function(_MyFollowersStateCreated value)? created,
+    TResult? Function(_MyFollowersStateDeleted value)? deleted,
+    TResult? Function(_MyFollowersStateError value)? error,
+  }) {
+    return created?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MyFollowersStateInit value)? init,
+    TResult Function(_MyFollowersStateWaiting value)? waiting,
+    TResult Function(_MyFollowersStateReceived value)? received,
+    TResult Function(_MyFollowersStateCreated value)? created,
+    TResult Function(_MyFollowersStateDeleted value)? deleted,
+    TResult Function(_MyFollowersStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (created != null) {
+      return created(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MyFollowersStateCreated implements MyFollowersState {
+  factory _MyFollowersStateCreated(final int id) = _$_MyFollowersStateCreated;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$_MyFollowersStateCreatedCopyWith<_$_MyFollowersStateCreated>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_MyFollowersStateDeletedCopyWith<$Res> {
+  factory _$$_MyFollowersStateDeletedCopyWith(_$_MyFollowersStateDeleted value,
+          $Res Function(_$_MyFollowersStateDeleted) then) =
+      __$$_MyFollowersStateDeletedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$_MyFollowersStateDeletedCopyWithImpl<$Res>
+    extends _$MyFollowersStateCopyWithImpl<$Res, _$_MyFollowersStateDeleted>
+    implements _$$_MyFollowersStateDeletedCopyWith<$Res> {
+  __$$_MyFollowersStateDeletedCopyWithImpl(_$_MyFollowersStateDeleted _value,
+      $Res Function(_$_MyFollowersStateDeleted) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$_MyFollowersStateDeleted(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_MyFollowersStateDeleted implements _MyFollowersStateDeleted {
+  _$_MyFollowersStateDeleted(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'MyFollowersState.deleted(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_MyFollowersStateDeleted &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_MyFollowersStateDeletedCopyWith<_$_MyFollowersStateDeleted>
+      get copyWith =>
+          __$$_MyFollowersStateDeletedCopyWithImpl<_$_MyFollowersStateDeleted>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() waiting,
+    required TResult Function(UserSimpleFollowersEntity followers) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) deleted,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return deleted(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? waiting,
+    TResult? Function(UserSimpleFollowersEntity followers)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? deleted,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return deleted?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? waiting,
+    TResult Function(UserSimpleFollowersEntity followers)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? deleted,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MyFollowersStateInit value) init,
+    required TResult Function(_MyFollowersStateWaiting value) waiting,
+    required TResult Function(_MyFollowersStateReceived value) received,
+    required TResult Function(_MyFollowersStateCreated value) created,
+    required TResult Function(_MyFollowersStateDeleted value) deleted,
+    required TResult Function(_MyFollowersStateError value) error,
+  }) {
+    return deleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_MyFollowersStateInit value)? init,
+    TResult? Function(_MyFollowersStateWaiting value)? waiting,
+    TResult? Function(_MyFollowersStateReceived value)? received,
+    TResult? Function(_MyFollowersStateCreated value)? created,
+    TResult? Function(_MyFollowersStateDeleted value)? deleted,
+    TResult? Function(_MyFollowersStateError value)? error,
+  }) {
+    return deleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MyFollowersStateInit value)? init,
+    TResult Function(_MyFollowersStateWaiting value)? waiting,
+    TResult Function(_MyFollowersStateReceived value)? received,
+    TResult Function(_MyFollowersStateCreated value)? created,
+    TResult Function(_MyFollowersStateDeleted value)? deleted,
+    TResult Function(_MyFollowersStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MyFollowersStateDeleted implements MyFollowersState {
+  factory _MyFollowersStateDeleted(final int id) = _$_MyFollowersStateDeleted;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$_MyFollowersStateDeletedCopyWith<_$_MyFollowersStateDeleted>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -542,6 +908,8 @@ class _$_MyFollowersStateError implements _MyFollowersStateError {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserSimpleFollowersEntity followers) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) deleted,
     required TResult Function(ErrorEntity error) error,
   }) {
     return error(this.error);
@@ -553,6 +921,8 @@ class _$_MyFollowersStateError implements _MyFollowersStateError {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserSimpleFollowersEntity followers)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? deleted,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
@@ -564,6 +934,8 @@ class _$_MyFollowersStateError implements _MyFollowersStateError {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserSimpleFollowersEntity followers)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? deleted,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -579,6 +951,8 @@ class _$_MyFollowersStateError implements _MyFollowersStateError {
     required TResult Function(_MyFollowersStateInit value) init,
     required TResult Function(_MyFollowersStateWaiting value) waiting,
     required TResult Function(_MyFollowersStateReceived value) received,
+    required TResult Function(_MyFollowersStateCreated value) created,
+    required TResult Function(_MyFollowersStateDeleted value) deleted,
     required TResult Function(_MyFollowersStateError value) error,
   }) {
     return error(this);
@@ -590,6 +964,8 @@ class _$_MyFollowersStateError implements _MyFollowersStateError {
     TResult? Function(_MyFollowersStateInit value)? init,
     TResult? Function(_MyFollowersStateWaiting value)? waiting,
     TResult? Function(_MyFollowersStateReceived value)? received,
+    TResult? Function(_MyFollowersStateCreated value)? created,
+    TResult? Function(_MyFollowersStateDeleted value)? deleted,
     TResult? Function(_MyFollowersStateError value)? error,
   }) {
     return error?.call(this);
@@ -601,6 +977,8 @@ class _$_MyFollowersStateError implements _MyFollowersStateError {
     TResult Function(_MyFollowersStateInit value)? init,
     TResult Function(_MyFollowersStateWaiting value)? waiting,
     TResult Function(_MyFollowersStateReceived value)? received,
+    TResult Function(_MyFollowersStateCreated value)? created,
+    TResult Function(_MyFollowersStateDeleted value)? deleted,
     TResult Function(_MyFollowersStateError value)? error,
     required TResult orElse(),
   }) {

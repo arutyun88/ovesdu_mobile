@@ -9,5 +9,9 @@ class MyFollowersState with _$MyFollowersState {
   factory MyFollowersState.received(UserSimpleFollowersEntity followers) =
       _MyFollowersStateReceived;
 
+  factory MyFollowersState.created(int id) = _MyFollowersStateCreated;
+
+  factory MyFollowersState.deleted(int id) = _MyFollowersStateDeleted;
+
   factory MyFollowersState.error(ErrorEntity error) = _MyFollowersStateError;
 }

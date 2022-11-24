@@ -26,6 +26,24 @@ class MyFollowersCubit extends Cubit<MyFollowersState> {
     }
   }
 
+  Future<void> createFollowing(int id) async {
+    try {
+      final result = await _profileRepository.createFollowing(id);
+      emit(MyFollowersState.created(result));
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
+  Future<void> deleteFollowing(int id) async {
+    try {
+      final result = await _profileRepository.deleteFollowing(id);
+      emit(MyFollowersState.deleted(result));
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   @override
   void addError(Object error, [StackTrace? stackTrace]) {
     emit(MyFollowersState.error(ErrorEntity.fromException(error)));
