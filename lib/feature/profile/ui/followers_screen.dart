@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:ovesdu_mobile/app/const/const.dart';
-import 'package:ovesdu_mobile/app/data/setting_provider/setting_provider.dart';
-import 'package:ovesdu_mobile/app/di/init_di.dart';
-import 'package:ovesdu_mobile/feature/profile/domain/state/profile_cubit.dart';
-import 'package:ovesdu_mobile/feature/profile/ui/components/item_divider.dart';
+import 'package:ovesdu_mobile/feature/profile/ui/user_profile_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../../app/const/const.dart';
+import '../../../app/data/setting_provider/setting_provider.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
+import '../../../app/di/init_di.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../domain/entities/user_profile_follower/user_profile_follower_item_entity.dart';
 import '../domain/entities/user_profile_follower/user_simple_followers_entity.dart';
+import '../domain/state/profile_cubit.dart';
+import 'components/item_divider.dart';
 
 class FollowersScreen extends StatefulWidget {
   const FollowersScreen({
@@ -199,11 +200,17 @@ class _FollowList extends StatelessWidget {
 
     return ListView(
       key: PageStorageKey<String>(itemsKey),
-      children: sortedList
-          .map(
-            (item) => _FollowerItem(item, myFollowers, blackList),
-          )
-          .toList(),
+      children: sortedList.map(
+        (item) {
+          final isBlocked = blackList.contains(int.parse(item.id));
+
+          return _FollowerItem(
+            item,
+            myFollowers,
+            isBlocked: isBlocked,
+          );
+        },
+      ).toList(),
     );
   }
 }
@@ -211,14 +218,14 @@ class _FollowList extends StatelessWidget {
 class _FollowerItem extends StatelessWidget {
   const _FollowerItem(
     this.item,
-    this.myFollowers,
-    this.blackList, {
+    this.myFollowers, {
     Key? key,
+    required this.isBlocked,
   }) : super(key: key);
 
   final UserProfileFollowerItemEntity item;
   final UserSimpleFollowersEntity? myFollowers;
-  final List<int> blackList;
+  final bool isBlocked;
 
   @override
   Widget build(BuildContext context) {
@@ -231,107 +238,144 @@ class _FollowerItem extends StatelessWidget {
         0;
     final dictionary = AppLocalizations.of(context)!;
 
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: mainPadding / 2,
-          ),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: verticalPadding,
-                  top: verticalPadding * 2,
-                ),
-                child: Container(
-                  height: 56,
-                  width: 56,
-                  decoration: BoxDecoration(
-                    shape: avatarCircle ? BoxShape.circle : BoxShape.rectangle,
-                    borderRadius:
-                        avatarCircle ? null : BorderRadius.circular(16),
-                    color: AppColors.hintTextColor,
-                    border: Border.all(
-                      color: AppColors.orange,
-                      width: 2,
-                      strokeAlign: StrokeAlign.outside,
-                    ),
-                  ),
-                  clipBehavior: Clip.hardEdge,
-                  child: Image.network(
-                    item.image,
-                    fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: isBlocked
+          ? () {}
+          : () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => UserProfileScreen(
+                    userId: item.id,
+                    firsName: item.firstName,
+                    lastName: item.lastName,
+                    image: item.image,
                   ),
                 ),
+              );
+            },
+      child: Container(
+        color: AppColors.transparent,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: mainPadding / 2,
               ),
-              userId != int.parse(item.id)
-                  ? Padding(
-                      padding: const EdgeInsets.only(
-                        left: 16.0,
-                        top: 12,
-                        bottom: 4,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: verticalPadding,
+                      top: verticalPadding * 2,
+                    ),
+                    child: Container(
+                      height: 56,
+                      width: 56,
+                      decoration: BoxDecoration(
+                        shape:
+                            avatarCircle ? BoxShape.circle : BoxShape.rectangle,
+                        borderRadius:
+                            avatarCircle ? null : BorderRadius.circular(16),
+                        color: AppColors.hintTextColor,
+                        border: Border.all(
+                          color: isBlocked
+                              ? AppColors.orange.withOpacity(.3)
+                              : AppColors.orange,
+                          width: 2,
+                          strokeAlign: StrokeAlign.outside,
+                        ),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      clipBehavior: Clip.hardEdge,
+                      child: Stack(
+                        fit: StackFit.expand,
                         children: [
-                          Text(
-                            item.firstName,
-                            style: theme.textTheme.headline6,
+                          Image.network(
+                            item.image,
+                            fit: BoxFit.cover,
                           ),
-                          Text(
-                            item.lastName,
-                            style: theme.textTheme.headline6?.copyWith(
-                              color: AppColors.hintTextColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                            ),
-                          ),
+                          if (isBlocked)
+                            Container(
+                              color: theme.backgroundColor.withOpacity(.7),
+                            )
                         ],
                       ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.only(
-                        left: 16.0,
-                        top: 12,
-                        bottom: 4,
-                      ),
-                      child: Text(
-                        dictionary.i,
-                        style: theme.textTheme.headline6,
-                      ),
                     ),
-              const Spacer(),
-              if (userId != int.parse(item.id))
-                blackList.contains(int.parse(item.id))
-                    ? Text(
-                        'заблокирован',
-                        style: theme.textTheme.bodyText2?.apply(
-                          color: AppColors.hintTextColor,
+                  ),
+                  userId != int.parse(item.id)
+                      ? Padding(
+                          padding: const EdgeInsets.only(
+                            left: 16.0,
+                            top: 12,
+                            bottom: 4,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                item.firstName,
+                                style: isBlocked
+                                    ? theme.textTheme.headline6?.apply(
+                                        color: theme.textTheme.headline6?.color
+                                            ?.withOpacity(.3))
+                                    : theme.textTheme.headline6,
+                              ),
+                              Text(
+                                item.lastName,
+                                style: theme.textTheme.headline6?.copyWith(
+                                  color: isBlocked
+                                      ? AppColors.hintTextColor.withOpacity(.3)
+                                      : AppColors.hintTextColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(
+                            left: 16.0,
+                            top: 12,
+                            bottom: 4,
+                          ),
+                          child: Text(
+                            dictionary.i,
+                            style: theme.textTheme.headline6,
+                          ),
                         ),
-                      )
-                    : (myFollowers?.following ?? [])
-                            .contains(int.parse(item.id))
+                  const Spacer(),
+                  if (userId != int.parse(item.id))
+                    isBlocked
                         ? Text(
-                            'вы подписаны',
+                            'заблокирован',
                             style: theme.textTheme.bodyText2?.apply(
                               color: AppColors.hintTextColor,
                             ),
                           )
-                        : (myFollowers?.followers ?? [])
+                        : (myFollowers?.following ?? [])
                                 .contains(int.parse(item.id))
-                            ? const Text(
-                                'подписан на вас\nподписаться в ответ?',
-                                textAlign: TextAlign.right,
+                            ? Text(
+                                'вы подписаны',
+                                style: theme.textTheme.bodyText2?.apply(
+                                  color: AppColors.hintTextColor,
+                                ),
                               )
-                            : const Text(
-                                'подписаться',
-                              ),
-            ],
-          ),
+                            : (myFollowers?.followers ?? [])
+                                    .contains(int.parse(item.id))
+                                ? const Text(
+                                    'подписан на вас\nподписаться в ответ?',
+                                    textAlign: TextAlign.right,
+                                  )
+                                : const Text(
+                                    'подписаться',
+                                  ),
+                ],
+              ),
+            ),
+            const ItemDivider(),
+          ],
         ),
-        const ItemDivider(),
-      ],
+      ),
     );
   }
 }
