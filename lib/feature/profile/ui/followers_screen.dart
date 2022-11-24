@@ -185,9 +185,17 @@ class _FollowList extends StatelessWidget {
     }
 
     copy.sort(
-      (left, right) => left.firstName.toLowerCase().compareTo(
-            right.firstName.toLowerCase(),
-          ),
+      (left, right) {
+        final comparisonResult = left.firstName.toLowerCase().compareTo(
+              right.firstName.toLowerCase(),
+            );
+        if (comparisonResult != 0) {
+          return comparisonResult;
+        }
+        return left.lastName.toLowerCase().compareTo(
+              right.lastName.toLowerCase(),
+            );
+      },
     );
     result.addAll(copy);
 
