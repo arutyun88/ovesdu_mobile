@@ -21,6 +21,8 @@ mixin _$UserBlockedState {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(List<int> blocked) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) removed,
     required TResult Function(ErrorEntity error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +31,8 @@ mixin _$UserBlockedState {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(List<int> blocked)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? removed,
     TResult? Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +41,8 @@ mixin _$UserBlockedState {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(List<int> blocked)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? removed,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) =>
@@ -46,6 +52,8 @@ mixin _$UserBlockedState {
     required TResult Function(_UserBlockedStateInit value) init,
     required TResult Function(_UserBlockedStateWaiting value) waiting,
     required TResult Function(_UserBlockedStateReceived value) received,
+    required TResult Function(_UserBlockedStateCreated value) created,
+    required TResult Function(_UserBlockedStateRemoved value) removed,
     required TResult Function(_UserBlockedStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +62,8 @@ mixin _$UserBlockedState {
     TResult? Function(_UserBlockedStateInit value)? init,
     TResult? Function(_UserBlockedStateWaiting value)? waiting,
     TResult? Function(_UserBlockedStateReceived value)? received,
+    TResult? Function(_UserBlockedStateCreated value)? created,
+    TResult? Function(_UserBlockedStateRemoved value)? removed,
     TResult? Function(_UserBlockedStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +72,8 @@ mixin _$UserBlockedState {
     TResult Function(_UserBlockedStateInit value)? init,
     TResult Function(_UserBlockedStateWaiting value)? waiting,
     TResult Function(_UserBlockedStateReceived value)? received,
+    TResult Function(_UserBlockedStateCreated value)? created,
+    TResult Function(_UserBlockedStateRemoved value)? removed,
     TResult Function(_UserBlockedStateError value)? error,
     required TResult orElse(),
   }) =>
@@ -127,6 +139,8 @@ class _$_UserBlockedStateInit implements _UserBlockedStateInit {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(List<int> blocked) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) removed,
     required TResult Function(ErrorEntity error) error,
   }) {
     return init();
@@ -138,6 +152,8 @@ class _$_UserBlockedStateInit implements _UserBlockedStateInit {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(List<int> blocked)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? removed,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return init?.call();
@@ -149,6 +165,8 @@ class _$_UserBlockedStateInit implements _UserBlockedStateInit {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(List<int> blocked)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? removed,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -164,6 +182,8 @@ class _$_UserBlockedStateInit implements _UserBlockedStateInit {
     required TResult Function(_UserBlockedStateInit value) init,
     required TResult Function(_UserBlockedStateWaiting value) waiting,
     required TResult Function(_UserBlockedStateReceived value) received,
+    required TResult Function(_UserBlockedStateCreated value) created,
+    required TResult Function(_UserBlockedStateRemoved value) removed,
     required TResult Function(_UserBlockedStateError value) error,
   }) {
     return init(this);
@@ -175,6 +195,8 @@ class _$_UserBlockedStateInit implements _UserBlockedStateInit {
     TResult? Function(_UserBlockedStateInit value)? init,
     TResult? Function(_UserBlockedStateWaiting value)? waiting,
     TResult? Function(_UserBlockedStateReceived value)? received,
+    TResult? Function(_UserBlockedStateCreated value)? created,
+    TResult? Function(_UserBlockedStateRemoved value)? removed,
     TResult? Function(_UserBlockedStateError value)? error,
   }) {
     return init?.call(this);
@@ -186,6 +208,8 @@ class _$_UserBlockedStateInit implements _UserBlockedStateInit {
     TResult Function(_UserBlockedStateInit value)? init,
     TResult Function(_UserBlockedStateWaiting value)? waiting,
     TResult Function(_UserBlockedStateReceived value)? received,
+    TResult Function(_UserBlockedStateCreated value)? created,
+    TResult Function(_UserBlockedStateRemoved value)? removed,
     TResult Function(_UserBlockedStateError value)? error,
     required TResult orElse(),
   }) {
@@ -242,6 +266,8 @@ class _$_UserBlockedStateWaiting implements _UserBlockedStateWaiting {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(List<int> blocked) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) removed,
     required TResult Function(ErrorEntity error) error,
   }) {
     return waiting();
@@ -253,6 +279,8 @@ class _$_UserBlockedStateWaiting implements _UserBlockedStateWaiting {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(List<int> blocked)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? removed,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return waiting?.call();
@@ -264,6 +292,8 @@ class _$_UserBlockedStateWaiting implements _UserBlockedStateWaiting {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(List<int> blocked)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? removed,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -279,6 +309,8 @@ class _$_UserBlockedStateWaiting implements _UserBlockedStateWaiting {
     required TResult Function(_UserBlockedStateInit value) init,
     required TResult Function(_UserBlockedStateWaiting value) waiting,
     required TResult Function(_UserBlockedStateReceived value) received,
+    required TResult Function(_UserBlockedStateCreated value) created,
+    required TResult Function(_UserBlockedStateRemoved value) removed,
     required TResult Function(_UserBlockedStateError value) error,
   }) {
     return waiting(this);
@@ -290,6 +322,8 @@ class _$_UserBlockedStateWaiting implements _UserBlockedStateWaiting {
     TResult? Function(_UserBlockedStateInit value)? init,
     TResult? Function(_UserBlockedStateWaiting value)? waiting,
     TResult? Function(_UserBlockedStateReceived value)? received,
+    TResult? Function(_UserBlockedStateCreated value)? created,
+    TResult? Function(_UserBlockedStateRemoved value)? removed,
     TResult? Function(_UserBlockedStateError value)? error,
   }) {
     return waiting?.call(this);
@@ -301,6 +335,8 @@ class _$_UserBlockedStateWaiting implements _UserBlockedStateWaiting {
     TResult Function(_UserBlockedStateInit value)? init,
     TResult Function(_UserBlockedStateWaiting value)? waiting,
     TResult Function(_UserBlockedStateReceived value)? received,
+    TResult Function(_UserBlockedStateCreated value)? created,
+    TResult Function(_UserBlockedStateRemoved value)? removed,
     TResult Function(_UserBlockedStateError value)? error,
     required TResult orElse(),
   }) {
@@ -389,6 +425,8 @@ class _$_UserBlockedStateReceived implements _UserBlockedStateReceived {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(List<int> blocked) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) removed,
     required TResult Function(ErrorEntity error) error,
   }) {
     return received(blocked);
@@ -400,6 +438,8 @@ class _$_UserBlockedStateReceived implements _UserBlockedStateReceived {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(List<int> blocked)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? removed,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return received?.call(blocked);
@@ -411,6 +451,8 @@ class _$_UserBlockedStateReceived implements _UserBlockedStateReceived {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(List<int> blocked)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? removed,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -426,6 +468,8 @@ class _$_UserBlockedStateReceived implements _UserBlockedStateReceived {
     required TResult Function(_UserBlockedStateInit value) init,
     required TResult Function(_UserBlockedStateWaiting value) waiting,
     required TResult Function(_UserBlockedStateReceived value) received,
+    required TResult Function(_UserBlockedStateCreated value) created,
+    required TResult Function(_UserBlockedStateRemoved value) removed,
     required TResult Function(_UserBlockedStateError value) error,
   }) {
     return received(this);
@@ -437,6 +481,8 @@ class _$_UserBlockedStateReceived implements _UserBlockedStateReceived {
     TResult? Function(_UserBlockedStateInit value)? init,
     TResult? Function(_UserBlockedStateWaiting value)? waiting,
     TResult? Function(_UserBlockedStateReceived value)? received,
+    TResult? Function(_UserBlockedStateCreated value)? created,
+    TResult? Function(_UserBlockedStateRemoved value)? removed,
     TResult? Function(_UserBlockedStateError value)? error,
   }) {
     return received?.call(this);
@@ -448,6 +494,8 @@ class _$_UserBlockedStateReceived implements _UserBlockedStateReceived {
     TResult Function(_UserBlockedStateInit value)? init,
     TResult Function(_UserBlockedStateWaiting value)? waiting,
     TResult Function(_UserBlockedStateReceived value)? received,
+    TResult Function(_UserBlockedStateCreated value)? created,
+    TResult Function(_UserBlockedStateRemoved value)? removed,
     TResult Function(_UserBlockedStateError value)? error,
     required TResult orElse(),
   }) {
@@ -465,6 +513,324 @@ abstract class _UserBlockedStateReceived implements UserBlockedState {
   List<int> get blocked;
   @JsonKey(ignore: true)
   _$$_UserBlockedStateReceivedCopyWith<_$_UserBlockedStateReceived>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UserBlockedStateCreatedCopyWith<$Res> {
+  factory _$$_UserBlockedStateCreatedCopyWith(_$_UserBlockedStateCreated value,
+          $Res Function(_$_UserBlockedStateCreated) then) =
+      __$$_UserBlockedStateCreatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$_UserBlockedStateCreatedCopyWithImpl<$Res>
+    extends _$UserBlockedStateCopyWithImpl<$Res, _$_UserBlockedStateCreated>
+    implements _$$_UserBlockedStateCreatedCopyWith<$Res> {
+  __$$_UserBlockedStateCreatedCopyWithImpl(_$_UserBlockedStateCreated _value,
+      $Res Function(_$_UserBlockedStateCreated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$_UserBlockedStateCreated(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UserBlockedStateCreated implements _UserBlockedStateCreated {
+  _$_UserBlockedStateCreated(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'UserBlockedState.created(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserBlockedStateCreated &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserBlockedStateCreatedCopyWith<_$_UserBlockedStateCreated>
+      get copyWith =>
+          __$$_UserBlockedStateCreatedCopyWithImpl<_$_UserBlockedStateCreated>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() waiting,
+    required TResult Function(List<int> blocked) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) removed,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return created(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? waiting,
+    TResult? Function(List<int> blocked)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? removed,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return created?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? waiting,
+    TResult Function(List<int> blocked)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? removed,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (created != null) {
+      return created(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserBlockedStateInit value) init,
+    required TResult Function(_UserBlockedStateWaiting value) waiting,
+    required TResult Function(_UserBlockedStateReceived value) received,
+    required TResult Function(_UserBlockedStateCreated value) created,
+    required TResult Function(_UserBlockedStateRemoved value) removed,
+    required TResult Function(_UserBlockedStateError value) error,
+  }) {
+    return created(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserBlockedStateInit value)? init,
+    TResult? Function(_UserBlockedStateWaiting value)? waiting,
+    TResult? Function(_UserBlockedStateReceived value)? received,
+    TResult? Function(_UserBlockedStateCreated value)? created,
+    TResult? Function(_UserBlockedStateRemoved value)? removed,
+    TResult? Function(_UserBlockedStateError value)? error,
+  }) {
+    return created?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserBlockedStateInit value)? init,
+    TResult Function(_UserBlockedStateWaiting value)? waiting,
+    TResult Function(_UserBlockedStateReceived value)? received,
+    TResult Function(_UserBlockedStateCreated value)? created,
+    TResult Function(_UserBlockedStateRemoved value)? removed,
+    TResult Function(_UserBlockedStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (created != null) {
+      return created(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserBlockedStateCreated implements UserBlockedState {
+  factory _UserBlockedStateCreated(final int id) = _$_UserBlockedStateCreated;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$_UserBlockedStateCreatedCopyWith<_$_UserBlockedStateCreated>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UserBlockedStateRemovedCopyWith<$Res> {
+  factory _$$_UserBlockedStateRemovedCopyWith(_$_UserBlockedStateRemoved value,
+          $Res Function(_$_UserBlockedStateRemoved) then) =
+      __$$_UserBlockedStateRemovedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$_UserBlockedStateRemovedCopyWithImpl<$Res>
+    extends _$UserBlockedStateCopyWithImpl<$Res, _$_UserBlockedStateRemoved>
+    implements _$$_UserBlockedStateRemovedCopyWith<$Res> {
+  __$$_UserBlockedStateRemovedCopyWithImpl(_$_UserBlockedStateRemoved _value,
+      $Res Function(_$_UserBlockedStateRemoved) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$_UserBlockedStateRemoved(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UserBlockedStateRemoved implements _UserBlockedStateRemoved {
+  _$_UserBlockedStateRemoved(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'UserBlockedState.removed(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserBlockedStateRemoved &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserBlockedStateRemovedCopyWith<_$_UserBlockedStateRemoved>
+      get copyWith =>
+          __$$_UserBlockedStateRemovedCopyWithImpl<_$_UserBlockedStateRemoved>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() waiting,
+    required TResult Function(List<int> blocked) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) removed,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return removed(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? waiting,
+    TResult? Function(List<int> blocked)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? removed,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return removed?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? waiting,
+    TResult Function(List<int> blocked)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? removed,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (removed != null) {
+      return removed(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserBlockedStateInit value) init,
+    required TResult Function(_UserBlockedStateWaiting value) waiting,
+    required TResult Function(_UserBlockedStateReceived value) received,
+    required TResult Function(_UserBlockedStateCreated value) created,
+    required TResult Function(_UserBlockedStateRemoved value) removed,
+    required TResult Function(_UserBlockedStateError value) error,
+  }) {
+    return removed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserBlockedStateInit value)? init,
+    TResult? Function(_UserBlockedStateWaiting value)? waiting,
+    TResult? Function(_UserBlockedStateReceived value)? received,
+    TResult? Function(_UserBlockedStateCreated value)? created,
+    TResult? Function(_UserBlockedStateRemoved value)? removed,
+    TResult? Function(_UserBlockedStateError value)? error,
+  }) {
+    return removed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserBlockedStateInit value)? init,
+    TResult Function(_UserBlockedStateWaiting value)? waiting,
+    TResult Function(_UserBlockedStateReceived value)? received,
+    TResult Function(_UserBlockedStateCreated value)? created,
+    TResult Function(_UserBlockedStateRemoved value)? removed,
+    TResult Function(_UserBlockedStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (removed != null) {
+      return removed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserBlockedStateRemoved implements UserBlockedState {
+  factory _UserBlockedStateRemoved(final int id) = _$_UserBlockedStateRemoved;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$_UserBlockedStateRemovedCopyWith<_$_UserBlockedStateRemoved>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -546,6 +912,8 @@ class _$_UserBlockedStateError implements _UserBlockedStateError {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(List<int> blocked) received,
+    required TResult Function(int id) created,
+    required TResult Function(int id) removed,
     required TResult Function(ErrorEntity error) error,
   }) {
     return error(this.error);
@@ -557,6 +925,8 @@ class _$_UserBlockedStateError implements _UserBlockedStateError {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(List<int> blocked)? received,
+    TResult? Function(int id)? created,
+    TResult? Function(int id)? removed,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
@@ -568,6 +938,8 @@ class _$_UserBlockedStateError implements _UserBlockedStateError {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(List<int> blocked)? received,
+    TResult Function(int id)? created,
+    TResult Function(int id)? removed,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -583,6 +955,8 @@ class _$_UserBlockedStateError implements _UserBlockedStateError {
     required TResult Function(_UserBlockedStateInit value) init,
     required TResult Function(_UserBlockedStateWaiting value) waiting,
     required TResult Function(_UserBlockedStateReceived value) received,
+    required TResult Function(_UserBlockedStateCreated value) created,
+    required TResult Function(_UserBlockedStateRemoved value) removed,
     required TResult Function(_UserBlockedStateError value) error,
   }) {
     return error(this);
@@ -594,6 +968,8 @@ class _$_UserBlockedStateError implements _UserBlockedStateError {
     TResult? Function(_UserBlockedStateInit value)? init,
     TResult? Function(_UserBlockedStateWaiting value)? waiting,
     TResult? Function(_UserBlockedStateReceived value)? received,
+    TResult? Function(_UserBlockedStateCreated value)? created,
+    TResult? Function(_UserBlockedStateRemoved value)? removed,
     TResult? Function(_UserBlockedStateError value)? error,
   }) {
     return error?.call(this);
@@ -605,6 +981,8 @@ class _$_UserBlockedStateError implements _UserBlockedStateError {
     TResult Function(_UserBlockedStateInit value)? init,
     TResult Function(_UserBlockedStateWaiting value)? waiting,
     TResult Function(_UserBlockedStateReceived value)? received,
+    TResult Function(_UserBlockedStateCreated value)? created,
+    TResult Function(_UserBlockedStateRemoved value)? removed,
     TResult Function(_UserBlockedStateError value)? error,
     required TResult orElse(),
   }) {

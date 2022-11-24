@@ -25,6 +25,24 @@ class UserBlockedCubit extends Cubit<UserBlockedState> {
     }
   }
 
+  Future<void> addBlocked(String id) async {
+    try {
+      final result = await _profileRepository.addBlocked(id);
+      emit(UserBlockedState.created(result));
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
+  Future<void> removeBlocked(String id) async {
+    try {
+      final result = await _profileRepository.removeBlocked(id);
+      emit(UserBlockedState.removed(result));
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   @override
   void addError(Object error, [StackTrace? stackTrace]) {
     emit(UserBlockedState.error(ErrorEntity.fromException(error)));

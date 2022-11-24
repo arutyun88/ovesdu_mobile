@@ -40,4 +40,8 @@ abstract class AppApi {
   Future<Response> createFollowing(String id);
 
   Future<Response> deleteFollowing(String id);
+
+  Future<Response> addBlocked(String id);
+
+  Future<Response> removeBlocked(String id);
 }

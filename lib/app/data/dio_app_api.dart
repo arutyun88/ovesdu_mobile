@@ -221,4 +221,22 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> addBlocked(String id) {
+    try {
+      return dio.put('/auth/profile/block/$id');
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Response> removeBlocked(String id) {
+    try {
+      return dio.delete('/auth/profile/block/$id');
+    } catch (_) {
+      rethrow;
+    }
+  }
 }

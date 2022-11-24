@@ -9,5 +9,9 @@ class UserBlockedState with _$UserBlockedState {
   factory UserBlockedState.received(List<int> blocked) =
       _UserBlockedStateReceived;
 
+  factory UserBlockedState.created(int id) = _UserBlockedStateCreated;
+
+  factory UserBlockedState.removed(int id) = _UserBlockedStateRemoved;
+
   factory UserBlockedState.error(ErrorEntity error) = _UserBlockedStateError;
 }

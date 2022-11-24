@@ -22,4 +22,8 @@ abstract class ProfileRepository {
   Future<int> createFollowing(String id);
 
   Future<int> deleteFollowing(String id);
+
+  Future<int> addBlocked(String id);
+
+  Future<int> removeBlocked(String id);
 }
