@@ -9,7 +9,7 @@ class UserBlockedState with _$UserBlockedState {
   factory UserBlockedState.received(List<int> blocked) =
       _UserBlockedStateReceived;
 
-  factory UserBlockedState.created(int id) = _UserBlockedStateCreated;
+  factory UserBlockedState.added(int id) = _UserBlockedStateAdded;
 
   factory UserBlockedState.removed(int id) = _UserBlockedStateRemoved;
 
