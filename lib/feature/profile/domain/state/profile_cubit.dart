@@ -28,6 +28,38 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
+  Future<void> addedBlocked(int id) async {
+    try {
+      var receivedEntity = state.whenOrNull(
+        received: (receivedEntity) => receivedEntity,
+      );
+      var newList = receivedEntity?.blockedUsersId.map((e) => e).toList() ?? [];
+      if (!newList.contains(id)) {
+        newList.add(id);
+      }
+      final newResult = receivedEntity?.copyWith(blockedUsersId: newList);
+      emit(ProfileState.received(newResult!));
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
+  Future<void> removeBlocked(int id) async {
+    try {
+      var receivedEntity = state.whenOrNull(
+        received: (receivedEntity) => receivedEntity,
+      );
+      var newList = receivedEntity?.blockedUsersId.map((e) => e).toList() ?? [];
+      if (newList.contains(id)) {
+        newList.remove(id);
+      }
+      final newResult = receivedEntity?.copyWith(blockedUsersId: newList);
+      emit(ProfileState.received(newResult!));
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   @override
   void addError(Object error, [StackTrace? stackTrace]) {
     emit(ProfileState.error(ErrorEntity.fromException(error)));

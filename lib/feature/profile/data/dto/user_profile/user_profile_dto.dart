@@ -67,7 +67,7 @@ class UserProfileDto {
         area: area.toString(),
         city: city.toString(),
         isMale: isMale,
-        blockedUsersId: blockedUsersId,
+        blockedUsersId: <int>[],
       );
 
   DateTime _dateParse(String date) {
