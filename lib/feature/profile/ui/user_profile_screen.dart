@@ -15,7 +15,7 @@ import '../domain/state/user_profile_cubit.dart';
 import '../domain/state/user_profile_follower/my_followers_cubit.dart';
 import '../domain/state/user_profile_follower/user_profile_follower_cubit.dart';
 import '../domain/state/user_profile_statistic/user_profile_statistic_cubit.dart';
-import 'components/head_sliver_delegate.dart';
+import 'components/head_sliver_delegate/head_sliver_delegate.dart';
 import 'components/item_divider.dart';
 import 'components/profile_gifts.dart';
 import 'components/profile_photos.dart';
