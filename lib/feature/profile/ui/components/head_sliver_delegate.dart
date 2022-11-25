@@ -13,10 +13,10 @@ import '../../domain/entities/user_profile/user_profile_entity.dart';
 import 'message_button.dart';
 
 const _animationDuration = kThemeAnimationDuration;
-const _titleMinHeight = 120.0;
-const _titleMaxHeight = 140.0;
 
 class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
+  late double _titleMinHeight = 120.0;
+  final _titleMaxHeight = 140.0;
   final double expandedHeight;
   final String url;
   final UserProfileEntity? entity;
@@ -35,6 +35,7 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
     final avatar = Provider.of<SettingProvider>(context).isCircleAvatar;
 
     final paddingTop = MediaQuery.of(context).padding.top;
+    _titleMinHeight = paddingTop + 73;
 
     final zero = expandedHeight - shrinkOffset;
     final top = zero - _titleMaxHeight;
@@ -197,14 +198,13 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
                         color: AppColors.orange,
                       ),
                     ),
-                    if (value)
-                      const Center(
-                        child: Icon(
-                          Icons.more_horiz,
-                          size: 24,
-                          color: AppColors.orange,
-                        ),
+                    const Center(
+                      child: Icon(
+                        Icons.more_horiz,
+                        size: 24,
+                        color: AppColors.orange,
                       ),
+                    ),
                   ],
                 ),
               ),
