@@ -96,5 +96,15 @@
   "block": "block",
   "cancel": "cancel",
   "wontSeePage": "You won't see the content of his page either",
-  "sureWantToBlock": "Are you sure you want to block the user?"
+  "sureWantToBlock": "Are you sure you want to block the user?",
+  "fewMonths": "a few months ago",
+  "overAMonth": "over a month ago",
+  "severalWeeksAgo": "several weeks ago",
+  "fewDays": "a few days ago",
+  "yesterday": "yesterday",
+  "hourAgo": "hour ago",
+  "fifteenMinutesAgo": "15 minutes ago",
+  "online": "online",
+  "lessThanHour": "less than an hour ago",
+  "fewHours": "a few hours ago"
 }
