@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ovesdu_mobile/feature/profile/domain/state/profile_cubit.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -101,6 +102,8 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
 
   late UserProfileEntity userEntity;
 
+  late bool blocked;
+
   @override
   void initState() {
     super.initState();
@@ -139,6 +142,11 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
         : MediaQuery.of(context).size.height * .6;
 
     context.read<UserProfileCubit>().getUserProfile(widget.userId);
+
+    blocked = locator.get<ProfileCubit>().state.whenOrNull(
+            received: (entity) =>
+                entity.blockedUsersId.contains(userEntity.id)) ??
+        false;
   }
 
   @override
@@ -274,7 +282,36 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
                                 ?.withOpacity(.5),
                           ),
                         ),
-                      )
+                      ),
+                      BlocConsumer<UserBlockedCubit, UserBlockedState>(
+                        listener: (context, state) {
+                          blocked =
+                              state.whenOrNull(added: (received) => true) ??
+                                  false;
+                        },
+                        builder: (context, state) {
+                          return blocked
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: mainPadding,
+                                  ),
+                                  child: Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(
+                                      dictionary.deadlock,
+                                      textAlign: TextAlign.right,
+                                      style:
+                                          theme.textTheme.headline6?.copyWith(
+                                        fontStyle: FontStyle.italic,
+                                        color: theme.textTheme.headline6?.color
+                                            ?.withOpacity(.5),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox.shrink();
+                        },
+                      ),
                     ],
                   ),
                   error: (error) => Column(
