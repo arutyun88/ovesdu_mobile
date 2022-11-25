@@ -30,11 +30,13 @@ class UserProfileScreen extends StatelessWidget {
     required this.firsName,
     required this.lastName,
     required this.image,
+    this.onTapToBack,
   }) : super(key: key);
   final String userId;
   final String firsName;
   final String lastName;
   final String image;
+  final VoidCallback? onTapToBack;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +73,7 @@ class UserProfileScreen extends StatelessWidget {
         firsName: firsName,
         lastName: lastName,
         image: image,
+        onTapToBack: onTapToBack,
       ),
     );
   }
@@ -83,11 +86,14 @@ class _UserProfileScreen extends StatefulWidget {
     required this.firsName,
     required this.lastName,
     required this.image,
+    this.onTapToBack,
   }) : super(key: key);
+
   final String userId;
   final String firsName;
   final String lastName;
   final String image;
+  final VoidCallback? onTapToBack;
 
   @override
   State<_UserProfileScreen> createState() => _ProfileScreenState();
@@ -172,7 +178,11 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
                 slivers: [
                   SliverPersistentHeader(
                     pinned: true,
-                    delegate: HeadSliverDelegate(expandedHeight, userEntity),
+                    delegate: HeadSliverDelegate(
+                      expandedHeight,
+                      userEntity,
+                      onTapToBack: widget.onTapToBack,
+                    ),
                   ),
                   SliverToBoxAdapter(
                     child: state.maybeWhen(

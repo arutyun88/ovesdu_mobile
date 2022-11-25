@@ -22,6 +22,7 @@ class ReceivedWidget extends StatelessWidget {
     required this.zero,
     required this.paddingTop,
     required this.blockedOnTap,
+    this.onTapToBack,
   }) : super(key: key);
 
   final UserProfileEntity receivedUser;
@@ -30,6 +31,7 @@ class ReceivedWidget extends StatelessWidget {
   final double zero;
   final double paddingTop;
   final VoidCallback blockedOnTap;
+  final VoidCallback? onTapToBack;
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +179,7 @@ class ReceivedWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: () => Navigator.of(context).pop(),
+                  onTap: onTapToBack ?? () => Navigator.of(context).pop(),
                   child: const Icon(
                     Icons.arrow_back_ios,
                     size: 24,

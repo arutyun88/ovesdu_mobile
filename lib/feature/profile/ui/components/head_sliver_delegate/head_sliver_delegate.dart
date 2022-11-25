@@ -17,11 +17,13 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
 
   final double expandedHeight;
   final UserProfileEntity? entity;
+  final VoidCallback? onTapToBack;
 
   HeadSliverDelegate(
     this.expandedHeight,
-    this.entity,
-  );
+    this.entity, {
+    this.onTapToBack,
+  });
 
   @override
   Widget build(
@@ -44,6 +46,7 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
           paddingTop: paddingTop,
           entity: entity,
           blockedOnTap: () => _blockedOnTap(context, entity?.id ?? -1),
+          onTapToBack: onTapToBack,
         ),
         orElse: () => BlocBuilder<UserProfileCubit, UserProfileState>(
           builder: (context, state) {
@@ -62,6 +65,7 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
                     entity: entity,
                     blockedOnTap: () =>
                         _blockedOnTap(context, entity?.id ?? -1),
+                    onTapToBack: onTapToBack,
                   );
                 }
                 return ReceivedWidget(
@@ -71,6 +75,7 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
                   zero: zero,
                   paddingTop: paddingTop,
                   blockedOnTap: () => _blockedOnTap(context, user.id),
+                  onTapToBack: onTapToBack,
                 );
               },
               orElse: () => OrElseWidget(
@@ -80,6 +85,7 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
                 paddingTop: paddingTop,
                 entity: entity,
                 blockedOnTap: () => _blockedOnTap(context, entity?.id ?? -1),
+                onTapToBack: onTapToBack,
               ),
             );
           },

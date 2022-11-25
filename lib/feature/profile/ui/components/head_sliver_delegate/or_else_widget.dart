@@ -18,6 +18,7 @@ class OrElseWidget extends StatelessWidget {
     required this.paddingTop,
     required this.entity,
     required this.blockedOnTap,
+    this.onTapToBack,
   }) : super(key: key);
 
   final double expandedHeight;
@@ -26,6 +27,7 @@ class OrElseWidget extends StatelessWidget {
   final double paddingTop;
   final UserProfileEntity? entity;
   final VoidCallback blockedOnTap;
+  final VoidCallback? onTapToBack;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +92,7 @@ class OrElseWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: () => Navigator.of(context).pop(),
+                  onTap: onTapToBack ?? () => Navigator.of(context).pop(),
                   child: const Icon(
                     Icons.arrow_back_ios,
                     size: 24,

@@ -41,11 +41,15 @@ class _FollowerItemState extends State<FollowerItem> {
   late AppLocalizations dictionary;
   late ValueNotifier<bool> clicked;
 
+  late bool _isBlocked;
+
   @override
   void initState() {
     super.initState();
 
     clicked = ValueNotifier(false);
+
+    _isBlocked = widget.isBlocked;
   }
 
   @override
@@ -85,22 +89,9 @@ class _FollowerItemState extends State<FollowerItem> {
             builder: (context, isClicked, child) {
               final cubit = context.read<MyFollowersCubit>();
               return GestureDetector(
-                onTap: widget.isBlocked
+                onTap: userId == int.parse(widget.item.id) || isClicked
                     ? () {}
-                    : isClicked
-                        ? () {}
-                        : () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => UserProfileScreen(
-                                  userId: widget.item.id,
-                                  firsName: widget.item.firstName,
-                                  lastName: widget.item.lastName,
-                                  image: widget.item.image,
-                                ),
-                              ),
-                            );
-                          },
+                    : _itemOnTap,
                 child: Container(
                   color: AppColors.transparent,
                   child: Column(
@@ -128,7 +119,7 @@ class _FollowerItemState extends State<FollowerItem> {
                                       : BorderRadius.circular(16),
                                   color: AppColors.hintTextColor,
                                   border: Border.all(
-                                    color: widget.isBlocked
+                                    color: _isBlocked
                                         ? AppColors.orange.withOpacity(.3)
                                         : AppColors.orange,
                                     width: 2,
@@ -143,7 +134,7 @@ class _FollowerItemState extends State<FollowerItem> {
                                       widget.item.image,
                                       fit: BoxFit.cover,
                                     ),
-                                    if (widget.isBlocked)
+                                    if (_isBlocked)
                                       Container(
                                         color: theme.backgroundColor
                                             .withOpacity(.7),
@@ -165,7 +156,7 @@ class _FollowerItemState extends State<FollowerItem> {
                                       children: [
                                         Text(
                                           widget.item.firstName,
-                                          style: widget.isBlocked
+                                          style: _isBlocked
                                               ? theme.textTheme.headline6
                                                   ?.apply(
                                                       color: theme.textTheme
@@ -177,7 +168,7 @@ class _FollowerItemState extends State<FollowerItem> {
                                           widget.item.lastName,
                                           style: theme.textTheme.headline6
                                               ?.copyWith(
-                                            color: widget.isBlocked
+                                            color: _isBlocked
                                                 ? AppColors.hintTextColor
                                                     .withOpacity(.3)
                                                 : AppColors.hintTextColor,
@@ -201,7 +192,7 @@ class _FollowerItemState extends State<FollowerItem> {
                                   ),
                             const Spacer(),
                             if (userId != int.parse(widget.item.id))
-                              widget.isBlocked
+                              _isBlocked
                                   ? Text(
                                       dictionary.blocked,
                                       style: buttonStyle?.copyWith(
@@ -312,6 +303,37 @@ class _FollowerItemState extends State<FollowerItem> {
               );
             }),
       ),
+    );
+  }
+
+  void _itemOnTap() {
+    Navigator.of(context)
+        .push(
+      MaterialPageRoute(
+        builder: (context) => UserProfileScreen(
+          userId: widget.item.id,
+          firsName: widget.item.firstName,
+          lastName: widget.item.lastName,
+          image: widget.item.image,
+          onTapToBack: () {
+            var blocked = locator.get<ProfileCubit>().state.whenOrNull(
+                      received: (user) => user.blockedUsersId.contains(
+                        int.parse(widget.item.id),
+                      ),
+                    ) ??
+                false;
+            Navigator.of(context).pop(blocked);
+          },
+        ),
+      ),
+    )
+        .then(
+      (value) {
+        setState(() {
+          value as bool;
+          _isBlocked = value;
+        });
+      },
     );
   }
 }
