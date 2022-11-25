@@ -141,20 +141,16 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
     context.read<UserProfileCubit>().getUserProfile(widget.userId);
   }
 
-  late final ValueNotifier<bool> _received = ValueNotifier(false);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<UserProfileCubit, UserProfileState>(
         builder: (context, state) {
-          _received.value = state.whenOrNull(
-                received: (receivedUser) {
-                  userEntity = receivedUser;
-                  return true;
-                },
-              ) ??
-              false;
+          state.whenOrNull(
+            received: (receivedUser) {
+              userEntity = receivedUser;
+            },
+          );
           return CustomScrollView(
             physics: const ClampingScrollPhysics(),
             slivers: [
@@ -164,7 +160,6 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
                   expandedHeight,
                   imageUrl,
                   userEntity,
-                  _received,
                 ),
               ),
               SliverToBoxAdapter(
