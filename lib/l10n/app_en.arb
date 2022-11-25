@@ -139,5 +139,6 @@
   "waiting": "waiting...",
   "subscribed": "you subscribed\nunsubscribe?",
   "subscribedToYou": "subscribed to you\nsubscribe to reply?",
-  "deadlock": "...and you to him"
+  "deadlock": "...and you to him",
+  "blockedUser": "You have restricted the user's access to your page"
 }
