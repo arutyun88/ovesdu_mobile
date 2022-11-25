@@ -140,5 +140,9 @@
   "subscribed": "you subscribed\nunsubscribe?",
   "subscribedToYou": "subscribed to you\nsubscribe to reply?",
   "deadlock": "...and you to him",
-  "blockedUser": "You have restricted the user's access to your page"
+  "blockedUser": "You have restricted the user's access to your page",
+  "block": "block",
+  "cancel": "cancel",
+  "wontSeePage": "You won't see the content of his page either",
+  "sureWantToBlock": "Are you sure you want to block the user?"
 }
