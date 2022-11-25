@@ -156,11 +156,7 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
             slivers: [
               SliverPersistentHeader(
                 pinned: true,
-                delegate: HeadSliverDelegate(
-                  expandedHeight,
-                  imageUrl,
-                  userEntity,
-                ),
+                delegate: HeadSliverDelegate(expandedHeight, userEntity),
               ),
               SliverToBoxAdapter(
                 child: state.maybeWhen(

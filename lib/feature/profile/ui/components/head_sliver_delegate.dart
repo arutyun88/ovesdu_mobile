@@ -11,6 +11,7 @@ import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/helpers/date_helper.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../domain/entities/user_profile/user_profile_entity.dart';
+import '../../domain/state/user_blocked/user_blocked_cubit.dart';
 import '../../domain/state/user_profile_cubit.dart';
 import 'message_button.dart';
 
@@ -19,13 +20,12 @@ const _animationDuration = kThemeAnimationDuration;
 class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
   late double _titleMinHeight = 120.0;
   final _titleMaxHeight = 140.0;
+
   final double expandedHeight;
-  final String url;
   final UserProfileEntity? entity;
 
   HeadSliverDelegate(
     this.expandedHeight,
-    this.url,
     this.entity,
   );
 
@@ -48,16 +48,15 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
         return state.maybeWhen(
           received: (receivedUser) => _ReceivedWidget(
             receivedUser: receivedUser,
-            url: url,
             expandedHeight: expandedHeight,
             top: top,
             titleMaxHeight: _titleMaxHeight,
             theme: theme,
             zero: zero,
             paddingTop: paddingTop,
+            blockedOnTap: () => _blockedOnTap(context, receivedUser.id),
           ),
           orElse: () => _OrElseWidget(
-            url: url,
             expandedHeight: expandedHeight,
             top: top,
             titleMaxHeight: _titleMaxHeight,
@@ -65,6 +64,7 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
             zero: zero,
             paddingTop: paddingTop,
             entity: entity,
+            blockedOnTap: () => _blockedOnTap(context, entity?.id ?? -1),
           ),
         );
       },
@@ -79,30 +79,33 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant oldDelegate) => false;
+
+  void _blockedOnTap(BuildContext context, int id) =>
+      context.read<UserBlockedCubit>().addBlocked(id.toString());
 }
 
 class _ReceivedWidget extends StatelessWidget {
   const _ReceivedWidget({
     Key? key,
     required this.receivedUser,
-    required this.url,
     required this.expandedHeight,
     required this.top,
     required double titleMaxHeight,
     required this.theme,
     required this.zero,
     required this.paddingTop,
+    required this.blockedOnTap,
   })  : _titleMaxHeight = titleMaxHeight,
         super(key: key);
 
   final UserProfileEntity receivedUser;
-  final String url;
   final double expandedHeight;
   final double top;
   final double _titleMaxHeight;
   final ThemeData theme;
   final double zero;
   final double paddingTop;
+  final VoidCallback blockedOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +114,7 @@ class _ReceivedWidget extends StatelessWidget {
     return Stack(
       children: [
         Image.network(
-          url,
+          receivedUser.image ?? '',
           width: MediaQuery.of(context).size.width,
           height: expandedHeight,
           fit: BoxFit.cover,
@@ -219,7 +222,7 @@ class _ReceivedWidget extends StatelessWidget {
                         ),
                         clipBehavior: Clip.hardEdge,
                         child: Image.network(
-                          url,
+                          receivedUser.image ?? '',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -257,7 +260,7 @@ class _ReceivedWidget extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.of(context).pop(),
+                  onTap: () => blockedOnTap,
                   child: const Center(
                     child: Icon(
                       Icons.more_horiz,
@@ -289,7 +292,6 @@ class _ReceivedWidget extends StatelessWidget {
 class _OrElseWidget extends StatelessWidget {
   const _OrElseWidget({
     Key? key,
-    required this.url,
     required this.expandedHeight,
     required this.top,
     required double titleMaxHeight,
@@ -297,10 +299,10 @@ class _OrElseWidget extends StatelessWidget {
     required this.zero,
     required this.paddingTop,
     required this.entity,
+    required this.blockedOnTap,
   })  : _titleMaxHeight = titleMaxHeight,
         super(key: key);
 
-  final String url;
   final double expandedHeight;
   final double top;
   final double _titleMaxHeight;
@@ -308,6 +310,7 @@ class _OrElseWidget extends StatelessWidget {
   final double zero;
   final double paddingTop;
   final UserProfileEntity? entity;
+  final VoidCallback blockedOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -320,7 +323,7 @@ class _OrElseWidget extends StatelessWidget {
           child: ImageFiltered(
             imageFilter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
             child: Image.network(
-              url,
+              entity?.image ?? '',
               width: MediaQuery.of(context).size.width,
               height: expandedHeight,
               fit: BoxFit.cover,
@@ -379,7 +382,7 @@ class _OrElseWidget extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => Navigator.of(context).pop(),
+                  onTap: blockedOnTap,
                   child: const Center(
                     child: Icon(
                       Icons.more_horiz,

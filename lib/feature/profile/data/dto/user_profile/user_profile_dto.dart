@@ -52,6 +52,8 @@ class UserProfileDto {
         area: area.toString(),
         city: city.toString(),
         isMale: gender.toString() == 'male',
+        image: 'https://caknowledge.com/wp-content/uploads/2022/05/Chuck-'
+            'Norris-Net-Worth-100-million.jpg',
         blockedUsersId: (blockedUsersId as List).map((e) => e as int).toList(),
       );
 
@@ -67,6 +69,8 @@ class UserProfileDto {
         area: area.toString(),
         city: city.toString(),
         isMale: isMale,
+        image: 'https://caknowledge.com/wp-content/uploads/2022/05/Chuck-'
+            'Norris-Net-Worth-100-million.jpg',
         blockedUsersId: <int>[],
       );
 
