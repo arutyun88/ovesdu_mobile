@@ -152,212 +152,241 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<UserProfileCubit, UserProfileState>(
-        builder: (context, state) {
-          state.whenOrNull(
-            received: (receivedUser) {
-              userEntity = receivedUser;
-            },
+      body: BlocConsumer<UserBlockedCubit, UserBlockedState>(
+        listener: (context, blockedState) {
+          blockedState.whenOrNull(
+            added: (id) => blocked = true,
+            removed: (id) => blocked = false,
           );
-          return CustomScrollView(
-            physics: const ClampingScrollPhysics(),
-            slivers: [
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: HeadSliverDelegate(expandedHeight, userEntity),
-              ),
-              SliverToBoxAdapter(
-                child: state.maybeWhen(
-                  received: (receivedUserEntity) {
-                    context
-                        .read<UserProfileStatisticCubit>()
-                        .getUserProfileStatistic(widget.userId);
+        },
+        builder: (context, blockedState) {
+          return BlocBuilder<UserProfileCubit, UserProfileState>(
+            builder: (context, state) {
+              state.whenOrNull(
+                received: (receivedUser) {
+                  userEntity = receivedUser;
+                },
+              );
+              return CustomScrollView(
+                physics: const ClampingScrollPhysics(),
+                slivers: [
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: HeadSliverDelegate(expandedHeight, userEntity),
+                  ),
+                  SliverToBoxAdapter(
+                    child: state.maybeWhen(
+                      received: (receivedUserEntity) {
+                        context
+                            .read<UserProfileStatisticCubit>()
+                            .getUserProfileStatistic(widget.userId);
 
-                    return Column(
-                      children: [
-                        const ProfileStatistic(),
-                        const ProfilePrograms(),
-                        ProfileGifts(
-                          gifts: [
-                            GiftEntity(Gift.a1, true, 'sender'),
-                            GiftEntity(Gift.a2, false, null),
-                            GiftEntity(Gift.b1, true, null),
-                            GiftEntity(Gift.a5, true, 'sender'),
-                          ],
-                        ),
-                        const ProfilePhotos(
-                          images: [
-                            'http://zornet.ru/_fr/82/5237306.jpg',
-                            'http://zornet.ru/_fr/82/1132404.jpg',
-                            'http://zornet.ru/_fr/82/4773685.jpg',
-                            'http://zornet.ru/_fr/82/8472417.jpg',
-                            'http://zornet.ru/_fr/82/8567927.jpg',
-                          ],
-                        ),
-                        ProfilePosts(
-                          posts: [
-                            PostEntity(
-                              id: 'id',
-                              author:
-                                  '${userEntity.firstName} ${userEntity.lastName}',
-                              time: 'time',
-                              text: _longText,
-                              image: 'http://zornet.ru/_fr/82/1132404.jpg',
-                            ),
-                            PostEntity(
-                              id: 'id2',
-                              author:
-                                  '${userEntity.firstName} ${userEntity.lastName}',
-                              time: 'time',
-                              text: _longText,
-                            ),
-                            PostEntity(
-                                id: 'id3',
-                                author:
-                                    '${userEntity.firstName} ${userEntity.lastName}',
-                                time: 'time',
-                                image: 'http://zornet.ru/_fr/82/8567927.jpg'),
-                            PostEntity(
-                              id: 'id4',
-                              author:
-                                  '${userEntity.firstName} ${userEntity.lastName}',
-                              time: 'time',
-                            ),
-                            PostEntity(
-                              id: 'id5',
-                              author:
-                                  '${userEntity.firstName} ${userEntity.lastName}',
-                              time: 'time',
-                            ),
-                            PostEntity(
-                              id: 'id6',
-                              author:
-                                  '${userEntity.firstName} ${userEntity.lastName}',
-                              time: 'time',
-                            ),
-                            PostEntity(
-                              id: 'id7',
-                              author:
-                                  '${userEntity.firstName} ${userEntity.lastName}',
-                              time: 'time',
-                            ),
-                            PostEntity(
-                              id: 'id8',
-                              author:
-                                  '${userEntity.firstName} ${userEntity.lastName}',
-                              time: 'time',
-                            ),
-                            PostEntity(
-                              id: 'id9',
-                              author:
-                                  '${userEntity.firstName} ${userEntity.lastName}',
-                              time: 'time',
-                            ),
-                            PostEntity(
-                              id: 'id10',
-                              author:
-                                  '${userEntity.firstName} ${userEntity.lastName}',
-                              time: 'time',
-                            ),
-                          ],
-                        ),
-                      ],
-                    );
-                  },
-                  forbidden: () => Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const ItemDivider(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 48.0,
-                          horizontal: mainPadding,
-                        ),
-                        child: Text(
-                          dictionary.forbidden(userEntity.firstName),
-                          textAlign: TextAlign.center,
-                          style: theme.textTheme.headline6?.copyWith(
-                            fontStyle: FontStyle.italic,
-                            color: theme.textTheme.headline6?.color
-                                ?.withOpacity(.5),
-                          ),
-                        ),
-                      ),
-                      BlocConsumer<UserBlockedCubit, UserBlockedState>(
-                        listener: (context, state) {
-                          blocked =
-                              state.whenOrNull(added: (received) => true) ??
-                                  false;
-                        },
-                        builder: (context, state) {
-                          return blocked
-                              ? Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: mainPadding,
+                        return blocked
+                            ? _ErrorWidget(message: dictionary.blockedUser)
+                            : Column(
+                                children: [
+                                  const ProfileStatistic(),
+                                  const ProfilePrograms(),
+                                  ProfileGifts(
+                                    gifts: [
+                                      GiftEntity(Gift.a1, true, 'sender'),
+                                      GiftEntity(Gift.a2, false, null),
+                                      GiftEntity(Gift.b1, true, null),
+                                      GiftEntity(Gift.a5, true, 'sender'),
+                                    ],
                                   ),
-                                  child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Text(
-                                      dictionary.deadlock,
-                                      textAlign: TextAlign.right,
-                                      style:
-                                          theme.textTheme.headline6?.copyWith(
-                                        fontStyle: FontStyle.italic,
-                                        color: theme.textTheme.headline6?.color
-                                            ?.withOpacity(.5),
+                                  const ProfilePhotos(
+                                    images: [
+                                      'http://zornet.ru/_fr/82/5237306.jpg',
+                                      'http://zornet.ru/_fr/82/1132404.jpg',
+                                      'http://zornet.ru/_fr/82/4773685.jpg',
+                                      'http://zornet.ru/_fr/82/8472417.jpg',
+                                      'http://zornet.ru/_fr/82/8567927.jpg',
+                                    ],
+                                  ),
+                                  ProfilePosts(
+                                    posts: [
+                                      PostEntity(
+                                        id: 'id',
+                                        author:
+                                            '${userEntity.firstName} ${userEntity.lastName}',
+                                        time: 'time',
+                                        text: _longText,
+                                        image:
+                                            'http://zornet.ru/_fr/82/1132404.jpg',
                                       ),
-                                    ),
+                                      PostEntity(
+                                        id: 'id2',
+                                        author:
+                                            '${userEntity.firstName} ${userEntity.lastName}',
+                                        time: 'time',
+                                        text: _longText,
+                                      ),
+                                      PostEntity(
+                                          id: 'id3',
+                                          author:
+                                              '${userEntity.firstName} ${userEntity.lastName}',
+                                          time: 'time',
+                                          image:
+                                              'http://zornet.ru/_fr/82/8567927.jpg'),
+                                      PostEntity(
+                                        id: 'id4',
+                                        author:
+                                            '${userEntity.firstName} ${userEntity.lastName}',
+                                        time: 'time',
+                                      ),
+                                      PostEntity(
+                                        id: 'id5',
+                                        author:
+                                            '${userEntity.firstName} ${userEntity.lastName}',
+                                        time: 'time',
+                                      ),
+                                      PostEntity(
+                                        id: 'id6',
+                                        author:
+                                            '${userEntity.firstName} ${userEntity.lastName}',
+                                        time: 'time',
+                                      ),
+                                      PostEntity(
+                                        id: 'id7',
+                                        author:
+                                            '${userEntity.firstName} ${userEntity.lastName}',
+                                        time: 'time',
+                                      ),
+                                      PostEntity(
+                                        id: 'id8',
+                                        author:
+                                            '${userEntity.firstName} ${userEntity.lastName}',
+                                        time: 'time',
+                                      ),
+                                      PostEntity(
+                                        id: 'id9',
+                                        author:
+                                            '${userEntity.firstName} ${userEntity.lastName}',
+                                        time: 'time',
+                                      ),
+                                      PostEntity(
+                                        id: 'id10',
+                                        author:
+                                            '${userEntity.firstName} ${userEntity.lastName}',
+                                        time: 'time',
+                                      ),
+                                    ],
                                   ),
-                                )
-                              : const SizedBox.shrink();
-                        },
-                      ),
-                    ],
-                  ),
-                  error: (error) => Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const ItemDivider(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 48.0,
-                          horizontal: mainPadding,
-                        ),
-                        child: Text(
-                          error.message,
-                          textAlign: TextAlign.center,
-                          style: theme.textTheme.headline6?.copyWith(
-                            fontStyle: FontStyle.italic,
-                            color: theme.textTheme.headline6?.color
-                                ?.withOpacity(.5),
+                                ],
+                              );
+                      },
+                      forbidden: () => Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const ItemDivider(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 48.0,
+                              horizontal: mainPadding,
+                            ),
+                            child: Text(
+                              dictionary.forbidden(userEntity.firstName),
+                              textAlign: TextAlign.center,
+                              style: theme.textTheme.headline6?.copyWith(
+                                fontStyle: FontStyle.italic,
+                                color: theme.textTheme.headline6?.color
+                                    ?.withOpacity(.5),
+                              ),
+                            ),
                           ),
-                        ),
-                      )
-                    ],
-                  ),
-                  orElse: () => Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      ItemDivider(),
-                      Padding(
-                        padding: EdgeInsets.only(top: 36.0),
-                        child: CircularProgressIndicator(
-                          color: AppColors.orange,
-                        ),
+                          BlocConsumer<UserBlockedCubit, UserBlockedState>(
+                            listener: (context, state) {
+                              blocked =
+                                  state.whenOrNull(added: (received) => true) ??
+                                      false;
+                            },
+                            builder: (context, state) {
+                              return blocked
+                                  ? Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: mainPadding,
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          dictionary.deadlock,
+                                          textAlign: TextAlign.right,
+                                          style: theme.textTheme.headline6
+                                              ?.copyWith(
+                                            fontStyle: FontStyle.italic,
+                                            color: theme
+                                                .textTheme.headline6?.color
+                                                ?.withOpacity(.5),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : const SizedBox.shrink();
+                            },
+                          ),
+                        ],
                       ),
-                    ],
+                      error: (error) => _ErrorWidget(message: error.message),
+                      orElse: () => Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          ItemDivider(),
+                          Padding(
+                            padding: EdgeInsets.only(top: 36.0),
+                            child: CircularProgressIndicator(
+                              color: AppColors.orange,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: MediaQuery.of(context).padding.bottom,
-                ),
-              ),
-            ],
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: MediaQuery.of(context).padding.bottom,
+                    ),
+                  ),
+                ],
+              );
+            },
           );
         },
       ),
+    );
+  }
+}
+
+class _ErrorWidget extends StatelessWidget {
+  const _ErrorWidget({
+    Key? key,
+    required this.message,
+  }) : super(key: key);
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context).themeData;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const ItemDivider(),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 48.0,
+            horizontal: mainPadding,
+          ),
+          child: Text(
+            message,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.headline6?.copyWith(
+              fontStyle: FontStyle.italic,
+              color: theme.textTheme.headline6?.color?.withOpacity(.5),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

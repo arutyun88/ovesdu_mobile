@@ -34,47 +34,26 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
     final zero = expandedHeight - shrinkOffset;
     final top = zero - titleMaxHeight;
 
-    return BlocBuilder<UserProfileCubit, UserProfileState>(
-      builder: (context, state) {
-        return state.maybeWhen(
-          received: (receivedUser) {
-            return locator.get<ProfileCubit>().state.maybeWhen(
-                  received: (user) => !user.blockedUsersId
-                          .contains(receivedUser.id)
-                      ? BlocBuilder<UserBlockedCubit, UserBlockedState>(
-                          builder: (context, blockedState) {
-                            return blockedState.maybeWhen(
-                              added: (id) => OrElseWidget(
-                                expandedHeight: expandedHeight,
-                                top: top,
-                                zero: zero,
-                                paddingTop: paddingTop,
-                                entity: entity,
-                                blockedOnTap: () =>
-                                    _blockedOnTap(context, entity?.id ?? -1),
-                              ),
-                              orElse: () => ReceivedWidget(
-                                receivedUser: receivedUser,
-                                expandedHeight: expandedHeight,
-                                top: top,
-                                zero: zero,
-                                paddingTop: paddingTop,
-                                blockedOnTap: () =>
-                                    _blockedOnTap(context, receivedUser.id),
-                              ),
-                            );
-                          },
-                        )
-                      : OrElseWidget(
-                          expandedHeight: expandedHeight,
-                          top: top,
-                          zero: zero,
-                          paddingTop: paddingTop,
-                          entity: entity,
-                          blockedOnTap: () =>
-                              _blockedOnTap(context, entity?.id ?? -1),
-                        ),
-                  orElse: () => OrElseWidget(
+    return BlocBuilder<UserBlockedCubit, UserBlockedState>(
+      builder: (context, blockedState) => blockedState.maybeWhen(
+        added: (id) => OrElseWidget(
+          expandedHeight: expandedHeight,
+          top: top,
+          zero: zero,
+          paddingTop: paddingTop,
+          entity: entity,
+          blockedOnTap: () => _blockedOnTap(context, entity?.id ?? -1),
+        ),
+        orElse: () => BlocBuilder<UserProfileCubit, UserProfileState>(
+          builder: (context, state) {
+            return state.maybeWhen(
+              received: (user) {
+                final blocked = locator.get<ProfileCubit>().state.whenOrNull(
+                        received: (user) =>
+                            user.blockedUsersId.contains(entity?.id)) ??
+                    false;
+                if (blocked) {
+                  return OrElseWidget(
                     expandedHeight: expandedHeight,
                     top: top,
                     zero: zero,
@@ -82,19 +61,29 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
                     entity: entity,
                     blockedOnTap: () =>
                         _blockedOnTap(context, entity?.id ?? -1),
-                  ),
+                  );
+                }
+                return ReceivedWidget(
+                  receivedUser: user,
+                  expandedHeight: expandedHeight,
+                  top: top,
+                  zero: zero,
+                  paddingTop: paddingTop,
+                  blockedOnTap: () => _blockedOnTap(context, user.id),
                 );
+              },
+              orElse: () => OrElseWidget(
+                expandedHeight: expandedHeight,
+                top: top,
+                zero: zero,
+                paddingTop: paddingTop,
+                entity: entity,
+                blockedOnTap: () => _blockedOnTap(context, entity?.id ?? -1),
+              ),
+            );
           },
-          orElse: () => OrElseWidget(
-            expandedHeight: expandedHeight,
-            top: top,
-            zero: zero,
-            paddingTop: paddingTop,
-            entity: entity,
-            blockedOnTap: () => _blockedOnTap(context, entity?.id ?? -1),
-          ),
-        );
-      },
+        ),
+      ),
     );
   }
 
