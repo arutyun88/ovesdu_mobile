@@ -137,12 +137,18 @@ class ProfileStatistic extends StatelessWidget {
   }) {
     final media = MediaQuery.of(context);
     final height = media.size.height - media.padding.vertical - mainPadding;
-    final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width - (mainPadding / 2);
 
     cubit.getUserProfileFollowers(followers, following).then(
       (value) {
         myFollowersCubit.getMyFollowersIds().then(
           (value) async {
+            final barrierColor =
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .themeData
+                    .backgroundColor
+                    .withOpacity(.7);
+
             final myFollowers = myFollowersCubit.state
                 .whenOrNull(received: (received) => received);
             await blockedCubit.getMyFollowersIds();
@@ -150,9 +156,11 @@ class ProfileStatistic extends StatelessWidget {
               received: (received) => received,
               orElse: () => <int>[],
             );
+
             return showDialog(
               context: context,
               useSafeArea: false,
+              barrierColor: barrierColor,
               builder: (context) {
                 return cubit.state.maybeWhen(
                   received: (follow) => FollowersScreen(

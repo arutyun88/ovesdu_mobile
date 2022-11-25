@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/data/setting_provider/theme_provider.dart';
+import '../../../app/ui/config/app_colors.dart';
 import '../domain/entities/user_profile_follower/user_profile_follower_item_entity.dart';
 import '../domain/entities/user_profile_follower/user_simple_followers_entity.dart';
 import '../domain/state/user_profile_follower/my_followers_cubit.dart';
@@ -93,6 +94,9 @@ class _FollowersScreenState extends State<FollowersScreen> {
         decoration: BoxDecoration(
           color: theme.backgroundColor.withOpacity(.95),
           borderRadius: BorderRadius.circular(24.0),
+          boxShadow: const [
+            BoxShadow(color: AppColors.hintTextColor, blurRadius: 5.0)
+          ],
         ),
         child: Column(
           children: [
