@@ -12,6 +12,7 @@ class UserProfileDto {
   final dynamic firstName;
   final dynamic lastName;
   final dynamic dateOfBirth;
+  final dynamic lastVisit;
   final dynamic country;
   final dynamic area;
   final dynamic city;
@@ -27,6 +28,7 @@ class UserProfileDto {
     this.firstName,
     this.lastName,
     this.dateOfBirth,
+    this.lastVisit,
     this.country,
     this.area,
     this.city,
@@ -47,7 +49,8 @@ class UserProfileDto {
         phoneNumber: phoneNumber.toString(),
         firstName: firstName.toString(),
         lastName: lastName.toString(),
-        dateOfBirth: _dateParse(dateOfBirth.toString()),
+        dateOfBirth: _dateOfBirthParse(dateOfBirth.toString()),
+        lastVisit: DateTime.parse(lastVisit.toString()).toLocal(),
         country: country.toString(),
         area: area.toString(),
         city: city.toString(),
@@ -64,7 +67,8 @@ class UserProfileDto {
         phoneNumber: phoneNumber.toString(),
         firstName: firstName.toString(),
         lastName: lastName.toString(),
-        dateOfBirth: _dateParse(dateOfBirth.toString()),
+        dateOfBirth: _dateOfBirthParse(dateOfBirth.toString()),
+        lastVisit: DateTime.parse(lastVisit.toString()).toLocal(),
         country: country.toString(),
         area: area.toString(),
         city: city.toString(),
@@ -74,7 +78,7 @@ class UserProfileDto {
         blockedUsersId: <int>[],
       );
 
-  DateTime _dateParse(String date) {
+  DateTime _dateOfBirthParse(String date) {
     var splitDate = date.split('/');
     return DateTime(
       int.parse(splitDate[2]),

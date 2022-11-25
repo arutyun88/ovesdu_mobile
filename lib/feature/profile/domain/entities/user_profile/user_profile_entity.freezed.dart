@@ -23,6 +23,7 @@ mixin _$UserProfileEntity {
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
+  DateTime get lastVisit => throw _privateConstructorUsedError;
   String get country => throw _privateConstructorUsedError;
   String get area => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
@@ -49,6 +50,7 @@ abstract class $UserProfileEntityCopyWith<$Res> {
       String firstName,
       String lastName,
       DateTime dateOfBirth,
+      DateTime lastVisit,
       String country,
       String area,
       String city,
@@ -77,6 +79,7 @@ class _$UserProfileEntityCopyWithImpl<$Res, $Val extends UserProfileEntity>
     Object? firstName = null,
     Object? lastName = null,
     Object? dateOfBirth = null,
+    Object? lastVisit = null,
     Object? country = null,
     Object? area = null,
     Object? city = null,
@@ -112,6 +115,10 @@ class _$UserProfileEntityCopyWithImpl<$Res, $Val extends UserProfileEntity>
       dateOfBirth: null == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      lastVisit: null == lastVisit
+          ? _value.lastVisit
+          : lastVisit // ignore: cast_nullable_to_non_nullable
               as DateTime,
       country: null == country
           ? _value.country
@@ -157,6 +164,7 @@ abstract class _$$_UserProfileEntityCopyWith<$Res>
       String firstName,
       String lastName,
       DateTime dateOfBirth,
+      DateTime lastVisit,
       String country,
       String area,
       String city,
@@ -183,6 +191,7 @@ class __$$_UserProfileEntityCopyWithImpl<$Res>
     Object? firstName = null,
     Object? lastName = null,
     Object? dateOfBirth = null,
+    Object? lastVisit = null,
     Object? country = null,
     Object? area = null,
     Object? city = null,
@@ -218,6 +227,10 @@ class __$$_UserProfileEntityCopyWithImpl<$Res>
       dateOfBirth: null == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      lastVisit: null == lastVisit
+          ? _value.lastVisit
+          : lastVisit // ignore: cast_nullable_to_non_nullable
               as DateTime,
       country: null == country
           ? _value.country
@@ -258,6 +271,7 @@ class _$_UserProfileEntity implements _UserProfileEntity {
       required this.firstName,
       required this.lastName,
       required this.dateOfBirth,
+      required this.lastVisit,
       required this.country,
       required this.area,
       required this.city,
@@ -281,6 +295,8 @@ class _$_UserProfileEntity implements _UserProfileEntity {
   @override
   final DateTime dateOfBirth;
   @override
+  final DateTime lastVisit;
+  @override
   final String country;
   @override
   final String area;
@@ -300,7 +316,7 @@ class _$_UserProfileEntity implements _UserProfileEntity {
 
   @override
   String toString() {
-    return 'UserProfileEntity(id: $id, username: $username, email: $email, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, dateOfBirth: $dateOfBirth, country: $country, area: $area, city: $city, isMale: $isMale, blockedUsersId: $blockedUsersId, image: $image)';
+    return 'UserProfileEntity(id: $id, username: $username, email: $email, phoneNumber: $phoneNumber, firstName: $firstName, lastName: $lastName, dateOfBirth: $dateOfBirth, lastVisit: $lastVisit, country: $country, area: $area, city: $city, isMale: $isMale, blockedUsersId: $blockedUsersId, image: $image)';
   }
 
   @override
@@ -320,6 +336,8 @@ class _$_UserProfileEntity implements _UserProfileEntity {
                 other.lastName == lastName) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
                 other.dateOfBirth == dateOfBirth) &&
+            (identical(other.lastVisit, lastVisit) ||
+                other.lastVisit == lastVisit) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.area, area) || other.area == area) &&
             (identical(other.city, city) || other.city == city) &&
@@ -339,6 +357,7 @@ class _$_UserProfileEntity implements _UserProfileEntity {
       firstName,
       lastName,
       dateOfBirth,
+      lastVisit,
       country,
       area,
       city,
@@ -363,6 +382,7 @@ abstract class _UserProfileEntity implements UserProfileEntity {
       required final String firstName,
       required final String lastName,
       required final DateTime dateOfBirth,
+      required final DateTime lastVisit,
       required final String country,
       required final String area,
       required final String city,
@@ -384,6 +404,8 @@ abstract class _UserProfileEntity implements UserProfileEntity {
   String get lastName;
   @override
   DateTime get dateOfBirth;
+  @override
+  DateTime get lastVisit;
   @override
   String get country;
   @override

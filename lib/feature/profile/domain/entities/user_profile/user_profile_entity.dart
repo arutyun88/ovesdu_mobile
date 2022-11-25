@@ -12,6 +12,7 @@ class UserProfileEntity with _$UserProfileEntity {
     required String firstName,
     required String lastName,
     required DateTime dateOfBirth,
+    required DateTime lastVisit,
     required String country,
     required String area,
     required String city,

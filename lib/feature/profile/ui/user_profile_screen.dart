@@ -123,6 +123,7 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
       email: '',
       phoneNumber: '',
       dateOfBirth: DateTime.now(),
+      lastVisit: DateTime.now(),
       country: '',
       area: '',
       city: '',
