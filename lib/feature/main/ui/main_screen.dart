@@ -61,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
                         onTap: () async => Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const UserProfileScreen(
-                              userId: '13',
+                              userId: '22',
                               firsName: 'Чак',
                               lastName: 'Норрис',
                               image: 'https://caknowledge.com/wp-content/'

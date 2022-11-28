@@ -227,75 +227,7 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
                                       'http://zornet.ru/_fr/82/8567927.jpg',
                                     ],
                                   ),
-                                  ProfilePosts(
-                                    posts: [
-                                      PostEntity(
-                                        id: 'id',
-                                        author:
-                                            '${userEntity.firstName} ${userEntity.lastName}',
-                                        time: 'time',
-                                        text: _longText,
-                                        image:
-                                            'http://zornet.ru/_fr/82/1132404.jpg',
-                                      ),
-                                      PostEntity(
-                                        id: 'id2',
-                                        author:
-                                            '${userEntity.firstName} ${userEntity.lastName}',
-                                        time: 'time',
-                                        text: _longText,
-                                      ),
-                                      PostEntity(
-                                          id: 'id3',
-                                          author:
-                                              '${userEntity.firstName} ${userEntity.lastName}',
-                                          time: 'time',
-                                          image:
-                                              'http://zornet.ru/_fr/82/8567927.jpg'),
-                                      PostEntity(
-                                        id: 'id4',
-                                        author:
-                                            '${userEntity.firstName} ${userEntity.lastName}',
-                                        time: 'time',
-                                      ),
-                                      PostEntity(
-                                        id: 'id5',
-                                        author:
-                                            '${userEntity.firstName} ${userEntity.lastName}',
-                                        time: 'time',
-                                      ),
-                                      PostEntity(
-                                        id: 'id6',
-                                        author:
-                                            '${userEntity.firstName} ${userEntity.lastName}',
-                                        time: 'time',
-                                      ),
-                                      PostEntity(
-                                        id: 'id7',
-                                        author:
-                                            '${userEntity.firstName} ${userEntity.lastName}',
-                                        time: 'time',
-                                      ),
-                                      PostEntity(
-                                        id: 'id8',
-                                        author:
-                                            '${userEntity.firstName} ${userEntity.lastName}',
-                                        time: 'time',
-                                      ),
-                                      PostEntity(
-                                        id: 'id9',
-                                        author:
-                                            '${userEntity.firstName} ${userEntity.lastName}',
-                                        time: 'time',
-                                      ),
-                                      PostEntity(
-                                        id: 'id10',
-                                        author:
-                                            '${userEntity.firstName} ${userEntity.lastName}',
-                                        time: 'time',
-                                      ),
-                                    ],
-                                  ),
+                                  const ProfilePosts(),
                                 ],
                               );
                       },
@@ -413,9 +345,3 @@ class _ErrorWidget extends StatelessWidget {
     );
   }
 }
-
-const String _longText = 'Some very long text. It\'s really very long text, '
-    'but I don\'t speak english.\n\nI share your point of view'
-    'A friend in need is a friend indeed.\n'
-    'Easy come, easy go. Time is money. Better late than never.'
-    '\n\nHave a good day';
