@@ -17,6 +17,7 @@ import '../../feature/profile/data/network_profile_repository.dart' as _i14;
 import '../../feature/profile/domain/profile_repository.dart' as _i13;
 import '../../feature/profile/domain/state/profile_cubit.dart' as _i18;
 import '../../feature/user_post/data/user_posts_repository_impl.dart' as _i16;
+import '../../feature/user_post/domain/state/user_post_cubit.dart' as _i19;
 import '../../feature/user_post/domain/user_post_repository.dart' as _i15;
 import '../data/config/dev_app_config.dart' as _i4;
 import '../data/config/prod_app_config.dart' as _i5;
@@ -65,5 +66,7 @@ _i1.GetIt $initGetIt(
   gh.singleton<_i17.AuthCubit>(_i17.AuthCubit(get<_i9.AuthRepository>()));
   gh.singleton<_i18.ProfileCubit>(
       _i18.ProfileCubit(get<_i13.ProfileRepository>()));
+  gh.singleton<_i19.UserPostCubit>(
+      _i19.UserPostCubit(get<_i15.UserPostRepository>()));
   return get;
 }
