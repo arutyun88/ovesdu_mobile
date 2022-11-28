@@ -10,12 +10,14 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../../feature/auth/data/network_auth_repository.dart' as _i10;
 import '../../feature/auth/domain/auth_repository.dart' as _i9;
-import '../../feature/auth/domain/state/auth_cubit.dart' as _i15;
+import '../../feature/auth/domain/state/auth_cubit.dart' as _i17;
 import '../../feature/location/data/network_location_repository.dart' as _i12;
 import '../../feature/location/domain/location_repository.dart' as _i11;
 import '../../feature/profile/data/network_profile_repository.dart' as _i14;
 import '../../feature/profile/domain/profile_repository.dart' as _i13;
-import '../../feature/profile/domain/state/profile_cubit.dart' as _i16;
+import '../../feature/profile/domain/state/profile_cubit.dart' as _i18;
+import '../../feature/user_post/data/user_posts_repository_impl.dart' as _i16;
+import '../../feature/user_post/domain/user_post_repository.dart' as _i15;
 import '../data/config/dev_app_config.dart' as _i4;
 import '../data/config/prod_app_config.dart' as _i5;
 import '../data/config/test_app_config.dart' as _i6;
@@ -58,8 +60,10 @@ _i1.GetIt $initGetIt(
       () => _i12.NetworkLocationRepository(get<_i7.AppApi>()));
   gh.factory<_i13.ProfileRepository>(
       () => _i14.NetworkProfileRepository(get<_i7.AppApi>()));
-  gh.singleton<_i15.AuthCubit>(_i15.AuthCubit(get<_i9.AuthRepository>()));
-  gh.singleton<_i16.ProfileCubit>(
-      _i16.ProfileCubit(get<_i13.ProfileRepository>()));
+  gh.factory<_i15.UserPostRepository>(
+      () => _i16.UserPostRepositoryImpl(get<_i7.AppApi>()));
+  gh.singleton<_i17.AuthCubit>(_i17.AuthCubit(get<_i9.AuthRepository>()));
+  gh.singleton<_i18.ProfileCubit>(
+      _i18.ProfileCubit(get<_i13.ProfileRepository>()));
   return get;
 }
