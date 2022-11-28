@@ -158,7 +158,7 @@ class DioAppApi implements AppApi {
     try {
       return dio.get(
         '/auth/profile',
-        queryParameters: {'userId': userId},
+        queryParameters: {_QueryKey.userId: userId},
       );
     } catch (_) {
       rethrow;
@@ -170,7 +170,7 @@ class DioAppApi implements AppApi {
     try {
       return dio.get(
         '/data/statistic',
-        queryParameters: {'userId': userId},
+        queryParameters: {_QueryKey.userId: userId},
       );
     } catch (_) {
       rethrow;
@@ -239,4 +239,27 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> getUserPosts(int id, int limit, int last) {
+    try {
+      return dio.get(
+        '/data/post/$id',
+        queryParameters: {
+          _QueryKey.limit: limit,
+          _QueryKey.last: last,
+        },
+      );
+    } catch (_) {
+      rethrow;
+    }
+  }
+}
+
+abstract class _QueryKey {
+  const _QueryKey._();
+
+  static const String last = 'last';
+  static const String limit = 'limit';
+  static const String userId = 'userId';
 }
