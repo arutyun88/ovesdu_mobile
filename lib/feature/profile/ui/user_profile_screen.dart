@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ovesdu_mobile/feature/profile/domain/state/profile_cubit.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -8,8 +7,11 @@ import '../../../app/const/const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
 import '../../../app/ui/config/app_colors.dart';
+import '../../user_post/domain/state/user_post_cubit.dart';
+import '../../user_post/domain/user_post_repository.dart';
 import '../domain/entities/user_profile/user_profile_entity.dart';
 import '../domain/profile_repository.dart';
+import '../domain/state/profile_cubit.dart';
 import '../domain/state/user_blocked/user_blocked_cubit.dart';
 import '../domain/state/user_profile_cubit.dart';
 import '../domain/state/user_profile_follower/my_followers_cubit.dart';
@@ -65,6 +67,11 @@ class UserProfileScreen extends StatelessWidget {
         BlocProvider(
           create: (context) => UserBlockedCubit(
             locator.get<ProfileRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => UserPostCubit(
+            locator.get<UserPostRepository>(),
           ),
         ),
       ],
@@ -191,6 +198,11 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
                         context
                             .read<UserProfileStatisticCubit>()
                             .getUserProfileStatistic(widget.userId);
+                        context.read<UserPostCubit>().getUserPosts(
+                              id: int.parse(widget.userId),
+                              limit: 10,
+                              last: 0,
+                            );
 
                         return blocked
                             ? _ErrorWidget(message: dictionary.blockedUser)
