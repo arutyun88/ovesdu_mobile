@@ -20,7 +20,7 @@ class ErrorEntity with _$ErrorEntity {
     if (error is ErrorEntity) return error;
 
     if (error is DioError) {
-      final locale = error.response?.requestOptions.headers['locale'] ?? 'en';
+      final locale = error.requestOptions.headers['locale'] ?? 'en';
       try {
         return ErrorEntity(
           message: error.response?.data['message'] ??
