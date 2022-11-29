@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:ovesdu_mobile/app/data/setting_provider/setting_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../app/const/const.dart';
-import '../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../app/ui/config/app_colors.dart';
-import '../../../user_post/domain/state/user_post_cubit.dart';
-import 'item_divider.dart';
-import 'profile_item_title.dart';
+import '../../../../../app/const/const.dart';
+import '../../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../../app/ui/config/app_colors.dart';
+import '../../../../user_post/domain/state/user_post_cubit.dart';
+import '../item_divider.dart';
+import '../profile_item_title.dart';
+import 'profile_post_header.dart';
 
 class ProfilePosts extends StatelessWidget {
   const ProfilePosts({
     Key? key,
+    required this.avatar,
+    required this.lastVisit,
   }) : super(key: key);
+
+  final String? avatar;
+  final DateTime lastVisit;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +54,14 @@ class ProfilePosts extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // PostHeader(post: posts.posts[index]),
+                          ProfilePostHeader(
+                            avatar: avatar,
+                            firstName: posts.posts[index].author.firstName,
+                            lastName: posts.posts[index].author.lastName,
+                            created: posts.posts[index].created,
+                            updated: posts.posts[index].updated,
+                            lastVisit: lastVisit,
+                          ),
                           if (posts.posts[index].text != null &&
                               posts.posts[index].text!.isNotEmpty)
                             PostText(text: posts.posts[index].text!),
@@ -137,88 +149,6 @@ class PostText extends StatelessWidget {
         style: theme.textTheme.bodyText2?.copyWith(
           fontSize: 16.0,
         ),
-      ),
-    );
-  }
-}
-
-class PostHeader extends StatelessWidget {
-  const PostHeader({
-    Key? key,
-    required this.post,
-  }) : super(key: key);
-
-  final PostEntity post;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeProvider>(context).themeData;
-    final avatar = Provider.of<SettingProvider>(context).isCircleAvatar;
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 8.0,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTap: () {
-              Provider.of<SettingProvider>(context, listen: false)
-                  .setCircleAvatar();
-            },
-            child: Container(
-              height: 60,
-              width: 60,
-              decoration: BoxDecoration(
-                shape: avatar ? BoxShape.circle : BoxShape.rectangle,
-                borderRadius: avatar ? null : BorderRadius.circular(16),
-                color: AppColors.hintTextColor,
-                border: Border.all(
-                  color: AppColors.orange,
-                  width: 2,
-                  strokeAlign: StrokeAlign.outside,
-                ),
-              ),
-              clipBehavior: Clip.hardEdge,
-              child: Image.network(
-                'https://caknowledge.com/wp-content/uploads/2022/05/Chuck-'
-                'Norris-Net-Worth-100-million.jpg',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 8.0,
-              top: 12,
-              bottom: 4,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  post.author,
-                  style: theme.textTheme.headline6,
-                ),
-                Text(
-                  post.time,
-                  style: theme.textTheme.bodyText2?.copyWith(
-                    color: AppColors.hintTextColor,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const Spacer(),
-          const Icon(
-            Icons.more_horiz,
-            size: 24,
-            color: AppColors.hintTextColor,
-          ),
-        ],
       ),
     );
   }
