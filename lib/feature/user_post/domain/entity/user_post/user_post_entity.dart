@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'user_post_author_entity.dart';
+import 'user_post_photo_entity.dart';
+import 'user_post_video_entity.dart';
 
 part 'user_post_entity.freezed.dart';
 
@@ -11,6 +13,8 @@ class UserPostEntity with _$UserPostEntity {
     required DateTime created,
     required DateTime updated,
     required String? text,
+    required List<UserPostPhotoEntity> photos,
+    required List<UserPostVideoEntity> videos,
     required int like,
     required int dislike,
     required bool? liked,

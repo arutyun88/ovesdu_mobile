@@ -16,6 +16,8 @@ UserPostDto _$UserPostDtoFromJson(Map<String, dynamic> json) => UserPostDto(
       liked: json['liked'],
       comment: json['comment'],
       author: json['author'],
+      photos: json['photos'],
+      videos: json['videos'],
     );
 
 Map<String, dynamic> _$UserPostDtoToJson(UserPostDto instance) =>
@@ -29,4 +31,6 @@ Map<String, dynamic> _$UserPostDtoToJson(UserPostDto instance) =>
       'liked': instance.liked,
       'comment': instance.comment,
       'author': instance.author,
+      'photos': instance.photos,
+      'videos': instance.videos,
     };

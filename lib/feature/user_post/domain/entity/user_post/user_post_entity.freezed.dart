@@ -20,6 +20,8 @@ mixin _$UserPostEntity {
   DateTime get created => throw _privateConstructorUsedError;
   DateTime get updated => throw _privateConstructorUsedError;
   String? get text => throw _privateConstructorUsedError;
+  List<UserPostPhotoEntity> get photos => throw _privateConstructorUsedError;
+  List<UserPostVideoEntity> get videos => throw _privateConstructorUsedError;
   int get like => throw _privateConstructorUsedError;
   int get dislike => throw _privateConstructorUsedError;
   bool? get liked => throw _privateConstructorUsedError;
@@ -42,6 +44,8 @@ abstract class $UserPostEntityCopyWith<$Res> {
       DateTime created,
       DateTime updated,
       String? text,
+      List<UserPostPhotoEntity> photos,
+      List<UserPostVideoEntity> videos,
       int like,
       int dislike,
       bool? liked,
@@ -68,6 +72,8 @@ class _$UserPostEntityCopyWithImpl<$Res, $Val extends UserPostEntity>
     Object? created = null,
     Object? updated = null,
     Object? text = freezed,
+    Object? photos = null,
+    Object? videos = null,
     Object? like = null,
     Object? dislike = null,
     Object? liked = freezed,
@@ -91,6 +97,14 @@ class _$UserPostEntityCopyWithImpl<$Res, $Val extends UserPostEntity>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
+      photos: null == photos
+          ? _value.photos
+          : photos // ignore: cast_nullable_to_non_nullable
+              as List<UserPostPhotoEntity>,
+      videos: null == videos
+          ? _value.videos
+          : videos // ignore: cast_nullable_to_non_nullable
+              as List<UserPostVideoEntity>,
       like: null == like
           ? _value.like
           : like // ignore: cast_nullable_to_non_nullable
@@ -136,6 +150,8 @@ abstract class _$$_UserPostEntityCopyWith<$Res>
       DateTime created,
       DateTime updated,
       String? text,
+      List<UserPostPhotoEntity> photos,
+      List<UserPostVideoEntity> videos,
       int like,
       int dislike,
       bool? liked,
@@ -161,6 +177,8 @@ class __$$_UserPostEntityCopyWithImpl<$Res>
     Object? created = null,
     Object? updated = null,
     Object? text = freezed,
+    Object? photos = null,
+    Object? videos = null,
     Object? like = null,
     Object? dislike = null,
     Object? liked = freezed,
@@ -184,6 +202,14 @@ class __$$_UserPostEntityCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
+      photos: null == photos
+          ? _value._photos
+          : photos // ignore: cast_nullable_to_non_nullable
+              as List<UserPostPhotoEntity>,
+      videos: null == videos
+          ? _value._videos
+          : videos // ignore: cast_nullable_to_non_nullable
+              as List<UserPostVideoEntity>,
       like: null == like
           ? _value.like
           : like // ignore: cast_nullable_to_non_nullable
@@ -216,11 +242,15 @@ class _$_UserPostEntity implements _UserPostEntity {
       required this.created,
       required this.updated,
       required this.text,
+      required final List<UserPostPhotoEntity> photos,
+      required final List<UserPostVideoEntity> videos,
       required this.like,
       required this.dislike,
       required this.liked,
       required this.comment,
-      required this.author});
+      required this.author})
+      : _photos = photos,
+        _videos = videos;
 
   @override
   final int id;
@@ -230,6 +260,20 @@ class _$_UserPostEntity implements _UserPostEntity {
   final DateTime updated;
   @override
   final String? text;
+  final List<UserPostPhotoEntity> _photos;
+  @override
+  List<UserPostPhotoEntity> get photos {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_photos);
+  }
+
+  final List<UserPostVideoEntity> _videos;
+  @override
+  List<UserPostVideoEntity> get videos {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_videos);
+  }
+
   @override
   final int like;
   @override
@@ -243,7 +287,7 @@ class _$_UserPostEntity implements _UserPostEntity {
 
   @override
   String toString() {
-    return 'UserPostEntity(id: $id, created: $created, updated: $updated, text: $text, like: $like, dislike: $dislike, liked: $liked, comment: $comment, author: $author)';
+    return 'UserPostEntity(id: $id, created: $created, updated: $updated, text: $text, photos: $photos, videos: $videos, like: $like, dislike: $dislike, liked: $liked, comment: $comment, author: $author)';
   }
 
   @override
@@ -255,6 +299,8 @@ class _$_UserPostEntity implements _UserPostEntity {
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated) &&
             (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other._photos, _photos) &&
+            const DeepCollectionEquality().equals(other._videos, _videos) &&
             (identical(other.like, like) || other.like == like) &&
             (identical(other.dislike, dislike) || other.dislike == dislike) &&
             (identical(other.liked, liked) || other.liked == liked) &&
@@ -263,8 +309,19 @@ class _$_UserPostEntity implements _UserPostEntity {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, created, updated, text, like,
-      dislike, liked, comment, author);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      created,
+      updated,
+      text,
+      const DeepCollectionEquality().hash(_photos),
+      const DeepCollectionEquality().hash(_videos),
+      like,
+      dislike,
+      liked,
+      comment,
+      author);
 
   @JsonKey(ignore: true)
   @override
@@ -279,6 +336,8 @@ abstract class _UserPostEntity implements UserPostEntity {
       required final DateTime created,
       required final DateTime updated,
       required final String? text,
+      required final List<UserPostPhotoEntity> photos,
+      required final List<UserPostVideoEntity> videos,
       required final int like,
       required final int dislike,
       required final bool? liked,
@@ -293,6 +352,10 @@ abstract class _UserPostEntity implements UserPostEntity {
   DateTime get updated;
   @override
   String? get text;
+  @override
+  List<UserPostPhotoEntity> get photos;
+  @override
+  List<UserPostVideoEntity> get videos;
   @override
   int get like;
   @override
