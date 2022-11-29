@@ -42,6 +42,7 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
   late bool avatar;
   late AppLocalizations dictionary;
   late String lastVisit;
+  late bool isOnline;
 
   @override
   void didChangeDependencies() {
@@ -50,6 +51,7 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
     avatar = Provider.of<SettingProvider>(context).isCircleAvatar;
     dictionary = AppLocalizations.of(context)!;
     lastVisit = DateHelper.wasOnline(context, widget.receivedUser.lastVisit);
+    isOnline = DateHelper.isOnline(widget.receivedUser.lastVisit);
   }
 
   @override
@@ -138,7 +140,9 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
                       maxLines: 2,
                       textAlign: TextAlign.right,
                       style: theme.textTheme.bodyText2?.copyWith(
-                        color: AppColors.hintTextColor,
+                        color: isOnline
+                            ? AppColors.orange
+                            : AppColors.hintTextColor,
                         height: 1.0,
                       ),
                     ),
@@ -165,7 +169,9 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
                               avatar ? null : BorderRadius.circular(16),
                           color: AppColors.hintTextColor,
                           border: Border.all(
-                            color: AppColors.orange,
+                            color: isOnline
+                                ? AppColors.orange
+                                : AppColors.hintTextColor,
                             width: 2,
                             strokeAlign: StrokeAlign.outside,
                           ),
