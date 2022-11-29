@@ -106,5 +106,8 @@
   "fifteenMinutesAgo": "15 минут назад",
   "online": "в сети",
   "lessThanHour": "меньше часа назад",
-  "fewHours": "несколько часов назад"
+  "fewHours": "несколько часов назад",
+  "todayAtTime": "сегодня в {time}",
+  "yesterdayAtTime": "вчера в {time}",
+  "was": "был(а) {date}"
 }

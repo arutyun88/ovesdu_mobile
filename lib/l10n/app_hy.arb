@@ -106,5 +106,8 @@
   "fifteenMinutesAgo": "15 րոպե առաջ",
   "online": "առցանց",
   "lessThanHour": "մեկ ժամից էլ քիչ առաջ",
-  "fewHours": "մի քանի ժամ առաջ"
+  "fewHours": "մի քանի ժամ առաջ",
+  "todayAtTime": "այսօր ժամը {time}",
+  "yesterdayAtTime": "երեկ ժամը {time}",
+  "was": "{date} էր"
 }

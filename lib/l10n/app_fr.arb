@@ -103,8 +103,11 @@
   "fewDays": "a few days ago",
   "yesterday": "yesterday",
   "hourAgo": "hour ago",
-  "fifteenMinutesAgo": "15 minutes ago",
+  "fifteenMinutesAgo": "Il ya 15 minutes",
   "online": "online",
   "lessThanHour": "less than an hour ago",
-  "fewHours": "a few hours ago"
+  "fewHours": "a few hours ago",
+  "todayAtTime": "aujourd'hui à {time}",
+  "yesterdayAtTime": "hier à {time}",
+  "was": "c'était {date}"
 }

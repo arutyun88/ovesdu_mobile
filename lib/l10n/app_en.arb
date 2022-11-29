@@ -154,5 +154,29 @@
   "fifteenMinutesAgo": "15 minutes ago",
   "online": "online",
   "lessThanHour": "less than an hour ago",
-  "fewHours": "a few hours ago"
+  "fewHours": "a few hours ago",
+  "todayAtTime": "today at {time}",
+  "@todayAtTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "yesterdayAtTime": "yesterday at {time}",
+  "@yesterdayAtTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "was": "was {date}",
+  "@was": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  }
 }
