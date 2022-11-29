@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../data/setting_provider/locale_provider.dart';
@@ -15,39 +16,70 @@ abstract class DateHelper {
 
     final isToday = currentHours - difference.inHours > 0.0;
     if (isToday) {
-      final hours = currentHours - difference.inHours;
-      if (hours == 1.0) {
-        return dictionary.hourAgo;
-      }
-      if (hours < 0.3) {
+      if (difference.inSeconds <= 60 * 14) {
         return dictionary.online;
       }
-      if (hours <= 0.4) {
-        return dictionary.fifteenMinutesAgo;
+      if (difference.inSeconds < 60 * 16) {
+        return dictionary.was(dictionary.fifteenMinutesAgo);
       }
-      if (hours <= 1.0) {
-        return dictionary.lessThanHour;
+      if (difference.inSeconds <= 60 * 60) {
+        return dictionary.was(dictionary.lessThanHour);
       } else {
-        return dictionary.fewHours;
+        return dictionary.was(dictionary.fewHours);
       }
     } else {
       final isYesterday = (currentHours + 24) - difference.inHours > 0;
       if (isYesterday) {
-        return dictionary.yesterday;
+        return dictionary.was(dictionary.yesterday);
       } else {
         var days = ((difference.inHours - currentHours) / 24).truncate() + 1;
         if (days <= 3) {
-          return dictionary.fewDays;
+          return dictionary.was(dictionary.fewDays);
         }
         if (days <= 30) {
-          return dictionary.severalWeeksAgo;
+          return dictionary.was(dictionary.severalWeeksAgo);
         }
         if (days <= 60) {
-          return dictionary.overAMonth;
+          return dictionary.was(dictionary.overAMonth);
         } else {
-          return dictionary.fewMonths;
+          return dictionary.was(dictionary.fewMonths);
         }
       }
+    }
+  }
+
+  static bool isOnline(DateTime date) =>
+      DateTime.now().difference(date).inSeconds <= 60 * 14;
+
+  static String wasPublished(BuildContext context, DateTime date) {
+    final dictionary = AppLocalizations.of(context)!;
+    final locale = Provider.of<LocaleProvider>(context).locale.languageCode;
+
+    final currentDate = DateTime.now();
+    final today =
+        DateTime(currentDate.year, currentDate.month, currentDate.day);
+
+    final todayStartInMillisecondsAgo =
+        currentDate.millisecondsSinceEpoch - today.millisecondsSinceEpoch;
+    final yesterdayStartInMillisecondsAgo = currentDate.millisecondsSinceEpoch -
+        today.subtract(const Duration(days: 1)).millisecondsSinceEpoch;
+
+    final difInMilliseconds =
+        currentDate.millisecondsSinceEpoch - date.millisecondsSinceEpoch;
+
+    String time = '';
+    if (locale == 'en') {
+      time = DateFormat.jm().format(date);
+    } else {
+      time = DateFormat.Hm().format(date);
+    }
+
+    if (difInMilliseconds < todayStartInMillisecondsAgo) {
+      return dictionary.todayAtTime(time);
+    } else if (difInMilliseconds < yesterdayStartInMillisecondsAgo) {
+      return dictionary.yesterdayAtTime(time);
+    } else {
+      return '${DateFormat('dd.MM.yyyy').format(date)} $time';
     }
   }
 }
