@@ -258,7 +258,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> updatePostReaction(int id, String type) {
     try {
-      return dio.get(
+      return dio.put(
         '/data/like/$id',
         queryParameters: {
           _QueryKey.type: type,
