@@ -40,7 +40,7 @@ class ProfilePostPhotoContent extends StatelessWidget {
 
       case 2:
         return Container(
-          color: AppColors.hintTextColor.withOpacity(.1),
+          color: AppColors.hintTextColor.withOpacity(.03),
           width: width,
           height: width,
           child: Container(
@@ -73,7 +73,7 @@ class ProfilePostPhotoContent extends StatelessWidget {
 
       case 3:
         return Container(
-          color: AppColors.hintTextColor.withOpacity(.1),
+          color: AppColors.hintTextColor.withOpacity(.03),
           width: width,
           height: width,
           child: Container(
@@ -118,7 +118,7 @@ class ProfilePostPhotoContent extends StatelessWidget {
 
       case 4:
         return Container(
-          color: AppColors.hintTextColor.withOpacity(.1),
+          color: AppColors.hintTextColor.withOpacity(.03),
           width: width,
           height: width,
           child: Container(
@@ -175,7 +175,7 @@ class ProfilePostPhotoContent extends StatelessWidget {
 
       default:
         return Container(
-          color: AppColors.hintTextColor.withOpacity(.1),
+          color: AppColors.hintTextColor.withOpacity(.03),
           width: width,
           height: width,
           child: Container(
@@ -284,7 +284,9 @@ class _ItemWidget extends StatelessWidget {
                       child: Text(
                         '+$lengthIfMore',
                         style: theme.textTheme.headline4?.copyWith(
-                          fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.w700,
+                          color:
+                              theme.textTheme.headline4?.color?.withOpacity(.7),
                         ),
                       ),
                     ),
