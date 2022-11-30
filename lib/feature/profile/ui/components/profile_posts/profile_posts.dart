@@ -47,7 +47,7 @@ class ProfilePosts extends StatelessWidget {
                         boxShadow: [
                           BoxShadow(
                             offset: const Offset(0, 2),
-                            color: AppColors.purple.withOpacity(.05),
+                            color: AppColors.hintTextColor.withOpacity(.2),
                             blurRadius: 4.0,
                             blurStyle: BlurStyle.outer,
                           ),

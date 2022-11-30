@@ -30,8 +30,7 @@ class _ProfilePostStatisticState extends State<ProfilePostStatistic> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.hintTextColor.withOpacity(.03),
+    return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: verticalPadding,
         horizontal: mainPadding / 2,
