@@ -254,6 +254,20 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> updatePostReaction(int id, String type) {
+    try {
+      return dio.get(
+        '/data/like/$id',
+        queryParameters: {
+          _QueryKey.type: type,
+        },
+      );
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
 
 abstract class _QueryKey {
@@ -261,5 +275,6 @@ abstract class _QueryKey {
 
   static const String last = 'last';
   static const String limit = 'limit';
+  static const String type = 'type';
   static const String userId = 'userId';
 }

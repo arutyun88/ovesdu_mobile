@@ -46,4 +46,6 @@ abstract class AppApi {
   Future<Response> removeBlocked(String id);
 
   Future<Response> getUserPosts(int id, int limit, int last);
+
+  Future<Response> updatePostReaction(int id, String type);
 }
