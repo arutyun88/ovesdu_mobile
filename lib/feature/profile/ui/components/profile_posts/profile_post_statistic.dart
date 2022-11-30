@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ovesdu_mobile/app/const/const.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../../app/di/init_di.dart';
 import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../user_post/domain/entity/user_post/user_post_entity.dart';
+import '../../../../user_post/domain/state/user_post_reaction/user_post_reaction_cubit.dart';
+import '../../../../user_post/domain/user_post_repository.dart';
+import 'profile_post_reaction.dart';
 
 class ProfilePostStatistic extends StatefulWidget {
   const ProfilePostStatistic({
@@ -41,44 +45,13 @@ class _ProfilePostStatisticState extends State<ProfilePostStatistic> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  height: 24,
-                  width: 24,
-                  child: SvgPicture.asset(
-                    AppIcons.likeIcon,
-                    color: widget.post.liked != null && widget.post.liked!
-                        ? AppColors.greenLight
-                        : AppColors.hintTextColor,
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: verticalPadding),
-                  child: Text(
-                    _likeCount(widget.post.like, widget.post.dislike),
-                    style: theme.textTheme.bodyText2?.copyWith(
-                      color: widget.post.liked != null
-                          ? widget.post.liked!
-                              ? AppColors.greenLight
-                              : AppColors.red
-                          : AppColors.hintTextColor,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 24,
-                  width: 24,
-                  child: SvgPicture.asset(
-                    AppIcons.dislikeIcon,
-                    color: widget.post.liked != null && !widget.post.liked!
-                        ? AppColors.red
-                        : AppColors.hintTextColor,
-                  ),
-                ),
-              ],
+            Provider(
+              create: (_) => UserPostReactionCubit(
+                locator.get<UserPostRepository>(),
+              ),
+              builder: (context, child) => ProfilePostReaction(
+                post: widget.post,
+              ),
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -132,27 +105,5 @@ class _ProfilePostStatisticState extends State<ProfilePostStatistic> {
         ),
       ),
     );
-  }
-
-  String _likeCount(int like, int dislike) {
-    final dif = like - dislike;
-    if (dif == 0) {
-      return '$dif';
-    }
-
-    final String sign;
-    if (dif < 0) {
-      sign = '-';
-    } else {
-      sign = '+';
-    }
-
-    final String value;
-    if (dif.abs() >= 1000) {
-      value = '$sign ${dif.abs() / 1000} K';
-    } else {
-      value = '$sign ${dif.abs()}';
-    }
-    return value;
   }
 }
