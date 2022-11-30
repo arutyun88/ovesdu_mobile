@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  const AppColors._();
+
   static const Color transparent = Colors.transparent;
   static const Color lightBackground = Color.fromRGBO(255, 255, 255, 1);
   static const Color lightText = Color.fromRGBO(30, 30, 40, 1);
