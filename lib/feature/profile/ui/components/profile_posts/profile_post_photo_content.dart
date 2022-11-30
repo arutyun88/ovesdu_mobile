@@ -220,7 +220,7 @@ class ProfilePostPhotoContent extends StatelessWidget {
                       height: smallSize,
                       width: smallSize,
                       photo: photos[3].photo,
-                      lengthIfMore: photos.length - 4,
+                      lengthIfMore: photos.length - 3,
                       photos: photos,
                       index: 3,
                     ),
