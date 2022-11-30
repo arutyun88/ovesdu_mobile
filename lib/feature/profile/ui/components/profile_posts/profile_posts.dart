@@ -11,6 +11,7 @@ import '../item_divider.dart';
 import '../profile_item_title.dart';
 import 'profile_post_content.dart';
 import 'profile_post_header.dart';
+import 'profile_post_statistic.dart';
 
 class ProfilePosts extends StatelessWidget {
   const ProfilePosts({
@@ -64,14 +65,7 @@ class ProfilePosts extends StatelessWidget {
                             lastVisit: lastVisit,
                           ),
                           ProfilePostContent(post: posts.posts[index]),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              color: AppColors.purple.withOpacity(.1),
-                              width: MediaQuery.of(context).size.width,
-                              height: 24,
-                            ),
-                          )
+                          ProfilePostStatistic(post: posts.posts[index]),
                         ],
                       ),
                     ),
