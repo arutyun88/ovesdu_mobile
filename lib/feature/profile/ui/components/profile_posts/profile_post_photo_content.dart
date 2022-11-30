@@ -5,6 +5,7 @@ import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../user_post/domain/entity/user_post/user_post_photo_entity.dart';
+import 'full_screen_image.dart';
 
 class ProfilePostPhotoContent extends StatelessWidget {
   const ProfilePostPhotoContent({
@@ -20,9 +21,21 @@ class ProfilePostPhotoContent extends StatelessWidget {
 
     switch (photos.length) {
       case 1:
-        return SizedBox(
-          width: width,
-          child: Image.network(photos[0].photo, fit: BoxFit.cover),
+        return GestureDetector(
+          onTap: () {
+            showDialog(
+              useSafeArea: false,
+              context: context,
+              builder: (context) => GestureDetector(
+                onTap: () => Navigator.of(context).pop(),
+                child: FullScreenImage(photos: photos, currentIndex: 0),
+              ),
+            );
+          },
+          child: SizedBox(
+            width: width,
+            child: Image.network(photos[0].photo, fit: BoxFit.cover),
+          ),
         );
 
       case 2:
@@ -42,12 +55,16 @@ class ProfilePostPhotoContent extends StatelessWidget {
                   height: width,
                   width: smallSize,
                   photo: photos[0].photo,
+                  photos: photos,
+                  index: 0,
                 ),
                 const SizedBox(width: verticalPadding / 2),
                 _ItemWidget(
                   height: width,
                   width: smallSize,
                   photo: photos[1].photo,
+                  photos: photos,
+                  index: 1,
                 ),
               ],
             ),
@@ -71,6 +88,8 @@ class ProfilePostPhotoContent extends StatelessWidget {
                   height: width,
                   width: smallSize,
                   photo: photos[0].photo,
+                  photos: photos,
+                  index: 0,
                 ),
                 const SizedBox(width: verticalPadding / 2),
                 Column(
@@ -79,12 +98,16 @@ class ProfilePostPhotoContent extends StatelessWidget {
                       height: smallSize,
                       width: smallSize,
                       photo: photos[1].photo,
+                      photos: photos,
+                      index: 1,
                     ),
                     const SizedBox(height: verticalPadding / 2),
                     _ItemWidget(
                       height: smallSize,
                       width: smallSize,
                       photo: photos[2].photo,
+                      photos: photos,
+                      index: 2,
                     ),
                   ],
                 ),
@@ -112,12 +135,16 @@ class ProfilePostPhotoContent extends StatelessWidget {
                       height: smallSize,
                       width: smallSize,
                       photo: photos[0].photo,
+                      photos: photos,
+                      index: 0,
                     ),
                     const SizedBox(height: verticalPadding / 2),
                     _ItemWidget(
                       height: smallSize,
                       width: smallSize,
                       photo: photos[1].photo,
+                      photos: photos,
+                      index: 1,
                     ),
                   ],
                 ),
@@ -128,12 +155,16 @@ class ProfilePostPhotoContent extends StatelessWidget {
                       height: smallSize,
                       width: smallSize,
                       photo: photos[2].photo,
+                      photos: photos,
+                      index: 2,
                     ),
                     const SizedBox(height: verticalPadding / 2),
                     _ItemWidget(
                       height: smallSize,
                       width: smallSize,
                       photo: photos[3].photo,
+                      photos: photos,
+                      index: 3,
                     ),
                   ],
                 ),
@@ -161,12 +192,16 @@ class ProfilePostPhotoContent extends StatelessWidget {
                       height: smallSize,
                       width: smallSize,
                       photo: photos[0].photo,
+                      photos: photos,
+                      index: 0,
                     ),
                     const SizedBox(height: verticalPadding / 2),
                     _ItemWidget(
                       height: smallSize,
                       width: smallSize,
                       photo: photos[1].photo,
+                      photos: photos,
+                      index: 1,
                     ),
                   ],
                 ),
@@ -177,6 +212,8 @@ class ProfilePostPhotoContent extends StatelessWidget {
                       height: smallSize,
                       width: smallSize,
                       photo: photos[2].photo,
+                      photos: photos,
+                      index: 2,
                     ),
                     const SizedBox(height: verticalPadding / 2),
                     _ItemWidget(
@@ -184,6 +221,8 @@ class ProfilePostPhotoContent extends StatelessWidget {
                       width: smallSize,
                       photo: photos[3].photo,
                       lengthIfMore: photos.length - 4,
+                      photos: photos,
+                      index: 3,
                     ),
                   ],
                 ),
@@ -202,42 +241,58 @@ class _ItemWidget extends StatelessWidget {
     required this.height,
     required this.photo,
     this.lengthIfMore,
+    required this.photos,
+    required this.index,
   }) : super(key: key);
 
   final double width;
   final double height;
   final String photo;
   final int? lengthIfMore;
+  final List<UserPostPhotoEntity> photos;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
-    return Container(
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(mainRadius / 2),
-      ),
-      width: width,
-      height: height,
-      child: lengthIfMore != null
-          ? Stack(
-              fit: StackFit.expand,
-              children: [
-                Image.network(photo, fit: BoxFit.cover),
-                Container(
-                  color: AppColors.hintTextColor.withOpacity(.8),
-                  child: Center(
-                    child: Text(
-                      '+$lengthIfMore',
-                      style: theme.textTheme.headline4?.copyWith(
-                        fontWeight: FontWeight.w800,
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+          useSafeArea: false,
+          context: context,
+          builder: (context) => GestureDetector(
+            onTap: () => Navigator.of(context).pop(),
+            child: FullScreenImage(photos: photos, currentIndex: index),
+          ),
+        );
+      },
+      child: Container(
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(mainRadius / 2),
+        ),
+        width: width,
+        height: height,
+        child: lengthIfMore != null
+            ? Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.network(photo, fit: BoxFit.cover),
+                  Container(
+                    color: AppColors.hintTextColor.withOpacity(.8),
+                    child: Center(
+                      child: Text(
+                        '+$lengthIfMore',
+                        style: theme.textTheme.headline4?.copyWith(
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            )
-          : Image.network(photo, fit: BoxFit.cover),
+                ],
+              )
+            : Image.network(photo, fit: BoxFit.cover),
+      ),
     );
   }
 }
