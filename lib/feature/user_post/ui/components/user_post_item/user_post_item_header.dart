@@ -6,8 +6,8 @@ import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/helpers/date_helper.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 
-class ProfilePostHeader extends StatelessWidget {
-  const ProfilePostHeader({
+class UserPostItemHeader extends StatelessWidget {
+  const UserPostItemHeader({
     Key? key,
     required this.avatar,
     required this.firstName,

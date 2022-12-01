@@ -7,23 +7,23 @@ import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/di/init_di.dart';
 import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../../user_post/domain/entity/user_post/user_post_entity.dart';
-import '../../../../user_post/domain/state/user_post_reaction/user_post_reaction_cubit.dart';
-import '../../../../user_post/domain/user_post_repository.dart';
-import 'profile_post_reaction.dart';
+import '../../../domain/entity/user_post/user_post_entity.dart';
+import '../../../domain/state/user_post_reaction/user_post_reaction_cubit.dart';
+import '../../../domain/user_post_repository.dart';
+import 'user_post_item_reaction.dart';
 
-class ProfilePostStatistic extends StatefulWidget {
-  const ProfilePostStatistic({
+class UserPostItemStatistic extends StatefulWidget {
+  const UserPostItemStatistic({
     Key? key,
     required this.post,
   }) : super(key: key);
   final UserPostEntity post;
 
   @override
-  State<ProfilePostStatistic> createState() => _ProfilePostStatisticState();
+  State<UserPostItemStatistic> createState() => _UserPostItemStatisticState();
 }
 
-class _ProfilePostStatisticState extends State<ProfilePostStatistic> {
+class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
   late ThemeData theme;
 
   @override
@@ -49,7 +49,7 @@ class _ProfilePostStatisticState extends State<ProfilePostStatistic> {
               create: (_) => UserPostReactionCubit(
                 locator.get<UserPostRepository>(),
               ),
-              builder: (context, child) => ProfilePostReaction(
+              builder: (context, child) => UserPostItemReaction(
                 post: widget.post,
               ),
             ),

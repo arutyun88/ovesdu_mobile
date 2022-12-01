@@ -8,12 +8,12 @@ import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/ui/components/buttons/empty_button.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../../user_post/domain/entity/reaction_type.dart';
-import '../../../../user_post/domain/entity/user_post/user_post_entity.dart';
-import '../../../../user_post/domain/state/user_post_reaction/user_post_reaction_cubit.dart';
+import '../../../domain/entity/reaction_type.dart';
+import '../../../domain/entity/user_post/user_post_entity.dart';
+import '../../../domain/state/user_post_reaction/user_post_reaction_cubit.dart';
 
-class ProfilePostReaction extends StatefulWidget {
-  const ProfilePostReaction({
+class UserPostItemReaction extends StatefulWidget {
+  const UserPostItemReaction({
     Key? key,
     required this.post,
   }) : super(key: key);
@@ -21,10 +21,10 @@ class ProfilePostReaction extends StatefulWidget {
   final UserPostEntity post;
 
   @override
-  State<ProfilePostReaction> createState() => _ProfilePostReactionState();
+  State<UserPostItemReaction> createState() => _UserPostItemReactionState();
 }
 
-class _ProfilePostReactionState extends State<ProfilePostReaction> {
+class _UserPostItemReactionState extends State<UserPostItemReaction> {
   late ThemeData theme;
   late bool? liked;
   late int like;

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../user_post/domain/entity/user_post/user_post_entity.dart';
-import 'profile_post_photo_content.dart';
+import '../../../domain/entity/user_post/user_post_entity.dart';
+import 'user_post_item_content_photo.dart';
 
-class ProfilePostContent extends StatefulWidget {
-  const ProfilePostContent({
+class UserPostItemContent extends StatefulWidget {
+  const UserPostItemContent({
     Key? key,
     required this.post,
   }) : super(key: key);
@@ -14,10 +14,10 @@ class ProfilePostContent extends StatefulWidget {
   final UserPostEntity post;
 
   @override
-  State<ProfilePostContent> createState() => _ProfilePostContentState();
+  State<UserPostItemContent> createState() => _UserPostItemContentState();
 }
 
-class _ProfilePostContentState extends State<ProfilePostContent> {
+class _UserPostItemContentState extends State<UserPostItemContent> {
   late final ThemeData theme;
 
   @override
@@ -50,7 +50,7 @@ class _ProfilePostContentState extends State<ProfilePostContent> {
               ),
             ),
           if (widget.post.photos.isNotEmpty)
-            ProfilePostPhotoContent(photos: widget.post.photos),
+            UserPostItemContentPhoto(photos: widget.post.photos),
         ],
       ),
     );

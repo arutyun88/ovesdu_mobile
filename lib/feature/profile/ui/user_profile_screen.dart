@@ -21,7 +21,7 @@ import 'components/head_sliver_delegate/head_sliver_delegate.dart';
 import 'components/item_divider.dart';
 import 'components/profile_gifts.dart';
 import 'components/profile_photos.dart';
-import 'components/profile_posts/profile_posts.dart';
+import 'components/profile_posts.dart';
 import 'components/profile_programs.dart';
 import 'components/profile_statistic.dart';
 

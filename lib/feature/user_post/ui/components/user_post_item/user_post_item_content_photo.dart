@@ -4,11 +4,11 @@ import 'package:provider/provider.dart';
 import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../../user_post/domain/entity/user_post/user_post_photo_entity.dart';
-import 'full_screen_image.dart';
+import '../../../domain/entity/user_post/user_post_photo_entity.dart';
+import '../full_screen_image.dart';
 
-class ProfilePostPhotoContent extends StatelessWidget {
-  const ProfilePostPhotoContent({
+class UserPostItemContentPhoto extends StatelessWidget {
+  const UserPostItemContentPhoto({
     Key? key,
     required this.photos,
   }) : super(key: key);

@@ -3,15 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../app/const/const.dart';
-import '../../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../../app/ui/config/app_colors.dart';
-import '../../../../user_post/domain/state/user_post_cubit.dart';
-import '../item_divider.dart';
-import '../profile_item_title.dart';
-import 'profile_post_content.dart';
-import 'profile_post_header.dart';
-import 'profile_post_statistic.dart';
+import '../../../../app/const/const.dart';
+import '../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../app/ui/config/app_colors.dart';
+import '../../../user_post/domain/state/user_post_cubit.dart';
+import '../../../user_post/ui/components/user_post_item/user_post_item.dart';
+import 'item_divider.dart';
+import 'profile_item_title.dart';
 
 class ProfilePosts extends StatelessWidget {
   const ProfilePosts({
@@ -39,35 +37,10 @@ class ProfilePosts extends StatelessWidget {
                 return Column(
                   children: List.generate(
                     posts.posts.length,
-                    (index) => Container(
-                      margin: const EdgeInsets.only(bottom: 8),
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        color: theme.backgroundColor,
-                        boxShadow: [
-                          BoxShadow(
-                            offset: const Offset(0, 2),
-                            color: AppColors.hintTextColor.withOpacity(.2),
-                            blurRadius: 4.0,
-                            blurStyle: BlurStyle.outer,
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ProfilePostHeader(
-                            avatar: avatar,
-                            firstName: posts.posts[index].author.firstName,
-                            lastName: posts.posts[index].author.lastName,
-                            created: posts.posts[index].created,
-                            updated: posts.posts[index].updated,
-                            lastVisit: lastVisit,
-                          ),
-                          ProfilePostContent(post: posts.posts[index]),
-                          ProfilePostStatistic(post: posts.posts[index]),
-                        ],
-                      ),
+                    (index) => UserPostItem(
+                      avatar: avatar,
+                      lastVisit: lastVisit,
+                      post: posts.posts[index],
                     ),
                   ),
                 );
