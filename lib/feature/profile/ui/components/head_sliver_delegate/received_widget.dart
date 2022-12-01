@@ -238,7 +238,7 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
             width: MediaQuery.of(context).size.width,
             color: widget.zero >= 120
                 ? AppColors.transparent
-                : AppColors.hintTextColor.withOpacity(.05),
+                : AppColors.orange.withOpacity(.2),
           ),
         ),
       ],
