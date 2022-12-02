@@ -62,48 +62,37 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
                 post: widget.post,
               ),
             ),
-            !widget.isCommentScreen
-                ? EmptyButton(
-                    onPressed: () => _onPressedToCommentPage(),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          height: 24,
-                          width: 36,
-                          child: SvgPicture.asset(
-                            widget.post.comment > 0
-                                ? AppIcons.commentsIcon
-                                : AppIcons.notCommentsIcon,
-                            color: AppColors.hintTextColor,
-                          ),
-                        ),
-                        if (widget.post.comment > 0)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: verticalPadding),
-                            child: Text(
-                              '${widget.post.comment}',
-                              style: theme.textTheme.bodyText2?.copyWith(
-                                color: AppColors.hintTextColor,
-                              ),
-                            ),
-                          ),
-                      ],
+            EmptyButton(
+              onPressed: widget.isCommentScreen
+                  ? () => Navigator.of(context).pop()
+                  : () => _onPressedToCommentPage(),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: 24,
+                    width: 36,
+                    child: SvgPicture.asset(
+                      widget.post.comment > 0
+                          ? AppIcons.commentsIcon
+                          : AppIcons.notCommentsIcon,
+                      color: AppColors.hintTextColor,
                     ),
-                  )
-                : widget.post.comment > 0
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: verticalPadding),
-                        child: Text(
-                          '${widget.post.comment}',
-                          style: theme.textTheme.bodyText2?.copyWith(
-                            color: AppColors.hintTextColor,
-                          ),
+                  ),
+                  if (widget.post.comment > 0)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: verticalPadding),
+                      child: Text(
+                        '${widget.post.comment}',
+                        style: theme.textTheme.bodyText2?.copyWith(
+                          color: AppColors.hintTextColor,
                         ),
-                      )
-                    : const SizedBox.shrink(),
+                      ),
+                    ),
+                ],
+              ),
+            ),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
