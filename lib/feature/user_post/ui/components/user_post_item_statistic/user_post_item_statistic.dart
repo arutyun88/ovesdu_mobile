@@ -21,10 +21,12 @@ class UserPostItemStatistic extends StatefulWidget {
     required this.avatar,
     required this.lastVisit,
     required this.post,
+    this.isCommentScreen = false,
   }) : super(key: key);
   final String? avatar;
   final DateTime lastVisit;
   final UserPostEntity post;
+  final bool isCommentScreen;
 
   @override
   State<UserPostItemStatistic> createState() => _UserPostItemStatisticState();
@@ -60,35 +62,48 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
                 post: widget.post,
               ),
             ),
-            EmptyButton(
-              onPressed: () => _onPressedToCommentPage(),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    height: 24,
-                    width: 36,
-                    child: SvgPicture.asset(
-                      widget.post.comment > 0
-                          ? AppIcons.commentsIcon
-                          : AppIcons.notCommentsIcon,
-                      color: AppColors.hintTextColor,
-                    ),
-                  ),
-                  if (widget.post.comment > 0)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: verticalPadding),
-                      child: Text(
-                        '${widget.post.comment}',
-                        style: theme.textTheme.bodyText2?.copyWith(
-                          color: AppColors.hintTextColor,
+            !widget.isCommentScreen
+                ? EmptyButton(
+                    onPressed: () => _onPressedToCommentPage(),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          height: 24,
+                          width: 36,
+                          child: SvgPicture.asset(
+                            widget.post.comment > 0
+                                ? AppIcons.commentsIcon
+                                : AppIcons.notCommentsIcon,
+                            color: AppColors.hintTextColor,
+                          ),
                         ),
-                      ),
+                        if (widget.post.comment > 0)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: verticalPadding),
+                            child: Text(
+                              '${widget.post.comment}',
+                              style: theme.textTheme.bodyText2?.copyWith(
+                                color: AppColors.hintTextColor,
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
-                ],
-              ),
-            ),
+                  )
+                : widget.post.comment > 0
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: verticalPadding),
+                        child: Text(
+                          '${widget.post.comment}',
+                          style: theme.textTheme.bodyText2?.copyWith(
+                            color: AppColors.hintTextColor,
+                          ),
+                        ),
+                      )
+                    : const SizedBox.shrink(),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [

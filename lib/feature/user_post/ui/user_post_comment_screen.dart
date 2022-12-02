@@ -6,6 +6,7 @@ import '../../../app/ui/config/app_colors.dart';
 import '../domain/entity/user_post/user_post_entity.dart';
 import 'components/user_post_item/user_post_item_content.dart';
 import 'components/user_post_item/user_post_item_header.dart';
+import 'components/user_post_item_statistic/user_post_item_statistic.dart';
 
 class UserPostCommentScreen extends StatelessWidget {
   const UserPostCommentScreen({
@@ -55,6 +56,12 @@ class UserPostCommentScreen extends StatelessWidget {
               tag:
                   '${post.id}:${post.author.lastName}.${post.author.firstName}',
               child: UserPostItemContent(post: post),
+            ),
+            UserPostItemStatistic(
+              avatar: avatar,
+              post: post,
+              lastVisit: lastVisit,
+              isCommentScreen: true,
             ),
           ],
         ),
