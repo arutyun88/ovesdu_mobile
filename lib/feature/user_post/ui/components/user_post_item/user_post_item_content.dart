@@ -18,7 +18,7 @@ class UserPostItemContent extends StatefulWidget {
 }
 
 class _UserPostItemContentState extends State<UserPostItemContent> {
-  late final ThemeData theme;
+  late ThemeData theme;
 
   @override
   void didChangeDependencies() {

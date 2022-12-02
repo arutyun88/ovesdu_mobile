@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../user_post_item_statictic/user_post_item_statistic.dart';
+import '../user_post_item_statistic/user_post_item_statistic.dart';
 import '../../../domain/entity/user_post/user_post_entity.dart';
 import 'user_post_item_content.dart';
 import 'user_post_item_header.dart';
@@ -49,8 +49,15 @@ class UserPostItem extends StatelessWidget {
             updated: post.updated,
             lastVisit: lastVisit,
           ),
-          UserPostItemContent(post: post),
-          UserPostItemStatistic(post: post),
+          Hero(
+            tag: '${post.id}:${post.author.lastName}.${post.author.firstName}',
+            child: UserPostItemContent(post: post),
+          ),
+          UserPostItemStatistic(
+            avatar: avatar,
+            post: post,
+            lastVisit: lastVisit,
+          ),
         ],
       ),
     );

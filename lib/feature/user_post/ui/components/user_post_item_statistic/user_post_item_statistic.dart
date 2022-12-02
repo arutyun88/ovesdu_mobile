@@ -6,17 +6,24 @@ import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/di/init_di.dart';
 import '../../../../../app/helpers/app_icons.dart';
+import '../../../../../app/ui/components/buttons/empty_button.dart';
 import '../../../../../app/ui/config/app_colors.dart';
+import '../../../../../app/ui/components/custom_page_route.dart';
 import '../../../domain/entity/user_post/user_post_entity.dart';
 import '../../../domain/state/user_post_reaction/user_post_reaction_cubit.dart';
 import '../../../domain/user_post_repository.dart';
+import '../../user_post_comment_screen.dart';
 import 'user_post_item_reaction.dart';
 
 class UserPostItemStatistic extends StatefulWidget {
   const UserPostItemStatistic({
     Key? key,
+    required this.avatar,
+    required this.lastVisit,
     required this.post,
   }) : super(key: key);
+  final String? avatar;
+  final DateTime lastVisit;
   final UserPostEntity post;
 
   @override
@@ -53,31 +60,34 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
                 post: widget.post,
               ),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  height: 24,
-                  width: 36,
-                  child: SvgPicture.asset(
-                    widget.post.comment > 0
-                        ? AppIcons.commentsIcon
-                        : AppIcons.notCommentsIcon,
-                    color: AppColors.hintTextColor,
-                  ),
-                ),
-                if (widget.post.comment > 0)
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: verticalPadding),
-                    child: Text(
-                      '${widget.post.comment}',
-                      style: theme.textTheme.bodyText2?.copyWith(
-                        color: AppColors.hintTextColor,
-                      ),
+            EmptyButton(
+              onPressed: () => _onPressedToCommentPage(),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: 24,
+                    width: 36,
+                    child: SvgPicture.asset(
+                      widget.post.comment > 0
+                          ? AppIcons.commentsIcon
+                          : AppIcons.notCommentsIcon,
+                      color: AppColors.hintTextColor,
                     ),
                   ),
-              ],
+                  if (widget.post.comment > 0)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: verticalPadding),
+                      child: Text(
+                        '${widget.post.comment}',
+                        style: theme.textTheme.bodyText2?.copyWith(
+                          color: AppColors.hintTextColor,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -106,4 +116,16 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
       ),
     );
   }
+
+  void _onPressedToCommentPage() => Navigator.of(context).push(
+        CustomPageRoute(
+          type: TransitionType.scale,
+          slideDirection: AxisDirection.up,
+          child: UserPostCommentScreen(
+            post: widget.post,
+            lastVisit: widget.lastVisit,
+            avatar: widget.avatar,
+          ),
+        ),
+      );
 }
