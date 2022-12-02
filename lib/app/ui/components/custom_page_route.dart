@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomPageRoute extends PageRouteBuilder {
   CustomPageRoute(
       {required this.child,
-      this.type = TransitionType.bottom,
+      this.type = TransitionType.slide,
       this.slideDirection = AxisDirection.right,
       this.scaleAlignment = Alignment.center})
       : super(
@@ -55,4 +55,4 @@ class CustomPageRoute extends PageRouteBuilder {
   }
 }
 
-enum TransitionType { scale, left, right, top, bottom }
+enum TransitionType { scale, slide }

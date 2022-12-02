@@ -119,7 +119,6 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
 
   void _onPressedToCommentPage() => Navigator.of(context).push(
         CustomPageRoute(
-          type: TransitionType.scale,
           slideDirection: AxisDirection.up,
           child: UserPostCommentScreen(
             post: widget.post,
