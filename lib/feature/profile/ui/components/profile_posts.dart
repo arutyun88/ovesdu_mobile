@@ -29,7 +29,7 @@ class ProfilePosts extends StatelessWidget {
       children: [
         const ItemDivider(),
         ProfileItemTitle(itemTitle: dictionary.posts),
-        const SizedBox(height: 4),
+        const SizedBox(height: 16),
         BlocBuilder<UserPostCubit, UserPostState>(
           builder: (context, state) {
             return state.maybeWhen(

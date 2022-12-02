@@ -32,9 +32,17 @@ class UserPostItemContentPhoto extends StatelessWidget {
               ),
             );
           },
-          child: SizedBox(
+          child: Container(
+            color: AppColors.hintTextColor.withOpacity(.03),
             width: width,
-            child: Image.network(photos[0].photo, fit: BoxFit.cover),
+            child: Container(
+              margin: const EdgeInsets.all(verticalPadding),
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(mainRadius),
+              ),
+              child: Image.network(photos[0].photo, fit: BoxFit.cover),
+            ),
           ),
         );
 

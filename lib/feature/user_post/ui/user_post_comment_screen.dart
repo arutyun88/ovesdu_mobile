@@ -26,7 +26,8 @@ class UserPostCommentScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
+            Container(
+              color: theme.backgroundColor,
               padding: const EdgeInsets.only(left: 24.0),
               child: Row(
                 children: [
@@ -53,15 +54,20 @@ class UserPostCommentScreen extends StatelessWidget {
               ),
             ),
             Hero(
+              transitionOnUserGestures: true,
               tag:
                   '${post.id}:${post.author.lastName}.${post.author.firstName}',
-              child: UserPostItemContent(post: post),
-            ),
-            UserPostItemStatistic(
-              avatar: avatar,
-              post: post,
-              lastVisit: lastVisit,
-              isCommentScreen: true,
+              child: Column(
+                children: [
+                  UserPostItemContent(post: post, isCommentScreen: true),
+                  UserPostItemStatistic(
+                    avatar: avatar,
+                    post: post,
+                    lastVisit: lastVisit,
+                    isCommentScreen: true,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

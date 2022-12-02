@@ -43,7 +43,8 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      color: theme.backgroundColor,
       padding: const EdgeInsets.symmetric(
         vertical: verticalPadding,
         horizontal: mainPadding / 2,
@@ -123,7 +124,7 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
 
   void _onPressedToCommentPage() => Navigator.of(context).push(
         CustomPageRoute(
-          slideDirection: AxisDirection.up,
+          slideDirection: AxisDirection.right,
           child: UserPostCommentScreen(
             post: widget.post,
             lastVisit: widget.lastVisit,

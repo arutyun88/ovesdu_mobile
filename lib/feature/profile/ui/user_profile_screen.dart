@@ -166,6 +166,7 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: theme.backgroundColor,
       body: BlocConsumer<UserBlockedCubit, UserBlockedState>(
         listener: (context, blockedState) {
           blockedState.whenOrNull(

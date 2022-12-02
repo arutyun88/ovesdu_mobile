@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ovesdu_mobile/app/const/const.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../../app/ui/config/app_colors.dart';
 import '../user_post_item_statistic/user_post_item_statistic.dart';
 import '../../../domain/entity/user_post/user_post_entity.dart';
 import 'user_post_item_content.dart';
-import 'user_post_item_header.dart';
+import 'user_post_item_header_light.dart';
 
 class UserPostItem extends StatelessWidget {
   const UserPostItem({
@@ -25,38 +25,26 @@ class UserPostItem extends StatelessWidget {
     final theme = Provider.of<ThemeProvider>(context).themeData;
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 8),
+      margin: const EdgeInsets.only(bottom: mainPadding),
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: theme.backgroundColor,
-        boxShadow: [
-          BoxShadow(
-            offset: const Offset(0, 2),
-            color: AppColors.hintTextColor.withOpacity(.2),
-            blurRadius: 4.0,
-            blurStyle: BlurStyle.outer,
-          ),
-        ],
-      ),
+      color: theme.backgroundColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          UserPostItemHeader(
-            avatar: avatar,
-            firstName: post.author.firstName,
-            lastName: post.author.lastName,
-            created: post.created,
-            updated: post.updated,
-            lastVisit: lastVisit,
-          ),
+          UserPostItemHeaderLight(created: post.created),
           Hero(
             tag: '${post.id}:${post.author.lastName}.${post.author.firstName}',
-            child: UserPostItemContent(post: post),
-          ),
-          UserPostItemStatistic(
-            avatar: avatar,
-            post: post,
-            lastVisit: lastVisit,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                UserPostItemContent(post: post),
+                UserPostItemStatistic(
+                  avatar: avatar,
+                  post: post,
+                  lastVisit: lastVisit,
+                ),
+              ],
+            ),
           ),
         ],
       ),

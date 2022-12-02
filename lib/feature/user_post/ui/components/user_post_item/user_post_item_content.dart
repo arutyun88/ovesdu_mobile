@@ -9,9 +9,11 @@ class UserPostItemContent extends StatefulWidget {
   const UserPostItemContent({
     Key? key,
     required this.post,
+    this.isCommentScreen = false,
   }) : super(key: key);
 
   final UserPostEntity post;
+  final bool isCommentScreen;
 
   @override
   State<UserPostItemContent> createState() => _UserPostItemContentState();
@@ -29,8 +31,9 @@ class _UserPostItemContentState extends State<UserPostItemContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+    return Container(
+      color: theme.backgroundColor,
+      padding: const EdgeInsets.only(bottom: 8.0, top: 8.0),
       child: Column(
         children: [
           if (widget.post.text != null && widget.post.text!.isNotEmpty)
