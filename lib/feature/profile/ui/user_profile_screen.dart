@@ -137,6 +137,20 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
       isMale: true,
       blockedUsersId: <int>[],
     );
+
+    context.read<UserProfileCubit>().getUserProfile(widget.userId).whenComplete(
+      () {
+        context.read<UserProfileStatisticCubit>().getUserProfileStatistic(
+              widget.userId,
+            );
+
+        context.read<UserPostCubit>().getUserPosts(
+              id: int.parse(widget.userId),
+              limit: 10,
+              last: 0,
+            );
+      },
+    );
   }
 
   @override
@@ -154,8 +168,6 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
     expandedHeight = MediaQuery.of(context).size.height > 700
         ? 420
         : MediaQuery.of(context).size.height * .6;
-
-    context.read<UserProfileCubit>().getUserProfile(widget.userId);
 
     blocked = locator.get<ProfileCubit>().state.whenOrNull(
             received: (entity) =>
@@ -196,15 +208,6 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
                   SliverToBoxAdapter(
                     child: state.maybeWhen(
                       received: (receivedUserEntity) {
-                        context
-                            .read<UserProfileStatisticCubit>()
-                            .getUserProfileStatistic(widget.userId);
-                        context.read<UserPostCubit>().getUserPosts(
-                              id: int.parse(widget.userId),
-                              limit: 10,
-                              last: 0,
-                            );
-
                         return blocked
                             ? _ErrorWidget(message: dictionary.blockedUser)
                             : Column(

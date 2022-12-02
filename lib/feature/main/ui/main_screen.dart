@@ -27,8 +27,8 @@ class _MainScreenState extends State<MainScreen> {
   late String _name = '';
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
     context.read<ProfileCubit>().getProfile();
   }
 
