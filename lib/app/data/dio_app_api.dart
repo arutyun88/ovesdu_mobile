@@ -280,6 +280,17 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> getUserPost(int id) {
+    try {
+      return dio.get(
+        '/data/post/$id/check',
+      );
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
 
 abstract class _QueryKey {
