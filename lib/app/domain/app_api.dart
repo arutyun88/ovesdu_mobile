@@ -48,4 +48,6 @@ abstract class AppApi {
   Future<Response> getUserPosts(int id, int limit, int last);
 
   Future<Response> updatePostReaction(int id, String type);
+
+  Future<Response> createPostComment(Map<String, dynamic> body);
 }
