@@ -109,5 +109,6 @@
   "fewHours": "a few hours ago",
   "todayAtTime": "aujourd'hui à {time}",
   "yesterdayAtTime": "hier à {time}",
-  "was": "c'était {date}"
+  "was": "c'était {date}",
+  "symbols": "symbols"
 }

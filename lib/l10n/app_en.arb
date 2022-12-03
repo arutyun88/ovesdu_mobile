@@ -178,5 +178,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "symbols": "symbols"
 }

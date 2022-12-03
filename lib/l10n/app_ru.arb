@@ -109,5 +109,6 @@
   "fewHours": "несколько часов назад",
   "todayAtTime": "сегодня в {time}",
   "yesterdayAtTime": "вчера в {time}",
-  "was": "был(а) {date}"
+  "was": "был(а) {date}",
+  "symbols": "символов"
 }

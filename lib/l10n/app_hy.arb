@@ -109,5 +109,6 @@
   "fewHours": "մի քանի ժամ առաջ",
   "todayAtTime": "այսօր ժամը {time}",
   "yesterdayAtTime": "երեկ ժամը {time}",
-  "was": "{date} էր"
+  "was": "{date} էր",
+  "symbols": "նիշեր"
 }
