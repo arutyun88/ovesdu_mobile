@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../app/const/const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/helpers/helpers.dart';
+import '../../../app/ui/components/buttons/empty_button.dart';
+import '../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../app/ui/components/text_fields/app_multiline_text_field.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../domain/entity/user_post/user_post_entity.dart';
@@ -27,11 +30,16 @@ class UserPostCommentScreen extends StatefulWidget {
 }
 
 class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
-  late double fieldHeight = 80.0;
   late double actionHeight = 48.0;
+  late double fieldHeight = 80.0 + actionHeight;
   late ThemeData theme;
+  late AppLocalizations dictionary;
   late GlobalKey _commentFieldKey;
   late RenderBox? renderBox;
+
+  late TextEditingController _newCommentController;
+
+  late int symbolCount = 0;
 
   @override
   void initState() {
@@ -39,12 +47,15 @@ class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
 
     _commentFieldKey = GlobalKey();
     renderBox = null;
+
+    _newCommentController = TextEditingController();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     theme = Provider.of<ThemeProvider>(context, listen: false).themeData;
+    dictionary = AppLocalizations.of(context)!;
   }
 
   @override
@@ -66,7 +77,7 @@ class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
                           onTap: () => Navigator.of(context).pop(),
                           child: const Icon(
                             Icons.arrow_back_ios,
-                            size: 24,
+                            size: iconSize,
                             color: AppColors.orange,
                           ),
                         ),
@@ -110,7 +121,7 @@ class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
                           ),
                           Column(
                             children: List.generate(
-                              10,
+                              widget.post.comment,
                               (index) => Container(
                                 height: 100,
                                 color: index % 2 == 0
@@ -119,7 +130,7 @@ class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(height: fieldHeight + actionHeight),
+                          SizedBox(height: fieldHeight),
                         ],
                       ),
                     ),
@@ -138,11 +149,13 @@ class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
                         padding: const EdgeInsets.all(verticalPadding),
                         child: AppMultilineTextField(
                           maxLines: 7,
+                          controller: _newCommentController,
                           onChanged: (value) {
-                            renderBox ??= _commentFieldKey.currentContext!
+                            final renderBox = _commentFieldKey.currentContext!
                                 .findRenderObject() as RenderBox;
                             setState(() {
-                              fieldHeight = 30 + (renderBox?.size.height ?? 0);
+                              symbolCount = value.trim().length;
+                              fieldHeight = renderBox.size.height;
                             });
                           },
                         ),
@@ -154,13 +167,28 @@ class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
                         padding: const EdgeInsets.symmetric(
                           horizontal: mainPadding,
                         ),
-                        child: const Align(
-                          alignment: Alignment.centerRight,
-                          child: Icon(
-                            Icons.send,
-                            size: iconSize,
-                            color: AppColors.orange,
-                          ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '$symbolCount ${dictionary.symbols}',
+                              style: theme.textTheme.bodyText1?.copyWith(
+                                color: AppColors.hintTextColor,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: EmptyButton(
+                                onPressed: _sendOnPressed,
+                                child: const Icon(
+                                  Icons.send,
+                                  size: iconSize,
+                                  color: AppColors.orange,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -172,5 +200,16 @@ class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
         ),
       ),
     );
+  }
+
+  void _sendOnPressed() {
+    final value = _newCommentController.text.trim();
+    if (value.isNotEmpty) {
+    } else {
+      CustomDialog.showMessageDialog(
+        context,
+        dictionary.commentCannotBeEmpty,
+      ).whenComplete(() => _newCommentController.clear());
+    }
   }
 }
