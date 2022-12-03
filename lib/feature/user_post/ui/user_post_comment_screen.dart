@@ -13,6 +13,7 @@ import '../../../app/ui/components/text_fields/app_multiline_text_field.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../domain/entity/user_post/user_post_entity.dart';
 import '../domain/state/user_post_comment/user_post_comment_cubit.dart';
+import '../domain/state/user_post_cubit.dart';
 import '../domain/user_post_repository.dart';
 import 'components/user_post_item/user_post_item_content.dart';
 import 'components/user_post_item/user_post_item_header.dart';
@@ -36,6 +37,11 @@ class UserPostCommentScreen extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => UserPostCommentCubit(
+            locator.get<UserPostRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => UserPostCubit(
             locator.get<UserPostRepository>(),
           ),
         ),
@@ -76,6 +82,8 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
 
   late int symbolCount = 0;
 
+  late UserPostEntity postEntity;
+
   @override
   void initState() {
     super.initState();
@@ -84,6 +92,10 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
     renderBox = null;
 
     _newCommentController = TextEditingController();
+
+    postEntity = widget.post;
+
+    context.read<UserPostCubit>().getUserPost(widget.post.id);
   }
 
   @override
@@ -109,7 +121,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                     child: Row(
                       children: [
                         GestureDetector(
-                          onTap: () => Navigator.of(context).pop(),
+                          onTap: () => Navigator.of(context).pop(postEntity),
                           child: const Icon(
                             Icons.arrow_back_ios,
                             size: iconSize,
@@ -134,24 +146,35 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          Hero(
-                            transitionOnUserGestures: true,
-                            tag: '${widget.post.id}:'
-                                '${widget.post.author.lastName}.'
-                                '${widget.post.author.firstName}',
-                            child: Column(
-                              children: [
-                                UserPostItemContent(
-                                  post: widget.post,
-                                  isCommentScreen: true,
-                                ),
-                                UserPostItemStatistic(
-                                  avatar: widget.avatar,
-                                  post: widget.post,
-                                  lastVisit: widget.lastVisit,
-                                  isCommentScreen: true,
-                                ),
-                              ],
+                          BlocListener<UserPostCubit, UserPostState>(
+                            listener: (context, state) {
+                              state.whenOrNull(
+                                updated: (entity) {
+                                  setState(() {
+                                    postEntity = entity;
+                                  });
+                                },
+                              );
+                            },
+                            child: Hero(
+                              transitionOnUserGestures: true,
+                              tag: '${widget.post.id}:'
+                                  '${widget.post.author.lastName}.'
+                                  '${widget.post.author.firstName}',
+                              child: Column(
+                                children: [
+                                  UserPostItemContent(
+                                    post: postEntity,
+                                    isCommentScreen: true,
+                                  ),
+                                  UserPostItemStatistic(
+                                    avatar: widget.avatar,
+                                    post: postEntity,
+                                    lastVisit: widget.lastVisit,
+                                    isCommentScreen: true,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Column(
