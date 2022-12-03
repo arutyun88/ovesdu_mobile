@@ -3,8 +3,10 @@ import 'package:injectable/injectable.dart';
 import '../../../app/domain/app_api.dart';
 import '../domain/entity/reaction_type.dart';
 import '../domain/entity/user_post/user_posts_entity.dart';
+import '../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import '../domain/user_post_repository.dart';
 import 'dto/user_post/user_posts_dto.dart';
+import 'dto/user_post_comment/user_post_comment_dto.dart';
 
 @Injectable(as: UserPostRepository)
 class UserPostRepositoryImpl implements UserPostRepository {
@@ -35,6 +37,30 @@ class UserPostRepositoryImpl implements UserPostRepository {
       final data = response.data['data'];
 
       return mapToReactionType(data['type']);
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<UserPostCommentEntity> createPostComment(
+    int postId,
+    String text, {
+    int? toCommentId,
+  }) async {
+    await _api.setHeaderLocale();
+    try {
+      final response = await _api.createPostComment(
+        {
+          'text': text,
+          'postId': postId,
+          'toCommentId': toCommentId,
+        },
+      );
+
+      final data = response.data['data'];
+
+      return UserPostCommentDto.fromJson(data).toEntity();
     } catch (_) {
       rethrow;
     }
