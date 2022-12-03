@@ -148,6 +148,7 @@ class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
                         color: theme.backgroundColor,
                         padding: const EdgeInsets.all(verticalPadding),
                         child: AppMultilineTextField(
+                          hintText: dictionary.commentHint,
                           maxLines: 7,
                           controller: _newCommentController,
                           onChanged: (value) {
@@ -170,15 +171,28 @@ class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              '$symbolCount ${dictionary.symbols}',
-                              style: theme.textTheme.bodyText1?.copyWith(
-                                color: AppColors.hintTextColor,
-                                fontStyle: FontStyle.italic,
-                              ),
+                            Flexible(
+                              child: symbolCount != 0
+                                  ? Text(
+                                      '$symbolCount ${dictionary.symbols}',
+                                      style:
+                                          theme.textTheme.bodyText2?.copyWith(
+                                        color: AppColors.hintTextColor,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                    )
+                                  : Text(
+                                      dictionary.commentReply,
+                                      maxLines: 2,
+                                      style:
+                                          theme.textTheme.bodyText2?.copyWith(
+                                        color: AppColors.hintTextColor,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                    ),
                             ),
-                            Align(
-                              alignment: Alignment.centerRight,
+                            Padding(
+                              padding: const EdgeInsets.only(left: mainPadding),
                               child: EmptyButton(
                                 onPressed: _sendOnPressed,
                                 child: const Icon(
