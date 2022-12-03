@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../../app/helpers/helpers.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../domain/entity/user_post/user_post_photo_entity.dart';
 import '../full_screen_image.dart';
@@ -23,6 +24,7 @@ class UserPostItemContentPhoto extends StatelessWidget {
       case 1:
         return GestureDetector(
           onTap: () {
+            Helpers.unfocused();
             showDialog(
               useSafeArea: false,
               context: context,
@@ -265,6 +267,7 @@ class _ItemWidget extends StatelessWidget {
     final theme = Provider.of<ThemeProvider>(context).themeData;
     return GestureDetector(
       onTap: () {
+        Helpers.unfocused();
         showDialog(
           useSafeArea: false,
           context: context,
