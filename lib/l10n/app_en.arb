@@ -183,5 +183,6 @@
   "understand": "understand",
   "commentCannotBeEmpty": "Comment cannot be empty",
   "commentHint": "write comment text",
-  "commentReply": "to reply to a comment, select it above"
+  "commentReply": "to reply to a comment, select it above",
+  "commentPublished": "Comment published"
 }
