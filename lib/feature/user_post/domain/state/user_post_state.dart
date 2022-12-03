@@ -9,5 +9,8 @@ class UserPostState with _$UserPostState {
   factory UserPostState.received(UserPostsEntity postsEntity) =
       _UserPostStateReceived;
 
+  factory UserPostState.updated(UserPostEntity postEntity) =
+      _UserPostStateUpdated;
+
   factory UserPostState.error(ErrorEntity error) = _UserPostStateError;
 }

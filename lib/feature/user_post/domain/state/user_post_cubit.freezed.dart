@@ -21,6 +21,7 @@ mixin _$UserPostState {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserPostsEntity postsEntity) received,
+    required TResult Function(UserPostEntity postEntity) updated,
     required TResult Function(ErrorEntity error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +30,7 @@ mixin _$UserPostState {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserPostsEntity postsEntity)? received,
+    TResult? Function(UserPostEntity postEntity)? updated,
     TResult? Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +39,7 @@ mixin _$UserPostState {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserPostsEntity postsEntity)? received,
+    TResult Function(UserPostEntity postEntity)? updated,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) =>
@@ -46,6 +49,7 @@ mixin _$UserPostState {
     required TResult Function(_UserPostStateInit value) init,
     required TResult Function(_UserPostStateWaiting value) waiting,
     required TResult Function(_UserPostStateReceived value) received,
+    required TResult Function(_UserPostStateUpdated value) updated,
     required TResult Function(_UserPostStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +58,7 @@ mixin _$UserPostState {
     TResult? Function(_UserPostStateInit value)? init,
     TResult? Function(_UserPostStateWaiting value)? waiting,
     TResult? Function(_UserPostStateReceived value)? received,
+    TResult? Function(_UserPostStateUpdated value)? updated,
     TResult? Function(_UserPostStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +67,7 @@ mixin _$UserPostState {
     TResult Function(_UserPostStateInit value)? init,
     TResult Function(_UserPostStateWaiting value)? waiting,
     TResult Function(_UserPostStateReceived value)? received,
+    TResult Function(_UserPostStateUpdated value)? updated,
     TResult Function(_UserPostStateError value)? error,
     required TResult orElse(),
   }) =>
@@ -127,6 +133,7 @@ class _$_UserPostStateInit implements _UserPostStateInit {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserPostsEntity postsEntity) received,
+    required TResult Function(UserPostEntity postEntity) updated,
     required TResult Function(ErrorEntity error) error,
   }) {
     return init();
@@ -138,6 +145,7 @@ class _$_UserPostStateInit implements _UserPostStateInit {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserPostsEntity postsEntity)? received,
+    TResult? Function(UserPostEntity postEntity)? updated,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return init?.call();
@@ -149,6 +157,7 @@ class _$_UserPostStateInit implements _UserPostStateInit {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserPostsEntity postsEntity)? received,
+    TResult Function(UserPostEntity postEntity)? updated,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -164,6 +173,7 @@ class _$_UserPostStateInit implements _UserPostStateInit {
     required TResult Function(_UserPostStateInit value) init,
     required TResult Function(_UserPostStateWaiting value) waiting,
     required TResult Function(_UserPostStateReceived value) received,
+    required TResult Function(_UserPostStateUpdated value) updated,
     required TResult Function(_UserPostStateError value) error,
   }) {
     return init(this);
@@ -175,6 +185,7 @@ class _$_UserPostStateInit implements _UserPostStateInit {
     TResult? Function(_UserPostStateInit value)? init,
     TResult? Function(_UserPostStateWaiting value)? waiting,
     TResult? Function(_UserPostStateReceived value)? received,
+    TResult? Function(_UserPostStateUpdated value)? updated,
     TResult? Function(_UserPostStateError value)? error,
   }) {
     return init?.call(this);
@@ -186,6 +197,7 @@ class _$_UserPostStateInit implements _UserPostStateInit {
     TResult Function(_UserPostStateInit value)? init,
     TResult Function(_UserPostStateWaiting value)? waiting,
     TResult Function(_UserPostStateReceived value)? received,
+    TResult Function(_UserPostStateUpdated value)? updated,
     TResult Function(_UserPostStateError value)? error,
     required TResult orElse(),
   }) {
@@ -241,6 +253,7 @@ class _$_UserPostStateWaiting implements _UserPostStateWaiting {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserPostsEntity postsEntity) received,
+    required TResult Function(UserPostEntity postEntity) updated,
     required TResult Function(ErrorEntity error) error,
   }) {
     return waiting();
@@ -252,6 +265,7 @@ class _$_UserPostStateWaiting implements _UserPostStateWaiting {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserPostsEntity postsEntity)? received,
+    TResult? Function(UserPostEntity postEntity)? updated,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return waiting?.call();
@@ -263,6 +277,7 @@ class _$_UserPostStateWaiting implements _UserPostStateWaiting {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserPostsEntity postsEntity)? received,
+    TResult Function(UserPostEntity postEntity)? updated,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -278,6 +293,7 @@ class _$_UserPostStateWaiting implements _UserPostStateWaiting {
     required TResult Function(_UserPostStateInit value) init,
     required TResult Function(_UserPostStateWaiting value) waiting,
     required TResult Function(_UserPostStateReceived value) received,
+    required TResult Function(_UserPostStateUpdated value) updated,
     required TResult Function(_UserPostStateError value) error,
   }) {
     return waiting(this);
@@ -289,6 +305,7 @@ class _$_UserPostStateWaiting implements _UserPostStateWaiting {
     TResult? Function(_UserPostStateInit value)? init,
     TResult? Function(_UserPostStateWaiting value)? waiting,
     TResult? Function(_UserPostStateReceived value)? received,
+    TResult? Function(_UserPostStateUpdated value)? updated,
     TResult? Function(_UserPostStateError value)? error,
   }) {
     return waiting?.call(this);
@@ -300,6 +317,7 @@ class _$_UserPostStateWaiting implements _UserPostStateWaiting {
     TResult Function(_UserPostStateInit value)? init,
     TResult Function(_UserPostStateWaiting value)? waiting,
     TResult Function(_UserPostStateReceived value)? received,
+    TResult Function(_UserPostStateUpdated value)? updated,
     TResult Function(_UserPostStateError value)? error,
     required TResult orElse(),
   }) {
@@ -393,6 +411,7 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserPostsEntity postsEntity) received,
+    required TResult Function(UserPostEntity postEntity) updated,
     required TResult Function(ErrorEntity error) error,
   }) {
     return received(postsEntity);
@@ -404,6 +423,7 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserPostsEntity postsEntity)? received,
+    TResult? Function(UserPostEntity postEntity)? updated,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return received?.call(postsEntity);
@@ -415,6 +435,7 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserPostsEntity postsEntity)? received,
+    TResult Function(UserPostEntity postEntity)? updated,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -430,6 +451,7 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
     required TResult Function(_UserPostStateInit value) init,
     required TResult Function(_UserPostStateWaiting value) waiting,
     required TResult Function(_UserPostStateReceived value) received,
+    required TResult Function(_UserPostStateUpdated value) updated,
     required TResult Function(_UserPostStateError value) error,
   }) {
     return received(this);
@@ -441,6 +463,7 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
     TResult? Function(_UserPostStateInit value)? init,
     TResult? Function(_UserPostStateWaiting value)? waiting,
     TResult? Function(_UserPostStateReceived value)? received,
+    TResult? Function(_UserPostStateUpdated value)? updated,
     TResult? Function(_UserPostStateError value)? error,
   }) {
     return received?.call(this);
@@ -452,6 +475,7 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
     TResult Function(_UserPostStateInit value)? init,
     TResult Function(_UserPostStateWaiting value)? waiting,
     TResult Function(_UserPostStateReceived value)? received,
+    TResult Function(_UserPostStateUpdated value)? updated,
     TResult Function(_UserPostStateError value)? error,
     required TResult orElse(),
   }) {
@@ -469,6 +493,170 @@ abstract class _UserPostStateReceived implements UserPostState {
   UserPostsEntity get postsEntity;
   @JsonKey(ignore: true)
   _$$_UserPostStateReceivedCopyWith<_$_UserPostStateReceived> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UserPostStateUpdatedCopyWith<$Res> {
+  factory _$$_UserPostStateUpdatedCopyWith(_$_UserPostStateUpdated value,
+          $Res Function(_$_UserPostStateUpdated) then) =
+      __$$_UserPostStateUpdatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserPostEntity postEntity});
+
+  $UserPostEntityCopyWith<$Res> get postEntity;
+}
+
+/// @nodoc
+class __$$_UserPostStateUpdatedCopyWithImpl<$Res>
+    extends _$UserPostStateCopyWithImpl<$Res, _$_UserPostStateUpdated>
+    implements _$$_UserPostStateUpdatedCopyWith<$Res> {
+  __$$_UserPostStateUpdatedCopyWithImpl(_$_UserPostStateUpdated _value,
+      $Res Function(_$_UserPostStateUpdated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? postEntity = null,
+  }) {
+    return _then(_$_UserPostStateUpdated(
+      null == postEntity
+          ? _value.postEntity
+          : postEntity // ignore: cast_nullable_to_non_nullable
+              as UserPostEntity,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserPostEntityCopyWith<$Res> get postEntity {
+    return $UserPostEntityCopyWith<$Res>(_value.postEntity, (value) {
+      return _then(_value.copyWith(postEntity: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_UserPostStateUpdated implements _UserPostStateUpdated {
+  _$_UserPostStateUpdated(this.postEntity);
+
+  @override
+  final UserPostEntity postEntity;
+
+  @override
+  String toString() {
+    return 'UserPostState.updated(postEntity: $postEntity)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserPostStateUpdated &&
+            (identical(other.postEntity, postEntity) ||
+                other.postEntity == postEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, postEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserPostStateUpdatedCopyWith<_$_UserPostStateUpdated> get copyWith =>
+      __$$_UserPostStateUpdatedCopyWithImpl<_$_UserPostStateUpdated>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() waiting,
+    required TResult Function(UserPostsEntity postsEntity) received,
+    required TResult Function(UserPostEntity postEntity) updated,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return updated(postEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? waiting,
+    TResult? Function(UserPostsEntity postsEntity)? received,
+    TResult? Function(UserPostEntity postEntity)? updated,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return updated?.call(postEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? waiting,
+    TResult Function(UserPostsEntity postsEntity)? received,
+    TResult Function(UserPostEntity postEntity)? updated,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (updated != null) {
+      return updated(postEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserPostStateInit value) init,
+    required TResult Function(_UserPostStateWaiting value) waiting,
+    required TResult Function(_UserPostStateReceived value) received,
+    required TResult Function(_UserPostStateUpdated value) updated,
+    required TResult Function(_UserPostStateError value) error,
+  }) {
+    return updated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserPostStateInit value)? init,
+    TResult? Function(_UserPostStateWaiting value)? waiting,
+    TResult? Function(_UserPostStateReceived value)? received,
+    TResult? Function(_UserPostStateUpdated value)? updated,
+    TResult? Function(_UserPostStateError value)? error,
+  }) {
+    return updated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserPostStateInit value)? init,
+    TResult Function(_UserPostStateWaiting value)? waiting,
+    TResult Function(_UserPostStateReceived value)? received,
+    TResult Function(_UserPostStateUpdated value)? updated,
+    TResult Function(_UserPostStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (updated != null) {
+      return updated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserPostStateUpdated implements UserPostState {
+  factory _UserPostStateUpdated(final UserPostEntity postEntity) =
+      _$_UserPostStateUpdated;
+
+  UserPostEntity get postEntity;
+  @JsonKey(ignore: true)
+  _$$_UserPostStateUpdatedCopyWith<_$_UserPostStateUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -550,6 +738,7 @@ class _$_UserPostStateError implements _UserPostStateError {
     required TResult Function() init,
     required TResult Function() waiting,
     required TResult Function(UserPostsEntity postsEntity) received,
+    required TResult Function(UserPostEntity postEntity) updated,
     required TResult Function(ErrorEntity error) error,
   }) {
     return error(this.error);
@@ -561,6 +750,7 @@ class _$_UserPostStateError implements _UserPostStateError {
     TResult? Function()? init,
     TResult? Function()? waiting,
     TResult? Function(UserPostsEntity postsEntity)? received,
+    TResult? Function(UserPostEntity postEntity)? updated,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
@@ -572,6 +762,7 @@ class _$_UserPostStateError implements _UserPostStateError {
     TResult Function()? init,
     TResult Function()? waiting,
     TResult Function(UserPostsEntity postsEntity)? received,
+    TResult Function(UserPostEntity postEntity)? updated,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -587,6 +778,7 @@ class _$_UserPostStateError implements _UserPostStateError {
     required TResult Function(_UserPostStateInit value) init,
     required TResult Function(_UserPostStateWaiting value) waiting,
     required TResult Function(_UserPostStateReceived value) received,
+    required TResult Function(_UserPostStateUpdated value) updated,
     required TResult Function(_UserPostStateError value) error,
   }) {
     return error(this);
@@ -598,6 +790,7 @@ class _$_UserPostStateError implements _UserPostStateError {
     TResult? Function(_UserPostStateInit value)? init,
     TResult? Function(_UserPostStateWaiting value)? waiting,
     TResult? Function(_UserPostStateReceived value)? received,
+    TResult? Function(_UserPostStateUpdated value)? updated,
     TResult? Function(_UserPostStateError value)? error,
   }) {
     return error?.call(this);
@@ -609,6 +802,7 @@ class _$_UserPostStateError implements _UserPostStateError {
     TResult Function(_UserPostStateInit value)? init,
     TResult Function(_UserPostStateWaiting value)? waiting,
     TResult Function(_UserPostStateReceived value)? received,
+    TResult Function(_UserPostStateUpdated value)? updated,
     TResult Function(_UserPostStateError value)? error,
     required TResult orElse(),
   }) {

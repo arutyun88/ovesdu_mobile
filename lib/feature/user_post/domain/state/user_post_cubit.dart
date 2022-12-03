@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../app/domain/entities/error_entity/error_entity.dart';
+import '../entity/user_post/user_post_entity.dart';
 import '../entity/user_post/user_posts_entity.dart';
 import '../user_post_repository.dart';
 
@@ -27,6 +28,15 @@ class UserPostCubit extends Cubit<UserPostState> {
     try {
       final result = await _userPostRepository.getUserPosts(id, limit, last);
       emit(UserPostState.received(result));
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
+  Future<void> getUserPost(int id) async {
+    try {
+      final result = await _userPostRepository.getUserPost(id);
+      emit(UserPostState.updated(result));
     } catch (error, stackTrace) {
       addError(error, stackTrace);
     }
