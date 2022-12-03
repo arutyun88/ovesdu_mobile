@@ -35,4 +35,10 @@ class UserPostCommentCubit extends Cubit<UserPostCommentState> {
       addError(error, stackTrace);
     }
   }
+
+  @override
+  void addError(Object error, [StackTrace? stackTrace]) {
+    emit(UserPostCommentState.error(ErrorEntity.fromException(error)));
+    super.addError(error, stackTrace);
+  }
 }

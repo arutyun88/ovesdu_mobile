@@ -21,6 +21,20 @@ abstract class CustomDialog {
     );
   }
 
+  static Future<dynamic> showErrorDialog(
+    BuildContext context,
+    String message,
+  ) {
+    final barrierColor = AppColors.red.withOpacity(.4);
+
+    return showDialog(
+      context: context,
+      barrierColor: barrierColor,
+      barrierDismissible: false,
+      builder: (context) => _MessageDialog(message: message),
+    );
+  }
+
   static Future<dynamic> showMessageDialog(
     BuildContext context,
     String message,
