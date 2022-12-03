@@ -20,7 +20,7 @@ mixin _$UserPostCommentState {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserPostCommentEntity> comments) received,
+    required TResult Function(UserPostCommentsEntity comments) received,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
     required TResult Function(ErrorEntity error) error,
@@ -30,7 +30,7 @@ mixin _$UserPostCommentState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserPostCommentEntity> comments)? received,
+    TResult? Function(UserPostCommentsEntity comments)? received,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
     TResult? Function(ErrorEntity error)? error,
@@ -40,7 +40,7 @@ mixin _$UserPostCommentState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserPostCommentEntity> comments)? received,
+    TResult Function(UserPostCommentsEntity comments)? received,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
     TResult Function(ErrorEntity error)? error,
@@ -142,7 +142,7 @@ class _$_UserPostCommentStateInit implements _UserPostCommentStateInit {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserPostCommentEntity> comments) received,
+    required TResult Function(UserPostCommentsEntity comments) received,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
     required TResult Function(ErrorEntity error) error,
@@ -155,7 +155,7 @@ class _$_UserPostCommentStateInit implements _UserPostCommentStateInit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserPostCommentEntity> comments)? received,
+    TResult? Function(UserPostCommentsEntity comments)? received,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
     TResult? Function(ErrorEntity error)? error,
@@ -168,7 +168,7 @@ class _$_UserPostCommentStateInit implements _UserPostCommentStateInit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserPostCommentEntity> comments)? received,
+    TResult Function(UserPostCommentsEntity comments)? received,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
     TResult Function(ErrorEntity error)? error,
@@ -272,7 +272,7 @@ class _$_UserPostCommentStateWaiting implements _UserPostCommentStateWaiting {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserPostCommentEntity> comments) received,
+    required TResult Function(UserPostCommentsEntity comments) received,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
     required TResult Function(ErrorEntity error) error,
@@ -285,7 +285,7 @@ class _$_UserPostCommentStateWaiting implements _UserPostCommentStateWaiting {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserPostCommentEntity> comments)? received,
+    TResult? Function(UserPostCommentsEntity comments)? received,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
     TResult? Function(ErrorEntity error)? error,
@@ -298,7 +298,7 @@ class _$_UserPostCommentStateWaiting implements _UserPostCommentStateWaiting {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserPostCommentEntity> comments)? received,
+    TResult Function(UserPostCommentsEntity comments)? received,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
     TResult Function(ErrorEntity error)? error,
@@ -365,7 +365,9 @@ abstract class _$$_UserPostCommentStateReceivedCopyWith<$Res> {
           $Res Function(_$_UserPostCommentStateReceived) then) =
       __$$_UserPostCommentStateReceivedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<UserPostCommentEntity> comments});
+  $Res call({UserPostCommentsEntity comments});
+
+  $UserPostCommentsEntityCopyWith<$Res> get comments;
 }
 
 /// @nodoc
@@ -385,25 +387,28 @@ class __$$_UserPostCommentStateReceivedCopyWithImpl<$Res>
   }) {
     return _then(_$_UserPostCommentStateReceived(
       null == comments
-          ? _value._comments
+          ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<UserPostCommentEntity>,
+              as UserPostCommentsEntity,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserPostCommentsEntityCopyWith<$Res> get comments {
+    return $UserPostCommentsEntityCopyWith<$Res>(_value.comments, (value) {
+      return _then(_value.copyWith(comments: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_UserPostCommentStateReceived implements _UserPostCommentStateReceived {
-  _$_UserPostCommentStateReceived(final List<UserPostCommentEntity> comments)
-      : _comments = comments;
+  _$_UserPostCommentStateReceived(this.comments);
 
-  final List<UserPostCommentEntity> _comments;
   @override
-  List<UserPostCommentEntity> get comments {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_comments);
-  }
+  final UserPostCommentsEntity comments;
 
   @override
   String toString() {
@@ -415,12 +420,12 @@ class _$_UserPostCommentStateReceived implements _UserPostCommentStateReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserPostCommentStateReceived &&
-            const DeepCollectionEquality().equals(other._comments, _comments));
+            (identical(other.comments, comments) ||
+                other.comments == comments));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_comments));
+  int get hashCode => Object.hash(runtimeType, comments);
 
   @JsonKey(ignore: true)
   @override
@@ -434,7 +439,7 @@ class _$_UserPostCommentStateReceived implements _UserPostCommentStateReceived {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserPostCommentEntity> comments) received,
+    required TResult Function(UserPostCommentsEntity comments) received,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
     required TResult Function(ErrorEntity error) error,
@@ -447,7 +452,7 @@ class _$_UserPostCommentStateReceived implements _UserPostCommentStateReceived {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserPostCommentEntity> comments)? received,
+    TResult? Function(UserPostCommentsEntity comments)? received,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
     TResult? Function(ErrorEntity error)? error,
@@ -460,7 +465,7 @@ class _$_UserPostCommentStateReceived implements _UserPostCommentStateReceived {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserPostCommentEntity> comments)? received,
+    TResult Function(UserPostCommentsEntity comments)? received,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
     TResult Function(ErrorEntity error)? error,
@@ -517,11 +522,10 @@ class _$_UserPostCommentStateReceived implements _UserPostCommentStateReceived {
 }
 
 abstract class _UserPostCommentStateReceived implements UserPostCommentState {
-  factory _UserPostCommentStateReceived(
-          final List<UserPostCommentEntity> comments) =
+  factory _UserPostCommentStateReceived(final UserPostCommentsEntity comments) =
       _$_UserPostCommentStateReceived;
 
-  List<UserPostCommentEntity> get comments;
+  UserPostCommentsEntity get comments;
   @JsonKey(ignore: true)
   _$$_UserPostCommentStateReceivedCopyWith<_$_UserPostCommentStateReceived>
       get copyWith => throw _privateConstructorUsedError;
@@ -571,7 +575,7 @@ class _$_UserPostCommentStateCreating implements _UserPostCommentStateCreating {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserPostCommentEntity> comments) received,
+    required TResult Function(UserPostCommentsEntity comments) received,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
     required TResult Function(ErrorEntity error) error,
@@ -584,7 +588,7 @@ class _$_UserPostCommentStateCreating implements _UserPostCommentStateCreating {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserPostCommentEntity> comments)? received,
+    TResult? Function(UserPostCommentsEntity comments)? received,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
     TResult? Function(ErrorEntity error)? error,
@@ -597,7 +601,7 @@ class _$_UserPostCommentStateCreating implements _UserPostCommentStateCreating {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserPostCommentEntity> comments)? received,
+    TResult Function(UserPostCommentsEntity comments)? received,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
     TResult Function(ErrorEntity error)? error,
@@ -737,7 +741,7 @@ class _$_UserPostCommentStateCreated implements _UserPostCommentStateCreated {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserPostCommentEntity> comments) received,
+    required TResult Function(UserPostCommentsEntity comments) received,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
     required TResult Function(ErrorEntity error) error,
@@ -750,7 +754,7 @@ class _$_UserPostCommentStateCreated implements _UserPostCommentStateCreated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserPostCommentEntity> comments)? received,
+    TResult? Function(UserPostCommentsEntity comments)? received,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
     TResult? Function(ErrorEntity error)? error,
@@ -763,7 +767,7 @@ class _$_UserPostCommentStateCreated implements _UserPostCommentStateCreated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserPostCommentEntity> comments)? received,
+    TResult Function(UserPostCommentsEntity comments)? received,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
     TResult Function(ErrorEntity error)? error,
@@ -909,7 +913,7 @@ class _$_UserPostCommentStateError implements _UserPostCommentStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(List<UserPostCommentEntity> comments) received,
+    required TResult Function(UserPostCommentsEntity comments) received,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
     required TResult Function(ErrorEntity error) error,
@@ -922,7 +926,7 @@ class _$_UserPostCommentStateError implements _UserPostCommentStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(List<UserPostCommentEntity> comments)? received,
+    TResult? Function(UserPostCommentsEntity comments)? received,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
     TResult? Function(ErrorEntity error)? error,
@@ -935,7 +939,7 @@ class _$_UserPostCommentStateError implements _UserPostCommentStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(List<UserPostCommentEntity> comments)? received,
+    TResult Function(UserPostCommentsEntity comments)? received,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
     TResult Function(ErrorEntity error)? error,

@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../app/domain/entities/error_entity/error_entity.dart';
 import '../../entity/user_post_comment/user_post_comment_entity.dart';
+import '../../entity/user_post_comment/user_post_comments_entity.dart';
 import '../../user_post_repository.dart';
 
 part 'user_post_comment_state.dart';
@@ -17,6 +18,24 @@ class UserPostCommentCubit extends Cubit<UserPostCommentState> {
         super(UserPostCommentState.init());
 
   final UserPostRepository _userPostRepository;
+
+  Future<void> getPostComments({
+    required int postId,
+    required int limit,
+    required int last,
+  }) async {
+    emit(UserPostCommentState.waiting());
+    try {
+      final result = await _userPostRepository.getPostComments(
+        postId,
+        limit,
+        last,
+      );
+      emit(UserPostCommentState.received(result));
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
 
   Future<void> createPostComment({
     required int postId,

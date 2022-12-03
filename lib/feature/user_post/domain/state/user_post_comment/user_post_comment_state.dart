@@ -6,7 +6,7 @@ class UserPostCommentState with _$UserPostCommentState {
 
   factory UserPostCommentState.waiting() = _UserPostCommentStateWaiting;
 
-  factory UserPostCommentState.received(List<UserPostCommentEntity> comments) =
+  factory UserPostCommentState.received(UserPostCommentsEntity comments) =
       _UserPostCommentStateReceived;
 
   factory UserPostCommentState.creating() = _UserPostCommentStateCreating;
