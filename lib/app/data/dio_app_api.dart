@@ -291,6 +291,22 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> getPostComments(int id, int limit, int last) {
+    try {
+      return dio.get(
+        '/data/comment',
+        queryParameters: {
+          _QueryKey.postId: id,
+          _QueryKey.limit: limit,
+          _QueryKey.last: last,
+        },
+      );
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
 
 abstract class _QueryKey {
@@ -298,6 +314,7 @@ abstract class _QueryKey {
 
   static const String last = 'last';
   static const String limit = 'limit';
+  static const String postId = 'postId';
   static const String type = 'type';
   static const String userId = 'userId';
 }
