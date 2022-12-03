@@ -1,21 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../app/const/const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
+import '../../../app/di/init_di.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/buttons/empty_button.dart';
 import '../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../app/ui/components/text_fields/app_multiline_text_field.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../domain/entity/user_post/user_post_entity.dart';
+import '../domain/state/user_post_comment/user_post_comment_cubit.dart';
+import '../domain/user_post_repository.dart';
 import 'components/user_post_item/user_post_item_content.dart';
 import 'components/user_post_item/user_post_item_header.dart';
 import 'components/user_post_item_statistic/user_post_item_statistic.dart';
 
-class UserPostCommentScreen extends StatefulWidget {
+class UserPostCommentScreen extends StatelessWidget {
   const UserPostCommentScreen({
+    Key? key,
+    required this.avatar,
+    required this.post,
+    required this.lastVisit,
+  }) : super(key: key);
+
+  final String? avatar;
+  final DateTime lastVisit;
+  final UserPostEntity post;
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => UserPostCommentCubit(
+            locator.get<UserPostRepository>(),
+          ),
+        ),
+      ],
+      child: _UserPostCommentScreen(
+        avatar: avatar,
+        post: post,
+        lastVisit: lastVisit,
+      ),
+    );
+  }
+}
+
+class _UserPostCommentScreen extends StatefulWidget {
+  const _UserPostCommentScreen({
     Key? key,
     required this.avatar,
     required this.post,
@@ -26,10 +61,10 @@ class UserPostCommentScreen extends StatefulWidget {
   final UserPostEntity post;
 
   @override
-  State<UserPostCommentScreen> createState() => _UserPostCommentScreenState();
+  State<_UserPostCommentScreen> createState() => _UserPostCommentScreenState();
 }
 
-class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
+class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
   late double actionHeight = 48.0;
   late double fieldHeight = 80.0 + actionHeight;
   late ThemeData theme;
@@ -219,6 +254,30 @@ class _UserPostCommentScreenState extends State<UserPostCommentScreen> {
   void _sendOnPressed() {
     final value = _newCommentController.text.trim();
     if (value.isNotEmpty) {
+      context
+          .read<UserPostCommentCubit>()
+          .createPostComment(
+            postId: widget.post.id,
+            text: _newCommentController.text.trim(),
+          )
+          .then(
+        (value) {
+          context.read<UserPostCommentCubit>().state.whenOrNull(
+              created: (newPost) {
+            return CustomDialog.showMessageDialog(
+              context,
+              dictionary.commentPublished,
+            ).whenComplete(
+              () {
+                _newCommentController.clear();
+                Helpers.unfocused();
+              },
+            );
+          }, error: (error) {
+            return CustomDialog.showErrorDialog(context, error.message);
+          });
+        },
+      );
     } else {
       CustomDialog.showMessageDialog(
         context,
