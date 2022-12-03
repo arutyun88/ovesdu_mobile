@@ -110,5 +110,7 @@
   "todayAtTime": "այսօր ժամը {time}",
   "yesterdayAtTime": "երեկ ժամը {time}",
   "was": "{date} էր",
-  "symbols": "նիշեր"
+  "symbols": "նիշեր",
+  "understand": "հասկանում եմ",
+  "commentCannotBeEmpty": "Մեկնաբանությունը չի կարող դատարկ լինել"
 }

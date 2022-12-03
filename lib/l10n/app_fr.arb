@@ -110,5 +110,7 @@
   "todayAtTime": "aujourd'hui à {time}",
   "yesterdayAtTime": "hier à {time}",
   "was": "c'était {date}",
-  "symbols": "symbols"
+  "symbols": "symbols",
+  "understand": "understand",
+  "commentCannotBeEmpty": "Comment cannot be empty"
 }
