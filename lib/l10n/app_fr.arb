@@ -115,5 +115,6 @@
   "commentCannotBeEmpty": "Comment cannot be empty",
   "commentHint": "write comment text",
   "commentReply": "to reply to a comment, select it above",
-  "commentPublished": "Comment published"
+  "commentPublished": "Comment published",
+  "answers": "{count} answers"
 }

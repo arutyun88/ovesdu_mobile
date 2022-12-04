@@ -115,5 +115,6 @@
   "commentCannotBeEmpty": "Комментарий не может быть пустым",
   "commentHint": "напишите текст комментария",
   "commentReply": "чтобы ответить на комментарий, выберите его выше",
-  "commentPublished": "Комментарий опубликован"
+  "commentPublished": "Комментарий опубликован",
+  "answers": "{count} ответов"
 }
