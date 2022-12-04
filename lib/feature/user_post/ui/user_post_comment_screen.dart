@@ -95,7 +95,13 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
 
     postEntity = widget.post;
 
-    context.read<UserPostCubit>().getUserPost(widget.post.id);
+    context.read<UserPostCubit>().getUserPost(postEntity.id).whenComplete(() {
+      context.read<UserPostCommentCubit>().getPostComments(
+            postId: postEntity.id,
+            limit: 20,
+            last: 0,
+          );
+    });
   }
 
   @override
@@ -115,31 +121,34 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
             children: [
               Column(
                 children: [
-                  Container(
-                    color: theme.backgroundColor,
-                    padding: const EdgeInsets.only(left: 24.0),
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => Navigator.of(context).pop(postEntity),
-                          child: const Icon(
-                            Icons.arrow_back_ios,
-                            size: iconSize,
-                            color: AppColors.orange,
+                  Material(
+                    elevation: 1,
+                    child: Container(
+                      color: theme.backgroundColor,
+                      padding: const EdgeInsets.only(left: 24.0),
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () => Navigator.of(context).pop(postEntity),
+                            child: const Icon(
+                              Icons.arrow_back_ios,
+                              size: iconSize,
+                              color: AppColors.orange,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width - 60,
-                          child: UserPostItemHeader(
-                            avatar: widget.avatar,
-                            firstName: widget.post.author.firstName,
-                            lastName: widget.post.author.lastName,
-                            created: widget.post.created,
-                            updated: widget.post.updated,
-                            lastVisit: widget.lastVisit,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width - 60,
+                            child: UserPostItemHeader(
+                              avatar: widget.avatar,
+                              firstName: widget.post.author.firstName,
+                              lastName: widget.post.author.lastName,
+                              created: widget.post.created,
+                              updated: widget.post.updated,
+                              lastVisit: widget.lastVisit,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
@@ -177,16 +186,45 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                               ),
                             ),
                           ),
-                          Column(
-                            children: List.generate(
-                              widget.post.comment,
-                              (index) => Container(
-                                height: 100,
-                                color: index % 2 == 0
-                                    ? AppColors.red
-                                    : AppColors.purple,
-                              ),
-                            ),
+                          Container(
+                            height: verticalPadding,
+                            color: AppColors.hintTextColor.withOpacity(.1),
+                          ),
+                          BlocBuilder<UserPostCommentCubit,
+                              UserPostCommentState>(
+                            builder: (context, state) {
+                              return state.maybeWhen(
+                                received: (comments) {
+                                  return Column(
+                                    children: List.generate(
+                                      comments.comments.length,
+                                      (index) => Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: verticalPadding,
+                                          horizontal: mainPadding,
+                                        ),
+                                        child: Text(
+                                          comments.comments[index].text ?? '',
+                                          style: theme.textTheme.bodyText1,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                orElse: () => Column(
+                                  children: List.generate(
+                                    3,
+                                    (index) => Container(
+                                      height: 100,
+                                      width: 100,
+                                      color: AppColors.hintTextColor,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                           SizedBox(height: fieldHeight),
                         ],
