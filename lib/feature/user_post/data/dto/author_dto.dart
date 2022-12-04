@@ -7,12 +7,14 @@ part 'author_dto.g.dart';
 @JsonSerializable()
 class AuthorDto {
   final dynamic id;
+  final dynamic avatar;
   final dynamic firstName;
   final dynamic lastName;
   final dynamic lastVisit;
 
   AuthorDto({
     required this.id,
+    required this.avatar,
     required this.firstName,
     required this.lastName,
     required this.lastVisit,
@@ -25,6 +27,7 @@ class AuthorDto {
 
   AuthorEntity toEntity() => AuthorEntity(
         id: id,
+        avatar: avatar,
         firstName: firstName.toString(),
         lastName: lastName.toString(),
         lastVisit: DateTime.parse(lastVisit.toString()).toLocal(),

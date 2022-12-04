@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/setting_provider.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/helpers/date_helper.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 
@@ -49,7 +51,7 @@ class UserPostItemHeader extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: avatarIsCircle ? BoxShape.circle : BoxShape.rectangle,
                 borderRadius: avatarIsCircle ? null : BorderRadius.circular(16),
-                color: AppColors.hintTextColor,
+                color: theme.backgroundColor,
                 border: Border.all(
                   color: isOnline ? AppColors.orange : AppColors.hintTextColor,
                   width: 2,
@@ -62,10 +64,9 @@ class UserPostItemHeader extends StatelessWidget {
                       avatar!,
                       fit: BoxFit.cover,
                     )
-                  : Image.network(
-                      'https://caknowledge.com/wp-content/uploads/2022/05/Chuck-'
-                      'Norris-Net-Worth-100-million.jpg',
-                      fit: BoxFit.cover,
+                  : Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: SvgPicture.asset(AppIcons.profileIcon),
                     ),
             ),
           ),

@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthorEntity {
   int get id => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   DateTime get lastVisit => throw _privateConstructorUsedError;
@@ -32,7 +33,12 @@ abstract class $AuthorEntityCopyWith<$Res> {
           AuthorEntity value, $Res Function(AuthorEntity) then) =
       _$AuthorEntityCopyWithImpl<$Res, AuthorEntity>;
   @useResult
-  $Res call({int id, String firstName, String lastName, DateTime lastVisit});
+  $Res call(
+      {int id,
+      String? avatar,
+      String firstName,
+      String lastName,
+      DateTime lastVisit});
 }
 
 /// @nodoc
@@ -49,6 +55,7 @@ class _$AuthorEntityCopyWithImpl<$Res, $Val extends AuthorEntity>
   @override
   $Res call({
     Object? id = null,
+    Object? avatar = freezed,
     Object? firstName = null,
     Object? lastName = null,
     Object? lastVisit = null,
@@ -58,6 +65,10 @@ class _$AuthorEntityCopyWithImpl<$Res, $Val extends AuthorEntity>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -82,7 +93,12 @@ abstract class _$$_AuthorEntityCopyWith<$Res>
       __$$_AuthorEntityCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String firstName, String lastName, DateTime lastVisit});
+  $Res call(
+      {int id,
+      String? avatar,
+      String firstName,
+      String lastName,
+      DateTime lastVisit});
 }
 
 /// @nodoc
@@ -97,6 +113,7 @@ class __$$_AuthorEntityCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? avatar = freezed,
     Object? firstName = null,
     Object? lastName = null,
     Object? lastVisit = null,
@@ -106,6 +123,10 @@ class __$$_AuthorEntityCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -127,12 +148,15 @@ class __$$_AuthorEntityCopyWithImpl<$Res>
 class _$_AuthorEntity implements _AuthorEntity {
   const _$_AuthorEntity(
       {required this.id,
+      required this.avatar,
       required this.firstName,
       required this.lastName,
       required this.lastVisit});
 
   @override
   final int id;
+  @override
+  final String? avatar;
   @override
   final String firstName;
   @override
@@ -142,7 +166,7 @@ class _$_AuthorEntity implements _AuthorEntity {
 
   @override
   String toString() {
-    return 'AuthorEntity(id: $id, firstName: $firstName, lastName: $lastName, lastVisit: $lastVisit)';
+    return 'AuthorEntity(id: $id, avatar: $avatar, firstName: $firstName, lastName: $lastName, lastVisit: $lastVisit)';
   }
 
   @override
@@ -151,6 +175,7 @@ class _$_AuthorEntity implements _AuthorEntity {
         (other.runtimeType == runtimeType &&
             other is _$_AuthorEntity &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -161,7 +186,7 @@ class _$_AuthorEntity implements _AuthorEntity {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, firstName, lastName, lastVisit);
+      Object.hash(runtimeType, id, avatar, firstName, lastName, lastVisit);
 
   @JsonKey(ignore: true)
   @override
@@ -173,12 +198,15 @@ class _$_AuthorEntity implements _AuthorEntity {
 abstract class _AuthorEntity implements AuthorEntity {
   const factory _AuthorEntity(
       {required final int id,
+      required final String? avatar,
       required final String firstName,
       required final String lastName,
       required final DateTime lastVisit}) = _$_AuthorEntity;
 
   @override
   int get id;
+  @override
+  String? get avatar;
   @override
   String get firstName;
   @override

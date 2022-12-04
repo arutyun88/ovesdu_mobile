@@ -6,6 +6,7 @@ part 'author_entity.freezed.dart';
 class AuthorEntity with _$AuthorEntity {
   const factory AuthorEntity({
     required int id,
+    required String? avatar,
     required String firstName,
     required String lastName,
     required DateTime lastVisit,
