@@ -3,21 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../app/const/const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
 import '../../../app/helpers/helpers.dart';
-import '../../../app/ui/components/buttons/empty_button.dart';
 import '../../../app/ui/components/custom_dialog/custom_dialog.dart';
-import '../../../app/ui/components/text_fields/app_multiline_text_field.dart';
-import '../../../app/ui/config/app_colors.dart';
 import '../domain/entity/user_post/user_post_entity.dart';
 import '../domain/state/user_post_comment/user_post_comment_cubit.dart';
 import '../domain/state/user_post_cubit.dart';
 import '../domain/user_post_repository.dart';
-import 'components/user_post_item/user_post_item_content.dart';
-import 'components/user_post_item/user_post_item_header.dart';
-import 'components/user_post_item_statistic/user_post_item_statistic.dart';
+import 'components/user_comment/user_comment_field.dart';
+import 'components/user_comment/user_comment_list.dart';
+import 'components/user_comment/user_comment_post.dart';
+import 'components/user_comment/user_comment_post_header.dart';
 
 class UserPostCommentScreen extends StatelessWidget {
   const UserPostCommentScreen({
@@ -98,7 +95,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
     context.read<UserPostCubit>().getUserPost(postEntity.id).whenComplete(() {
       context.read<UserPostCommentCubit>().getPostComments(
             postId: postEntity.id,
-            limit: 20,
+            limit: 10,
             last: 0,
           );
     });
@@ -121,111 +118,22 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
             children: [
               Column(
                 children: [
-                  Material(
-                    elevation: 1,
-                    child: Container(
-                      color: theme.backgroundColor,
-                      padding: const EdgeInsets.only(left: 24.0),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () => Navigator.of(context).pop(postEntity),
-                            child: const Icon(
-                              Icons.arrow_back_ios,
-                              size: iconSize,
-                              color: AppColors.orange,
-                            ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width - 60,
-                            child: UserPostItemHeader(
-                              avatar: widget.avatar,
-                              firstName: widget.post.author.firstName,
-                              lastName: widget.post.author.lastName,
-                              created: widget.post.created,
-                              updated: widget.post.updated,
-                              lastVisit: widget.lastVisit,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  UserCommentPostHeader(
+                    postEntity: postEntity,
+                    avatar: widget.avatar,
+                    lastVisit: widget.lastVisit,
+                    post: widget.post,
                   ),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          BlocListener<UserPostCubit, UserPostState>(
-                            listener: (context, state) {
-                              state.whenOrNull(
-                                updated: (entity) {
-                                  setState(() {
-                                    postEntity = entity;
-                                  });
-                                },
-                              );
-                            },
-                            child: Hero(
-                              transitionOnUserGestures: true,
-                              tag: '${widget.post.id}:'
-                                  '${widget.post.author.lastName}.'
-                                  '${widget.post.author.firstName}',
-                              child: Column(
-                                children: [
-                                  UserPostItemContent(
-                                    post: postEntity,
-                                    isCommentScreen: true,
-                                  ),
-                                  UserPostItemStatistic(
-                                    avatar: widget.avatar,
-                                    post: postEntity,
-                                    lastVisit: widget.lastVisit,
-                                    isCommentScreen: true,
-                                  ),
-                                ],
-                              ),
-                            ),
+                          UserCommentPost(
+                            avatar: widget.avatar,
+                            lastVisit: widget.lastVisit,
+                            post: widget.post,
                           ),
-                          Container(
-                            height: verticalPadding,
-                            color: AppColors.hintTextColor.withOpacity(.1),
-                          ),
-                          BlocBuilder<UserPostCommentCubit,
-                              UserPostCommentState>(
-                            builder: (context, state) {
-                              return state.maybeWhen(
-                                received: (comments) {
-                                  return Column(
-                                    children: List.generate(
-                                      comments.comments.length,
-                                      (index) => Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: verticalPadding,
-                                          horizontal: mainPadding,
-                                        ),
-                                        child: Text(
-                                          comments.comments[index].text ?? '',
-                                          style: theme.textTheme.bodyText1,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                                orElse: () => Column(
-                                  children: List.generate(
-                                    3,
-                                    (index) => Container(
-                                      height: 100,
-                                      width: 100,
-                                      color: AppColors.hintTextColor,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                          const UserCommentList(),
                           SizedBox(height: fieldHeight),
                         ],
                       ),
@@ -237,71 +145,12 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                 bottom: 0.0,
                 child: SizedBox(
                   key: _commentFieldKey,
-                  child: Column(
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        color: theme.backgroundColor,
-                        padding: const EdgeInsets.all(verticalPadding),
-                        child: AppMultilineTextField(
-                          hintText: dictionary.commentHint,
-                          maxLines: 7,
-                          controller: _newCommentController,
-                          onChanged: (value) {
-                            final renderBox = _commentFieldKey.currentContext!
-                                .findRenderObject() as RenderBox;
-                            setState(() {
-                              symbolCount = value.trim().length;
-                              fieldHeight = renderBox.size.height;
-                            });
-                          },
-                        ),
-                      ),
-                      Container(
-                        color: theme.backgroundColor,
-                        height: actionHeight,
-                        width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: mainPadding,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                              child: symbolCount != 0
-                                  ? Text(
-                                      '$symbolCount ${dictionary.symbols}',
-                                      style:
-                                          theme.textTheme.bodyText2?.copyWith(
-                                        color: AppColors.hintTextColor,
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                    )
-                                  : Text(
-                                      dictionary.commentReply,
-                                      maxLines: 2,
-                                      style:
-                                          theme.textTheme.bodyText2?.copyWith(
-                                        color: AppColors.hintTextColor,
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                    ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: mainPadding),
-                              child: EmptyButton(
-                                onPressed: _sendOnPressed,
-                                child: const Icon(
-                                  Icons.send,
-                                  size: iconSize,
-                                  color: AppColors.orange,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  child: UserCommentField(
+                    controller: _newCommentController,
+                    onChanged: _fieldOnChanged,
+                    sendOnPressed: _sendOnPressed,
+                    actionHeight: actionHeight,
+                    symbolCount: symbolCount,
                   ),
                 ),
               ),
@@ -309,6 +158,17 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  void _fieldOnChanged(value) {
+    final renderBox =
+        _commentFieldKey.currentContext!.findRenderObject() as RenderBox;
+    setState(
+      () {
+        symbolCount = value.trim().length;
+        fieldHeight = renderBox.size.height;
+      },
     );
   }
 

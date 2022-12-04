@@ -47,7 +47,7 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
       color: theme.backgroundColor,
       padding: const EdgeInsets.symmetric(
         vertical: verticalPadding,
-        horizontal: mainPadding / 2,
+        horizontal: itemHorPadding,
       ),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
