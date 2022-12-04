@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../author_entity.dart';
+
 part 'user_post_comment_entity.freezed.dart';
 
 @freezed
@@ -9,7 +11,7 @@ class UserPostCommentEntity with _$UserPostCommentEntity {
     required DateTime created,
     required DateTime updated,
     required String? text,
-    required int fromUserId,
+    required AuthorEntity author,
     required int? toCommentId,
     required int like,
     required int dislike,

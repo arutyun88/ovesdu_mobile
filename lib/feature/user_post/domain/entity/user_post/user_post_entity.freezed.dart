@@ -26,7 +26,7 @@ mixin _$UserPostEntity {
   int get dislike => throw _privateConstructorUsedError;
   bool? get liked => throw _privateConstructorUsedError;
   int get comment => throw _privateConstructorUsedError;
-  UserPostAuthorEntity get author => throw _privateConstructorUsedError;
+  AuthorEntity get author => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserPostEntityCopyWith<UserPostEntity> get copyWith =>
@@ -50,9 +50,9 @@ abstract class $UserPostEntityCopyWith<$Res> {
       int dislike,
       bool? liked,
       int comment,
-      UserPostAuthorEntity author});
+      AuthorEntity author});
 
-  $UserPostAuthorEntityCopyWith<$Res> get author;
+  $AuthorEntityCopyWith<$Res> get author;
 }
 
 /// @nodoc
@@ -124,14 +124,14 @@ class _$UserPostEntityCopyWithImpl<$Res, $Val extends UserPostEntity>
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as UserPostAuthorEntity,
+              as AuthorEntity,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserPostAuthorEntityCopyWith<$Res> get author {
-    return $UserPostAuthorEntityCopyWith<$Res>(_value.author, (value) {
+  $AuthorEntityCopyWith<$Res> get author {
+    return $AuthorEntityCopyWith<$Res>(_value.author, (value) {
       return _then(_value.copyWith(author: value) as $Val);
     });
   }
@@ -156,10 +156,10 @@ abstract class _$$_UserPostEntityCopyWith<$Res>
       int dislike,
       bool? liked,
       int comment,
-      UserPostAuthorEntity author});
+      AuthorEntity author});
 
   @override
-  $UserPostAuthorEntityCopyWith<$Res> get author;
+  $AuthorEntityCopyWith<$Res> get author;
 }
 
 /// @nodoc
@@ -229,7 +229,7 @@ class __$$_UserPostEntityCopyWithImpl<$Res>
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as UserPostAuthorEntity,
+              as AuthorEntity,
     ));
   }
 }
@@ -283,7 +283,7 @@ class _$_UserPostEntity implements _UserPostEntity {
   @override
   final int comment;
   @override
-  final UserPostAuthorEntity author;
+  final AuthorEntity author;
 
   @override
   String toString() {
@@ -342,7 +342,7 @@ abstract class _UserPostEntity implements UserPostEntity {
       required final int dislike,
       required final bool? liked,
       required final int comment,
-      required final UserPostAuthorEntity author}) = _$_UserPostEntity;
+      required final AuthorEntity author}) = _$_UserPostEntity;
 
   @override
   int get id;
@@ -365,7 +365,7 @@ abstract class _UserPostEntity implements UserPostEntity {
   @override
   int get comment;
   @override
-  UserPostAuthorEntity get author;
+  AuthorEntity get author;
   @override
   @JsonKey(ignore: true)
   _$$_UserPostEntityCopyWith<_$_UserPostEntity> get copyWith =>

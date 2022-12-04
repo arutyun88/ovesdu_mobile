@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
+import '../author_dto.dart';
 
 part 'user_post_comment_dto.g.dart';
 
@@ -10,7 +11,7 @@ class UserPostCommentDto {
   final dynamic created;
   final dynamic updated;
   final dynamic text;
-  final dynamic fromUserId;
+  final dynamic author;
   final dynamic toCommentId;
   final dynamic like;
   final dynamic dislike;
@@ -22,7 +23,7 @@ class UserPostCommentDto {
     required this.created,
     required this.updated,
     required this.text,
-    required this.fromUserId,
+    required this.author,
     required this.toCommentId,
     required this.like,
     required this.dislike,
@@ -40,7 +41,7 @@ class UserPostCommentDto {
         created: DateTime.parse(created.toString()).toLocal(),
         updated: DateTime.parse(updated.toString()).toLocal(),
         text: text,
-        fromUserId: fromUserId,
+        author: AuthorDto.fromJson(author).toEntity(),
         toCommentId: toCommentId,
         like: like,
         dislike: dislike,

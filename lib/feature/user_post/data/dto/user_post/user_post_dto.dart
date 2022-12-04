@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/entity/user_post/user_post_entity.dart';
-import 'user_post_author_dto.dart';
+import '../author_dto.dart';
 import 'user_post_photo_dto.dart';
 import 'user_post_video_dto.dart';
 
@@ -55,6 +55,6 @@ class UserPostDto {
         dislike: dislike,
         comment: comment,
         liked: liked,
-        author: UserPostAuthorDto.fromJson(author).toEntity(),
+        author: AuthorDto.fromJson(author).toEntity(),
       );
 }

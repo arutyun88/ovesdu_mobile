@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'user_post_author_entity.dart';
+import '../author_entity.dart';
 import 'user_post_photo_entity.dart';
 import 'user_post_video_entity.dart';
 
@@ -19,6 +19,6 @@ class UserPostEntity with _$UserPostEntity {
     required int dislike,
     required bool? liked,
     required int comment,
-    required UserPostAuthorEntity author,
+    required AuthorEntity author,
   }) = _UserPostEntity;
 }

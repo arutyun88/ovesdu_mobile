@@ -20,7 +20,7 @@ mixin _$UserPostCommentEntity {
   DateTime get created => throw _privateConstructorUsedError;
   DateTime get updated => throw _privateConstructorUsedError;
   String? get text => throw _privateConstructorUsedError;
-  int get fromUserId => throw _privateConstructorUsedError;
+  AuthorEntity get author => throw _privateConstructorUsedError;
   int? get toCommentId => throw _privateConstructorUsedError;
   int get like => throw _privateConstructorUsedError;
   int get dislike => throw _privateConstructorUsedError;
@@ -43,12 +43,14 @@ abstract class $UserPostCommentEntityCopyWith<$Res> {
       DateTime created,
       DateTime updated,
       String? text,
-      int fromUserId,
+      AuthorEntity author,
       int? toCommentId,
       int like,
       int dislike,
       bool? liked,
       int answers});
+
+  $AuthorEntityCopyWith<$Res> get author;
 }
 
 /// @nodoc
@@ -69,7 +71,7 @@ class _$UserPostCommentEntityCopyWithImpl<$Res,
     Object? created = null,
     Object? updated = null,
     Object? text = freezed,
-    Object? fromUserId = null,
+    Object? author = null,
     Object? toCommentId = freezed,
     Object? like = null,
     Object? dislike = null,
@@ -93,10 +95,10 @@ class _$UserPostCommentEntityCopyWithImpl<$Res,
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
-      fromUserId: null == fromUserId
-          ? _value.fromUserId
-          : fromUserId // ignore: cast_nullable_to_non_nullable
-              as int,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as AuthorEntity,
       toCommentId: freezed == toCommentId
           ? _value.toCommentId
           : toCommentId // ignore: cast_nullable_to_non_nullable
@@ -119,6 +121,14 @@ class _$UserPostCommentEntityCopyWithImpl<$Res,
               as int,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthorEntityCopyWith<$Res> get author {
+    return $AuthorEntityCopyWith<$Res>(_value.author, (value) {
+      return _then(_value.copyWith(author: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -134,12 +144,15 @@ abstract class _$$_UserPostCommentEntityCopyWith<$Res>
       DateTime created,
       DateTime updated,
       String? text,
-      int fromUserId,
+      AuthorEntity author,
       int? toCommentId,
       int like,
       int dislike,
       bool? liked,
       int answers});
+
+  @override
+  $AuthorEntityCopyWith<$Res> get author;
 }
 
 /// @nodoc
@@ -157,7 +170,7 @@ class __$$_UserPostCommentEntityCopyWithImpl<$Res>
     Object? created = null,
     Object? updated = null,
     Object? text = freezed,
-    Object? fromUserId = null,
+    Object? author = null,
     Object? toCommentId = freezed,
     Object? like = null,
     Object? dislike = null,
@@ -181,10 +194,10 @@ class __$$_UserPostCommentEntityCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String?,
-      fromUserId: null == fromUserId
-          ? _value.fromUserId
-          : fromUserId // ignore: cast_nullable_to_non_nullable
-              as int,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as AuthorEntity,
       toCommentId: freezed == toCommentId
           ? _value.toCommentId
           : toCommentId // ignore: cast_nullable_to_non_nullable
@@ -217,7 +230,7 @@ class _$_UserPostCommentEntity implements _UserPostCommentEntity {
       required this.created,
       required this.updated,
       required this.text,
-      required this.fromUserId,
+      required this.author,
       required this.toCommentId,
       required this.like,
       required this.dislike,
@@ -233,7 +246,7 @@ class _$_UserPostCommentEntity implements _UserPostCommentEntity {
   @override
   final String? text;
   @override
-  final int fromUserId;
+  final AuthorEntity author;
   @override
   final int? toCommentId;
   @override
@@ -247,7 +260,7 @@ class _$_UserPostCommentEntity implements _UserPostCommentEntity {
 
   @override
   String toString() {
-    return 'UserPostCommentEntity(id: $id, created: $created, updated: $updated, text: $text, fromUserId: $fromUserId, toCommentId: $toCommentId, like: $like, dislike: $dislike, liked: $liked, answers: $answers)';
+    return 'UserPostCommentEntity(id: $id, created: $created, updated: $updated, text: $text, author: $author, toCommentId: $toCommentId, like: $like, dislike: $dislike, liked: $liked, answers: $answers)';
   }
 
   @override
@@ -259,8 +272,7 @@ class _$_UserPostCommentEntity implements _UserPostCommentEntity {
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated) &&
             (identical(other.text, text) || other.text == text) &&
-            (identical(other.fromUserId, fromUserId) ||
-                other.fromUserId == fromUserId) &&
+            (identical(other.author, author) || other.author == author) &&
             (identical(other.toCommentId, toCommentId) ||
                 other.toCommentId == toCommentId) &&
             (identical(other.like, like) || other.like == like) &&
@@ -271,7 +283,7 @@ class _$_UserPostCommentEntity implements _UserPostCommentEntity {
 
   @override
   int get hashCode => Object.hash(runtimeType, id, created, updated, text,
-      fromUserId, toCommentId, like, dislike, liked, answers);
+      author, toCommentId, like, dislike, liked, answers);
 
   @JsonKey(ignore: true)
   @override
@@ -287,7 +299,7 @@ abstract class _UserPostCommentEntity implements UserPostCommentEntity {
       required final DateTime created,
       required final DateTime updated,
       required final String? text,
-      required final int fromUserId,
+      required final AuthorEntity author,
       required final int? toCommentId,
       required final int like,
       required final int dislike,
@@ -303,7 +315,7 @@ abstract class _UserPostCommentEntity implements UserPostCommentEntity {
   @override
   String? get text;
   @override
-  int get fromUserId;
+  AuthorEntity get author;
   @override
   int? get toCommentId;
   @override
