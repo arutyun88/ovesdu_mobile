@@ -192,5 +192,13 @@
         "type": "String"
       }
     }
+  },
+  "responseToComment": "in response to a comment {name}:",
+  "@responseToComment": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   }
 }

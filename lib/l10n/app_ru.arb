@@ -116,5 +116,6 @@
   "commentHint": "напишите текст комментария",
   "commentReply": "чтобы ответить на комментарий, выберите его выше",
   "commentPublished": "Комментарий опубликован",
-  "answers": "{count} ответов"
+  "answers": "{count} ответов",
+  "responseToComment": "в ответ на комментарий {name}:"
 }
