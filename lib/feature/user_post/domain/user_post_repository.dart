@@ -22,4 +22,6 @@ abstract class UserPostRepository {
     int limit,
     int last,
   );
+
+  Future<ReactionType> updateCommentReaction(int id, ReactionType type);
 }

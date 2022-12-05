@@ -101,4 +101,18 @@ class UserPostRepositoryImpl implements UserPostRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<ReactionType> updateCommentReaction(int id, ReactionType type) async {
+    await _api.setHeaderLocale();
+    try {
+      final response = await _api.updateCommentReaction(id, type.name);
+
+      final data = response.data['data'];
+
+      return mapToReactionType(data['type']);
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
