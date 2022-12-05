@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../app/domain/entities/error_entity/error_entity.dart';
+import '../entity/reaction_type.dart';
 import '../entity/user_post/user_post_entity.dart';
 import '../entity/user_post/user_posts_entity.dart';
 import '../user_post_repository.dart';
@@ -56,6 +57,43 @@ class UserPostCubit extends Cubit<UserPostState> {
         }
         emit(UserPostState.updated(copy));
       });
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
+  void updateLikes(ReactionType type) {
+    try {
+      state.whenOrNull(
+        updated: (post) {
+          late UserPostEntity copy;
+
+          switch (type) {
+            case ReactionType.none:
+              copy = post.copyWith(
+                like: post.liked == true ? post.like - 1 : post.like,
+                dislike: post.liked == false ? post.dislike - 1 : post.dislike,
+                liked: null,
+              );
+              break;
+            case ReactionType.like:
+              copy = post.copyWith(
+                like: post.like + 1,
+                dislike: post.liked == false ? post.dislike - 1 : post.dislike,
+                liked: true,
+              );
+              break;
+            case ReactionType.dislike:
+              copy = post.copyWith(
+                like: post.liked == true ? post.like - 1 : post.like,
+                dislike: post.dislike + 1,
+                liked: false,
+              );
+              break;
+          }
+          emit(UserPostState.updated(copy));
+        },
+      );
     } catch (error, stackTrace) {
       addError(error, stackTrace);
     }

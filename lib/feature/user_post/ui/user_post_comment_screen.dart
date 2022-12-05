@@ -116,63 +116,70 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        onTap: Helpers.unfocused,
-        child: SafeArea(
-          child: Stack(
-            children: [
-              Column(
+    return BlocBuilder<UserPostCubit, UserPostState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: GestureDetector(
+            onTap: Helpers.unfocused,
+            child: SafeArea(
+              child: Stack(
                 children: [
-                  UserCommentPostHeader(
-                    postEntity: postEntity,
-                    avatar: widget.avatar,
-                    lastVisit: widget.lastVisit,
-                    post: widget.post,
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          UserCommentPost(
-                            avatar: widget.avatar,
-                            lastVisit: widget.lastVisit,
-                            post: widget.post,
+                  Column(
+                    children: [
+                      UserCommentPostHeader(
+                        postEntity: state.maybeWhen(
+                          updated: (entity) => entity,
+                          orElse: () => postEntity,
+                        ),
+                        avatar: widget.avatar,
+                        lastVisit: widget.lastVisit,
+                      ),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              UserCommentPost(
+                                avatar: widget.avatar,
+                                lastVisit: widget.lastVisit,
+                                post: postEntity,
+                              ),
+                              const UserCommentList(),
+                              SizedBox(height: fieldHeight),
+                            ],
                           ),
-                          const UserCommentList(),
-                          SizedBox(height: fieldHeight),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 0.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            offset: const Offset(0, -1),
+                            blurRadius: 1.0,
+                            color:
+                                Theme.of(context).shadowColor.withOpacity(.2),
+                          ),
                         ],
+                      ),
+                      key: _commentFieldKey,
+                      child: UserCommentField(
+                        controller: _newCommentController,
+                        onChanged: _fieldOnChanged,
+                        sendOnPressed: _sendOnPressed,
+                        actionHeight: actionHeight,
+                        symbolCount: symbolCount,
                       ),
                     ),
                   ),
                 ],
               ),
-              Positioned(
-                bottom: 0.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        offset: const Offset(0, -1),
-                        blurRadius: 1.0,
-                        color: Theme.of(context).shadowColor.withOpacity(.2),
-                      ),
-                    ],
-                  ),
-                  key: _commentFieldKey,
-                  child: UserCommentField(
-                    controller: _newCommentController,
-                    onChanged: _fieldOnChanged,
-                    sendOnPressed: _sendOnPressed,
-                    actionHeight: actionHeight,
-                    symbolCount: symbolCount,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -193,7 +200,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
       context
           .read<UserCommentActionCubit>()
           .createComment(
-            postId: widget.post.id,
+            postId: postEntity.id,
             text: _newCommentController.text.trim(),
           )
           .then(

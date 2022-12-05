@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/entity/reaction_type.dart';
 import '../../../domain/entity/user_post/user_post_entity.dart';
+import '../../../domain/state/user_post_cubit.dart';
 import '../../../domain/state/user_post_reaction/user_post_reaction_cubit.dart';
 import '../reaction_widget.dart';
 
@@ -70,21 +71,45 @@ class _UserPostItemReactionState extends State<UserPostItemReaction> {
         liked: liked,
         like: like,
         dislike: dislike,
-        likeOnPressed: () =>
-            context.read<UserPostReactionCubit>().updatePostReaction(
-                  id: widget.post.id,
-                  type: liked == null || liked == false
-                      ? ReactionType.like
-                      : ReactionType.none,
-                ),
-        dislikeOnPressed: () =>
-            context.read<UserPostReactionCubit>().updatePostReaction(
-                  id: widget.post.id,
-                  type: liked == null || liked == true
-                      ? ReactionType.dislike
-                      : ReactionType.none,
-                ),
+        likeOnPressed: _likeOnPressed,
+        dislikeOnPressed: _dislikeOnPressed,
       ),
     );
   }
+
+  void _likeOnPressed() => context
+          .read<UserPostReactionCubit>()
+          .updatePostReaction(
+            id: widget.post.id,
+            type: liked == null || liked == false
+                ? ReactionType.like
+                : ReactionType.none,
+          )
+          .then(
+        (value) {
+          context.read<UserPostCubit>().updateLikes(
+                liked == null || liked == false
+                    ? ReactionType.like
+                    : ReactionType.none,
+              );
+        },
+      );
+
+  void _dislikeOnPressed() => context
+          .read<UserPostReactionCubit>()
+          .updatePostReaction(
+            id: widget.post.id,
+            type: liked == null || liked == true
+                ? ReactionType.dislike
+                : ReactionType.none,
+          )
+          .then(
+        (value) {
+          context.read<UserPostCubit>().updateLikes(
+                liked == null || liked == true
+                    ? ReactionType.dislike
+                    : ReactionType.none,
+              );
+        },
+      );
 }

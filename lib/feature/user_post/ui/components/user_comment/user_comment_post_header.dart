@@ -13,14 +13,12 @@ class UserCommentPostHeader extends StatelessWidget {
     required this.postEntity,
     required this.avatar,
     required this.lastVisit,
-    required this.post,
   }) : super(key: key);
 
   final UserPostEntity postEntity;
 
   final String? avatar;
   final DateTime lastVisit;
-  final UserPostEntity post;
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +42,10 @@ class UserCommentPostHeader extends StatelessWidget {
               width: MediaQuery.of(context).size.width - 60,
               child: UserPostItemHeader(
                 avatar: avatar,
-                firstName: post.author.firstName,
-                lastName: post.author.lastName,
-                created: post.created,
-                updated: post.updated,
+                firstName: postEntity.author.firstName,
+                lastName: postEntity.author.lastName,
+                created: postEntity.created,
+                updated: postEntity.updated,
                 lastVisit: lastVisit,
               ),
             ),
