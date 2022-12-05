@@ -61,8 +61,9 @@ class UserCommentItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          dictionary
-                              .responseToComment(comment.author.firstName),
+                          dictionary.responseToComment(
+                            replyToComment?.author.firstName ?? '',
+                          ),
                           style: theme.textTheme.bodyText2?.copyWith(
                             color: AppColors.hintTextColor,
                           ),
