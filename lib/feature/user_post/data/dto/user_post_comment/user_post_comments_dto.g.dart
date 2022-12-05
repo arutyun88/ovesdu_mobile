@@ -12,6 +12,7 @@ UserPostCommentsDto _$UserPostCommentsDtoFromJson(Map<String, dynamic> json) =>
       limit: json['limit'],
       count: json['count'],
       comments: json['comments'],
+      commentsResponses: json['commentsResponses'],
     );
 
 Map<String, dynamic> _$UserPostCommentsDtoToJson(
@@ -21,4 +22,5 @@ Map<String, dynamic> _$UserPostCommentsDtoToJson(
       'limit': instance.limit,
       'count': instance.count,
       'comments': instance.comments,
+      'commentsResponses': instance.commentsResponses,
     };

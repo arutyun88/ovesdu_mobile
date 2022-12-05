@@ -21,6 +21,8 @@ mixin _$UserPostCommentsEntity {
   int get count => throw _privateConstructorUsedError;
   List<UserPostCommentEntity> get comments =>
       throw _privateConstructorUsedError;
+  List<UserPostCommentEntity> get commentsResponses =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserPostCommentsEntityCopyWith<UserPostCommentsEntity> get copyWith =>
@@ -34,7 +36,11 @@ abstract class $UserPostCommentsEntityCopyWith<$Res> {
       _$UserPostCommentsEntityCopyWithImpl<$Res, UserPostCommentsEntity>;
   @useResult
   $Res call(
-      {int last, int limit, int count, List<UserPostCommentEntity> comments});
+      {int last,
+      int limit,
+      int count,
+      List<UserPostCommentEntity> comments,
+      List<UserPostCommentEntity> commentsResponses});
 }
 
 /// @nodoc
@@ -55,6 +61,7 @@ class _$UserPostCommentsEntityCopyWithImpl<$Res,
     Object? limit = null,
     Object? count = null,
     Object? comments = null,
+    Object? commentsResponses = null,
   }) {
     return _then(_value.copyWith(
       last: null == last
@@ -73,6 +80,10 @@ class _$UserPostCommentsEntityCopyWithImpl<$Res,
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
               as List<UserPostCommentEntity>,
+      commentsResponses: null == commentsResponses
+          ? _value.commentsResponses
+          : commentsResponses // ignore: cast_nullable_to_non_nullable
+              as List<UserPostCommentEntity>,
     ) as $Val);
   }
 }
@@ -86,7 +97,11 @@ abstract class _$$_UserPostCommentsEntityCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int last, int limit, int count, List<UserPostCommentEntity> comments});
+      {int last,
+      int limit,
+      int count,
+      List<UserPostCommentEntity> comments,
+      List<UserPostCommentEntity> commentsResponses});
 }
 
 /// @nodoc
@@ -105,6 +120,7 @@ class __$$_UserPostCommentsEntityCopyWithImpl<$Res>
     Object? limit = null,
     Object? count = null,
     Object? comments = null,
+    Object? commentsResponses = null,
   }) {
     return _then(_$_UserPostCommentsEntity(
       last: null == last
@@ -123,6 +139,10 @@ class __$$_UserPostCommentsEntityCopyWithImpl<$Res>
           ? _value._comments
           : comments // ignore: cast_nullable_to_non_nullable
               as List<UserPostCommentEntity>,
+      commentsResponses: null == commentsResponses
+          ? _value._commentsResponses
+          : commentsResponses // ignore: cast_nullable_to_non_nullable
+              as List<UserPostCommentEntity>,
     ));
   }
 }
@@ -134,8 +154,10 @@ class _$_UserPostCommentsEntity implements _UserPostCommentsEntity {
       {required this.last,
       required this.limit,
       required this.count,
-      required final List<UserPostCommentEntity> comments})
-      : _comments = comments;
+      required final List<UserPostCommentEntity> comments,
+      required final List<UserPostCommentEntity> commentsResponses})
+      : _comments = comments,
+        _commentsResponses = commentsResponses;
 
   @override
   final int last;
@@ -150,9 +172,16 @@ class _$_UserPostCommentsEntity implements _UserPostCommentsEntity {
     return EqualUnmodifiableListView(_comments);
   }
 
+  final List<UserPostCommentEntity> _commentsResponses;
+  @override
+  List<UserPostCommentEntity> get commentsResponses {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_commentsResponses);
+  }
+
   @override
   String toString() {
-    return 'UserPostCommentsEntity(last: $last, limit: $limit, count: $count, comments: $comments)';
+    return 'UserPostCommentsEntity(last: $last, limit: $limit, count: $count, comments: $comments, commentsResponses: $commentsResponses)';
   }
 
   @override
@@ -163,12 +192,19 @@ class _$_UserPostCommentsEntity implements _UserPostCommentsEntity {
             (identical(other.last, last) || other.last == last) &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.count, count) || other.count == count) &&
-            const DeepCollectionEquality().equals(other._comments, _comments));
+            const DeepCollectionEquality().equals(other._comments, _comments) &&
+            const DeepCollectionEquality()
+                .equals(other._commentsResponses, _commentsResponses));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, last, limit, count,
-      const DeepCollectionEquality().hash(_comments));
+  int get hashCode => Object.hash(
+      runtimeType,
+      last,
+      limit,
+      count,
+      const DeepCollectionEquality().hash(_comments),
+      const DeepCollectionEquality().hash(_commentsResponses));
 
   @JsonKey(ignore: true)
   @override
@@ -183,7 +219,8 @@ abstract class _UserPostCommentsEntity implements UserPostCommentsEntity {
           {required final int last,
           required final int limit,
           required final int count,
-          required final List<UserPostCommentEntity> comments}) =
+          required final List<UserPostCommentEntity> comments,
+          required final List<UserPostCommentEntity> commentsResponses}) =
       _$_UserPostCommentsEntity;
 
   @override
@@ -194,6 +231,8 @@ abstract class _UserPostCommentsEntity implements UserPostCommentsEntity {
   int get count;
   @override
   List<UserPostCommentEntity> get comments;
+  @override
+  List<UserPostCommentEntity> get commentsResponses;
   @override
   @JsonKey(ignore: true)
   _$$_UserPostCommentsEntityCopyWith<_$_UserPostCommentsEntity> get copyWith =>

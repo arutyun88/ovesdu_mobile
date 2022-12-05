@@ -12,12 +12,14 @@ class UserPostCommentsDto {
   final dynamic limit;
   final dynamic count;
   final dynamic comments;
+  final dynamic commentsResponses;
 
   UserPostCommentsDto({
     required this.last,
     required this.limit,
     required this.count,
     required this.comments,
+    required this.commentsResponses,
   });
 
   factory UserPostCommentsDto.fromJson(Map<String, dynamic> json) =>
@@ -30,6 +32,7 @@ class UserPostCommentsDto {
         limit: limit,
         count: count,
         comments: _mapUserComments(comments as List),
+        commentsResponses: _mapUserComments(commentsResponses as List),
       );
 
   List<UserPostCommentEntity> _mapUserComments(List comments) {

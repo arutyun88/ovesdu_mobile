@@ -11,5 +11,6 @@ class UserPostCommentsEntity with _$UserPostCommentsEntity {
     required int limit,
     required int count,
     required List<UserPostCommentEntity> comments,
+    required List<UserPostCommentEntity> commentsResponses,
   }) = _UserPostCommentsEntity;
 }
