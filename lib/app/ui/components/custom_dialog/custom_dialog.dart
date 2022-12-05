@@ -51,6 +51,23 @@ abstract class CustomDialog {
       builder: (context) => _MessageDialog(message: message),
     );
   }
+
+  static Future<dynamic> showConfirmMessageDialog(
+    BuildContext context,
+    String message,
+  ) {
+    final barrierColor = Provider.of<ThemeProvider>(context, listen: false)
+        .themeData
+        .backgroundColor
+        .withOpacity(.7);
+
+    return showDialog(
+      context: context,
+      barrierColor: barrierColor,
+      barrierDismissible: false,
+      builder: (context) => _ConfirmMessageDialog(message: message),
+    );
+  }
 }
 
 class _MessageDialog extends StatelessWidget {
@@ -78,6 +95,48 @@ class _MessageDialog extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(
               dictionary.understand,
+              style: theme.textTheme.headline6,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ConfirmMessageDialog extends StatelessWidget {
+  const _ConfirmMessageDialog({
+    Key? key,
+    required this.message,
+  }) : super(key: key);
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context).themeData;
+    final dictionary = AppLocalizations.of(context)!;
+
+    return Center(
+      child: _DecoratedDialog(
+        body: Text(
+          message,
+          textAlign: TextAlign.center,
+          style: theme.textTheme.headline6,
+        ),
+        actions: [
+          EmptyButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(
+              dictionary.cancel,
+              style: theme.textTheme.headline6,
+            ),
+          ),
+          const SizedBox(width: verticalPadding),
+          EmptyButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(
+              dictionary.confirm,
               style: theme.textTheme.headline6,
             ),
           ),
