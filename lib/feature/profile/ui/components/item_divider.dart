@@ -5,12 +5,15 @@ import '../../../../app/ui/config/app_colors.dart';
 class ItemDivider extends StatelessWidget {
   const ItemDivider({
     Key? key,
+    this.padding,
   }) : super(key: key);
+
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: padding ?? const EdgeInsets.symmetric(horizontal: 16.0),
       child: Container(
         color: AppColors.orange,
         height: 0.3,
