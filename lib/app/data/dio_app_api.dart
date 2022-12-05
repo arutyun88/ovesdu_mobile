@@ -321,6 +321,17 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> deleteComment(int id) {
+    try {
+      return dio.delete(
+        '/data/comment/$id',
+      );
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
 
 abstract class _QueryKey {
