@@ -143,7 +143,16 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
               ),
               Positioned(
                 bottom: 0.0,
-                child: SizedBox(
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        offset: const Offset(0, -1),
+                        blurRadius: 1.0,
+                        color: Theme.of(context).shadowColor.withOpacity(.2),
+                      ),
+                    ]
+                  ),
                   key: _commentFieldKey,
                   child: UserCommentField(
                     controller: _newCommentController,
