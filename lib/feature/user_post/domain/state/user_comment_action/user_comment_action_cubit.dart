@@ -36,6 +36,16 @@ class UserCommentActionCubit extends Cubit<UserCommentActionState> {
     }
   }
 
+  Future<void> deleteComment(int id) async {
+    emit(UserCommentActionState.deleting());
+    try {
+      await _userPostRepository.deleteComment(id);
+      emit(UserCommentActionState.deleted());
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   @override
   void addError(Object error, [StackTrace? stackTrace]) {
     emit(UserCommentActionState.error(ErrorEntity.fromException(error)));

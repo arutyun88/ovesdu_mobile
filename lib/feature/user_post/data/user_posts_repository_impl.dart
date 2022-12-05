@@ -115,4 +115,14 @@ class UserPostRepositoryImpl implements UserPostRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<void> deleteComment(int id) async {
+    await _api.setHeaderLocale();
+    try {
+      await _api.deleteComment(id);
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
