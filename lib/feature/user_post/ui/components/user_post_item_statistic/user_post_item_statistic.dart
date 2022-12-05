@@ -94,28 +94,6 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
                 ],
               ),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  height: 24,
-                  width: 24,
-                  child: SvgPicture.asset(
-                    AppIcons.eyeIcon,
-                    color: AppColors.hintTextColor,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: verticalPadding),
-                  child: Text(
-                    '129',
-                    style: theme.textTheme.bodyText2?.copyWith(
-                      color: AppColors.hintTextColor,
-                    ),
-                  ),
-                ),
-              ],
-            )
           ],
         ),
       ),
