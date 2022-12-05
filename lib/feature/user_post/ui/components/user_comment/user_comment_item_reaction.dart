@@ -78,6 +78,7 @@ class _UserCommentItemReactionState extends State<UserCommentItemReaction> {
         likeOnPressed: likeOnPressed,
         dislikeOnPressed: dislikeOnPressed,
         iconSize: 16,
+        authorId: widget.comment.author.id,
       ),
     );
   }

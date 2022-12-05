@@ -73,6 +73,7 @@ class _UserPostItemReactionState extends State<UserPostItemReaction> {
         dislike: dislike,
         likeOnPressed: _likeOnPressed,
         dislikeOnPressed: _dislikeOnPressed,
+        authorId: widget.post.author.id,
       ),
     );
   }
