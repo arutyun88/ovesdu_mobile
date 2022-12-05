@@ -307,6 +307,20 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> updateCommentReaction(int id, String type) {
+    try {
+      return dio.put(
+        '/data/comment/$id/reaction',
+        queryParameters: {
+          _QueryKey.type: type,
+        },
+      );
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
 
 abstract class _QueryKey {

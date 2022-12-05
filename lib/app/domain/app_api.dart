@@ -54,4 +54,6 @@ abstract class AppApi {
   Future<Response> getUserPost(int id);
 
   Future<Response> getPostComments(int id, int limit, int last);
+
+  Future<Response> updateCommentReaction(int id, String type);
 }
