@@ -8,7 +8,7 @@ import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../../user_post/domain/state/user_post_cubit.dart';
 import '../../../user_post/ui/components/user_post_item/user_post_item.dart';
-import 'item_divider.dart';
+import '../../../../app/ui/components/item_divider.dart';
 import 'profile_item_title.dart';
 
 class ProfilePosts extends StatelessWidget {

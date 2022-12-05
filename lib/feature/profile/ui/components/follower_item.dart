@@ -15,7 +15,7 @@ import '../../domain/profile_repository.dart';
 import '../../domain/state/profile_cubit.dart';
 import '../../domain/state/user_profile_follower/my_followers_cubit.dart';
 import '../user_profile_screen.dart';
-import 'item_divider.dart';
+import '../../../../app/ui/components/item_divider.dart';
 
 class FollowerItem extends StatefulWidget {
   const FollowerItem(

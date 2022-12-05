@@ -11,7 +11,7 @@ import '../../domain/state/user_profile_follower/my_followers_cubit.dart';
 import '../../domain/state/user_profile_follower/user_profile_follower_cubit.dart';
 import '../../domain/state/user_profile_statistic/user_profile_statistic_cubit.dart';
 import '../followers_screen.dart';
-import 'item_divider.dart';
+import '../../../../app/ui/components/item_divider.dart';
 
 class ProfileStatistic extends StatelessWidget {
   const ProfileStatistic({

@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../../profile/ui/components/item_divider.dart';
+import '../../../../../app/ui/components/item_divider.dart';
 import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import 'user_comment_header.dart';
 import 'user_comment_item_statistic.dart';
@@ -74,6 +74,7 @@ class UserCommentItem extends StatelessWidget {
                               EdgeInsets.symmetric(vertical: verticalPadding),
                           child: ItemDivider(
                             padding: EdgeInsets.zero,
+                            color: AppColors.hintTextColor,
                           ),
                         ),
                         Text(

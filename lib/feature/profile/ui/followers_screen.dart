@@ -8,7 +8,7 @@ import '../domain/entities/user_profile_follower/user_profile_follower_item_enti
 import '../domain/entities/user_profile_follower/user_simple_followers_entity.dart';
 import '../domain/state/user_profile_follower/my_followers_cubit.dart';
 import 'components/follow_list.dart';
-import 'components/item_divider.dart';
+import '../../../app/ui/components/item_divider.dart';
 
 class FollowersScreen extends StatefulWidget {
   const FollowersScreen({

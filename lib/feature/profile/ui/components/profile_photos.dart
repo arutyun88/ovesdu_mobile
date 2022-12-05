@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import 'item_divider.dart';
+import '../../../../app/ui/components/item_divider.dart';
 import 'profile_item_title.dart';
 
 const double _photoHeight = 180.0;

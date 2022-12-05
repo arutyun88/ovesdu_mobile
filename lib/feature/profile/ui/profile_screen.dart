@@ -6,7 +6,7 @@ import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
 import '../domain/entities/user_profile/user_profile_entity.dart';
 import '../domain/state/profile_cubit.dart';
-import 'components/item_divider.dart';
+import '../../../app/ui/components/item_divider.dart';
 import 'components/user_profile_app_bar.dart';
 
 class ProfileScreen extends StatefulWidget {
