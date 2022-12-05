@@ -42,9 +42,30 @@ class UserPostCubit extends Cubit<UserPostState> {
     }
   }
 
+  void updateComments(ActionType type) {
+    try {
+      state.whenOrNull(updated: (post) {
+        late UserPostEntity copy;
+        switch (type) {
+          case ActionType.add:
+            copy = post.copyWith(comment: post.comment + 1);
+            break;
+          case ActionType.remove:
+            copy = post.copyWith(comment: post.comment - 1);
+            break;
+        }
+        emit(UserPostState.updated(copy));
+      });
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   @override
   void addError(Object error, [StackTrace? stackTrace]) {
     emit(UserPostState.error(ErrorEntity.fromException(error)));
     super.addError(error, stackTrace);
   }
 }
+
+enum ActionType { add, remove }

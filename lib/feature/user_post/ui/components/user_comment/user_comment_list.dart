@@ -40,6 +40,7 @@ class UserCommentList extends StatelessWidget {
                   return UserCommentItem(
                     comments.comments[index],
                     replyToComment: reply,
+                    key: ValueKey(comments.comments[index]),
                   );
                 },
               ),

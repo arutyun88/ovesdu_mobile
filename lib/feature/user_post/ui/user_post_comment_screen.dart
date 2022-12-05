@@ -8,6 +8,7 @@ import '../../../app/di/init_di.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../domain/entity/user_post/user_post_entity.dart';
+import '../domain/state/user_comment_action/user_comment_action_cubit.dart';
 import '../domain/state/user_post_comment/user_post_comment_cubit.dart';
 import '../domain/state/user_post_cubit.dart';
 import '../domain/user_post_repository.dart';
@@ -39,6 +40,11 @@ class UserPostCommentScreen extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => UserPostCubit(
+            locator.get<UserPostRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => UserCommentActionCubit(
             locator.get<UserPostRepository>(),
           ),
         ),
@@ -151,7 +157,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                         blurRadius: 1.0,
                         color: Theme.of(context).shadowColor.withOpacity(.2),
                       ),
-                    ]
+                    ],
                   ),
                   key: _commentFieldKey,
                   child: UserCommentField(
@@ -185,27 +191,36 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
     final value = _newCommentController.text.trim();
     if (value.isNotEmpty) {
       context
-          .read<UserPostCommentCubit>()
-          .createPostComment(
+          .read<UserCommentActionCubit>()
+          .createComment(
             postId: widget.post.id,
             text: _newCommentController.text.trim(),
           )
           .then(
         (value) {
-          context.read<UserPostCommentCubit>().state.whenOrNull(
-              created: (newPost) {
-            return CustomDialog.showMessageDialog(
-              context,
-              dictionary.commentPublished,
-            ).whenComplete(
-              () {
-                _newCommentController.clear();
-                Helpers.unfocused();
-              },
-            );
-          }, error: (error) {
-            return CustomDialog.showErrorDialog(context, error.message);
-          });
+          context.read<UserCommentActionCubit>().state.whenOrNull(
+            created: (newComment) {
+              return CustomDialog.showMessageDialog(
+                context,
+                dictionary.commentPublished,
+              ).whenComplete(
+                () {
+                  _newCommentController.clear();
+                  _fieldOnChanged(_newCommentController.text);
+                  Helpers.unfocused();
+                  context.read<UserPostCommentCubit>().commentAdded(newComment);
+                  context.read<UserPostCubit>().updateComments(ActionType.add);
+                  postEntity = context.read<UserPostCubit>().state.maybeWhen(
+                        updated: (entity) => entity,
+                        orElse: () => postEntity,
+                      );
+                },
+              );
+            },
+            error: (error) {
+              return CustomDialog.showErrorDialog(context, error.message);
+            },
+          );
         },
       );
     } else {

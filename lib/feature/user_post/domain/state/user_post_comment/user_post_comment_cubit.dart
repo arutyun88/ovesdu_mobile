@@ -37,19 +37,15 @@ class UserPostCommentCubit extends Cubit<UserPostCommentState> {
     }
   }
 
-  Future<void> createPostComment({
-    required int postId,
-    required String text,
-    int? toCommentId,
-  }) async {
-    emit(UserPostCommentState.creating());
+  void commentAdded(UserPostCommentEntity comment) {
     try {
-      final result = await _userPostRepository.createPostComment(
-        postId,
-        text,
-        toCommentId: toCommentId,
-      );
-      emit(UserPostCommentState.created(result));
+      state.whenOrNull(received: (comments) {
+        final newList = <UserPostCommentEntity>[];
+        newList.add(comment);
+        newList.addAll(comments.comments);
+        final result = comments.copyWith(comments: newList);
+        emit(UserPostCommentState.received(result));
+      });
     } catch (error, stackTrace) {
       addError(error, stackTrace);
     }
