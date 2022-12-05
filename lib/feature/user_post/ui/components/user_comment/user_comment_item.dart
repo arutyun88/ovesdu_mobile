@@ -32,12 +32,10 @@ class UserCommentItem extends StatelessWidget {
           child: Column(
             children: [
               UserCommentHeader(
-                avatar: comment.author.avatar,
-                firstName: comment.author.firstName,
-                lastName: comment.author.lastName,
+                author: comment.author,
+                commentId: comment.id,
                 created: comment.created,
                 updated: comment.updated,
-                lastVisit: comment.author.lastVisit,
               ),
               if (replyToComment != null)
                 Padding(

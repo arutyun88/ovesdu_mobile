@@ -51,6 +51,19 @@ class UserPostCommentCubit extends Cubit<UserPostCommentState> {
     }
   }
 
+  void commentDeleted(int id) {
+    try {
+      state.whenOrNull(received: (comments) {
+        final newList =
+            comments.comments.where((element) => element.id != id).toList();
+        final result = comments.copyWith(comments: newList);
+        emit(UserPostCommentState.received(result));
+      });
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   @override
   void addError(Object error, [StackTrace? stackTrace]) {
     emit(UserPostCommentState.error(ErrorEntity.fromException(error)));

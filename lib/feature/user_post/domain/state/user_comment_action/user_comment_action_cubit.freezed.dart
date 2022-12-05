@@ -21,6 +21,8 @@ mixin _$UserCommentActionState {
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() deleting,
+    required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +31,8 @@ mixin _$UserCommentActionState {
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? deleting,
+    TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +41,8 @@ mixin _$UserCommentActionState {
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? deleting,
+    TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) =>
@@ -46,6 +52,8 @@ mixin _$UserCommentActionState {
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateDeleting value) deleting,
+    required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +62,8 @@ mixin _$UserCommentActionState {
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +72,8 @@ mixin _$UserCommentActionState {
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,
     required TResult orElse(),
   }) =>
@@ -132,6 +144,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() deleting,
+    required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
   }) {
     return init();
@@ -143,6 +157,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? deleting,
+    TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return init?.call();
@@ -154,6 +170,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? deleting,
+    TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -169,6 +187,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateDeleting value) deleting,
+    required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
   }) {
     return init(this);
@@ -180,6 +200,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
   }) {
     return init?.call(this);
@@ -191,6 +213,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,
     required TResult orElse(),
   }) {
@@ -251,6 +275,8 @@ class _$_UserCommentActionStateCreating
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() deleting,
+    required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
   }) {
     return creating();
@@ -262,6 +288,8 @@ class _$_UserCommentActionStateCreating
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? deleting,
+    TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return creating?.call();
@@ -273,6 +301,8 @@ class _$_UserCommentActionStateCreating
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? deleting,
+    TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -288,6 +318,8 @@ class _$_UserCommentActionStateCreating
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateDeleting value) deleting,
+    required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
   }) {
     return creating(this);
@@ -299,6 +331,8 @@ class _$_UserCommentActionStateCreating
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
   }) {
     return creating?.call(this);
@@ -310,6 +344,8 @@ class _$_UserCommentActionStateCreating
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,
     required TResult orElse(),
   }) {
@@ -407,6 +443,8 @@ class _$_UserCommentActionStateCreated
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() deleting,
+    required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
   }) {
     return created(comment);
@@ -418,6 +456,8 @@ class _$_UserCommentActionStateCreated
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? deleting,
+    TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return created?.call(comment);
@@ -429,6 +469,8 @@ class _$_UserCommentActionStateCreated
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? deleting,
+    TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -444,6 +486,8 @@ class _$_UserCommentActionStateCreated
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateDeleting value) deleting,
+    required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
   }) {
     return created(this);
@@ -455,6 +499,8 @@ class _$_UserCommentActionStateCreated
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
   }) {
     return created?.call(this);
@@ -466,6 +512,8 @@ class _$_UserCommentActionStateCreated
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,
     required TResult orElse(),
   }) {
@@ -485,6 +533,270 @@ abstract class _UserCommentActionStateCreated
   @JsonKey(ignore: true)
   _$$_UserCommentActionStateCreatedCopyWith<_$_UserCommentActionStateCreated>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UserCommentActionStateDeletingCopyWith<$Res> {
+  factory _$$_UserCommentActionStateDeletingCopyWith(
+          _$_UserCommentActionStateDeleting value,
+          $Res Function(_$_UserCommentActionStateDeleting) then) =
+      __$$_UserCommentActionStateDeletingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_UserCommentActionStateDeletingCopyWithImpl<$Res>
+    extends _$UserCommentActionStateCopyWithImpl<$Res,
+        _$_UserCommentActionStateDeleting>
+    implements _$$_UserCommentActionStateDeletingCopyWith<$Res> {
+  __$$_UserCommentActionStateDeletingCopyWithImpl(
+      _$_UserCommentActionStateDeleting _value,
+      $Res Function(_$_UserCommentActionStateDeleting) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_UserCommentActionStateDeleting
+    implements _UserCommentActionStateDeleting {
+  _$_UserCommentActionStateDeleting();
+
+  @override
+  String toString() {
+    return 'UserCommentActionState.deleting()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserCommentActionStateDeleting);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() creating,
+    required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() deleting,
+    required TResult Function() deleted,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return deleting();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? creating,
+    TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? deleting,
+    TResult? Function()? deleted,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return deleting?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? creating,
+    TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? deleting,
+    TResult Function()? deleted,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (deleting != null) {
+      return deleting();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserCommentActionStateInit value) init,
+    required TResult Function(_UserCommentActionStateCreating value) creating,
+    required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateDeleting value) deleting,
+    required TResult Function(_UserCommentActionStateDeleted value) deleted,
+    required TResult Function(_UserCommentActionStateError value) error,
+  }) {
+    return deleting(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserCommentActionStateInit value)? init,
+    TResult? Function(_UserCommentActionStateCreating value)? creating,
+    TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult? Function(_UserCommentActionStateDeleted value)? deleted,
+    TResult? Function(_UserCommentActionStateError value)? error,
+  }) {
+    return deleting?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserCommentActionStateInit value)? init,
+    TResult Function(_UserCommentActionStateCreating value)? creating,
+    TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult Function(_UserCommentActionStateDeleted value)? deleted,
+    TResult Function(_UserCommentActionStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (deleting != null) {
+      return deleting(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserCommentActionStateDeleting
+    implements UserCommentActionState {
+  factory _UserCommentActionStateDeleting() = _$_UserCommentActionStateDeleting;
+}
+
+/// @nodoc
+abstract class _$$_UserCommentActionStateDeletedCopyWith<$Res> {
+  factory _$$_UserCommentActionStateDeletedCopyWith(
+          _$_UserCommentActionStateDeleted value,
+          $Res Function(_$_UserCommentActionStateDeleted) then) =
+      __$$_UserCommentActionStateDeletedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_UserCommentActionStateDeletedCopyWithImpl<$Res>
+    extends _$UserCommentActionStateCopyWithImpl<$Res,
+        _$_UserCommentActionStateDeleted>
+    implements _$$_UserCommentActionStateDeletedCopyWith<$Res> {
+  __$$_UserCommentActionStateDeletedCopyWithImpl(
+      _$_UserCommentActionStateDeleted _value,
+      $Res Function(_$_UserCommentActionStateDeleted) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_UserCommentActionStateDeleted
+    implements _UserCommentActionStateDeleted {
+  _$_UserCommentActionStateDeleted();
+
+  @override
+  String toString() {
+    return 'UserCommentActionState.deleted()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserCommentActionStateDeleted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() creating,
+    required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() deleting,
+    required TResult Function() deleted,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return deleted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? creating,
+    TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? deleting,
+    TResult? Function()? deleted,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return deleted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? creating,
+    TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? deleting,
+    TResult Function()? deleted,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserCommentActionStateInit value) init,
+    required TResult Function(_UserCommentActionStateCreating value) creating,
+    required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateDeleting value) deleting,
+    required TResult Function(_UserCommentActionStateDeleted value) deleted,
+    required TResult Function(_UserCommentActionStateError value) error,
+  }) {
+    return deleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserCommentActionStateInit value)? init,
+    TResult? Function(_UserCommentActionStateCreating value)? creating,
+    TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult? Function(_UserCommentActionStateDeleted value)? deleted,
+    TResult? Function(_UserCommentActionStateError value)? error,
+  }) {
+    return deleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserCommentActionStateInit value)? init,
+    TResult Function(_UserCommentActionStateCreating value)? creating,
+    TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult Function(_UserCommentActionStateDeleted value)? deleted,
+    TResult Function(_UserCommentActionStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserCommentActionStateDeleted
+    implements UserCommentActionState {
+  factory _UserCommentActionStateDeleted() = _$_UserCommentActionStateDeleted;
 }
 
 /// @nodoc
@@ -568,6 +880,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() deleting,
+    required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
   }) {
     return error(this.error);
@@ -579,6 +893,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? deleting,
+    TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
@@ -590,6 +906,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? deleting,
+    TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -605,6 +923,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateDeleting value) deleting,
+    required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
   }) {
     return error(this);
@@ -616,6 +936,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
   }) {
     return error?.call(this);
@@ -627,6 +949,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,
     required TResult orElse(),
   }) {
