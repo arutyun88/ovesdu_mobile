@@ -17,11 +17,13 @@ import '../../feature/profile/data/network_profile_repository.dart' as _i14;
 import '../../feature/profile/domain/profile_repository.dart' as _i13;
 import '../../feature/profile/domain/state/profile_cubit.dart' as _i18;
 import '../../feature/user_post/data/user_posts_repository_impl.dart' as _i16;
-import '../../feature/user_post/domain/state/user_post_comment/user_post_comment_cubit.dart'
+import '../../feature/user_post/domain/state/user_post_comment/reaction/user_comment_reaction_cubit.dart'
     as _i19;
-import '../../feature/user_post/domain/state/user_post_cubit.dart' as _i20;
+import '../../feature/user_post/domain/state/user_post_comment/user_post_comment_cubit.dart'
+    as _i20;
+import '../../feature/user_post/domain/state/user_post_cubit.dart' as _i21;
 import '../../feature/user_post/domain/state/user_post_reaction/user_post_reaction_cubit.dart'
-    as _i21;
+    as _i22;
 import '../../feature/user_post/domain/user_post_repository.dart' as _i15;
 import '../data/config/dev_app_config.dart' as _i4;
 import '../data/config/prod_app_config.dart' as _i5;
@@ -70,11 +72,13 @@ _i1.GetIt $initGetIt(
   gh.singleton<_i17.AuthCubit>(_i17.AuthCubit(get<_i9.AuthRepository>()));
   gh.singleton<_i18.ProfileCubit>(
       _i18.ProfileCubit(get<_i13.ProfileRepository>()));
-  gh.singleton<_i19.UserPostCommentCubit>(
-      _i19.UserPostCommentCubit(get<_i15.UserPostRepository>()));
-  gh.singleton<_i20.UserPostCubit>(
-      _i20.UserPostCubit(get<_i15.UserPostRepository>()));
-  gh.singleton<_i21.UserPostReactionCubit>(
-      _i21.UserPostReactionCubit(get<_i15.UserPostRepository>()));
+  gh.singleton<_i19.UserCommentReactionCubit>(
+      _i19.UserCommentReactionCubit(get<_i15.UserPostRepository>()));
+  gh.singleton<_i20.UserPostCommentCubit>(
+      _i20.UserPostCommentCubit(get<_i15.UserPostRepository>()));
+  gh.singleton<_i21.UserPostCubit>(
+      _i21.UserPostCubit(get<_i15.UserPostRepository>()));
+  gh.singleton<_i22.UserPostReactionCubit>(
+      _i22.UserPostReactionCubit(get<_i15.UserPostRepository>()));
   return get;
 }
