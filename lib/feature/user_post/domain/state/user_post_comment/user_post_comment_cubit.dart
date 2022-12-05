@@ -51,11 +51,11 @@ class UserPostCommentCubit extends Cubit<UserPostCommentState> {
     }
   }
 
-  void commentDeleted(int id) {
+  void commentDeleted(Set<int> ids) {
     try {
       state.whenOrNull(received: (comments) {
-        final newList =
-            comments.comments.where((element) => element.id != id).toList();
+        var newList =
+            comments.comments.where((e) => !ids.contains(e.id)).toList();
         final result = comments.copyWith(comments: newList);
         emit(UserPostCommentState.received(result));
       });

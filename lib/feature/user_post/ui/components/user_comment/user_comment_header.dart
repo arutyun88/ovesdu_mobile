@@ -12,7 +12,7 @@ import '../../../../../app/helpers/date_helper.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../profile/domain/state/profile_cubit.dart';
-import '../../../domain/entity/author_entity.dart';
+import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import '../../../domain/state/user_comment_action/user_comment_action_cubit.dart';
 import '../../../domain/state/user_post_comment/user_post_comment_cubit.dart';
 import '../../../domain/state/user_post_cubit.dart';
@@ -20,16 +20,10 @@ import '../../../domain/state/user_post_cubit.dart';
 class UserCommentHeader extends StatefulWidget {
   const UserCommentHeader({
     Key? key,
-    required this.author,
-    required this.commentId,
-    required this.created,
-    required this.updated,
+    required this.comment,
   }) : super(key: key);
 
-  final AuthorEntity author;
-  final int commentId;
-  final DateTime created;
-  final DateTime updated;
+  final UserPostCommentEntity comment;
 
   @override
   State<UserCommentHeader> createState() => _UserCommentHeaderState();
@@ -59,7 +53,7 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
     final avatarIsCircle = Provider.of<SettingProvider>(context).isCircleAvatar;
-    final isOnline = DateHelper.isOnline(widget.author.lastVisit);
+    final isOnline = DateHelper.isOnline(widget.comment.author.lastVisit);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: itemHorPadding,
@@ -88,9 +82,9 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
                 ),
               ),
               clipBehavior: Clip.hardEdge,
-              child: widget.author.avatar != null
+              child: widget.comment.author.avatar != null
                   ? Image.network(
-                      widget.author.avatar!,
+                      widget.comment.author.avatar!,
                       fit: BoxFit.cover,
                     )
                   : Padding(
@@ -112,11 +106,11 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${widget.author.firstName} ${widget.author.lastName}',
+                  '${widget.comment.author.firstName} ${widget.comment.author.lastName}',
                   style: theme.textTheme.headline6,
                 ),
                 Text(
-                  DateHelper.wasPublished(context, widget.created),
+                  DateHelper.wasPublished(context, widget.comment.created),
                   style: theme.textTheme.bodyText2?.copyWith(
                     color: AppColors.hintTextColor,
                     fontWeight: FontWeight.w400,
@@ -127,13 +121,13 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
           ),
           const Spacer(),
           GestureDetector(
-            onTap: currentUser == widget.author.id
+            onTap: currentUser == widget.comment.author.id
                 ? _deleteCommentOnPressed
                 : null,
             child: Icon(
               Icons.more_vert,
               size: 24,
-              color: currentUser == widget.author.id
+              color: currentUser == widget.comment.author.id
                   ? AppColors.orange
                   : AppColors.hintTextColor,
             ),
@@ -151,12 +145,60 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
       if (value != null && value == true) {
         context
             .read<UserCommentActionCubit>()
-            .deleteComment(widget.commentId)
+            .deleteComment(widget.comment.id)
             .whenComplete(() {
-          context.read<UserPostCommentCubit>().commentDeleted(widget.commentId);
-          context.read<UserPostCubit>().updateComments(ActionType.remove);
+          final commentsByState = context
+              .read<UserPostCommentCubit>()
+              .state
+              .whenOrNull(received: (comments) => comments.comments);
+          var comments = commentsByState
+              ?.where(
+                (element) => element.toCommentId == widget.comment.id,
+              )
+              .toList();
+          if (comments == null || comments.isEmpty) {
+            context
+                .read<UserPostCommentCubit>()
+                .commentDeleted({widget.comment.id});
+            context.read<UserPostCubit>().updateComments(ActionType.remove);
+          } else {
+            final ids = comments.map((e) => e.id).toSet();
+
+            final result = _cascadeDeleting(context, ids, widget.comment.id);
+            result.add(widget.comment.id);
+            context.read<UserPostCommentCubit>().commentDeleted(result);
+            for (int i = 0; i < result.length; i++) {
+              context.read<UserPostCubit>().updateComments(ActionType.remove);
+            }
+          }
         });
       }
     });
+  }
+
+  static Set<int> _cascadeDeleting(
+    BuildContext context,
+    Set<int> ids,
+    int searchId,
+  ) {
+    final commentsByState = context
+        .read<UserPostCommentCubit>()
+        .state
+        .whenOrNull(received: (comments) => comments.comments);
+    var comments = commentsByState
+        ?.where(
+          (element) => element.toCommentId == searchId,
+        )
+        .toList();
+
+    if (comments != null || comments!.isNotEmpty) {
+      final newIds = comments.map((e) => e.id).toSet();
+      ids.addAll(newIds);
+      for (int id in newIds) {
+        _cascadeDeleting(context, ids, id);
+      }
+    }
+
+    return ids;
   }
 }

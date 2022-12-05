@@ -31,12 +31,7 @@ class UserCommentItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: verticalPadding),
           child: Column(
             children: [
-              UserCommentHeader(
-                author: comment.author,
-                commentId: comment.id,
-                created: comment.created,
-                updated: comment.updated,
-              ),
+              UserCommentHeader(comment: comment),
               if (replyToComment != null)
                 Padding(
                   padding: const EdgeInsets.symmetric(
