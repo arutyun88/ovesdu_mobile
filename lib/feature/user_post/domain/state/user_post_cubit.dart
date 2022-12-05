@@ -34,6 +34,25 @@ class UserPostCubit extends Cubit<UserPostState> {
     }
   }
 
+  Future<void> postUpdated(UserPostEntity entity) async {
+    try {
+      state.whenOrNull(received: (posts) {
+        final postList = <UserPostEntity>[];
+        for (int i = 0; i < posts.posts.length; i++) {
+          if (posts.posts[i].id == entity.id) {
+            postList.add(entity);
+          } else {
+            postList.add(posts.posts[i]);
+          }
+        }
+        final copy = posts.copyWith(posts: postList);
+        emit(UserPostState.received(copy));
+      });
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   Future<void> getUserPost(int id) async {
     try {
       final result = await _userPostRepository.getUserPost(id);

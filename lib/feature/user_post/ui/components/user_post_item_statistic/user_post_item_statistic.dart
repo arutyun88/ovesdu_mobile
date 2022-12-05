@@ -10,6 +10,7 @@ import '../../../../../app/ui/components/buttons/empty_button.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../../app/ui/components/custom_page_route.dart';
 import '../../../domain/entity/user_post/user_post_entity.dart';
+import '../../../domain/state/user_post_cubit.dart';
 import '../../../domain/state/user_post_reaction/user_post_reaction_cubit.dart';
 import '../../../domain/user_post_repository.dart';
 import '../../user_post_comment_screen.dart';
@@ -100,7 +101,8 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
     );
   }
 
-  void _onPressedToCommentPage() => Navigator.of(context).push(
+  void _onPressedToCommentPage() => Navigator.of(context)
+          .push(
         CustomPageRoute(
           slideDirection: AxisDirection.right,
           child: UserPostCommentScreen(
@@ -109,5 +111,12 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
             avatar: widget.avatar,
           ),
         ),
+      )
+          .then(
+        (value) {
+          if (value != null) {
+            context.read<UserPostCubit>().postUpdated(value as UserPostEntity);
+          }
+        },
       );
 }
