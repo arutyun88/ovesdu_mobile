@@ -77,6 +77,7 @@ class _UserCommentItemReactionState extends State<UserCommentItemReaction> {
         dislike: dislike,
         likeOnPressed: likeOnPressed,
         dislikeOnPressed: dislikeOnPressed,
+        iconSize: 16,
       ),
     );
   }

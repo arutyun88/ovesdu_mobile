@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,7 @@ class ReactionWidget extends StatelessWidget {
     required this.dislike,
     required this.likeOnPressed,
     required this.dislikeOnPressed,
+    this.iconSize = 20.0,
   }) : super(key: key);
 
   final bool? liked;
@@ -24,22 +26,24 @@ class ReactionWidget extends StatelessWidget {
   final int dislike;
   final VoidCallback likeOnPressed;
   final VoidCallback dislikeOnPressed;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
-    return SizedBox(
-      width: 100,
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(minWidth: iconSize < 20.0 ? 74.0 : 82.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           EmptyButton(
             onPressed: likeOnPressed,
             child: SizedBox(
-              height: 24,
-              width: 24,
+              height: iconSize,
+              width: iconSize,
               child: SvgPicture.asset(
-                AppIcons.likeIcon,
+                AppIcons.upIcon,
                 color: liked != null && liked!
                     ? AppColors.greenLight
                     : AppColors.hintTextColor,
@@ -47,9 +51,7 @@ class ReactionWidget extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: verticalPadding / 2,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: verticalPadding),
             child: Text(
               UserPostHelper.likeCount(like, dislike),
               style: theme.textTheme.bodyText2?.copyWith(
@@ -64,10 +66,10 @@ class ReactionWidget extends StatelessWidget {
           EmptyButton(
             onPressed: dislikeOnPressed,
             child: SizedBox(
-              height: 24,
-              width: 24,
+              height: iconSize,
+              width: iconSize,
               child: SvgPicture.asset(
-                AppIcons.dislikeIcon,
+                AppIcons.downIcon,
                 color: liked != null && !liked!
                     ? AppColors.red
                     : AppColors.hintTextColor,

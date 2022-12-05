@@ -8,6 +8,8 @@ abstract class AppIcons {
   static const String messageIcon = 'assets/icons/message_icon.svg';
   static const String likeIcon = 'assets/icons/like_icon.svg';
   static const String dislikeIcon = 'assets/icons/dislike_icon.svg';
+  static const String upIcon = 'assets/icons/up_icon.svg';
+  static const String downIcon = 'assets/icons/down_icon.svg';
   static const String commentsIcon = 'assets/icons/comments_icon.svg';
   static const String notCommentsIcon = 'assets/icons/not_comments_icon.svg';
   static const String eyeIcon = 'assets/icons/eye_icon.svg';
