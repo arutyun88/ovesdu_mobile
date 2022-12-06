@@ -14,4 +14,5 @@ abstract class AppIcons {
   static const String notCommentsIcon = 'assets/icons/not_comments_icon.svg';
   static const String eyeIcon = 'assets/icons/eye_icon.svg';
   static const String profileIcon = 'assets/icons/profile_icon.svg';
+  static const String cancelIcon = 'assets/icons/cancel_icon.svg';
 }

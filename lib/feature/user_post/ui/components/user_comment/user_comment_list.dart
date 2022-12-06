@@ -3,13 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../app/ui/config/app_colors.dart';
+import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import '../../../domain/state/user_post_comment/user_post_comment_cubit.dart';
 import 'user_comment_item.dart';
 
 class UserCommentList extends StatelessWidget {
   const UserCommentList({
     Key? key,
+    required this.onTapToSelect,
   }) : super(key: key);
+
+  final Function(UserPostCommentEntity?) onTapToSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +53,14 @@ class UserCommentList extends StatelessWidget {
                     }
                   }
 
-                  return UserCommentItem(
-                    comments.comments[index],
-                    replyToCommentText: replyToCommentText,
-                    replyToCommentAuthor: replyToCommentAuthor,
-                    key: ValueKey(comments.comments[index]),
+                  return GestureDetector(
+                    onTap: () => onTapToSelect(comments.comments[index]),
+                    child: UserCommentItem(
+                      comments.comments[index],
+                      replyToCommentText: replyToCommentText,
+                      replyToCommentAuthor: replyToCommentAuthor,
+                      key: ValueKey(comments.comments[index]),
+                    ),
                   );
                 },
               ),

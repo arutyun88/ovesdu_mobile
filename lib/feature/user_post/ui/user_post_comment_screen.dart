@@ -8,6 +8,7 @@ import '../../../app/di/init_di.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../domain/entity/user_post/user_post_entity.dart';
+import '../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import '../domain/state/user_comment_action/user_comment_action_cubit.dart';
 import '../domain/state/user_post_comment/user_post_comment_cubit.dart';
 import '../domain/state/user_post_cubit.dart';
@@ -87,6 +88,8 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
 
   late UserPostEntity postEntity;
 
+  UserPostCommentEntity? selectedComment;
+
   @override
   void initState() {
     super.initState();
@@ -143,7 +146,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                                 lastVisit: widget.lastVisit,
                                 post: postEntity,
                               ),
-                              const UserCommentList(),
+                              UserCommentList(onTapToSelect: _onTapToSelect),
                               SizedBox(height: fieldHeight),
                             ],
                           ),
@@ -171,6 +174,8 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                         sendOnPressed: _sendOnPressed,
                         actionHeight: actionHeight,
                         symbolCount: symbolCount,
+                        replyToComment: selectedComment,
+                        onTapToUnselect: _onTapToSelect,
                       ),
                     ),
                   ),
@@ -181,6 +186,12 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
         );
       },
     );
+  }
+
+  void _onTapToSelect(UserPostCommentEntity? selected) {
+    setState(() {
+      selectedComment = selected;
+    });
   }
 
   void _fieldOnChanged(value) {
@@ -202,6 +213,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
           .createComment(
             postId: postEntity.id,
             text: _newCommentController.text.trim(),
+            toCommentId: selectedComment?.id,
           )
           .then(
         (value) {
@@ -212,6 +224,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                 dictionary.commentPublished,
               ).whenComplete(
                 () {
+                  selectedComment = null;
                   _newCommentController.clear();
                   _fieldOnChanged(_newCommentController.text);
                   Helpers.unfocused();
