@@ -10,6 +10,7 @@ import '../../../../../app/di/init_di.dart';
 import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/helpers/date_helper.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
+import '../../../../../app/ui/components/dialog/more_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../profile/domain/state/profile_cubit.dart';
 import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
@@ -32,6 +33,7 @@ class UserCommentHeader extends StatefulWidget {
 class _UserCommentHeaderState extends State<UserCommentHeader> {
   late AppLocalizations dictionary;
   late int currentUser;
+  final moreKey = GlobalKey();
 
   @override
   void initState() {
@@ -121,9 +123,8 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
           ),
           const Spacer(),
           GestureDetector(
-            onTap: currentUser == widget.comment.author.id
-                ? _deleteCommentOnPressed
-                : null,
+            key: moreKey,
+            onTap: _moreOnPressed,
             child: Icon(
               Icons.more_vert,
               size: 24,
@@ -134,6 +135,34 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
           ),
         ],
       ),
+    );
+  }
+
+  void _moreOnPressed() {
+    MoreDialog.show(
+      context,
+      moreKey,
+      actions: currentUser == widget.comment.author.id
+          ? [
+              {
+                dictionary.editComment: () {
+                  Navigator.of(context).pop();
+                }
+              },
+              {
+                dictionary.deleteComment: () {
+                  Navigator.of(context).pop();
+                  _deleteCommentOnPressed();
+                }
+              },
+            ]
+          : [
+              {
+                dictionary.complainToUser: () {
+                  Navigator.of(context).pop();
+                }
+              },
+            ],
     );
   }
 
