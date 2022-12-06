@@ -98,30 +98,33 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
                     ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 8.0,
-              top: 12,
-              bottom: 4,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '${widget.comment.author.firstName} ${widget.comment.author.lastName}',
-                  style: theme.textTheme.headline6,
-                ),
-                Text(
-                  DateHelper.wasPublished(context, widget.comment.created),
-                  style: theme.textTheme.bodyText2?.copyWith(
-                    color: AppColors.hintTextColor,
-                    fontWeight: FontWeight.w400,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 8.0,
+                top: 12,
+                bottom: 4,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${widget.comment.author.firstName} ${widget.comment.author.lastName}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.headline6,
                   ),
-                ),
-              ],
+                  Text(
+                    DateHelper.wasPublished(context, widget.comment.created),
+                    style: theme.textTheme.bodyText2?.copyWith(
+                      color: AppColors.hintTextColor,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          const Spacer(),
           GestureDetector(
             key: moreKey,
             onTap: _moreOnPressed,
