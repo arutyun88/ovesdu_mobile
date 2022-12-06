@@ -202,5 +202,8 @@
     }
   },
   "confirmCommentDelete": "Are you sure you want to delete the comment?",
-  "commentDeleted": "Comment has been deleted"
+  "commentDeleted": "Comment has been deleted",
+  "deleteComment": "delete comment",
+  "editComment": "update comment",
+  "complainToUser": "report a comment"
 }

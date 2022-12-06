@@ -119,5 +119,8 @@
   "answers": "{count} ответов",
   "responseToComment": "в ответ на комментарий {name}:",
   "confirmCommentDelete": "Вы уверены, что хотите удалить комментарий?",
-  "commentDeleted": "Комментарий был удалён"
+  "commentDeleted": "Комментарий был удалён",
+  "deleteComment": "удалить комментарий",
+  "editComment": "редактировать комментарий",
+  "complainToUser": "пожаловаться на комментарий"
 }
