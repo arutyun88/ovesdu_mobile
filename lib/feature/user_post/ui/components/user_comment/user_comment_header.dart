@@ -10,7 +10,7 @@ import '../../../../../app/di/init_di.dart';
 import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/helpers/date_helper.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
-import '../../../../../app/ui/components/dialog/more_dialog.dart';
+import '../../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../profile/domain/state/profile_cubit.dart';
 import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
@@ -139,7 +139,7 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
   }
 
   void _moreOnPressed() {
-    MoreDialog.show(
+    MoreMenuDialog.show(
       context,
       moreKey,
       actions: currentUser == widget.comment.author.id

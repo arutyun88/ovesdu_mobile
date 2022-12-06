@@ -8,8 +8,8 @@ import '../buttons/empty_button.dart';
 
 const _itemHeight = 50.0;
 
-class MoreDialog extends StatelessWidget {
-  const MoreDialog({
+class MoreMenuDialog extends StatelessWidget {
+  const MoreMenuDialog({
     Key? key,
     required this.xOffset,
     required this.yOffset,
@@ -41,7 +41,7 @@ class MoreDialog extends StatelessWidget {
       context: context,
       useSafeArea: false,
       barrierColor: barrierColor,
-      builder: (context) => MoreDialog(
+      builder: (context) => MoreMenuDialog(
         xOffset: xOffset,
         yOffset: yOffset,
         buttonWidth: width,
