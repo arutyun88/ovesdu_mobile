@@ -118,5 +118,6 @@
   "commentPublished": "Comment published",
   "answers": "{count} answers",
   "responseToComment": "in response to a comment {name}:",
-  "confirmCommentDelete": "Are you sure you want to delete the comment?\n\nAll replies to it will also be deleted."
+  "confirmCommentDelete": "Are you sure you want to delete the comment?",
+  "commentDeleted": "Comment has been deleted"
 }

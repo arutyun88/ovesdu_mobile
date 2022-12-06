@@ -201,5 +201,6 @@
       }
     }
   },
-  "confirmCommentDelete": "Are you sure you want to delete the comment?\n\nAll replies to it will also be deleted."
+  "confirmCommentDelete": "Are you sure you want to delete the comment?",
+  "commentDeleted": "Comment has been deleted"
 }
