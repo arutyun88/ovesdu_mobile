@@ -14,11 +14,13 @@ class UserCommentItem extends StatelessWidget {
   const UserCommentItem(
     this.comment, {
     Key? key,
-    this.replyToComment,
+    this.replyToCommentText,
+    this.replyToCommentAuthor,
   }) : super(key: key);
 
   final UserPostCommentEntity comment;
-  final UserPostCommentEntity? replyToComment;
+  final String? replyToCommentText;
+  final String? replyToCommentAuthor;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class UserCommentItem extends StatelessWidget {
           child: Column(
             children: [
               UserCommentHeader(comment: comment),
-              if (replyToComment != null)
+              if (replyToCommentText != null)
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: verticalPadding,
@@ -55,27 +57,35 @@ class UserCommentItem extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        if (replyToCommentAuthor != null)
+                          Text(
+                            dictionary
+                                .responseToComment(replyToCommentAuthor ?? ''),
+                            style: theme.textTheme.bodyText2?.copyWith(
+                              color: AppColors.hintTextColor,
+                            ),
+                          ),
+                        if (replyToCommentAuthor != null)
+                          const Padding(
+                            padding:
+                                EdgeInsets.symmetric(vertical: verticalPadding),
+                            child: ItemDivider(
+                              padding: EdgeInsets.zero,
+                              color: AppColors.hintTextColor,
+                            ),
+                          ),
                         Text(
-                          dictionary.responseToComment(
-                            replyToComment?.author.firstName ?? '',
-                          ),
-                          style: theme.textTheme.bodyText2?.copyWith(
-                            color: AppColors.hintTextColor,
-                          ),
-                        ),
-                        const Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: verticalPadding),
-                          child: ItemDivider(
-                            padding: EdgeInsets.zero,
-                            color: AppColors.hintTextColor,
-                          ),
-                        ),
-                        Text(
-                          replyToComment?.text ?? '',
+                          replyToCommentText ?? '',
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
-                          style: theme.textTheme.bodyText2,
+                          style: theme.textTheme.bodyText2?.copyWith(
+                            color: replyToCommentAuthor == null
+                                ? AppColors.hintTextColor.withOpacity(.9)
+                                : theme.textTheme.bodyText2?.color,
+                            fontStyle: replyToCommentAuthor == null
+                                ? FontStyle.italic
+                                : FontStyle.normal,
+                          ),
                         ),
                       ],
                     ),

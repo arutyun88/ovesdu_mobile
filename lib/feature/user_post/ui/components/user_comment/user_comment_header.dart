@@ -146,59 +146,66 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
         context
             .read<UserCommentActionCubit>()
             .deleteComment(widget.comment.id)
-            .whenComplete(() {
-          final commentsByState = context
-              .read<UserPostCommentCubit>()
-              .state
-              .whenOrNull(received: (comments) => comments.comments);
-          var comments = commentsByState
-              ?.where(
-                (element) => element.toCommentId == widget.comment.id,
-              )
-              .toList();
-          if (comments == null || comments.isEmpty) {
+            .whenComplete(
+          () {
+            // todo нужно ли каскадное удаление? Выполнять при некоем условии
+            // final commentsByState = context
+            //     .read<UserPostCommentCubit>()
+            //     .state
+            //     .whenOrNull(received: (comments) => comments.comments);
+            // var comments = commentsByState
+            //     ?.where(
+            //       (element) => element.toCommentId == widget.comment.id,
+            //     )
+            //     .toList();
+            // if (comments == null || comments.isEmpty) {
+            //   context
+            //       .read<UserPostCommentCubit>()
+            //       .commentDeleted({widget.comment.id});
+            //   context.read<UserPostCubit>().updateComments(ActionType.remove);
+            // } else {
+            //   final ids = comments.map((e) => e.id).toSet();
+            //
+            //   final result = _cascadeDeleting(context, ids, widget.comment.id);
+            //   result.add(widget.comment.id);
+            //   context.read<UserPostCommentCubit>().commentDeleted(result);
+            //   for (int i = 0; i < result.length; i++) {
+            //     context.read<UserPostCubit>().updateComments(ActionType.remove);
+            //   }
+            // }
             context
                 .read<UserPostCommentCubit>()
                 .commentDeleted({widget.comment.id});
             context.read<UserPostCubit>().updateComments(ActionType.remove);
-          } else {
-            final ids = comments.map((e) => e.id).toSet();
-
-            final result = _cascadeDeleting(context, ids, widget.comment.id);
-            result.add(widget.comment.id);
-            context.read<UserPostCommentCubit>().commentDeleted(result);
-            for (int i = 0; i < result.length; i++) {
-              context.read<UserPostCubit>().updateComments(ActionType.remove);
-            }
-          }
-        });
+          },
+        );
       }
     });
   }
 
-  static Set<int> _cascadeDeleting(
-    BuildContext context,
-    Set<int> ids,
-    int searchId,
-  ) {
-    final commentsByState = context
-        .read<UserPostCommentCubit>()
-        .state
-        .whenOrNull(received: (comments) => comments.comments);
-    var comments = commentsByState
-        ?.where(
-          (element) => element.toCommentId == searchId,
-        )
-        .toList();
-
-    if (comments != null || comments!.isNotEmpty) {
-      final newIds = comments.map((e) => e.id).toSet();
-      ids.addAll(newIds);
-      for (int id in newIds) {
-        _cascadeDeleting(context, ids, id);
-      }
-    }
-
-    return ids;
-  }
+// static Set<int> _cascadeDeleting(
+//   BuildContext context,
+//   Set<int> ids,
+//   int searchId,
+// ) {
+//   final commentsByState = context
+//       .read<UserPostCommentCubit>()
+//       .state
+//       .whenOrNull(received: (comments) => comments.comments);
+//   var comments = commentsByState
+//       ?.where(
+//         (element) => element.toCommentId == searchId,
+//       )
+//       .toList();
+//
+//   if (comments != null || comments!.isNotEmpty) {
+//     final newIds = comments.map((e) => e.id).toSet();
+//     ids.addAll(newIds);
+//     for (int id in newIds) {
+//       _cascadeDeleting(context, ids, id);
+//     }
+//   }
+//
+//   return ids;
+// }
 }

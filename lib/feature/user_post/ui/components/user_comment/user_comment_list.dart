@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import '../../../domain/state/user_post_comment/user_post_comment_cubit.dart';
 import 'user_comment_item.dart';
 
@@ -13,6 +13,8 @@ class UserCommentList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dictionary = AppLocalizations.of(context)!;
+
     return BlocBuilder<UserPostCommentCubit, UserPostCommentState>(
       builder: (context, state) {
         return state.maybeWhen(
@@ -22,7 +24,8 @@ class UserCommentList extends StatelessWidget {
                 comments.comments.length,
                 (index) {
                   final replyComment = comments.comments[index].toCommentId;
-                  UserPostCommentEntity? reply;
+                  String? replyToCommentText;
+                  String? replyToCommentAuthor;
                   if (replyComment != null) {
                     final tempList = comments.comments
                         .where(
@@ -30,16 +33,26 @@ class UserCommentList extends StatelessWidget {
                         )
                         .toList();
                     if (tempList.isEmpty) {
-                      reply = comments.commentsResponses
-                          .firstWhere((element) => element.id == replyComment);
+                      final list = comments.commentsResponses
+                          .where((element) => element.id == replyComment)
+                          .toList();
+                      if (list.isEmpty) {
+                        replyToCommentText = dictionary.commentDeleted;
+                        replyToCommentAuthor = null;
+                      } else {
+                        replyToCommentText = list.first.text;
+                        replyToCommentAuthor = list.first.author.firstName;
+                      }
                     } else {
-                      reply = tempList.first;
+                      replyToCommentText = tempList.first.text;
+                      replyToCommentAuthor = tempList.first.author.firstName;
                     }
                   }
 
                   return UserCommentItem(
                     comments.comments[index],
-                    replyToComment: reply,
+                    replyToCommentText: replyToCommentText,
+                    replyToCommentAuthor: replyToCommentAuthor,
                     key: ValueKey(comments.comments[index]),
                   );
                 },
