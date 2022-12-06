@@ -6,8 +6,6 @@ import '../../../data/setting_provider/theme_provider.dart';
 import '../../config/app_colors.dart';
 import '../buttons/empty_button.dart';
 
-const _itemHeight = 50.0;
-
 class MoreMenuDialog extends StatelessWidget {
   const MoreMenuDialog({
     Key? key,
@@ -55,8 +53,6 @@ class MoreMenuDialog extends StatelessWidget {
     final theme = Provider.of<ThemeProvider>(context).themeData;
 
     return LayoutBuilder(builder: (context, constraints) {
-      final openedHeight = actions.length * _itemHeight;
-
       final isOnRightHalf = xOffset > MediaQuery.of(context).size.width / 2;
       final isOnTopHalf = yOffset < constraints.maxHeight / 2;
 
@@ -70,7 +66,6 @@ class MoreMenuDialog extends StatelessWidget {
             context,
             isOnRightHalf,
             isOnTopHalf,
-            openedHeight,
             child: Container(
               clipBehavior: Clip.hardEdge,
               constraints: BoxConstraints(maxWidth: maxWidth),
@@ -103,23 +98,32 @@ class MoreMenuDialog extends StatelessWidget {
   _positionedBuilder(
     BuildContext context,
     bool isOnRightHalf,
-    bool isOnTopHalf,
-    double openedHeight, {
+    bool isOnTopHalf, {
     required Widget child,
   }) {
     return isOnRightHalf
-        ? Positioned(
-            top: isOnTopHalf ? yOffset + buttonWidth : yOffset - openedHeight,
-            height: openedHeight,
-            right: MediaQuery.of(context).size.width - xOffset,
-            child: child,
-          )
-        : Positioned(
-            top: isOnTopHalf ? yOffset + buttonWidth : yOffset - openedHeight,
-            height: openedHeight,
-            left: xOffset + buttonWidth,
-            child: child,
-          );
+        ? isOnTopHalf
+            ? Positioned(
+                top: yOffset + buttonWidth,
+                right: MediaQuery.of(context).size.width - xOffset,
+                child: child,
+              )
+            : Positioned(
+                bottom: MediaQuery.of(context).size.height - yOffset,
+                right: MediaQuery.of(context).size.width - xOffset,
+                child: child,
+              )
+        : isOnTopHalf
+            ? Positioned(
+                top: yOffset + buttonWidth,
+                left: xOffset + buttonWidth,
+                child: child,
+              )
+            : Positioned(
+                top: MediaQuery.of(context).size.height - yOffset,
+                left: xOffset + buttonWidth,
+                child: child,
+              );
   }
 }
 
@@ -137,20 +141,19 @@ class DialogItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
 
-    return SizedBox(
-      height: _itemHeight,
-      child: EmptyButton(
-        onPressed: onPressed,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: mainPadding,
-          ),
-          child: Text(
-            description,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.bodyText1,
-          ),
+    return EmptyButton(
+      onPressed: onPressed,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: mainPadding,
+          vertical: verticalPadding,
+        ),
+        child: Text(
+          description,
+          textAlign: TextAlign.end,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.bodyText1,
         ),
       ),
     );
