@@ -125,4 +125,28 @@ class UserPostRepositoryImpl implements UserPostRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<UserPostCommentEntity> updateComment(
+    int commentId,
+    String text, {
+    int? toCommentId,
+  }) async {
+    await _api.setHeaderLocale();
+    try {
+      final response = await _api.updateComment(
+        commentId,
+        {
+          'text': text,
+          'toCommentId': toCommentId,
+        },
+      );
+
+      final data = response.data['data'];
+
+      return UserPostCommentDto.fromJson(data).toEntity();
+    } catch (_) {
+      rethrow;
+    }
+  }
 }

@@ -26,4 +26,10 @@ abstract class UserPostRepository {
   Future<ReactionType> updateCommentReaction(int id, ReactionType type);
 
   Future<void> deleteComment(int id);
+
+  Future<UserPostCommentEntity> updateComment(
+    int commentId,
+    String text, {
+    int? toCommentId,
+  });
 }
