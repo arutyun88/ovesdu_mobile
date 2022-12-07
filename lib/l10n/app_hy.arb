@@ -119,8 +119,11 @@
   "answers": "{count} պատասխան",
   "responseToComment": "ի պատասխան մեկնաբանության {name}",
   "confirmCommentDelete": "Իսկապե՞ս ուզում եք ջնջել մեկնաբանությունը:",
+  "confirmCommentUpdating": "Իսկապե՞ս ուզում եք թարմացնել մեկնաբանությունը:",
   "commentDeleted": "Մեկնաբանությունը ջնջվել է",
   "deleteComment": "ջնջել մեկնաբանությունը",
   "editComment": "թարմացնել մեկնաբանությունը",
-  "complainToUser": "հաղորդել մեկնաբանություն"
+  "complainToUser": "հաղորդել մեկնաբանություն",
+  "commentUpdated": "Մեկնաբանությունը թարմացվել է",
+  "cancelEdit": "հետարկել խմբագրումը"
 }
