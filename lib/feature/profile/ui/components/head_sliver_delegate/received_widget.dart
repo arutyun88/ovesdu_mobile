@@ -6,6 +6,8 @@ import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/setting_provider.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/helpers/date_helper.dart';
+import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
+import '../../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../domain/entities/user_profile/user_profile_entity.dart';
 import '../message_button.dart';
@@ -43,6 +45,7 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
   late AppLocalizations dictionary;
   late String lastVisit;
   late bool isOnline;
+  final moreKey = GlobalKey();
 
   @override
   void didChangeDependencies() {
@@ -217,7 +220,8 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: widget.blockedOnTap,
+                  key: moreKey,
+                  onTap: _moreOnPressed,
                   child: const Center(
                     child: Icon(
                       Icons.more_horiz,
@@ -241,6 +245,30 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
                 : AppColors.orange.withOpacity(.2),
           ),
         ),
+      ],
+    );
+  }
+
+  void _moreOnPressed() {
+    MoreMenuDialog.show(
+      context,
+      moreKey,
+      actions: [
+        {
+          dictionary.blockUser: () {
+            Navigator.of(context).pop();
+            widget.blockedOnTap();
+          }
+        },
+        {
+          dictionary.subscribe: () {
+            Navigator.of(context).pop();
+            CustomDialog.showMessageDialog(
+              context,
+              dictionary.inDeveloping,
+            );
+          }
+        },
       ],
     );
   }

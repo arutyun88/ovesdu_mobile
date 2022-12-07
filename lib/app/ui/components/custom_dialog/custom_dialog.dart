@@ -12,7 +12,7 @@ abstract class CustomDialog {
     final barrierColor = Provider.of<ThemeProvider>(context, listen: false)
         .themeData
         .backgroundColor
-        .withOpacity(.7);
+        .withOpacity(.5);
 
     return showDialog(
       context: context,

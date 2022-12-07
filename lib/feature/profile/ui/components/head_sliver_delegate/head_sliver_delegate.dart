@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../app/di/init_di.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
+import '../../../../user_post/domain/state/user_post_cubit.dart';
 import '../../../domain/entities/user_profile/user_profile_entity.dart';
 import '../../../domain/state/profile_cubit.dart';
 import '../../../domain/state/user_blocked/user_blocked_cubit.dart';
@@ -111,7 +112,13 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
         false;
     if (blocked) {
       context.read<UserBlockedCubit>().removeBlocked(id.toString());
-      locator.get<ProfileCubit>().removeBlocked(id);
+      locator.get<ProfileCubit>().removeBlocked(id).whenComplete(() {
+        context.read<UserPostCubit>().getUserPosts(
+              id: id,
+              limit: 10,
+              last: 0,
+            );
+      });
     } else {
       CustomDialog.showBlockDialog(context).then(
         (value) {
