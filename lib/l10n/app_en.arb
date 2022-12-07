@@ -213,5 +213,7 @@
   "complainToUser": "report a user",
   "inDeveloping": "Section is under development",
   "editPost": "edit post",
-  "deletePost": "delete post"
+  "deletePost": "delete post",
+  "blockUser": "block user",
+  "unblockUser": "unblock user"
 }
