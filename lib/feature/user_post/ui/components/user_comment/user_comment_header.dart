@@ -64,10 +64,7 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
     final avatarIsCircle = Provider.of<SettingProvider>(context).isCircleAvatar;
     final isOnline = DateHelper.isOnline(widget.comment.author.lastVisit);
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: itemHorPadding,
-        vertical: verticalPadding,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: itemHorPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,8 +75,8 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
                   .setCircleAvatar();
             },
             child: Container(
-              height: 60,
-              width: 60,
+              height: 48,
+              width: 48,
               decoration: BoxDecoration(
                 shape: avatarIsCircle ? BoxShape.circle : BoxShape.rectangle,
                 borderRadius: avatarIsCircle ? null : BorderRadius.circular(16),
@@ -109,7 +106,7 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
             child: Padding(
               padding: const EdgeInsets.only(
                 left: 8.0,
-                top: 12,
+                top: 8.0,
                 bottom: 4,
               ),
               child: Column(

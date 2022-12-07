@@ -25,10 +25,7 @@ class UserCommentItemStatistic extends StatelessWidget {
     final theme = Provider.of<ThemeProvider>(context).themeData;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: verticalPadding,
-        horizontal: itemHorPadding,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: itemHorPadding),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: 24,
