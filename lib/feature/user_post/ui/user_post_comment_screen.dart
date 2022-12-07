@@ -89,6 +89,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
   late UserPostEntity postEntity;
 
   UserPostCommentEntity? selectedComment;
+  UserPostCommentEntity? editingComment;
 
   @override
   void initState() {
@@ -146,7 +147,10 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                                 lastVisit: widget.lastVisit,
                                 post: postEntity,
                               ),
-                              UserCommentList(onTapToSelect: _onTapToSelect),
+                              UserCommentList(
+                                onTapToSelect: _onTapToSelect,
+                                onTapToRead: _onTapToRead,
+                              ),
                               SizedBox(height: fieldHeight),
                             ],
                           ),
@@ -194,6 +198,15 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
     });
   }
 
+  void _onTapToRead(
+      UserPostCommentEntity comment, UserPostCommentEntity? replyTo) {
+    setState(() {
+      _newCommentController.text = comment.text ?? '';
+      editingComment = comment;
+      selectedComment = replyTo;
+    });
+  }
+
   void _fieldOnChanged(value) {
     final renderBox =
         _commentFieldKey.currentContext!.findRenderObject() as RenderBox;
@@ -208,41 +221,59 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
   void _sendOnPressed() {
     final value = _newCommentController.text.trim();
     if (value.isNotEmpty) {
-      context
-          .read<UserCommentActionCubit>()
-          .createComment(
-            postId: postEntity.id,
-            text: _newCommentController.text.trim(),
-            toCommentId: selectedComment?.id,
-          )
-          .then(
-        (value) {
-          context.read<UserCommentActionCubit>().state.whenOrNull(
-            created: (newComment) {
-              return CustomDialog.showMessageDialog(
-                context,
-                dictionary.commentPublished,
-              ).whenComplete(
-                () {
-                  selectedComment = null;
-                  _newCommentController.clear();
-                  _fieldOnChanged(_newCommentController.text);
-                  Helpers.unfocused();
-                  context.read<UserPostCommentCubit>().commentAdded(newComment);
-                  context.read<UserPostCubit>().updateComments(ActionType.add);
-                  postEntity = context.read<UserPostCubit>().state.maybeWhen(
-                        updated: (entity) => entity,
-                        orElse: () => postEntity,
-                      );
-                },
-              );
-            },
-            error: (error) {
-              return CustomDialog.showErrorDialog(context, error.message);
-            },
-          );
-        },
-      );
+      if (editingComment != null) {
+        context
+            .read<UserCommentActionCubit>()
+            .updateComment(
+              commentId: editingComment?.id ?? -1,
+              postId: postEntity.id,
+              text: _newCommentController.text.trim(),
+              toCommentId: selectedComment?.id,
+            )
+            .then(
+              (value) => print('edited'),
+            );
+      } else {
+        context
+            .read<UserCommentActionCubit>()
+            .createComment(
+              postId: postEntity.id,
+              text: _newCommentController.text.trim(),
+              toCommentId: selectedComment?.id,
+            )
+            .then(
+          (value) {
+            context.read<UserCommentActionCubit>().state.whenOrNull(
+              created: (newComment) {
+                return CustomDialog.showMessageDialog(
+                  context,
+                  dictionary.commentPublished,
+                ).whenComplete(
+                  () {
+                    selectedComment = null;
+                    _newCommentController.clear();
+                    _fieldOnChanged(_newCommentController.text);
+                    Helpers.unfocused();
+                    context
+                        .read<UserPostCommentCubit>()
+                        .commentAdded(newComment);
+                    context
+                        .read<UserPostCubit>()
+                        .updateComments(ActionType.add);
+                    postEntity = context.read<UserPostCubit>().state.maybeWhen(
+                          updated: (entity) => entity,
+                          orElse: () => postEntity,
+                        );
+                  },
+                );
+              },
+              error: (error) {
+                return CustomDialog.showErrorDialog(context, error.message);
+              },
+            );
+          },
+        );
+      }
     } else {
       CustomDialog.showMessageDialog(
         context,

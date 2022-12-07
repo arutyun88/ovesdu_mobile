@@ -13,13 +13,20 @@ class UserCommentItem extends StatelessWidget {
   const UserCommentItem(
     this.comment, {
     Key? key,
+    this.replyToComment,
     this.replyToCommentText,
     this.replyToCommentAuthor,
+    required this.onTapToRead,
   }) : super(key: key);
 
   final UserPostCommentEntity comment;
+  final UserPostCommentEntity? replyToComment;
   final String? replyToCommentText;
   final String? replyToCommentAuthor;
+  final Function(
+    UserPostCommentEntity editingComment,
+    UserPostCommentEntity? replyTo,
+  ) onTapToRead;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +38,11 @@ class UserCommentItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: verticalPadding),
           child: Column(
             children: [
-              UserCommentHeader(comment: comment),
+              UserCommentHeader(
+                comment: comment,
+                onTapToRead: onTapToRead,
+                replyToComment: replyToComment,
+              ),
               if (replyToCommentText != null)
                 UserCommentRepliedItem(
                   replyToCommentAuthor: replyToCommentAuthor,

@@ -22,9 +22,16 @@ class UserCommentHeader extends StatefulWidget {
   const UserCommentHeader({
     Key? key,
     required this.comment,
+    required this.onTapToRead,
+    this.replyToComment,
   }) : super(key: key);
 
   final UserPostCommentEntity comment;
+  final Function(
+    UserPostCommentEntity editingComment,
+    UserPostCommentEntity? replyTo,
+  ) onTapToRead;
+  final UserPostCommentEntity? replyToComment;
 
   @override
   State<UserCommentHeader> createState() => _UserCommentHeaderState();
@@ -150,6 +157,7 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
               {
                 dictionary.editComment: () {
                   Navigator.of(context).pop();
+                  widget.onTapToRead(widget.comment, widget.replyToComment);
                 }
               },
               {

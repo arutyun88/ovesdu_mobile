@@ -11,9 +11,14 @@ class UserCommentList extends StatelessWidget {
   const UserCommentList({
     Key? key,
     required this.onTapToSelect,
+    required this.onTapToRead,
   }) : super(key: key);
 
   final Function(UserPostCommentEntity?) onTapToSelect;
+  final Function(
+    UserPostCommentEntity editingComment,
+    UserPostCommentEntity? replyTo,
+  ) onTapToRead;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +33,7 @@ class UserCommentList extends StatelessWidget {
                 comments.comments.length,
                 (index) {
                   final replyComment = comments.comments[index].toCommentId;
+                  UserPostCommentEntity? replyToComment;
                   String? replyToCommentText;
                   String? replyToCommentAuthor;
                   if (replyComment != null) {
@@ -41,13 +47,16 @@ class UserCommentList extends StatelessWidget {
                           .where((element) => element.id == replyComment)
                           .toList();
                       if (list.isEmpty) {
+                        replyToComment = null;
                         replyToCommentText = dictionary.commentDeleted;
                         replyToCommentAuthor = null;
                       } else {
+                        replyToComment = list.first;
                         replyToCommentText = list.first.text;
                         replyToCommentAuthor = list.first.author.firstName;
                       }
                     } else {
+                      replyToComment = tempList.first;
                       replyToCommentText = tempList.first.text;
                       replyToCommentAuthor = tempList.first.author.firstName;
                     }
@@ -57,9 +66,11 @@ class UserCommentList extends StatelessWidget {
                     onTap: () => onTapToSelect(comments.comments[index]),
                     child: UserCommentItem(
                       comments.comments[index],
+                      replyToComment: replyToComment,
                       replyToCommentText: replyToCommentText,
                       replyToCommentAuthor: replyToCommentAuthor,
                       key: ValueKey(comments.comments[index]),
+                      onTapToRead: onTapToRead,
                     ),
                   );
                 },
