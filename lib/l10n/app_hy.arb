@@ -123,7 +123,12 @@
   "commentDeleted": "Մեկնաբանությունը ջնջվել է",
   "deleteComment": "ջնջել մեկնաբանությունը",
   "editComment": "թարմացնել մեկնաբանությունը",
-  "complainToUser": "հաղորդել մեկնաբանություն",
   "commentUpdated": "Մեկնաբանությունը թարմացվել է",
-  "cancelEdit": "հետարկել խմբագրումը"
+  "cancelEdit": "հետարկել խմբագրումը",
+  "complainToComment": "հաղորդել մեկնաբանություն",
+  "complainToPost": "զեկուցել գրառման մասին",
+  "complainToUser": "զեկուցել օգտատիրոջ մասին",
+  "inDeveloping": "Բաժինը մշակման փուլում է",
+  "editPost": "խմբագրել գրառումը",
+  "deletePost": "ջնջել գրառումը"
 }

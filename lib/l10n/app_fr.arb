@@ -123,7 +123,12 @@
   "commentDeleted": "Comment has been deleted",
   "deleteComment": "delete comment",
   "editComment": "update comment",
-  "complainToUser": "report a comment",
   "commentUpdated": "Comment has been updated",
-  "cancelEdit": "undo editing"
+  "cancelEdit": "undo editing",
+  "complainToComment": "report a comment",
+  "complainToPost": "report a post",
+  "complainToUser": "report a user",
+  "inDeveloping": "Section is under development",
+  "editPost": "edit post",
+  "deletePost": "delete post"
 }
