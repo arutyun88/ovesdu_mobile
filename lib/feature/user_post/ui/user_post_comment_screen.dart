@@ -82,7 +82,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
   late GlobalKey _commentFieldKey;
   late RenderBox? renderBox;
 
-  late TextEditingController _newCommentController;
+  late TextEditingController _commentController;
 
   late int symbolCount = 0;
 
@@ -91,6 +91,8 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
   UserPostCommentEntity? selectedComment;
   UserPostCommentEntity? editingComment;
 
+  bool isEdit = false;
+
   @override
   void initState() {
     super.initState();
@@ -98,7 +100,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
     _commentFieldKey = GlobalKey();
     renderBox = null;
 
-    _newCommentController = TextEditingController();
+    _commentController = TextEditingController();
 
     postEntity = widget.post;
 
@@ -173,13 +175,15 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                       ),
                       key: _commentFieldKey,
                       child: UserCommentField(
-                        controller: _newCommentController,
+                        controller: _commentController,
                         onChanged: _fieldOnChanged,
                         sendOnPressed: _sendOnPressed,
                         actionHeight: actionHeight,
                         symbolCount: symbolCount,
                         replyToComment: selectedComment,
                         onTapToUnselect: _onTapToSelect,
+                        isEdit: isEdit,
+                        onTapToCancel: _onTapToCancel,
                       ),
                     ),
                   ),
@@ -198,12 +202,20 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
     });
   }
 
+  void _onTapToCancel() {
+    setState(() {
+      editingComment = null;
+      isEdit = false;
+    });
+  }
+
   void _onTapToRead(
       UserPostCommentEntity comment, UserPostCommentEntity? replyTo) {
     setState(() {
-      _newCommentController.text = comment.text ?? '';
+      _commentController.text = comment.text ?? '';
       editingComment = comment;
       selectedComment = replyTo;
+      isEdit = true;
     });
   }
 
@@ -219,26 +231,56 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
   }
 
   void _sendOnPressed() {
-    final value = _newCommentController.text.trim();
+    final value = _commentController.text.trim();
     if (value.isNotEmpty) {
       if (editingComment != null) {
-        context
-            .read<UserCommentActionCubit>()
-            .updateComment(
-              commentId: editingComment?.id ?? -1,
-              postId: postEntity.id,
-              text: _newCommentController.text.trim(),
-              toCommentId: selectedComment?.id,
-            )
-            .then(
-              (value) => print('edited'),
+        CustomDialog.showConfirmMessageDialog(
+          context,
+          dictionary.confirmCommentUpdating,
+        ).then((value) {
+          if (value != null && value == true) {
+            context
+                .read<UserCommentActionCubit>()
+                .updateComment(
+                  commentId: editingComment?.id ?? -1,
+                  postId: postEntity.id,
+                  text: _commentController.text.trim(),
+                  toCommentId: selectedComment?.id,
+                )
+                .then(
+              (value) {
+                context.read<UserCommentActionCubit>().state.whenOrNull(
+                  updated: (updatedComment) {
+                    return CustomDialog.showMessageDialog(
+                      context,
+                      dictionary.commentUpdated,
+                    ).whenComplete(
+                      () {
+                        selectedComment = null;
+                        editingComment = null;
+                        _commentController.clear();
+                        _fieldOnChanged(_commentController.text);
+                        Helpers.unfocused();
+                        context
+                            .read<UserPostCommentCubit>()
+                            .commentUpdated(updatedComment);
+                      },
+                    );
+                  },
+                  error: (error) {
+                    return CustomDialog.showErrorDialog(context, error.message);
+                  },
+                );
+              },
             );
+          }
+        });
       } else {
         context
             .read<UserCommentActionCubit>()
             .createComment(
               postId: postEntity.id,
-              text: _newCommentController.text.trim(),
+              text: _commentController.text.trim(),
               toCommentId: selectedComment?.id,
             )
             .then(
@@ -251,8 +293,8 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                 ).whenComplete(
                   () {
                     selectedComment = null;
-                    _newCommentController.clear();
-                    _fieldOnChanged(_newCommentController.text);
+                    _commentController.clear();
+                    _fieldOnChanged(_commentController.text);
                     Helpers.unfocused();
                     context
                         .read<UserPostCommentCubit>()
@@ -278,7 +320,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
       CustomDialog.showMessageDialog(
         context,
         dictionary.commentCannotBeEmpty,
-      ).whenComplete(() => _newCommentController.clear());
+      ).whenComplete(() => _commentController.clear());
     }
   }
 }

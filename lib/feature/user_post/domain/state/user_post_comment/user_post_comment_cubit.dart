@@ -51,6 +51,25 @@ class UserPostCommentCubit extends Cubit<UserPostCommentState> {
     }
   }
 
+  void commentUpdated(UserPostCommentEntity updatedComment) {
+    try {
+      state.whenOrNull(received: (comments) {
+        final newList = <UserPostCommentEntity>[];
+        for (UserPostCommentEntity comment in comments.comments) {
+          if (comment.id == updatedComment.id) {
+            newList.add(updatedComment);
+          } else {
+            newList.add(comment);
+          }
+        }
+        final result = comments.copyWith(comments: newList);
+        emit(UserPostCommentState.received(result));
+      });
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   void commentDeleted(Set<int> ids) {
     try {
       state.whenOrNull(received: (comments) {

@@ -22,6 +22,8 @@ class UserCommentField extends StatefulWidget {
     required this.symbolCount,
     this.replyToComment,
     required this.onTapToUnselect,
+    this.isEdit = false,
+    this.onTapToCancel,
   }) : super(key: key);
 
   final TextEditingController controller;
@@ -31,6 +33,8 @@ class UserCommentField extends StatefulWidget {
   final int symbolCount;
   final UserPostCommentEntity? replyToComment;
   final Function(UserPostCommentEntity?) onTapToUnselect;
+  final bool isEdit;
+  final VoidCallback? onTapToCancel;
 
   @override
   State<UserCommentField> createState() => _UserCommentFieldState();
@@ -121,13 +125,30 @@ class _UserCommentFieldState extends State<UserCommentField> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: mainPadding),
-                child: EmptyButton(
-                  onPressed: widget.sendOnPressed,
-                  child: const Icon(
-                    Icons.send,
-                    size: iconSize,
-                    color: AppColors.orange,
-                  ),
+                child: Row(
+                  children: [
+                    if (widget.isEdit)
+                      Padding(
+                        padding: const EdgeInsets.only(right: mainPadding / 2),
+                        child: EmptyButton(
+                          onPressed: widget.onTapToCancel,
+                          child: SvgPicture.asset(
+                            AppIcons.cancelIcon,
+                            height: iconSize * 0.8,
+                            width: iconSize * 0.8,
+                            color: AppColors.orange,
+                          ),
+                        ),
+                      ),
+                    EmptyButton(
+                      onPressed: widget.sendOnPressed,
+                      child: Icon(
+                        widget.isEdit ? Icons.edit : Icons.send,
+                        size: iconSize,
+                        color: AppColors.orange,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
