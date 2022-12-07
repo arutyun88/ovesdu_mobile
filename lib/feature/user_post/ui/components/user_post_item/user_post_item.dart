@@ -31,7 +31,7 @@ class UserPostItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          UserPostItemHeaderLight(created: post.created),
+          UserPostItemHeaderLight(post: post),
           Hero(
             tag: '${post.id}:${post.author.lastName}.${post.author.firstName}',
             child: Column(
