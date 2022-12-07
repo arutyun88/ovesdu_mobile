@@ -1,36 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../app/data/setting_provider/setting_provider.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../../app/di/init_di.dart';
 import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/helpers/date_helper.dart';
+import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
+import '../../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
+import '../../../../profile/domain/state/profile_cubit.dart';
+import '../../../domain/entity/user_post/user_post_entity.dart';
 
-class UserPostItemHeader extends StatelessWidget {
+class UserPostItemHeader extends StatefulWidget {
   const UserPostItemHeader({
     Key? key,
     required this.avatar,
-    required this.firstName,
-    required this.lastName,
-    required this.created,
-    required this.updated,
+    required this.postEntity,
     required this.lastVisit,
   }) : super(key: key);
 
   final String? avatar;
-  final String firstName;
-  final String lastName;
-  final DateTime created;
-  final DateTime updated;
+  final UserPostEntity postEntity;
   final DateTime lastVisit;
+
+  @override
+  State<UserPostItemHeader> createState() => _UserPostItemHeaderState();
+}
+
+class _UserPostItemHeaderState extends State<UserPostItemHeader> {
+  late AppLocalizations dictionary;
+  late int currentUser;
+  final moreKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    currentUser = locator
+            .get<ProfileCubit>()
+            .state
+            .whenOrNull(received: (user) => user.id) ??
+        -1;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    dictionary = AppLocalizations.of(context)!;
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
     final avatarIsCircle = Provider.of<SettingProvider>(context).isCircleAvatar;
-    final isOnline = DateHelper.isOnline(lastVisit);
+    final isOnline = DateHelper.isOnline(widget.lastVisit);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
@@ -59,9 +84,9 @@ class UserPostItemHeader extends StatelessWidget {
                 ),
               ),
               clipBehavior: Clip.hardEdge,
-              child: avatar != null
+              child: widget.avatar != null
                   ? Image.network(
-                      avatar!,
+                      widget.avatar!,
                       fit: BoxFit.cover,
                     )
                   : Padding(
@@ -80,11 +105,11 @@ class UserPostItemHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '$firstName $lastName',
+                  '${widget.postEntity.author.firstName} ${widget.postEntity.author.lastName}',
                   style: theme.textTheme.headline6,
                 ),
                 Text(
-                  DateHelper.wasPublished(context, created),
+                  DateHelper.wasPublished(context, widget.postEntity.created),
                   style: theme.textTheme.bodyText2?.copyWith(
                     color: AppColors.hintTextColor,
                     fontWeight: FontWeight.w400,
@@ -94,13 +119,65 @@ class UserPostItemHeader extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          const Icon(
-            Icons.more_horiz,
-            size: 24,
-            color: AppColors.hintTextColor,
+          GestureDetector(
+            key: moreKey,
+            onTap: _moreOnPressed,
+            child: const Icon(
+              Icons.more_horiz,
+              size: 24,
+              color: AppColors.hintTextColor,
+            ),
           ),
         ],
       ),
+    );
+  }
+
+  void _moreOnPressed() {
+    MoreMenuDialog.show(
+      context,
+      moreKey,
+      actions: currentUser == widget.postEntity.author.id
+          ? [
+              {
+                dictionary.editPost: () {
+                  Navigator.of(context).pop();
+                  CustomDialog.showMessageDialog(
+                    context,
+                    dictionary.inDeveloping,
+                  );
+                }
+              },
+              {
+                dictionary.deletePost: () {
+                  Navigator.of(context).pop();
+                  CustomDialog.showMessageDialog(
+                    context,
+                    dictionary.inDeveloping,
+                  );
+                }
+              },
+            ]
+          : [
+              {
+                dictionary.complainToPost: () {
+                  Navigator.of(context).pop();
+                  CustomDialog.showMessageDialog(
+                    context,
+                    dictionary.inDeveloping,
+                  );
+                }
+              },
+              {
+                dictionary.complainToUser: () {
+                  Navigator.of(context).pop();
+                  CustomDialog.showMessageDialog(
+                    context,
+                    dictionary.inDeveloping,
+                  );
+                }
+              },
+            ],
     );
   }
 }

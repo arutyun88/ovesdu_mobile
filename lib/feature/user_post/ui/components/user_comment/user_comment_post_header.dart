@@ -42,10 +42,7 @@ class UserCommentPostHeader extends StatelessWidget {
               width: MediaQuery.of(context).size.width - 60,
               child: UserPostItemHeader(
                 avatar: avatar,
-                firstName: postEntity.author.firstName,
-                lastName: postEntity.author.lastName,
-                created: postEntity.created,
-                updated: postEntity.updated,
+                postEntity: postEntity,
                 lastVisit: lastVisit,
               ),
             ),

@@ -166,8 +166,12 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
             ]
           : [
               {
-                dictionary.complainToUser: () {
+                dictionary.complainToComment: () {
                   Navigator.of(context).pop();
+                  CustomDialog.showMessageDialog(
+                    context,
+                    dictionary.inDeveloping,
+                  );
                 }
               },
             ],
