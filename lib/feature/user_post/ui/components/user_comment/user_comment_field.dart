@@ -73,13 +73,13 @@ class _UserCommentFieldState extends State<UserCommentField> {
                       right: 0,
                       top: 0,
                       child: SizedBox(
-                        height: iconSize,
-                        width: iconSize,
+                        height: iconSize * .8,
+                        width: iconSize * .8,
                         child: GestureDetector(
                           onTap: () => widget.onTapToUnselect(null),
                           child: SvgPicture.asset(
                             AppIcons.cancelIcon,
-                            color: theme.textTheme.bodyText2?.color,
+                            color: AppColors.orange,
                           ),
                         ),
                       ),
