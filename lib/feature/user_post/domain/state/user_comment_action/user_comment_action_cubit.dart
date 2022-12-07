@@ -38,6 +38,7 @@ class UserCommentActionCubit extends Cubit<UserCommentActionState> {
 
   Future<void> updateComment({
     required int commentId,
+    required int postId,
     required String text,
     int? toCommentId,
   }) async {
@@ -46,6 +47,7 @@ class UserCommentActionCubit extends Cubit<UserCommentActionState> {
       final result = await _userPostRepository.updateComment(
         commentId,
         text,
+        postId,
         toCommentId: toCommentId,
       );
       emit(UserCommentActionState.updated(result));

@@ -129,7 +129,8 @@ class UserPostRepositoryImpl implements UserPostRepository {
   @override
   Future<UserPostCommentEntity> updateComment(
     int commentId,
-    String text, {
+    String text,
+    int postId, {
     int? toCommentId,
   }) async {
     await _api.setHeaderLocale();
@@ -138,6 +139,7 @@ class UserPostRepositoryImpl implements UserPostRepository {
         commentId,
         {
           'text': text,
+          'postId': postId,
           'toCommentId': toCommentId,
         },
       );

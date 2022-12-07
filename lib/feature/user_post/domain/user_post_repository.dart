@@ -29,7 +29,8 @@ abstract class UserPostRepository {
 
   Future<UserPostCommentEntity> updateComment(
     int commentId,
-    String text, {
+    String text,
+    int postId, {
     int? toCommentId,
   });
 }
