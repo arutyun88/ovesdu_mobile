@@ -21,6 +21,8 @@ mixin _$UserCommentActionState {
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() updating,
+    required TResult Function(UserPostCommentEntity comment) updated,
     required TResult Function() deleting,
     required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
@@ -31,6 +33,8 @@ mixin _$UserCommentActionState {
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? updating,
+    TResult? Function(UserPostCommentEntity comment)? updated,
     TResult? Function()? deleting,
     TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
@@ -41,6 +45,8 @@ mixin _$UserCommentActionState {
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? updating,
+    TResult Function(UserPostCommentEntity comment)? updated,
     TResult Function()? deleting,
     TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
@@ -52,6 +58,8 @@ mixin _$UserCommentActionState {
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateUpdating value) updating,
+    required TResult Function(_UserCommentActionStateUpdated value) updated,
     required TResult Function(_UserCommentActionStateDeleting value) deleting,
     required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
@@ -62,6 +70,8 @@ mixin _$UserCommentActionState {
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateUpdating value)? updating,
+    TResult? Function(_UserCommentActionStateUpdated value)? updated,
     TResult? Function(_UserCommentActionStateDeleting value)? deleting,
     TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
@@ -72,6 +82,8 @@ mixin _$UserCommentActionState {
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateUpdating value)? updating,
+    TResult Function(_UserCommentActionStateUpdated value)? updated,
     TResult Function(_UserCommentActionStateDeleting value)? deleting,
     TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,
@@ -144,6 +156,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() updating,
+    required TResult Function(UserPostCommentEntity comment) updated,
     required TResult Function() deleting,
     required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
@@ -157,6 +171,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? updating,
+    TResult? Function(UserPostCommentEntity comment)? updated,
     TResult? Function()? deleting,
     TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
@@ -170,6 +186,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? updating,
+    TResult Function(UserPostCommentEntity comment)? updated,
     TResult Function()? deleting,
     TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
@@ -187,6 +205,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateUpdating value) updating,
+    required TResult Function(_UserCommentActionStateUpdated value) updated,
     required TResult Function(_UserCommentActionStateDeleting value) deleting,
     required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
@@ -200,6 +220,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateUpdating value)? updating,
+    TResult? Function(_UserCommentActionStateUpdated value)? updated,
     TResult? Function(_UserCommentActionStateDeleting value)? deleting,
     TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
@@ -213,6 +235,8 @@ class _$_UserCommentActionStateInit implements _UserCommentActionStateInit {
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateUpdating value)? updating,
+    TResult Function(_UserCommentActionStateUpdated value)? updated,
     TResult Function(_UserCommentActionStateDeleting value)? deleting,
     TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,
@@ -275,6 +299,8 @@ class _$_UserCommentActionStateCreating
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() updating,
+    required TResult Function(UserPostCommentEntity comment) updated,
     required TResult Function() deleting,
     required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
@@ -288,6 +314,8 @@ class _$_UserCommentActionStateCreating
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? updating,
+    TResult? Function(UserPostCommentEntity comment)? updated,
     TResult? Function()? deleting,
     TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
@@ -301,6 +329,8 @@ class _$_UserCommentActionStateCreating
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? updating,
+    TResult Function(UserPostCommentEntity comment)? updated,
     TResult Function()? deleting,
     TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
@@ -318,6 +348,8 @@ class _$_UserCommentActionStateCreating
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateUpdating value) updating,
+    required TResult Function(_UserCommentActionStateUpdated value) updated,
     required TResult Function(_UserCommentActionStateDeleting value) deleting,
     required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
@@ -331,6 +363,8 @@ class _$_UserCommentActionStateCreating
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateUpdating value)? updating,
+    TResult? Function(_UserCommentActionStateUpdated value)? updated,
     TResult? Function(_UserCommentActionStateDeleting value)? deleting,
     TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
@@ -344,6 +378,8 @@ class _$_UserCommentActionStateCreating
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateUpdating value)? updating,
+    TResult Function(_UserCommentActionStateUpdated value)? updated,
     TResult Function(_UserCommentActionStateDeleting value)? deleting,
     TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,
@@ -443,6 +479,8 @@ class _$_UserCommentActionStateCreated
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() updating,
+    required TResult Function(UserPostCommentEntity comment) updated,
     required TResult Function() deleting,
     required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
@@ -456,6 +494,8 @@ class _$_UserCommentActionStateCreated
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? updating,
+    TResult? Function(UserPostCommentEntity comment)? updated,
     TResult? Function()? deleting,
     TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
@@ -469,6 +509,8 @@ class _$_UserCommentActionStateCreated
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? updating,
+    TResult Function(UserPostCommentEntity comment)? updated,
     TResult Function()? deleting,
     TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
@@ -486,6 +528,8 @@ class _$_UserCommentActionStateCreated
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateUpdating value) updating,
+    required TResult Function(_UserCommentActionStateUpdated value) updated,
     required TResult Function(_UserCommentActionStateDeleting value) deleting,
     required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
@@ -499,6 +543,8 @@ class _$_UserCommentActionStateCreated
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateUpdating value)? updating,
+    TResult? Function(_UserCommentActionStateUpdated value)? updated,
     TResult? Function(_UserCommentActionStateDeleting value)? deleting,
     TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
@@ -512,6 +558,8 @@ class _$_UserCommentActionStateCreated
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateUpdating value)? updating,
+    TResult Function(_UserCommentActionStateUpdated value)? updated,
     TResult Function(_UserCommentActionStateDeleting value)? deleting,
     TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,
@@ -532,6 +580,336 @@ abstract class _UserCommentActionStateCreated
   UserPostCommentEntity get comment;
   @JsonKey(ignore: true)
   _$$_UserCommentActionStateCreatedCopyWith<_$_UserCommentActionStateCreated>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UserCommentActionStateUpdatingCopyWith<$Res> {
+  factory _$$_UserCommentActionStateUpdatingCopyWith(
+          _$_UserCommentActionStateUpdating value,
+          $Res Function(_$_UserCommentActionStateUpdating) then) =
+      __$$_UserCommentActionStateUpdatingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_UserCommentActionStateUpdatingCopyWithImpl<$Res>
+    extends _$UserCommentActionStateCopyWithImpl<$Res,
+        _$_UserCommentActionStateUpdating>
+    implements _$$_UserCommentActionStateUpdatingCopyWith<$Res> {
+  __$$_UserCommentActionStateUpdatingCopyWithImpl(
+      _$_UserCommentActionStateUpdating _value,
+      $Res Function(_$_UserCommentActionStateUpdating) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_UserCommentActionStateUpdating
+    implements _UserCommentActionStateUpdating {
+  _$_UserCommentActionStateUpdating();
+
+  @override
+  String toString() {
+    return 'UserCommentActionState.updating()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserCommentActionStateUpdating);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() creating,
+    required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() updating,
+    required TResult Function(UserPostCommentEntity comment) updated,
+    required TResult Function() deleting,
+    required TResult Function() deleted,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return updating();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? creating,
+    TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? updating,
+    TResult? Function(UserPostCommentEntity comment)? updated,
+    TResult? Function()? deleting,
+    TResult? Function()? deleted,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return updating?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? creating,
+    TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? updating,
+    TResult Function(UserPostCommentEntity comment)? updated,
+    TResult Function()? deleting,
+    TResult Function()? deleted,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (updating != null) {
+      return updating();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserCommentActionStateInit value) init,
+    required TResult Function(_UserCommentActionStateCreating value) creating,
+    required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateUpdating value) updating,
+    required TResult Function(_UserCommentActionStateUpdated value) updated,
+    required TResult Function(_UserCommentActionStateDeleting value) deleting,
+    required TResult Function(_UserCommentActionStateDeleted value) deleted,
+    required TResult Function(_UserCommentActionStateError value) error,
+  }) {
+    return updating(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserCommentActionStateInit value)? init,
+    TResult? Function(_UserCommentActionStateCreating value)? creating,
+    TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateUpdating value)? updating,
+    TResult? Function(_UserCommentActionStateUpdated value)? updated,
+    TResult? Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult? Function(_UserCommentActionStateDeleted value)? deleted,
+    TResult? Function(_UserCommentActionStateError value)? error,
+  }) {
+    return updating?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserCommentActionStateInit value)? init,
+    TResult Function(_UserCommentActionStateCreating value)? creating,
+    TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateUpdating value)? updating,
+    TResult Function(_UserCommentActionStateUpdated value)? updated,
+    TResult Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult Function(_UserCommentActionStateDeleted value)? deleted,
+    TResult Function(_UserCommentActionStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (updating != null) {
+      return updating(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserCommentActionStateUpdating
+    implements UserCommentActionState {
+  factory _UserCommentActionStateUpdating() = _$_UserCommentActionStateUpdating;
+}
+
+/// @nodoc
+abstract class _$$_UserCommentActionStateUpdatedCopyWith<$Res> {
+  factory _$$_UserCommentActionStateUpdatedCopyWith(
+          _$_UserCommentActionStateUpdated value,
+          $Res Function(_$_UserCommentActionStateUpdated) then) =
+      __$$_UserCommentActionStateUpdatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserPostCommentEntity comment});
+
+  $UserPostCommentEntityCopyWith<$Res> get comment;
+}
+
+/// @nodoc
+class __$$_UserCommentActionStateUpdatedCopyWithImpl<$Res>
+    extends _$UserCommentActionStateCopyWithImpl<$Res,
+        _$_UserCommentActionStateUpdated>
+    implements _$$_UserCommentActionStateUpdatedCopyWith<$Res> {
+  __$$_UserCommentActionStateUpdatedCopyWithImpl(
+      _$_UserCommentActionStateUpdated _value,
+      $Res Function(_$_UserCommentActionStateUpdated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? comment = null,
+  }) {
+    return _then(_$_UserCommentActionStateUpdated(
+      null == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as UserPostCommentEntity,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserPostCommentEntityCopyWith<$Res> get comment {
+    return $UserPostCommentEntityCopyWith<$Res>(_value.comment, (value) {
+      return _then(_value.copyWith(comment: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_UserCommentActionStateUpdated
+    implements _UserCommentActionStateUpdated {
+  _$_UserCommentActionStateUpdated(this.comment);
+
+  @override
+  final UserPostCommentEntity comment;
+
+  @override
+  String toString() {
+    return 'UserCommentActionState.updated(comment: $comment)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserCommentActionStateUpdated &&
+            (identical(other.comment, comment) || other.comment == comment));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, comment);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserCommentActionStateUpdatedCopyWith<_$_UserCommentActionStateUpdated>
+      get copyWith => __$$_UserCommentActionStateUpdatedCopyWithImpl<
+          _$_UserCommentActionStateUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() creating,
+    required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() updating,
+    required TResult Function(UserPostCommentEntity comment) updated,
+    required TResult Function() deleting,
+    required TResult Function() deleted,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return updated(comment);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? creating,
+    TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? updating,
+    TResult? Function(UserPostCommentEntity comment)? updated,
+    TResult? Function()? deleting,
+    TResult? Function()? deleted,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return updated?.call(comment);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? creating,
+    TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? updating,
+    TResult Function(UserPostCommentEntity comment)? updated,
+    TResult Function()? deleting,
+    TResult Function()? deleted,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (updated != null) {
+      return updated(comment);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserCommentActionStateInit value) init,
+    required TResult Function(_UserCommentActionStateCreating value) creating,
+    required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateUpdating value) updating,
+    required TResult Function(_UserCommentActionStateUpdated value) updated,
+    required TResult Function(_UserCommentActionStateDeleting value) deleting,
+    required TResult Function(_UserCommentActionStateDeleted value) deleted,
+    required TResult Function(_UserCommentActionStateError value) error,
+  }) {
+    return updated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserCommentActionStateInit value)? init,
+    TResult? Function(_UserCommentActionStateCreating value)? creating,
+    TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateUpdating value)? updating,
+    TResult? Function(_UserCommentActionStateUpdated value)? updated,
+    TResult? Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult? Function(_UserCommentActionStateDeleted value)? deleted,
+    TResult? Function(_UserCommentActionStateError value)? error,
+  }) {
+    return updated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserCommentActionStateInit value)? init,
+    TResult Function(_UserCommentActionStateCreating value)? creating,
+    TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateUpdating value)? updating,
+    TResult Function(_UserCommentActionStateUpdated value)? updated,
+    TResult Function(_UserCommentActionStateDeleting value)? deleting,
+    TResult Function(_UserCommentActionStateDeleted value)? deleted,
+    TResult Function(_UserCommentActionStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (updated != null) {
+      return updated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserCommentActionStateUpdated
+    implements UserCommentActionState {
+  factory _UserCommentActionStateUpdated(final UserPostCommentEntity comment) =
+      _$_UserCommentActionStateUpdated;
+
+  UserPostCommentEntity get comment;
+  @JsonKey(ignore: true)
+  _$$_UserCommentActionStateUpdatedCopyWith<_$_UserCommentActionStateUpdated>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -581,6 +959,8 @@ class _$_UserCommentActionStateDeleting
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() updating,
+    required TResult Function(UserPostCommentEntity comment) updated,
     required TResult Function() deleting,
     required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
@@ -594,6 +974,8 @@ class _$_UserCommentActionStateDeleting
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? updating,
+    TResult? Function(UserPostCommentEntity comment)? updated,
     TResult? Function()? deleting,
     TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
@@ -607,6 +989,8 @@ class _$_UserCommentActionStateDeleting
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? updating,
+    TResult Function(UserPostCommentEntity comment)? updated,
     TResult Function()? deleting,
     TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
@@ -624,6 +1008,8 @@ class _$_UserCommentActionStateDeleting
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateUpdating value) updating,
+    required TResult Function(_UserCommentActionStateUpdated value) updated,
     required TResult Function(_UserCommentActionStateDeleting value) deleting,
     required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
@@ -637,6 +1023,8 @@ class _$_UserCommentActionStateDeleting
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateUpdating value)? updating,
+    TResult? Function(_UserCommentActionStateUpdated value)? updated,
     TResult? Function(_UserCommentActionStateDeleting value)? deleting,
     TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
@@ -650,6 +1038,8 @@ class _$_UserCommentActionStateDeleting
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateUpdating value)? updating,
+    TResult Function(_UserCommentActionStateUpdated value)? updated,
     TResult Function(_UserCommentActionStateDeleting value)? deleting,
     TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,
@@ -713,6 +1103,8 @@ class _$_UserCommentActionStateDeleted
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() updating,
+    required TResult Function(UserPostCommentEntity comment) updated,
     required TResult Function() deleting,
     required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
@@ -726,6 +1118,8 @@ class _$_UserCommentActionStateDeleted
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? updating,
+    TResult? Function(UserPostCommentEntity comment)? updated,
     TResult? Function()? deleting,
     TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
@@ -739,6 +1133,8 @@ class _$_UserCommentActionStateDeleted
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? updating,
+    TResult Function(UserPostCommentEntity comment)? updated,
     TResult Function()? deleting,
     TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
@@ -756,6 +1152,8 @@ class _$_UserCommentActionStateDeleted
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateUpdating value) updating,
+    required TResult Function(_UserCommentActionStateUpdated value) updated,
     required TResult Function(_UserCommentActionStateDeleting value) deleting,
     required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
@@ -769,6 +1167,8 @@ class _$_UserCommentActionStateDeleted
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateUpdating value)? updating,
+    TResult? Function(_UserCommentActionStateUpdated value)? updated,
     TResult? Function(_UserCommentActionStateDeleting value)? deleting,
     TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
@@ -782,6 +1182,8 @@ class _$_UserCommentActionStateDeleted
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateUpdating value)? updating,
+    TResult Function(_UserCommentActionStateUpdated value)? updated,
     TResult Function(_UserCommentActionStateDeleting value)? deleting,
     TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,
@@ -880,6 +1282,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     required TResult Function() init,
     required TResult Function() creating,
     required TResult Function(UserPostCommentEntity comment) created,
+    required TResult Function() updating,
+    required TResult Function(UserPostCommentEntity comment) updated,
     required TResult Function() deleting,
     required TResult Function() deleted,
     required TResult Function(ErrorEntity error) error,
@@ -893,6 +1297,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     TResult? Function()? init,
     TResult? Function()? creating,
     TResult? Function(UserPostCommentEntity comment)? created,
+    TResult? Function()? updating,
+    TResult? Function(UserPostCommentEntity comment)? updated,
     TResult? Function()? deleting,
     TResult? Function()? deleted,
     TResult? Function(ErrorEntity error)? error,
@@ -906,6 +1312,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     TResult Function()? init,
     TResult Function()? creating,
     TResult Function(UserPostCommentEntity comment)? created,
+    TResult Function()? updating,
+    TResult Function(UserPostCommentEntity comment)? updated,
     TResult Function()? deleting,
     TResult Function()? deleted,
     TResult Function(ErrorEntity error)? error,
@@ -923,6 +1331,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     required TResult Function(_UserCommentActionStateInit value) init,
     required TResult Function(_UserCommentActionStateCreating value) creating,
     required TResult Function(_UserCommentActionStateCreated value) created,
+    required TResult Function(_UserCommentActionStateUpdating value) updating,
+    required TResult Function(_UserCommentActionStateUpdated value) updated,
     required TResult Function(_UserCommentActionStateDeleting value) deleting,
     required TResult Function(_UserCommentActionStateDeleted value) deleted,
     required TResult Function(_UserCommentActionStateError value) error,
@@ -936,6 +1346,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     TResult? Function(_UserCommentActionStateInit value)? init,
     TResult? Function(_UserCommentActionStateCreating value)? creating,
     TResult? Function(_UserCommentActionStateCreated value)? created,
+    TResult? Function(_UserCommentActionStateUpdating value)? updating,
+    TResult? Function(_UserCommentActionStateUpdated value)? updated,
     TResult? Function(_UserCommentActionStateDeleting value)? deleting,
     TResult? Function(_UserCommentActionStateDeleted value)? deleted,
     TResult? Function(_UserCommentActionStateError value)? error,
@@ -949,6 +1361,8 @@ class _$_UserCommentActionStateError implements _UserCommentActionStateError {
     TResult Function(_UserCommentActionStateInit value)? init,
     TResult Function(_UserCommentActionStateCreating value)? creating,
     TResult Function(_UserCommentActionStateCreated value)? created,
+    TResult Function(_UserCommentActionStateUpdating value)? updating,
+    TResult Function(_UserCommentActionStateUpdated value)? updated,
     TResult Function(_UserCommentActionStateDeleting value)? deleting,
     TResult Function(_UserCommentActionStateDeleted value)? deleted,
     TResult Function(_UserCommentActionStateError value)? error,

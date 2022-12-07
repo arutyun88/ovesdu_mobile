@@ -36,6 +36,24 @@ class UserCommentActionCubit extends Cubit<UserCommentActionState> {
     }
   }
 
+  Future<void> updateComment({
+    required int commentId,
+    required String text,
+    int? toCommentId,
+  }) async {
+    emit(UserCommentActionState.updating());
+    try {
+      final result = await _userPostRepository.updateComment(
+        commentId,
+        text,
+        toCommentId: toCommentId,
+      );
+      emit(UserCommentActionState.updated(result));
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   Future<void> deleteComment(int id) async {
     emit(UserCommentActionState.deleting());
     try {
