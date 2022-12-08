@@ -158,6 +158,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                         ),
                         avatar: widget.avatar,
                         lastVisit: widget.lastVisit,
+                        onTapToUp: _onTapToUp,
                       ),
                       Expanded(
                         child: SingleChildScrollView(
@@ -270,6 +271,9 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
       isEdit = true;
     });
   }
+
+  void _onTapToUp() => scrollController.animateTo(0.0,
+      duration: kThemeAnimationDuration, curve: Curves.ease);
 
   void _fieldOnChanged(value) {
     final renderBox =

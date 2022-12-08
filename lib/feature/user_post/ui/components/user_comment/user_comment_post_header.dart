@@ -13,12 +13,14 @@ class UserCommentPostHeader extends StatelessWidget {
     required this.postEntity,
     required this.avatar,
     required this.lastVisit,
+    required this.onTapToUp,
   }) : super(key: key);
 
   final UserPostEntity postEntity;
 
   final String? avatar;
   final DateTime lastVisit;
+  final VoidCallback onTapToUp;
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +42,13 @@ class UserCommentPostHeader extends StatelessWidget {
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width - 60,
-              child: UserPostItemHeader(
-                avatar: avatar,
-                postEntity: postEntity,
-                lastVisit: lastVisit,
+              child: GestureDetector(
+                onTap: onTapToUp,
+                child: UserPostItemHeader(
+                  avatar: avatar,
+                  postEntity: postEntity,
+                  lastVisit: lastVisit,
+                ),
               ),
             ),
           ],
