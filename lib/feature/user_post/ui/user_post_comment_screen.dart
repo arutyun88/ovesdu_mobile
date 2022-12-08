@@ -9,6 +9,7 @@ import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../domain/entity/user_post/user_post_entity.dart';
 import '../domain/entity/user_post_comment/user_post_comment_entity.dart';
+import '../domain/entity/user_post_comment/user_post_comments_entity.dart';
 import '../domain/state/user_comment_action/user_comment_action_cubit.dart';
 import '../domain/state/user_post_comment/user_post_comment_cubit.dart';
 import '../domain/state/user_post_cubit.dart';
@@ -93,6 +94,12 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
 
   bool isEdit = false;
 
+  late ScrollController scrollController;
+  bool isLoading = false;
+  bool hasMore = true;
+  int lastComment = 0;
+  UserPostCommentsEntity? postComments;
+
   @override
   void initState() {
     super.initState();
@@ -104,13 +111,19 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
 
     postEntity = widget.post;
 
-    context.read<UserPostCubit>().getUserPost(postEntity.id).whenComplete(() {
-      context.read<UserPostCommentCubit>().getPostComments(
-            postId: postEntity.id,
-            limit: 10,
-            last: 0,
-          );
-    });
+    context
+        .read<UserPostCubit>()
+        .getUserPost(postEntity.id)
+        .whenComplete(() => context
+            .read<UserPostCommentCubit>()
+            .getPostComments(
+              postId: postEntity.id,
+              limit: 10,
+              last: 0,
+            )
+            .whenComplete(() => _setLastCommentId()));
+
+    scrollController = ScrollController()..addListener(scrollListener);
   }
 
   @override
@@ -118,6 +131,12 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
     super.didChangeDependencies();
     theme = Provider.of<ThemeProvider>(context, listen: false).themeData;
     dictionary = AppLocalizations.of(context)!;
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -142,6 +161,8 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
                       ),
                       Expanded(
                         child: SingleChildScrollView(
+                          physics: const ClampingScrollPhysics(),
+                          controller: scrollController,
                           child: Column(
                             children: [
                               UserCommentPost(
@@ -194,6 +215,37 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
         );
       },
     );
+  }
+
+  void scrollListener() {
+    if (scrollController.position.pixels >=
+            scrollController.position.maxScrollExtent * .80 &&
+        !isLoading) {
+      if (hasMore) {
+        addComments();
+      }
+    }
+  }
+
+  void addComments() async {
+    isLoading = true;
+
+    await context
+        .read<UserPostCommentCubit>()
+        .addPostComments(
+          postId: postEntity.id,
+          limit: 20,
+          last: postComments?.last ?? 0,
+        )
+        .then((value) => _setLastCommentId());
+    isLoading = false;
+  }
+
+  void _setLastCommentId() {
+    context.read<UserPostCommentCubit>().state.whenOrNull(received: (comments) {
+      postComments = comments;
+      hasMore = (postComments?.comments.length ?? 0) < postEntity.comment;
+    });
   }
 
   void _onTapToSelect(UserPostCommentEntity? selected) {

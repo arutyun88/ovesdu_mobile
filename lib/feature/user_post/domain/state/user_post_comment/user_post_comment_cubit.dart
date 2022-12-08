@@ -37,6 +37,38 @@ class UserPostCommentCubit extends Cubit<UserPostCommentState> {
     }
   }
 
+  Future<void> addPostComments({
+    required int postId,
+    required int limit,
+    required int last,
+  }) async {
+    try {
+      final result = await _userPostRepository.getPostComments(
+        postId,
+        limit,
+        last,
+      );
+
+      state.whenOrNull(
+        received: (receivedComments) {
+          final oldComments = receivedComments.comments.map((e) => e).toList();
+          final oldResponses =
+              receivedComments.commentsResponses.map((e) => e).toList();
+          oldComments.addAll(result.comments);
+          oldResponses.addAll(result.commentsResponses);
+          final newResult = result.copyWith(
+            comments: oldComments,
+            commentsResponses: oldResponses,
+          );
+
+          emit(UserPostCommentState.received(newResult));
+        },
+      );
+    } catch (error, stackTrace) {
+      addError(error, stackTrace);
+    }
+  }
+
   void commentAdded(UserPostCommentEntity comment) {
     try {
       state.whenOrNull(received: (comments) {
