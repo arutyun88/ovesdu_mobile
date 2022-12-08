@@ -1,11 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
@@ -57,12 +59,22 @@ class _OrElseWidgetState extends State<OrElseWidget> {
           constraints: BoxConstraints(maxHeight: widget.expandedHeight),
           child: ImageFiltered(
             imageFilter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
-            child: Image.network(
-              widget.entity?.image ?? '',
-              width: MediaQuery.of(context).size.width,
-              height: widget.expandedHeight,
-              fit: BoxFit.cover,
-            ),
+            child: widget.entity?.image != null
+                ? Image.network(
+                    widget.entity?.image ?? '',
+                    width: MediaQuery.of(context).size.width,
+                    height: widget.expandedHeight,
+                    fit: BoxFit.cover,
+                  )
+                : Container(
+                    color: AppColors.hintTextColor.withOpacity(.2),
+                    height: widget.expandedHeight,
+                    width: MediaQuery.of(context).size.width,
+                    child: SvgPicture.asset(
+                      AppIcons.profileIcon,
+                      color: AppColors.hintTextColor,
+                    ),
+                  ),
           ),
         ),
         Positioned(

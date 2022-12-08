@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/setting_provider.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/helpers/date_helper.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../../app/ui/components/dialog/more_menu_dialog.dart';
@@ -61,12 +63,22 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.network(
-          widget.receivedUser.image ?? '',
-          width: MediaQuery.of(context).size.width,
-          height: widget.expandedHeight,
-          fit: BoxFit.cover,
-        ),
+        widget.receivedUser.image != null
+            ? Image.network(
+                widget.receivedUser.image!,
+                width: MediaQuery.of(context).size.width,
+                height: widget.expandedHeight,
+                fit: BoxFit.cover,
+              )
+            : Container(
+                color: AppColors.hintTextColor.withOpacity(.2),
+                height: widget.expandedHeight,
+                width: MediaQuery.of(context).size.width,
+                child: SvgPicture.asset(
+                  AppIcons.profileIcon,
+                  color: AppColors.hintTextColor,
+                ),
+              ),
         Positioned(
           top: widget.top >= 0 ? widget.top : 0.0,
           child: AnimatedContainer(
@@ -170,7 +182,7 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
                           shape: avatar ? BoxShape.circle : BoxShape.rectangle,
                           borderRadius:
                               avatar ? null : BorderRadius.circular(16),
-                          color: AppColors.hintTextColor,
+                          color: AppColors.hintTextColor.withOpacity(.1),
                           border: Border.all(
                             color: isOnline
                                 ? AppColors.orange
@@ -180,10 +192,18 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
                           ),
                         ),
                         clipBehavior: Clip.hardEdge,
-                        child: Image.network(
-                          widget.receivedUser.image ?? '',
-                          fit: BoxFit.cover,
-                        ),
+                        child: widget.receivedUser.image != null
+                            ? Image.network(
+                                widget.receivedUser.image ?? '',
+                                fit: BoxFit.cover,
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: SvgPicture.asset(
+                                  AppIcons.profileIcon,
+                                  color: AppColors.hintTextColor,
+                                ),
+                              ),
                       ),
                     ),
                   ),

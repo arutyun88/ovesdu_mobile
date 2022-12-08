@@ -37,7 +37,7 @@ class UserProfileScreen extends StatelessWidget {
   final String userId;
   final String firsName;
   final String lastName;
-  final String image;
+  final String? image;
   final VoidCallback? onTapToBack;
 
   @override
@@ -99,7 +99,7 @@ class _UserProfileScreen extends StatefulWidget {
   final String userId;
   final String firsName;
   final String lastName;
-  final String image;
+  final String? image;
   final VoidCallback? onTapToBack;
 
   @override
@@ -109,7 +109,6 @@ class _UserProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<_UserProfileScreen> {
   late ThemeData theme;
   late AppLocalizations dictionary;
-  late String imageUrl;
 
   late double expandedHeight;
 
@@ -120,7 +119,6 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
   @override
   void initState() {
     super.initState();
-    imageUrl = widget.image;
     userEntity = UserProfileEntity(
       id: int.parse(widget.userId),
       firstName: widget.firsName,
