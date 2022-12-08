@@ -7,6 +7,9 @@ import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/custom_dialog/custom_dialog.dart';
+import '../../../app/ui/components/custom_page_route.dart';
+import '../../profile/domain/state/profile_cubit.dart';
+import '../../profile/ui/user_profile_screen.dart';
 import '../domain/entity/user_post/user_post_entity.dart';
 import '../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import '../domain/entity/user_post_comment/user_post_comments_entity.dart';
@@ -272,8 +275,35 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
     });
   }
 
-  void _onTapToUp() => scrollController.animateTo(0.0,
-      duration: kThemeAnimationDuration, curve: Curves.ease);
+  void _onTapToUp() {
+    if (scrollController.offset > 0.0) {
+      scrollController.animateTo(0.0,
+          duration: kThemeAnimationDuration, curve: Curves.ease);
+    } else {
+      _goUserPage();
+    }
+  }
+
+  void _goUserPage() {
+    final currentUser = locator
+        .get<ProfileCubit>()
+        .state
+        .whenOrNull(received: (user) => user.id);
+    if (postEntity.author.id != currentUser) {
+      Navigator.of(context).push(
+        CustomPageRoute(
+          child: UserProfileScreen(
+            userId: postEntity.author.id.toString(),
+            firsName: postEntity.author.firstName,
+            lastName: postEntity.author.lastName,
+            image: postEntity.author.avatar,
+          ),
+        ),
+      );
+    } else {
+      CustomDialog.showMessageDialog(context, dictionary.inDeveloping);
+    }
+  }
 
   void _fieldOnChanged(value) {
     final renderBox =

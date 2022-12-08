@@ -76,7 +76,7 @@ class _UserPostItemHeaderState extends State<UserPostItemHeader> {
               decoration: BoxDecoration(
                 shape: avatarIsCircle ? BoxShape.circle : BoxShape.rectangle,
                 borderRadius: avatarIsCircle ? null : BorderRadius.circular(16),
-                color: theme.backgroundColor,
+                color: AppColors.hintTextColor.withOpacity(.1),
                 border: Border.all(
                   color: isOnline ? AppColors.orange : AppColors.hintTextColor,
                   width: 2,
@@ -91,7 +91,10 @@ class _UserPostItemHeaderState extends State<UserPostItemHeader> {
                     )
                   : Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: SvgPicture.asset(AppIcons.profileIcon),
+                      child: SvgPicture.asset(
+                        AppIcons.profileIcon,
+                        color: AppColors.hintTextColor,
+                      ),
                     ),
             ),
           ),

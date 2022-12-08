@@ -64,9 +64,7 @@ class _MainScreenState extends State<MainScreen> {
                               userId: '22',
                               firsName: 'Чак',
                               lastName: 'Норрис',
-                              image: 'https://caknowledge.com/wp-content/'
-                                  'uploads/2022/05/Chuck-'
-                                  'Norris-Net-Worth-100-million.jpg',
+                              image: null,
                             ),
                           ),
                         ),

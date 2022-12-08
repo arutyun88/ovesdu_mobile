@@ -132,5 +132,6 @@
   "editPost": "edit post",
   "deletePost": "delete post",
   "blockUser": "block user",
-  "unblockUser": "unblock user"
+  "unblockUser": "unblock user",
+  "blockedUserCommentAnswer": "You can't reply to a blocked user's comment"
 }
