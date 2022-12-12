@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/custom_dialog/custom_dialog.dart';
@@ -79,12 +77,7 @@ class _UserPostCommentScreen extends StatefulWidget {
 }
 
 class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
-  late double actionHeight = 48.0;
-  late double fieldHeight = 80.0 + actionHeight;
-  late ThemeData theme;
   late AppLocalizations dictionary;
-  late GlobalKey _commentFieldKey;
-  late RenderBox? renderBox;
 
   late TextEditingController _commentController;
 
@@ -100,15 +93,11 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
   late ScrollController scrollController;
   bool isLoading = false;
   bool hasMore = true;
-  int lastComment = 0;
   UserPostCommentsEntity? postComments;
 
   @override
   void initState() {
     super.initState();
-
-    _commentFieldKey = GlobalKey();
-    renderBox = null;
 
     _commentController = TextEditingController();
 
@@ -132,7 +121,6 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    theme = Provider.of<ThemeProvider>(context, listen: false).themeData;
     dictionary = AppLocalizations.of(context)!;
   }
 
@@ -150,66 +138,53 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
           body: GestureDetector(
             onTap: Helpers.unfocused,
             child: SafeArea(
-              child: Stack(
+              child: Column(
                 children: [
-                  Column(
-                    children: [
-                      UserCommentPostHeader(
-                        postEntity: state.maybeWhen(
-                          updated: (entity) => entity,
-                          orElse: () => postEntity,
-                        ),
-                        avatar: widget.avatar,
-                        lastVisit: widget.lastVisit,
-                        onTapToUp: _onTapToUp,
-                      ),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          physics: const ClampingScrollPhysics(),
-                          controller: scrollController,
-                          child: Column(
-                            children: [
-                              UserCommentPost(
-                                avatar: widget.avatar,
-                                lastVisit: widget.lastVisit,
-                                post: postEntity,
-                              ),
-                              UserCommentList(
-                                onTapToSelect: _onTapToSelect,
-                                onTapToRead: _onTapToRead,
-                              ),
-                              SizedBox(height: fieldHeight),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                  UserCommentPostHeader(
+                    postEntity: state.maybeWhen(
+                      updated: (entity) => entity,
+                      orElse: () => postEntity,
+                    ),
+                    avatar: widget.avatar,
+                    lastVisit: widget.lastVisit,
+                    onTapToUp: _onTapToUp,
                   ),
-                  Positioned(
-                    bottom: 0.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            offset: const Offset(0, -1),
-                            blurRadius: 1.0,
-                            color:
-                                Theme.of(context).shadowColor.withOpacity(.2),
-                          ),
-                        ],
-                      ),
-                      key: _commentFieldKey,
-                      child: UserCommentField(
-                        controller: _commentController,
-                        onChanged: _fieldOnChanged,
-                        sendOnPressed: _sendOnPressed,
-                        actionHeight: actionHeight,
-                        symbolCount: symbolCount,
-                        replyToComment: selectedComment,
-                        onTapToUnselect: _onTapToSelect,
-                        isEdit: isEdit,
-                        onTapToCancel: _onTapToCancel,
-                      ),
+                  Expanded(
+                    child: ListView(
+                      controller: scrollController,
+                      children: [
+                        UserCommentPost(
+                          avatar: widget.avatar,
+                          lastVisit: widget.lastVisit,
+                          post: postEntity,
+                        ),
+                        UserCommentList(
+                          onTapToSelect: _onTapToSelect,
+                          onTapToRead: _onTapToRead,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, -1),
+                          blurRadius: 1.0,
+                          color: Theme.of(context).shadowColor.withOpacity(.2),
+                        ),
+                      ],
+                    ),
+                    // key: _commentFieldKey,
+                    child: UserCommentField(
+                      controller: _commentController,
+                      onChanged: _fieldOnChanged,
+                      sendOnPressed: _sendOnPressed,
+                      symbolCount: symbolCount,
+                      replyToComment: selectedComment,
+                      onTapToUnselect: _onTapToSelect,
+                      isEdit: isEdit,
+                      onTapToCancel: _onTapToCancel,
                     ),
                   ),
                 ],
@@ -305,16 +280,8 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
     }
   }
 
-  void _fieldOnChanged(value) {
-    final renderBox =
-        _commentFieldKey.currentContext!.findRenderObject() as RenderBox;
-    setState(
-      () {
-        symbolCount = value.trim().length;
-        fieldHeight = renderBox.size.height;
-      },
-    );
-  }
+  void _fieldOnChanged(value) =>
+      setState(() => symbolCount = value.trim().length);
 
   void _sendOnPressed() {
     final value = _commentController.text.trim();

@@ -60,10 +60,9 @@ class UserCommentItem extends StatelessWidget {
                 ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.only(
-                  left: itemHorPadding,
-                  right: itemHorPadding,
-                  bottom: verticalPadding,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: itemHorPadding,
+                  vertical: verticalPadding,
                 ),
                 child: Text(
                   comment.text ?? '',

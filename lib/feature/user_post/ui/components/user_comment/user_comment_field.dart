@@ -18,7 +18,6 @@ class UserCommentField extends StatefulWidget {
     required this.controller,
     required this.onChanged,
     required this.sendOnPressed,
-    required this.actionHeight,
     required this.symbolCount,
     this.replyToComment,
     required this.onTapToUnselect,
@@ -29,7 +28,6 @@ class UserCommentField extends StatefulWidget {
   final TextEditingController controller;
   final Function(String)? onChanged;
   final VoidCallback? sendOnPressed;
-  final double actionHeight;
   final int symbolCount;
   final UserPostCommentEntity? replyToComment;
   final Function(UserPostCommentEntity?) onTapToUnselect;
@@ -97,7 +95,6 @@ class _UserCommentFieldState extends State<UserCommentField> {
         ),
         Container(
           color: theme.backgroundColor,
-          height: widget.actionHeight,
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.symmetric(
             horizontal: mainPadding,
