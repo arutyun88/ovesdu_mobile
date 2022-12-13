@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../app/di/init_di.dart';
-import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
-import '../../../../user_post/domain/state/user_post_cubit.dart';
+import '../../../../../app/helpers/app_actions.dart';
 import '../../../domain/entities/user_profile/user_profile_entity.dart';
 import '../../../domain/state/profile_cubit.dart';
 import '../../../domain/state/user_blocked/user_blocked_cubit.dart';
@@ -46,7 +45,8 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
           zero: zero,
           paddingTop: paddingTop,
           entity: entity,
-          blockedOnTap: () => _blockedOnTap(context, entity?.id ?? -1),
+          blockedOnTap: () =>
+              AppActions.blockedOnTap(context, entity?.id ?? -1),
           onTapToBack: onTapToBack,
         ),
         orElse: () => BlocBuilder<UserProfileCubit, UserProfileState>(
@@ -65,18 +65,22 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
                     paddingTop: paddingTop,
                     entity: entity,
                     blockedOnTap: () =>
-                        _blockedOnTap(context, entity?.id ?? -1),
+                        AppActions.blockedOnTap(context, entity?.id ?? -1),
                     onTapToBack: onTapToBack,
                   );
                 }
-                return ReceivedWidget(
-                  receivedUser: user,
-                  expandedHeight: expandedHeight,
-                  top: top,
-                  zero: zero,
-                  paddingTop: paddingTop,
-                  blockedOnTap: () => _blockedOnTap(context, user.id),
-                  onTapToBack: onTapToBack,
+                return Hero(
+                  tag: user.username,
+                  child: ReceivedWidget(
+                    receivedUser: user,
+                    expandedHeight: expandedHeight,
+                    top: top,
+                    zero: zero,
+                    paddingTop: paddingTop,
+                    blockedOnTap: () =>
+                        AppActions.blockedOnTap(context, user.id),
+                    onTapToBack: onTapToBack,
+                  ),
                 );
               },
               orElse: () => OrElseWidget(
@@ -85,7 +89,8 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
                 zero: zero,
                 paddingTop: paddingTop,
                 entity: entity,
-                blockedOnTap: () => _blockedOnTap(context, entity?.id ?? -1),
+                blockedOnTap: () =>
+                    AppActions.blockedOnTap(context, entity?.id ?? -1),
                 onTapToBack: onTapToBack,
               ),
             );
@@ -103,31 +108,4 @@ class HeadSliverDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant oldDelegate) => false;
-
-  void _blockedOnTap(BuildContext context, int id) {
-    final blocked = locator
-            .get<ProfileCubit>()
-            .state
-            .whenOrNull(received: (user) => user.blockedUsersId.contains(id)) ??
-        false;
-    if (blocked) {
-      context.read<UserBlockedCubit>().removeBlocked(id.toString());
-      locator.get<ProfileCubit>().removeBlocked(id).whenComplete(() {
-        context.read<UserPostCubit>().getUserPosts(
-              id: id,
-              limit: 10,
-              last: 0,
-            );
-      });
-    } else {
-      CustomDialog.showBlockDialog(context).then(
-        (value) {
-          if (value != null && (value as bool)) {
-            context.read<UserBlockedCubit>().addBlocked(id.toString());
-            locator.get<ProfileCubit>().addedBlocked(id);
-          }
-        },
-      );
-    }
-  }
 }
