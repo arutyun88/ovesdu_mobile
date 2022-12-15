@@ -17,16 +17,17 @@ class ProfileAppBar extends StatefulWidget {
   const ProfileAppBar({
     Key? key,
     required this.receivedUser,
+    required this.height,
   }) : super(key: key);
 
   final UserProfileEntity receivedUser;
+  final double height;
 
   @override
   State<ProfileAppBar> createState() => _ProfileAppBarState();
 }
 
 class _ProfileAppBarState extends State<ProfileAppBar> {
-  final double titleHeight = 120.0;
   final moreKey = GlobalKey();
   late ThemeData theme;
   late AppLocalizations dictionary;
@@ -52,7 +53,7 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
       elevation: 1,
       child: Container(
         color: theme.backgroundColor,
-        height: titleHeight,
+        height: widget.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [

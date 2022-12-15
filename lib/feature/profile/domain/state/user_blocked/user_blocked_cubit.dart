@@ -15,7 +15,7 @@ class UserBlockedCubit extends Cubit<UserBlockedState> {
 
   final ProfileRepository _profileRepository;
 
-  Future<void> getMyFollowersIds() async {
+  Future<void> getBlockedIds() async {
     emit(UserBlockedState.waiting());
     try {
       final result = await _profileRepository.getBlockedIds();

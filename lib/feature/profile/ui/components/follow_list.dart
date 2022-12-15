@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../app/di/init_di.dart';
+import '../../../../app/ui/components/item_divider.dart';
 import '../../domain/entities/user_profile_follower/user_profile_follower_item_entity.dart';
 import '../../domain/entities/user_profile_follower/user_simple_followers_entity.dart';
 import '../../domain/state/profile_cubit.dart';
@@ -13,12 +14,14 @@ class FollowList extends StatelessWidget {
     required this.items,
     required this.myFollowers,
     required this.blackList,
+    required this.height,
   }) : super(key: key);
 
   final String itemsKey;
   final List<UserProfileFollowerItemEntity> items;
   final UserSimpleFollowersEntity? myFollowers;
   final List<int> blackList;
+  final double height;
 
   List<UserProfileFollowerItemEntity> _sort(
     List<UserProfileFollowerItemEntity> items,
@@ -62,19 +65,37 @@ class FollowList extends StatelessWidget {
 
     var sortedList = _sort(items, userId);
 
-    return ListView(
-      key: PageStorageKey<String>(itemsKey),
-      children: sortedList.map(
-        (item) {
-          final isBlocked = blackList.contains(int.parse(item.id));
-
-          return FollowerItem(
-            item,
-            myFollowers,
-            isBlocked: isBlocked,
-          );
-        },
-      ).toList(),
+    return SizedBox(
+      height: height,
+      child: ListView(
+        padding: EdgeInsets.zero,
+        key: PageStorageKey<String>(itemsKey),
+        children: List.generate(
+          sortedList.length,
+          (index) {
+            final isBlocked = blackList.contains(
+              int.parse(sortedList[index].id),
+            );
+            return index != sortedList.length - 1
+                ? Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FollowerItem(
+                        sortedList[index],
+                        myFollowers,
+                        isBlocked: isBlocked,
+                      ),
+                      const ItemDivider(),
+                    ],
+                  )
+                : FollowerItem(
+                    sortedList[index],
+                    myFollowers,
+                    isBlocked: isBlocked,
+                  );
+          },
+        ),
+      ),
     );
   }
 }

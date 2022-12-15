@@ -15,7 +15,6 @@ import '../../domain/profile_repository.dart';
 import '../../domain/state/profile_cubit.dart';
 import '../../domain/state/user_profile_follower/my_followers_cubit.dart';
 import '../user_profile_screen.dart';
-import '../../../../app/ui/components/item_divider.dart';
 
 class FollowerItem extends StatefulWidget {
   const FollowerItem(
@@ -94,210 +93,205 @@ class _FollowerItemState extends State<FollowerItem> {
                     : _itemOnTap,
                 child: Container(
                   color: AppColors.transparent,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: mainPadding / 2,
-                        ),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                bottom: verticalPadding,
-                                top: verticalPadding * 2,
-                              ),
-                              child: Container(
-                                height: 56,
-                                width: 56,
-                                decoration: BoxDecoration(
-                                  shape: avatarCircle
-                                      ? BoxShape.circle
-                                      : BoxShape.rectangle,
-                                  borderRadius: avatarCircle
-                                      ? null
-                                      : BorderRadius.circular(16),
-                                  color: AppColors.hintTextColor,
-                                  border: Border.all(
-                                    color: _isBlocked
-                                        ? AppColors.orange.withOpacity(.3)
-                                        : AppColors.orange,
-                                    width: 2,
-                                    strokeAlign: StrokeAlign.outside,
-                                  ),
-                                ),
-                                clipBehavior: Clip.hardEdge,
-                                child: Stack(
-                                  fit: StackFit.expand,
-                                  children: [
-                                    Image.network(
-                                      widget.item.image,
-                                      fit: BoxFit.cover,
-                                    ),
-                                    if (_isBlocked)
-                                      Container(
-                                        color: theme.backgroundColor
-                                            .withOpacity(.7),
-                                      )
-                                  ],
-                                ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: mainPadding / 2,
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            bottom: verticalPadding,
+                            top: verticalPadding * 2,
+                          ),
+                          child: Container(
+                            height: 56,
+                            width: 56,
+                            decoration: BoxDecoration(
+                              shape: avatarCircle
+                                  ? BoxShape.circle
+                                  : BoxShape.rectangle,
+                              borderRadius: avatarCircle
+                                  ? null
+                                  : BorderRadius.circular(16),
+                              color: AppColors.hintTextColor,
+                              border: Border.all(
+                                color: _isBlocked
+                                    ? AppColors.orange.withOpacity(.3)
+                                    : AppColors.orange,
+                                width: 2,
+                                strokeAlign: StrokeAlign.outside,
                               ),
                             ),
-                            userId != int.parse(widget.item.id)
-                                ? Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 16.0,
-                                      top: 12,
-                                      bottom: 4,
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          widget.item.firstName,
-                                          style: _isBlocked
-                                              ? theme.textTheme.headline6
-                                                  ?.apply(
-                                                      color: theme.textTheme
-                                                          .headline6?.color
-                                                          ?.withOpacity(.3))
-                                              : theme.textTheme.headline6,
-                                        ),
-                                        Text(
-                                          widget.item.lastName,
-                                          style: theme.textTheme.headline6
-                                              ?.copyWith(
-                                            color: _isBlocked
-                                                ? AppColors.hintTextColor
-                                                    .withOpacity(.3)
-                                                : AppColors.hintTextColor,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                            clipBehavior: Clip.hardEdge,
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: [
+                                Image.network(
+                                  widget.item.image,
+                                  fit: BoxFit.cover,
+                                ),
+                                if (_isBlocked)
+                                  Container(
+                                    color: theme.backgroundColor
+                                        .withOpacity(.7),
                                   )
-                                : Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 16.0,
-                                      top: 12,
-                                      bottom: 4,
+                              ],
+                            ),
+                          ),
+                        ),
+                        userId != int.parse(widget.item.id)
+                            ? Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 16.0,
+                                  top: 12,
+                                  bottom: 4,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      widget.item.firstName,
+                                      style: _isBlocked
+                                          ? theme.textTheme.headline6
+                                              ?.apply(
+                                                  color: theme.textTheme
+                                                      .headline6?.color
+                                                      ?.withOpacity(.3))
+                                          : theme.textTheme.headline6,
                                     ),
-                                    child: Text(
-                                      dictionary.i,
-                                      style: theme.textTheme.headline6,
-                                    ),
-                                  ),
-                            const Spacer(),
-                            if (userId != int.parse(widget.item.id))
-                              _isBlocked
-                                  ? Text(
-                                      dictionary.blocked,
-                                      style: buttonStyle?.copyWith(
-                                        color: AppColors.hintTextColor
-                                            .withOpacity(.5),
+                                    Text(
+                                      widget.item.lastName,
+                                      style: theme.textTheme.headline6
+                                          ?.copyWith(
+                                        color: _isBlocked
+                                            ? AppColors.hintTextColor
+                                                .withOpacity(.3)
+                                            : AppColors.hintTextColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 18,
                                       ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 16.0,
+                                  top: 12,
+                                  bottom: 4,
+                                ),
+                                child: Text(
+                                  dictionary.i,
+                                  style: theme.textTheme.headline6,
+                                ),
+                              ),
+                        const Spacer(),
+                        if (userId != int.parse(widget.item.id))
+                          _isBlocked
+                              ? Text(
+                                  dictionary.blocked,
+                                  style: buttonStyle?.copyWith(
+                                    color: AppColors.hintTextColor
+                                        .withOpacity(.5),
+                                  ),
+                                )
+                              : (widget.myFollowers?.following ?? [])
+                                      .contains(int.parse(widget.item.id))
+                                  ? EmptyButton(
+                                      onPressed: isClicked
+                                          ? null
+                                          : () {
+                                              clicked.value = true;
+                                              cubit.deleteFollowing(
+                                                  widget.item.id);
+                                            },
+                                      child: isClicked
+                                          ? Text(
+                                              dictionary.waiting,
+                                              textAlign: TextAlign.right,
+                                              style: buttonStyle?.copyWith(
+                                                fontStyle: FontStyle.italic,
+                                                color:
+                                                    AppColors.hintTextColor,
+                                              ),
+                                            )
+                                          : Text(
+                                              dictionary.subscribed,
+                                              textAlign: TextAlign.right,
+                                              style: buttonStyle?.copyWith(
+                                                color:
+                                                    AppColors.hintTextColor,
+                                              ),
+                                            ),
                                     )
-                                  : (widget.myFollowers?.following ?? [])
-                                          .contains(int.parse(widget.item.id))
+                                  : (widget.myFollowers?.followers ?? [])
+                                          .contains(
+                                              int.parse(widget.item.id))
                                       ? EmptyButton(
                                           onPressed: isClicked
                                               ? null
                                               : () {
                                                   clicked.value = true;
-                                                  cubit.deleteFollowing(
+                                                  cubit.createFollowing(
                                                       widget.item.id);
                                                 },
                                           child: isClicked
                                               ? Text(
                                                   dictionary.waiting,
-                                                  textAlign: TextAlign.right,
-                                                  style: buttonStyle?.copyWith(
-                                                    fontStyle: FontStyle.italic,
-                                                    color:
-                                                        AppColors.hintTextColor,
+                                                  textAlign:
+                                                      TextAlign.right,
+                                                  style:
+                                                      buttonStyle?.copyWith(
+                                                    fontStyle:
+                                                        FontStyle.italic,
+                                                    color: AppColors
+                                                        .hintTextColor,
                                                   ),
                                                 )
                                               : Text(
-                                                  dictionary.subscribed,
-                                                  textAlign: TextAlign.right,
-                                                  style: buttonStyle?.copyWith(
-                                                    color:
-                                                        AppColors.hintTextColor,
+                                                  dictionary
+                                                      .subscribedToYou,
+                                                  textAlign:
+                                                      TextAlign.right,
+                                                  style:
+                                                      buttonStyle?.copyWith(
+                                                    color: AppColors.orange,
                                                   ),
                                                 ),
                                         )
-                                      : (widget.myFollowers?.followers ?? [])
-                                              .contains(
-                                                  int.parse(widget.item.id))
-                                          ? EmptyButton(
-                                              onPressed: isClicked
-                                                  ? null
-                                                  : () {
-                                                      clicked.value = true;
-                                                      cubit.createFollowing(
-                                                          widget.item.id);
-                                                    },
-                                              child: isClicked
-                                                  ? Text(
-                                                      dictionary.waiting,
-                                                      textAlign:
-                                                          TextAlign.right,
-                                                      style:
-                                                          buttonStyle?.copyWith(
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                        color: AppColors
-                                                            .hintTextColor,
-                                                      ),
-                                                    )
-                                                  : Text(
-                                                      dictionary
-                                                          .subscribedToYou,
-                                                      textAlign:
-                                                          TextAlign.right,
-                                                      style:
-                                                          buttonStyle?.copyWith(
-                                                        color: AppColors.orange,
-                                                      ),
-                                                    ),
-                                            )
-                                          : EmptyButton(
-                                              onPressed: isClicked
-                                                  ? null
-                                                  : () {
-                                                      clicked.value = true;
-                                                      cubit.createFollowing(
-                                                          widget.item.id);
-                                                    },
-                                              child: isClicked
-                                                  ? Text(
-                                                      dictionary.waiting,
-                                                      textAlign:
-                                                          TextAlign.right,
-                                                      style:
-                                                          buttonStyle?.copyWith(
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                        color: AppColors
-                                                            .hintTextColor,
-                                                      ),
-                                                    )
-                                                  : Text(
-                                                      dictionary.subscribe,
-                                                      style:
-                                                          buttonStyle?.copyWith(
-                                                        color: AppColors.orange,
-                                                      ),
-                                                    ),
-                                            ),
-                          ],
-                        ),
-                      ),
-                      const ItemDivider(),
-                    ],
+                                      : EmptyButton(
+                                          onPressed: isClicked
+                                              ? null
+                                              : () {
+                                                  clicked.value = true;
+                                                  cubit.createFollowing(
+                                                      widget.item.id);
+                                                },
+                                          child: isClicked
+                                              ? Text(
+                                                  dictionary.waiting,
+                                                  textAlign:
+                                                      TextAlign.right,
+                                                  style:
+                                                      buttonStyle?.copyWith(
+                                                    fontStyle:
+                                                        FontStyle.italic,
+                                                    color: AppColors
+                                                        .hintTextColor,
+                                                  ),
+                                                )
+                                              : Text(
+                                                  dictionary.subscribe,
+                                                  style:
+                                                      buttonStyle?.copyWith(
+                                                    color: AppColors.orange,
+                                                  ),
+                                                ),
+                                        ),
+                      ],
+                    ),
                   ),
                 ),
               );

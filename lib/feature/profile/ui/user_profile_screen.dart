@@ -210,7 +210,9 @@ class _ProfileScreenState extends State<_UserProfileScreen> {
                             ? _ErrorWidget(message: dictionary.blockedUser)
                             : Column(
                                 children: [
-                                  const ProfileStatistic(),
+                                  ProfileStatistic(
+                                    receivedUser: receivedUserEntity,
+                                  ),
                                   const ProfilePrograms(),
                                   ProfileGifts(
                                     gifts: [
