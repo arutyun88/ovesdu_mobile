@@ -133,8 +133,8 @@ class _FollowerItemState extends State<FollowerItem> {
                                 ),
                                 if (_isBlocked)
                                   Container(
-                                    color: theme.backgroundColor
-                                        .withOpacity(.7),
+                                    color:
+                                        theme.backgroundColor.withOpacity(.7),
                                   )
                               ],
                             ),
@@ -148,23 +148,21 @@ class _FollowerItemState extends State<FollowerItem> {
                                   bottom: 4,
                                 ),
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       widget.item.firstName,
                                       style: _isBlocked
-                                          ? theme.textTheme.headline6
-                                              ?.apply(
-                                                  color: theme.textTheme
-                                                      .headline6?.color
-                                                      ?.withOpacity(.3))
+                                          ? theme.textTheme.headline6?.apply(
+                                              color: theme
+                                                  .textTheme.headline6?.color
+                                                  ?.withOpacity(.3))
                                           : theme.textTheme.headline6,
                                     ),
                                     Text(
                                       widget.item.lastName,
-                                      style: theme.textTheme.headline6
-                                          ?.copyWith(
+                                      style:
+                                          theme.textTheme.headline6?.copyWith(
                                         color: _isBlocked
                                             ? AppColors.hintTextColor
                                                 .withOpacity(.3)
@@ -193,8 +191,8 @@ class _FollowerItemState extends State<FollowerItem> {
                               ? Text(
                                   dictionary.blocked,
                                   style: buttonStyle?.copyWith(
-                                    color: AppColors.hintTextColor
-                                        .withOpacity(.5),
+                                    color:
+                                        AppColors.hintTextColor.withOpacity(.5),
                                   ),
                                 )
                               : (widget.myFollowers?.following ?? [])
@@ -213,22 +211,19 @@ class _FollowerItemState extends State<FollowerItem> {
                                               textAlign: TextAlign.right,
                                               style: buttonStyle?.copyWith(
                                                 fontStyle: FontStyle.italic,
-                                                color:
-                                                    AppColors.hintTextColor,
+                                                color: AppColors.hintTextColor,
                                               ),
                                             )
                                           : Text(
                                               dictionary.subscribed,
                                               textAlign: TextAlign.right,
                                               style: buttonStyle?.copyWith(
-                                                color:
-                                                    AppColors.hintTextColor,
+                                                color: AppColors.hintTextColor,
                                               ),
                                             ),
                                     )
                                   : (widget.myFollowers?.followers ?? [])
-                                          .contains(
-                                              int.parse(widget.item.id))
+                                          .contains(int.parse(widget.item.id))
                                       ? EmptyButton(
                                           onPressed: isClicked
                                               ? null
@@ -240,23 +235,17 @@ class _FollowerItemState extends State<FollowerItem> {
                                           child: isClicked
                                               ? Text(
                                                   dictionary.waiting,
-                                                  textAlign:
-                                                      TextAlign.right,
-                                                  style:
-                                                      buttonStyle?.copyWith(
-                                                    fontStyle:
-                                                        FontStyle.italic,
-                                                    color: AppColors
-                                                        .hintTextColor,
+                                                  textAlign: TextAlign.right,
+                                                  style: buttonStyle?.copyWith(
+                                                    fontStyle: FontStyle.italic,
+                                                    color:
+                                                        AppColors.hintTextColor,
                                                   ),
                                                 )
                                               : Text(
-                                                  dictionary
-                                                      .subscribedToYou,
-                                                  textAlign:
-                                                      TextAlign.right,
-                                                  style:
-                                                      buttonStyle?.copyWith(
+                                                  dictionary.subscribedToYou,
+                                                  textAlign: TextAlign.right,
+                                                  style: buttonStyle?.copyWith(
                                                     color: AppColors.orange,
                                                   ),
                                                 ),
@@ -272,20 +261,16 @@ class _FollowerItemState extends State<FollowerItem> {
                                           child: isClicked
                                               ? Text(
                                                   dictionary.waiting,
-                                                  textAlign:
-                                                      TextAlign.right,
-                                                  style:
-                                                      buttonStyle?.copyWith(
-                                                    fontStyle:
-                                                        FontStyle.italic,
-                                                    color: AppColors
-                                                        .hintTextColor,
+                                                  textAlign: TextAlign.right,
+                                                  style: buttonStyle?.copyWith(
+                                                    fontStyle: FontStyle.italic,
+                                                    color:
+                                                        AppColors.hintTextColor,
                                                   ),
                                                 )
                                               : Text(
                                                   dictionary.subscribe,
-                                                  style:
-                                                      buttonStyle?.copyWith(
+                                                  style: buttonStyle?.copyWith(
                                                     color: AppColors.orange,
                                                   ),
                                                 ),

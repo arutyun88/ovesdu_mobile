@@ -75,7 +75,7 @@ class ProfileStatistic extends StatelessWidget {
                                 context: context,
                                 followers: statistic.followers,
                                 following: statistic.following,
-                                clickedIsFollowers: true,
+                                clickedIsFollowers: false,
                               ),
                               child: _ProfileStatisticItem(
                                 itemKey: dictionary.following,

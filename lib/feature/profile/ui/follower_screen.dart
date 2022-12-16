@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../app/const/const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
+import '../../../app/ui/config/app_colors.dart';
 import '../domain/entities/user_profile/user_profile_entity.dart';
-import '../domain/entities/user_profile_follower/user_simple_followers_entity.dart';
 import '../domain/profile_repository.dart';
 import '../domain/state/user_blocked/user_blocked_cubit.dart';
 import '../domain/state/user_profile_follower/my_followers_cubit.dart';
@@ -83,10 +84,6 @@ class _FollowerScreenState extends State<_FollowerScreen> {
   late int currentPage;
   late PageController pageController;
 
-  UserSimpleFollowersEntity? myFollowers;
-  List<Map<String, Widget>>? pages = [];
-  List<int> blackList = [];
-
   final double appBarHeight = 120.0;
   final double tabHeight = 50.0;
   late double bodyHeight;
@@ -116,92 +113,103 @@ class _FollowerScreenState extends State<_FollowerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocListener<UserProfileFollowersCubit, UserProfileFollowersState>(
-        listener: (context, state) {
-          final followersKey = AppLocalizations.of(context)!.followers;
-          final followingKey = AppLocalizations.of(context)!.following;
-
-          state.whenOrNull(
-            received: (follow) {
-              pages = [
-                {
-                  followersKey: FollowList(
-                    height: bodyHeight,
-                    itemsKey: followersKey,
-                    items: follow.followers,
-                    myFollowers: myFollowers,
-                    blackList: blackList,
-                  ),
-                },
-                {
-                  followingKey: FollowList(
-                    height: bodyHeight,
-                    itemsKey: followingKey,
-                    items: follow.following,
-                    myFollowers: myFollowers,
-                    blackList: blackList,
-                  ),
-                },
-              ];
-            },
-          );
-        },
-        child: BlocListener<MyFollowersCubit, MyFollowersState>(
-          listener: (context, state) {
-            state.whenOrNull(
-              received: (received) => setState(() => myFollowers = received),
-            );
-          },
-          child: BlocListener<UserBlockedCubit, UserBlockedState>(
-            listener: (context, state) {
-              state.whenOrNull(
-                received: (received) => blackList = received,
-              );
-            },
-            child: Column(
-              children: [
-                Hero(
-                  tag: widget.receivedUser.username,
-                  child: ProfileAppBar(
-                    receivedUser: widget.receivedUser,
-                    height: appBarHeight,
-                  ),
-                ),
-                SizedBox(
-                  height: tabHeight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: List.generate(
-                      pages!.length,
-                      (index) => GestureDetector(
-                        onTap: () => _changePage(index),
-                        child: _TabButtonItem(
-                          title: pages![index].keys.first,
-                          index: index,
-                          currentPage: currentPage,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.of(context).pop(),
-                  child: SizedBox(
-                    height: bodyHeight,
-                    child: PageView.builder(
-                      controller: pageController,
-                      onPageChanged: (index) =>
-                          setState(() => currentPage = index),
-                      itemCount: pages?.length ?? 0,
-                      itemBuilder: (context, index) =>
-                          pages?[index].values.first ?? const SizedBox.shrink(),
-                    ),
-                  ),
-                ),
-              ],
+      body: Column(
+        children: [
+          Hero(
+            tag: widget.receivedUser.username,
+            child: ProfileAppBar(
+              receivedUser: widget.receivedUser,
+              height: appBarHeight,
             ),
           ),
-        ),
+          BlocBuilder<MyFollowersCubit, MyFollowersState>(
+            builder: (context, myFollowersState) => myFollowersState.maybeWhen(
+              received: (myFollowers) {
+                return BlocBuilder<UserBlockedCubit, UserBlockedState>(
+                  builder: (context, blockedState) => blockedState.maybeWhen(
+                    received: (blackList) {
+                      return BlocBuilder<UserProfileFollowersCubit,
+                          UserProfileFollowersState>(
+                        builder: (context, state) => state.maybeWhen(
+                          received: (follow) {
+                            final followersKey =
+                                AppLocalizations.of(context)!.followers;
+                            final followingKey =
+                                AppLocalizations.of(context)!.following;
+
+                            List<Map<String, Widget>>? pages = [
+                              {
+                                followersKey: FollowList(
+                                  height: bodyHeight,
+                                  itemsKey: followersKey,
+                                  items: follow.followers,
+                                  myFollowers: myFollowers,
+                                  blackList: blackList,
+                                ),
+                              },
+                              {
+                                followingKey: FollowList(
+                                  height: bodyHeight,
+                                  itemsKey: followingKey,
+                                  items: follow.following,
+                                  myFollowers: myFollowers,
+                                  blackList: blackList,
+                                ),
+                              },
+                            ];
+
+                            return Column(
+                              children: [
+                                SizedBox(
+                                  height: tabHeight,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: List.generate(
+                                      pages.length,
+                                      (index) => GestureDetector(
+                                        onTap: () => _changePage(index),
+                                        child: _TabButtonItem(
+                                          title: pages[index].keys.first,
+                                          index: index,
+                                          currentPage: currentPage,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () => Navigator.of(context).pop(),
+                                  child: SizedBox(
+                                    height: bodyHeight,
+                                    child: PageView.builder(
+                                      controller: pageController,
+                                      onPageChanged: (index) =>
+                                          setState(() => currentPage = index),
+                                      itemCount: pages.length,
+                                      itemBuilder: (context, index) =>
+                                          pages[index].values.first,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                          error: (error) => _ErrorWidget(error.message),
+                          orElse: () => const CircularProgressIndicator(),
+                        ),
+                      );
+                    },
+                    error: (error) => _ErrorWidget(error.message),
+                    orElse: () => const CircularProgressIndicator(),
+                  ),
+                );
+              },
+              error: (error) => _ErrorWidget(error.message),
+              orElse: () => const CircularProgressIndicator(),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -212,6 +220,31 @@ class _FollowerScreenState extends State<_FollowerScreen> {
       currentPage,
       duration: kThemeAnimationDuration,
       curve: Curves.ease,
+    );
+  }
+}
+
+class _ErrorWidget extends StatelessWidget {
+  const _ErrorWidget(
+    this.message, {
+    Key? key,
+  }) : super(key: key);
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context).themeData;
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(mainPadding),
+        child: Text(
+          message,
+          style: theme.textTheme.headline6?.copyWith(
+            color: AppColors.hintTextColor,
+          ),
+        ),
+      ),
     );
   }
 }
