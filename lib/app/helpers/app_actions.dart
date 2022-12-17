@@ -10,7 +10,7 @@ import '../ui/components/custom_dialog/custom_dialog.dart';
 abstract class AppActions {
   const AppActions._();
 
-  static void blockedOnTap(BuildContext context, int id) {
+  static Future<bool?> blockedOnTap(BuildContext context, int id) async {
     final blocked = locator
             .get<ProfileCubit>()
             .state
@@ -25,13 +25,16 @@ abstract class AppActions {
               last: 0,
             );
       });
+      return false;
     } else {
-      CustomDialog.showBlockDialog(context).then(
+      return CustomDialog.showBlockDialog(context).then(
         (value) {
           if (value != null && (value as bool)) {
             context.read<UserBlockedCubit>().addBlocked(id.toString());
             locator.get<ProfileCubit>().addedBlocked(id);
+            return true;
           }
+          return null;
         },
       );
     }

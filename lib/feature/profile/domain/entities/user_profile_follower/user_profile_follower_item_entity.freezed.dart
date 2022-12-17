@@ -19,7 +19,7 @@ mixin _$UserProfileFollowerItemEntity {
   String get id => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserProfileFollowerItemEntityCopyWith<UserProfileFollowerItemEntity>
@@ -34,7 +34,7 @@ abstract class $UserProfileFollowerItemEntityCopyWith<$Res> {
       _$UserProfileFollowerItemEntityCopyWithImpl<$Res,
           UserProfileFollowerItemEntity>;
   @useResult
-  $Res call({String id, String firstName, String lastName, String image});
+  $Res call({String id, String firstName, String lastName, String? image});
 }
 
 /// @nodoc
@@ -54,7 +54,7 @@ class _$UserProfileFollowerItemEntityCopyWithImpl<$Res,
     Object? id = null,
     Object? firstName = null,
     Object? lastName = null,
-    Object? image = null,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -69,10 +69,10 @@ class _$UserProfileFollowerItemEntityCopyWithImpl<$Res,
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      image: null == image
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -86,7 +86,7 @@ abstract class _$$_UserProfileFollowerItemEntityCopyWith<$Res>
       __$$_UserProfileFollowerItemEntityCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String firstName, String lastName, String image});
+  $Res call({String id, String firstName, String lastName, String? image});
 }
 
 /// @nodoc
@@ -105,7 +105,7 @@ class __$$_UserProfileFollowerItemEntityCopyWithImpl<$Res>
     Object? id = null,
     Object? firstName = null,
     Object? lastName = null,
-    Object? image = null,
+    Object? image = freezed,
   }) {
     return _then(_$_UserProfileFollowerItemEntity(
       id: null == id
@@ -120,10 +120,10 @@ class __$$_UserProfileFollowerItemEntityCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      image: null == image
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -145,7 +145,7 @@ class _$_UserProfileFollowerItemEntity
   @override
   final String lastName;
   @override
-  final String image;
+  final String? image;
 
   @override
   String toString() {
@@ -182,7 +182,7 @@ abstract class _UserProfileFollowerItemEntity
       {required final String id,
       required final String firstName,
       required final String lastName,
-      required final String image}) = _$_UserProfileFollowerItemEntity;
+      required final String? image}) = _$_UserProfileFollowerItemEntity;
 
   @override
   String get id;
@@ -191,7 +191,7 @@ abstract class _UserProfileFollowerItemEntity
   @override
   String get lastName;
   @override
-  String get image;
+  String? get image;
   @override
   @JsonKey(ignore: true)
   _$$_UserProfileFollowerItemEntityCopyWith<_$_UserProfileFollowerItemEntity>

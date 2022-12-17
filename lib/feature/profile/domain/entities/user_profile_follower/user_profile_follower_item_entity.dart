@@ -8,6 +8,6 @@ class UserProfileFollowerItemEntity with _$UserProfileFollowerItemEntity {
     required String id,
     required String firstName,
     required String lastName,
-    required String image,
+    required String? image,
   }) = _UserProfileFollowerItemEntity;
 }

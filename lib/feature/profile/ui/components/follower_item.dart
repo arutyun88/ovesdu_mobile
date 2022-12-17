@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ovesdu_mobile/app/ui/components/custom_page_route.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -7,6 +9,7 @@ import '../../../../app/const/const.dart';
 import '../../../../app/data/setting_provider/setting_provider.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/di/init_di.dart';
+import '../../../../app/helpers/app_icons.dart';
 import '../../../../app/ui/components/buttons/empty_button.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../domain/entities/user_profile_follower/user_profile_follower_item_entity.dart';
@@ -114,7 +117,7 @@ class _FollowerItemState extends State<FollowerItem> {
                               borderRadius: avatarCircle
                                   ? null
                                   : BorderRadius.circular(16),
-                              color: AppColors.hintTextColor,
+                              color: AppColors.hintTextColor.withOpacity(.1),
                               border: Border.all(
                                 color: _isBlocked
                                     ? AppColors.orange.withOpacity(.3)
@@ -127,10 +130,18 @@ class _FollowerItemState extends State<FollowerItem> {
                             child: Stack(
                               fit: StackFit.expand,
                               children: [
-                                Image.network(
-                                  widget.item.image,
-                                  fit: BoxFit.cover,
-                                ),
+                                widget.item.image != null
+                                    ? Image.network(
+                                        widget.item.image ?? '',
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: SvgPicture.asset(
+                                          AppIcons.profileIcon,
+                                          color: AppColors.hintTextColor,
+                                        ),
+                                      ),
                                 if (_isBlocked)
                                   Container(
                                     color:
@@ -288,8 +299,8 @@ class _FollowerItemState extends State<FollowerItem> {
   void _itemOnTap() {
     Navigator.of(context)
         .push(
-      MaterialPageRoute(
-        builder: (context) => UserProfileScreen(
+      CustomPageRoute(
+        child: UserProfileScreen(
           userId: widget.item.id,
           firsName: widget.item.firstName,
           lastName: widget.item.lastName,

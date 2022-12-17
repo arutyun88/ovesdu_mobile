@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/data/setting_provider/setting_provider.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../app/helpers/app_actions.dart';
 import '../../../../app/helpers/app_icons.dart';
 import '../../../../app/helpers/date_helper.dart';
-import '../../../../app/ui/components/custom_dialog/custom_dialog.dart';
-import '../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../domain/entities/user_profile/user_profile_entity.dart';
 
@@ -30,7 +26,6 @@ class ProfileAppBar extends StatefulWidget {
 class _ProfileAppBarState extends State<ProfileAppBar> {
   final moreKey = GlobalKey();
   late ThemeData theme;
-  late AppLocalizations dictionary;
   late bool avatar;
   late bool isOnline;
   late double paddingTop;
@@ -40,7 +35,6 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     theme = Provider.of<ThemeProvider>(context).themeData;
-    dictionary = AppLocalizations.of(context)!;
     avatar = Provider.of<SettingProvider>(context).isCircleAvatar;
     isOnline = DateHelper.isOnline(widget.receivedUser.lastVisit);
     paddingTop = MediaQuery.of(context).padding.top;
@@ -130,21 +124,6 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
                           ],
                         ),
                       ),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: GestureDetector(
-                          key: moreKey,
-                          onTap: _moreOnPressed,
-                          child: const Center(
-                            child: Icon(
-                              Icons.more_horiz,
-                              size: 24,
-                              color: AppColors.orange,
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -172,30 +151,6 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
           ],
         ),
       ),
-    );
-  }
-
-  void _moreOnPressed() {
-    MoreMenuDialog.show(
-      context,
-      moreKey,
-      actions: [
-        {
-          dictionary.blockUser: () {
-            Navigator.of(context).pop();
-            AppActions.blockedOnTap(context, widget.receivedUser.id);
-          }
-        },
-        {
-          dictionary.subscribe: () {
-            Navigator.of(context).pop();
-            CustomDialog.showMessageDialog(
-              context,
-              dictionary.inDeveloping,
-            );
-          }
-        },
-      ],
     );
   }
 }

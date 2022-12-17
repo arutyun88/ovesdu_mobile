@@ -20,7 +20,7 @@ class MoreMenuDialog extends StatelessWidget {
   final double buttonWidth;
   final List<Map<String, Function()>> actions;
 
-  static Future<Locale?> show(
+  static Future<dynamic> show(
     BuildContext context,
     GlobalKey key, {
     required List<Map<String, Function()>> actions,

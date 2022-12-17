@@ -27,7 +27,6 @@ class UserProfileFollowerDto {
         id: id.toString(),
         firstName: firstName.toString(),
         lastName: lastName.toString(),
-        image: 'https://caknowledge.com/wp-content/uploads/2022/05/Chuck-'
-            'Norris-Net-Worth-100-million.jpg',
+        image: null,
       );
 }
