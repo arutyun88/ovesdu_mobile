@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ovesdu_mobile/app/ui/components/custom_page_route.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -11,11 +10,13 @@ import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/di/init_di.dart';
 import '../../../../app/helpers/app_icons.dart';
 import '../../../../app/ui/components/buttons/empty_button.dart';
+import '../../../../app/ui/components/custom_page_route.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../domain/entities/user_profile_follower/user_profile_follower_item_entity.dart';
 import '../../domain/entities/user_profile_follower/user_simple_followers_entity.dart';
 import '../../domain/profile_repository.dart';
 import '../../domain/state/profile_cubit.dart';
+import '../../domain/state/user_blocked/user_blocked_cubit.dart';
 import '../../domain/state/user_profile_follower/my_followers_cubit.dart';
 import '../user_profile_screen.dart';
 
@@ -71,6 +72,10 @@ class _FollowerItemState extends State<FollowerItem> {
 
   @override
   Widget build(BuildContext context) {
+    final mainStyle = theme.textTheme.headline6;
+    const avatarSize = 56.0;
+    const leftPadding = 16.0;
+
     return BlocProvider(
       create: (context) => MyFollowersCubit(locator.get<ProfileRepository>()),
       child: BlocConsumer<MyFollowersCubit, MyFollowersState>(
@@ -108,8 +113,8 @@ class _FollowerItemState extends State<FollowerItem> {
                             top: verticalPadding * 2,
                           ),
                           child: Container(
-                            height: 56,
-                            width: 56,
+                            height: avatarSize,
+                            width: avatarSize,
                             decoration: BoxDecoration(
                               shape: avatarCircle
                                   ? BoxShape.circle
@@ -151,141 +156,220 @@ class _FollowerItemState extends State<FollowerItem> {
                             ),
                           ),
                         ),
-                        userId != int.parse(widget.item.id)
-                            ? Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 16.0,
-                                  top: 12,
-                                  bottom: 4,
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      widget.item.firstName,
-                                      style: _isBlocked
-                                          ? theme.textTheme.headline6?.apply(
-                                              color: theme
-                                                  .textTheme.headline6?.color
-                                                  ?.withOpacity(.3))
-                                          : theme.textTheme.headline6,
-                                    ),
-                                    Text(
-                                      widget.item.lastName,
-                                      style:
-                                          theme.textTheme.headline6?.copyWith(
-                                        color: _isBlocked
-                                            ? AppColors.hintTextColor
-                                                .withOpacity(.3)
-                                            : AppColors.hintTextColor,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 18,
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: leftPadding,
+                            top: 12,
+                            bottom: 4,
+                          ),
+                          child: userId == int.parse(widget.item.id)
+                              ? Text(dictionary.i, style: mainStyle)
+                              : SizedBox(
+                                  width: MediaQuery.of(context).size.width -
+                                      mainPadding -
+                                      avatarSize -
+                                      leftPadding,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          ConstrainedBox(
+                                            constraints: BoxConstraints(
+                                              maxWidth: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                            ),
+                                            child: Text(
+                                              widget.item.firstName,
+                                              maxLines: 1,
+                                              style: _isBlocked
+                                                  ? mainStyle?.apply(
+                                                      color: mainStyle.color
+                                                          ?.withOpacity(.3))
+                                                  : mainStyle,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 10.0),
+                                          if (userId !=
+                                              int.parse(widget.item.id))
+                                            Flexible(
+                                              child: _isBlocked
+                                                  ? Text(
+                                                      dictionary.blocked,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style:
+                                                          buttonStyle?.copyWith(
+                                                        color: AppColors
+                                                            .hintTextColor
+                                                            .withOpacity(.5),
+                                                      ),
+                                                    )
+                                                  : isClicked
+                                                      ? Text(
+                                                          dictionary.waiting,
+                                                          textAlign:
+                                                              TextAlign.right,
+                                                          maxLines: 1,
+                                                          style: buttonStyle
+                                                              ?.copyWith(
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                            color: AppColors
+                                                                .hintTextColor,
+                                                          ),
+                                                        )
+                                                      : _followingContains()
+                                                          ? EmptyButton(
+                                                              onPressed: isClicked
+                                                                  ? null
+                                                                  : () =>
+                                                                      _clickedDelete(
+                                                                          cubit),
+                                                              child: Text(
+                                                                dictionary
+                                                                    .subscribed,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .clip,
+                                                                maxLines: 1,
+                                                                style: buttonStyle
+                                                                    ?.copyWith(
+                                                                  color: AppColors
+                                                                      .hintTextColor,
+                                                                ),
+                                                              ),
+                                                            )
+                                                          : _followersContains()
+                                                              ? EmptyButton(
+                                                                  onPressed: isClicked
+                                                                      ? null
+                                                                      : () => _clickedCreate(
+                                                                          cubit),
+                                                                  child: Text(
+                                                                    dictionary
+                                                                        .subscribedToYou,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .clip,
+                                                                    maxLines: 1,
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .right,
+                                                                    style: buttonStyle
+                                                                        ?.copyWith(
+                                                                      color: AppColors
+                                                                          .orange,
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              : EmptyButton(
+                                                                  onPressed: isClicked
+                                                                      ? null
+                                                                      : () => _clickedCreate(
+                                                                          cubit),
+                                                                  child: Text(
+                                                                    dictionary
+                                                                        .subscribe,
+                                                                    style: buttonStyle
+                                                                        ?.copyWith(
+                                                                      color: AppColors
+                                                                          .orange,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                            ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            : Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 16.0,
-                                  top: 12,
-                                  bottom: 4,
-                                ),
-                                child: Text(
-                                  dictionary.i,
-                                  style: theme.textTheme.headline6,
-                                ),
-                              ),
-                        const Spacer(),
-                        if (userId != int.parse(widget.item.id))
-                          _isBlocked
-                              ? Text(
-                                  dictionary.blocked,
-                                  style: buttonStyle?.copyWith(
-                                    color:
-                                        AppColors.hintTextColor.withOpacity(.5),
-                                  ),
-                                )
-                              : (widget.myFollowers?.following ?? [])
-                                      .contains(int.parse(widget.item.id))
-                                  ? EmptyButton(
-                                      onPressed: isClicked
-                                          ? null
-                                          : () {
-                                              clicked.value = true;
-                                              cubit.deleteFollowing(
-                                                  widget.item.id);
-                                            },
-                                      child: isClicked
-                                          ? Text(
-                                              dictionary.waiting,
-                                              textAlign: TextAlign.right,
-                                              style: buttonStyle?.copyWith(
-                                                fontStyle: FontStyle.italic,
-                                                color: AppColors.hintTextColor,
-                                              ),
-                                            )
-                                          : Text(
-                                              dictionary.subscribed,
-                                              textAlign: TextAlign.right,
-                                              style: buttonStyle?.copyWith(
-                                                color: AppColors.hintTextColor,
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          ConstrainedBox(
+                                            constraints: BoxConstraints(
+                                              maxWidth: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                            ),
+                                            child: Text(
+                                              widget.item.lastName,
+                                              maxLines: 1,
+                                              style: mainStyle?.copyWith(
+                                                color: _isBlocked
+                                                    ? AppColors.hintTextColor
+                                                        .withOpacity(.3)
+                                                    : AppColors.hintTextColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 18,
                                               ),
                                             ),
-                                    )
-                                  : (widget.myFollowers?.followers ?? [])
-                                          .contains(int.parse(widget.item.id))
-                                      ? EmptyButton(
-                                          onPressed: isClicked
-                                              ? null
-                                              : () {
-                                                  clicked.value = true;
-                                                  cubit.createFollowing(
-                                                      widget.item.id);
-                                                },
-                                          child: isClicked
-                                              ? Text(
-                                                  dictionary.waiting,
-                                                  textAlign: TextAlign.right,
-                                                  style: buttonStyle?.copyWith(
-                                                    fontStyle: FontStyle.italic,
-                                                    color:
-                                                        AppColors.hintTextColor,
-                                                  ),
-                                                )
-                                              : Text(
-                                                  dictionary.subscribedToYou,
-                                                  textAlign: TextAlign.right,
-                                                  style: buttonStyle?.copyWith(
-                                                    color: AppColors.orange,
-                                                  ),
-                                                ),
-                                        )
-                                      : EmptyButton(
-                                          onPressed: isClicked
-                                              ? null
-                                              : () {
-                                                  clicked.value = true;
-                                                  cubit.createFollowing(
-                                                      widget.item.id);
-                                                },
-                                          child: isClicked
-                                              ? Text(
-                                                  dictionary.waiting,
-                                                  textAlign: TextAlign.right,
-                                                  style: buttonStyle?.copyWith(
-                                                    fontStyle: FontStyle.italic,
-                                                    color:
-                                                        AppColors.hintTextColor,
-                                                  ),
-                                                )
-                                              : Text(
-                                                  dictionary.subscribe,
-                                                  style: buttonStyle?.copyWith(
-                                                    color: AppColors.orange,
-                                                  ),
-                                                ),
-                                        ),
+                                          ),
+                                          const SizedBox(width: 10.0),
+                                          if (userId !=
+                                                  int.parse(widget.item.id) &&
+                                              !_isBlocked)
+                                            if (!isClicked)
+                                              Flexible(
+                                                child: _followingContains()
+                                                    ? EmptyButton(
+                                                        onPressed: isClicked
+                                                            ? null
+                                                            : () =>
+                                                                _clickedDelete(
+                                                                    cubit),
+                                                        child: Text(
+                                                          dictionary
+                                                              .unsubscribeAction,
+                                                          overflow:
+                                                              TextOverflow.clip,
+                                                          maxLines: 1,
+                                                          style: buttonStyle
+                                                              ?.copyWith(
+                                                            color: AppColors
+                                                                .hintTextColor,
+                                                          ),
+                                                        ),
+                                                      )
+                                                    : _followersContains()
+                                                        ? EmptyButton(
+                                                            onPressed: isClicked
+                                                                ? null
+                                                                : () =>
+                                                                    _clickedCreate(
+                                                                        cubit),
+                                                            child: Text(
+                                                              dictionary
+                                                                  .subscribeToReply,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .clip,
+                                                              maxLines: 1,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .right,
+                                                              style: buttonStyle
+                                                                  ?.copyWith(
+                                                                color: AppColors
+                                                                    .orange,
+                                                              ),
+                                                            ),
+                                                          )
+                                                        : const SizedBox(),
+                                              ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                        ),
                       ],
                     ),
                   ),
@@ -296,34 +380,43 @@ class _FollowerItemState extends State<FollowerItem> {
     );
   }
 
+  void _clickedCreate(MyFollowersCubit cubit) {
+    clicked.value = true;
+    cubit.createFollowing(widget.item.id);
+  }
+
+  void _clickedDelete(MyFollowersCubit cubit) {
+    clicked.value = true;
+    cubit.deleteFollowing(widget.item.id);
+  }
+
   void _itemOnTap() {
     Navigator.of(context)
         .push(
-      CustomPageRoute(
-        child: UserProfileScreen(
-          userId: widget.item.id,
-          firsName: widget.item.firstName,
-          lastName: widget.item.lastName,
-          image: widget.item.image,
-          onTapToBack: () {
-            var blocked = locator.get<ProfileCubit>().state.whenOrNull(
-                      received: (user) => user.blockedUsersId.contains(
-                        int.parse(widget.item.id),
-                      ),
-                    ) ??
-                false;
-            Navigator.of(context).pop(blocked);
-          },
-        ),
-      ),
-    )
-        .then(
-      (value) {
-        setState(() {
-          value as bool;
-          _isBlocked = value;
-        });
-      },
-    );
+          CustomPageRoute(
+            child: UserProfileScreen(
+              userId: widget.item.id,
+              firsName: widget.item.firstName,
+              lastName: widget.item.lastName,
+              image: widget.item.image,
+              onTapToBack: () {
+                var blocked = locator.get<ProfileCubit>().state.whenOrNull(
+                          received: (user) => user.blockedUsersId.contains(
+                            int.parse(widget.item.id),
+                          ),
+                        ) ??
+                    false;
+                Navigator.of(context).pop(blocked);
+              },
+            ),
+          ),
+        )
+        .then((value) => context.read<UserBlockedCubit>().getBlockedIds());
   }
+
+  bool _followingContains() =>
+      (widget.myFollowers?.following ?? []).contains(int.parse(widget.item.id));
+
+  bool _followersContains() =>
+      (widget.myFollowers?.followers ?? []).contains(int.parse(widget.item.id));
 }
