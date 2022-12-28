@@ -346,7 +346,7 @@ class DioAppApi implements AppApi {
   }
 
   @override
-  Future<Response> getOverallPosts(String type, int limit, int last) {
+  Future<Response> getPosts(String type, int limit, int last) {
     try {
       return dio.get(
         '/data/post',
