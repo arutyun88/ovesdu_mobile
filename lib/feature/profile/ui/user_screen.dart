@@ -6,6 +6,8 @@ import '../../../app/const/const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/ui/components/app_scaffold.dart';
 import '../../../app/ui/components/buttons/empty_button.dart';
+import '../../../app/ui/components/buttons/language_button/language_button.dart';
+import '../../../app/ui/components/buttons/theme_button/theme_button.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../auth/domain/state/auth_cubit.dart';
 import '../domain/state/profile_cubit.dart';
@@ -37,6 +39,19 @@ class UserScreen extends StatelessWidget {
                           color: Provider.of<ThemeProvider>(context)
                               .themeData
                               .hintColor,
+                        ),
+                      ),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16.0),
+                        child: Row(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(right: verticalPadding),
+                              child: ThemeButton(),
+                            ),
+                            LanguageButton(),
+                          ],
                         ),
                       ),
                       GestureDetector(

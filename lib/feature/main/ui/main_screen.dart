@@ -6,11 +6,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../app/const/const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
-import '../../../app/ui/components/app_scaffold.dart';
-import '../../../app/ui/components/buttons/language_button/language_button.dart';
-import '../../../app/ui/components/buttons/theme_button/theme_button.dart';
+import '../../posts/ui/posts_screen.dart';
 import '../../profile/domain/state/profile_cubit.dart';
-import '../../profile/ui/profile_screen.dart';
 import '../../profile/ui/user_profile_screen.dart';
 import '../../profile/ui/user_screen.dart';
 
@@ -34,87 +31,69 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      notifications: ValueNotifier([]),
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: [
+          BottomNavigationBarItem(
+            label: 'person',
+            icon: Icon(
+              CupertinoIcons.person,
+              size: buttonHeight,
+              color: Provider.of<ThemeProvider>(context).themeData.hintColor,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: 'profile',
+            icon: Icon(
+              CupertinoIcons.profile_circled,
+              size: buttonHeight,
+              color: Provider.of<ThemeProvider>(context).themeData.hintColor,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: 'profile',
+            icon: Icon(
+              Icons.person,
+              size: buttonHeight,
+              color: Provider.of<ThemeProvider>(context).themeData.hintColor,
+            ),
+          ),
+        ],
+        onTap: (id) {
+          if (id == 0) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const UserProfileScreen(
+                  userId: '22',
+                  firsName: 'Чак',
+                  lastName: 'Норрис',
+                  image: null,
+                ),
+              ),
+            );
+          } else if (id == 1) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const PostsScreen(),
+              ),
+            );
+          } else if (id == 2) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const UserScreen(),
+              ),
+            );
+          }
+        },
+      ),
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: mainPadding),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: verticalPadding),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: const [
-                          Padding(
-                            padding: EdgeInsets.only(right: verticalPadding),
-                            child: ThemeButton(),
-                          ),
-                          LanguageButton(),
-                        ],
-                      ),
-                      GestureDetector(
-                        onTap: () async => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const UserProfileScreen(
-                              userId: '22',
-                              firsName: 'Чак',
-                              lastName: 'Норрис',
-                              image: null,
-                            ),
-                          ),
-                        ),
-                        child: Icon(
-                          CupertinoIcons.person,
-                          size: buttonHeight,
-                          color: Provider.of<ThemeProvider>(context)
-                              .themeData
-                              .hintColor,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const ProfileScreen(),
-                          ),
-                        ),
-                        child: Hero(
-                          tag: 'some',
-                          child: Icon(
-                            CupertinoIcons.profile_circled,
-                            size: buttonHeight,
-                            color: Provider.of<ThemeProvider>(context)
-                                .themeData
-                                .hintColor,
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const UserScreen(),
-                          ),
-                        ),
-                        child: Icon(
-                          Icons.person,
-                          size: buttonHeight,
-                          color: Provider.of<ThemeProvider>(context)
-                              .themeData
-                              .hintColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
             const Flexible(
               fit: FlexFit.tight,
-              flex: 2,
+              flex: 3,
               child: SizedBox.shrink(),
             ),
             BlocListener<ProfileCubit, ProfileState>(
@@ -178,6 +157,11 @@ class _MainScreenState extends State<MainScreen> {
                       .headline5,
                 ),
               ),
+            ),
+            const Flexible(
+              fit: FlexFit.tight,
+              flex: 1,
+              child: SizedBox.shrink(),
             ),
           ],
         ),
