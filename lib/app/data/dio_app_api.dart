@@ -344,6 +344,22 @@ class DioAppApi implements AppApi {
       rethrow;
     }
   }
+
+  @override
+  Future<Response> getOverallPosts(String type, int limit, int last) {
+    try {
+      return dio.get(
+        '/data/post',
+        queryParameters: {
+          _QueryKey.type: type,
+          _QueryKey.limit: limit,
+          _QueryKey.last: last,
+        },
+      );
+    } catch (_) {
+      rethrow;
+    }
+  }
 }
 
 abstract class _QueryKey {

@@ -60,4 +60,6 @@ abstract class AppApi {
   Future<Response> deleteComment(int id);
 
   Future<Response> updateComment(int id, Map<String, dynamic> body);
+
+  Future<Response> getOverallPosts(String type, int limit, int last);
 }
