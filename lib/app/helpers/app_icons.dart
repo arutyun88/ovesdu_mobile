@@ -15,4 +15,7 @@ abstract class AppIcons {
   static const String eyeIcon = 'assets/icons/eye_icon.svg';
   static const String profileIcon = 'assets/icons/profile_icon.svg';
   static const String cancelIcon = 'assets/icons/cancel_icon.svg';
+  static const String timelineIcon = 'assets/icons/timeline_icon.svg';
+  static const String moreIcon = 'assets/icons/more_icon.svg';
+  static const String moreSettingIcon = 'assets/icons/more_setting_icon.svg';
 }
