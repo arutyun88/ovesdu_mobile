@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../config/app_colors.dart';
-import '../config/app_fonts.dart';
+import '../../../../app/ui/config/app_colors.dart';
+import '../../../../app/ui/config/app_fonts.dart';
 
 class AppBarLogoWidget extends StatelessWidget {
   const AppBarLogoWidget({
