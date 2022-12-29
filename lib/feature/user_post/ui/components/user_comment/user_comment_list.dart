@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../../app/domain/entities/comment_entity/post_comment_entity.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import '../../../domain/state/user_post_comment/user_post_comment_cubit.dart';
 import 'user_comment_item.dart';
 
@@ -14,10 +14,10 @@ class UserCommentList extends StatelessWidget {
     required this.onTapToRead,
   }) : super(key: key);
 
-  final Function(UserPostCommentEntity?) onTapToSelect;
+  final Function(PostCommentEntity?) onTapToSelect;
   final Function(
-    UserPostCommentEntity editingComment,
-    UserPostCommentEntity? replyTo,
+    PostCommentEntity editingComment,
+    PostCommentEntity? replyTo,
   ) onTapToRead;
 
   @override
@@ -33,7 +33,7 @@ class UserCommentList extends StatelessWidget {
                 comments.comments.length,
                 (index) {
                   final replyComment = comments.comments[index].toCommentId;
-                  UserPostCommentEntity? replyToComment;
+                  PostCommentEntity? replyToComment;
                   String? replyToCommentText;
                   String? replyToCommentAuthor;
                   if (replyComment != null) {

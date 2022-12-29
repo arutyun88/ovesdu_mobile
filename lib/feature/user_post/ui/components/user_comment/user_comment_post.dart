@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../app/const/const.dart';
+import '../../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../domain/entity/user_post/user_post_entity.dart';
 import '../../../domain/state/user_post_cubit.dart';
 import '../user_post_item/user_post_item_content.dart';
 import '../user_post_item_statistic/user_post_item_statistic.dart';
@@ -18,14 +18,14 @@ class UserCommentPost extends StatefulWidget {
 
   final String? avatar;
   final DateTime lastVisit;
-  final UserPostEntity post;
+  final PostEntity post;
 
   @override
   State<UserCommentPost> createState() => _UserCommentPostState();
 }
 
 class _UserCommentPostState extends State<UserCommentPost> {
-  late UserPostEntity postEntity;
+  late PostEntity postEntity;
 
   @override
   void initState() {

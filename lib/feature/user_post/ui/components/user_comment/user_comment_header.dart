@@ -7,13 +7,13 @@ import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/setting_provider.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/di/init_di.dart';
+import '../../../../../app/domain/entities/comment_entity/post_comment_entity.dart';
 import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/helpers/date_helper.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../profile/domain/state/profile_cubit.dart';
-import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import '../../../domain/state/user_comment_action/user_comment_action_cubit.dart';
 import '../../../domain/state/user_post_comment/user_post_comment_cubit.dart';
 import '../../../domain/state/user_post_cubit.dart';
@@ -26,12 +26,12 @@ class UserCommentHeader extends StatefulWidget {
     this.replyToComment,
   }) : super(key: key);
 
-  final UserPostCommentEntity comment;
+  final PostCommentEntity comment;
   final Function(
-    UserPostCommentEntity editingComment,
-    UserPostCommentEntity? replyTo,
+    PostCommentEntity editingComment,
+    PostCommentEntity? replyTo,
   ) onTapToRead;
-  final UserPostCommentEntity? replyToComment;
+  final PostCommentEntity? replyToComment;
 
   @override
   State<UserCommentHeader> createState() => _UserCommentHeaderState();

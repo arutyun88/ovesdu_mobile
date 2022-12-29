@@ -3,8 +3,8 @@ import 'package:ovesdu_mobile/app/const/const.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../user_post_item_statistic/user_post_item_statistic.dart';
-import '../../../domain/entity/user_post/user_post_entity.dart';
 import 'user_post_item_content.dart';
 import 'user_post_item_header_light.dart';
 
@@ -18,7 +18,7 @@ class UserPostItem extends StatelessWidget {
 
   final String? avatar;
   final DateTime lastVisit;
-  final UserPostEntity post;
+  final PostEntity post;
 
   @override
   Widget build(BuildContext context) {

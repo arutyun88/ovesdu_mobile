@@ -5,7 +5,7 @@ import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/helpers/helpers.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../domain/entity/user_post/user_post_photo_entity.dart';
+import '../../../../../app/domain/entities/post_entity/post_photo_entity.dart';
 import '../full_screen_image.dart';
 
 class UserPostItemContentPhoto extends StatelessWidget {
@@ -13,7 +13,7 @@ class UserPostItemContentPhoto extends StatelessWidget {
     Key? key,
     required this.photos,
   }) : super(key: key);
-  final List<UserPostPhotoEntity> photos;
+  final List<PostPhotoEntity> photos;
 
   @override
   Widget build(BuildContext context) {
@@ -259,7 +259,7 @@ class _ItemWidget extends StatelessWidget {
   final double height;
   final String photo;
   final int? lengthIfMore;
-  final List<UserPostPhotoEntity> photos;
+  final List<PostPhotoEntity> photos;
   final int index;
 
   @override

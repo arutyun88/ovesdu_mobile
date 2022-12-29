@@ -1,16 +1,16 @@
 import 'package:injectable/injectable.dart';
 
+import '../../../app/data/dto/post_comment_dto/post_comment_dto.dart';
+import '../../../app/data/dto/post_comment_dto/post_comments_dto.dart';
+import '../../../app/data/dto/post_dto/post_dto.dart';
+import '../../../app/data/dto/post_dto/posts_dto.dart';
 import '../../../app/domain/app_api.dart';
+import '../../../app/domain/entities/comment_entity/post_comment_entity.dart';
+import '../../../app/domain/entities/comment_entity/post_comments_entity.dart';
+import '../../../app/domain/entities/post_entity/post_entity.dart';
 import '../domain/entity/reaction_type.dart';
-import '../domain/entity/user_post/user_post_entity.dart';
-import '../domain/entity/user_post/user_posts_entity.dart';
-import '../domain/entity/user_post_comment/user_post_comment_entity.dart';
-import '../domain/entity/user_post_comment/user_post_comments_entity.dart';
+import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../domain/user_post_repository.dart';
-import 'dto/user_post/user_post_dto.dart';
-import 'dto/user_post/user_posts_dto.dart';
-import 'dto/user_post_comment/user_post_comment_dto.dart';
-import 'dto/user_post_comment/user_post_comments_dto.dart';
 
 @Injectable(as: UserPostRepository)
 class UserPostRepositoryImpl implements UserPostRepository {
@@ -19,7 +19,7 @@ class UserPostRepositoryImpl implements UserPostRepository {
   UserPostRepositoryImpl(AppApi api) : _api = api;
 
   @override
-  Future<UserPostsEntity> getUserPosts(int id, int limit, int last) async {
+  Future<PostsEntity> getUserPosts(int id, int limit, int last) async {
     await _api.setHeaderLocale();
     try {
       final response = await _api.getUserPosts(id, limit, last);
@@ -47,7 +47,7 @@ class UserPostRepositoryImpl implements UserPostRepository {
   }
 
   @override
-  Future<UserPostCommentEntity> createPostComment(
+  Future<PostCommentEntity> createPostComment(
     int postId,
     String text, {
     int? toCommentId,
@@ -64,28 +64,28 @@ class UserPostRepositoryImpl implements UserPostRepository {
 
       final data = response.data['data'];
 
-      return UserPostCommentDto.fromJson(data).toEntity();
+      return PostCommentDto.fromJson(data).toEntity();
     } catch (_) {
       rethrow;
     }
   }
 
   @override
-  Future<UserPostEntity> getUserPost(int id) async {
+  Future<PostEntity> getUserPost(int id) async {
     await _api.setHeaderLocale();
     try {
       final response = await _api.getUserPost(id);
 
       final data = response.data['data'];
 
-      return UserPostDto.fromJson(data).toEntity();
+      return PostDto.fromJson(data).toEntity();
     } catch (_) {
       rethrow;
     }
   }
 
   @override
-  Future<UserPostCommentsEntity> getPostComments(
+  Future<PostCommentsEntity> getPostComments(
     int postId,
     int limit,
     int last,
@@ -96,7 +96,7 @@ class UserPostRepositoryImpl implements UserPostRepository {
 
       final data = response.data['data'];
 
-      return UserPostCommentsDto.fromJson(data).toEntity();
+      return PostCommentsDto.fromJson(data).toEntity();
     } catch (_) {
       rethrow;
     }
@@ -127,7 +127,7 @@ class UserPostRepositoryImpl implements UserPostRepository {
   }
 
   @override
-  Future<UserPostCommentEntity> updateComment(
+  Future<PostCommentEntity> updateComment(
     int commentId,
     String text,
     int postId, {
@@ -146,7 +146,7 @@ class UserPostRepositoryImpl implements UserPostRepository {
 
       final data = response.data['data'];
 
-      return UserPostCommentDto.fromJson(data).toEntity();
+      return PostCommentDto.fromJson(data).toEntity();
     } catch (_) {
       rethrow;
     }

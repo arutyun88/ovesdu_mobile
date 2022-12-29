@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../author_entity.dart';
+import '../author_entity/author_entity.dart';
 
-part 'user_post_comment_entity.freezed.dart';
+part 'post_comment_entity.freezed.dart';
 
 @freezed
-class UserPostCommentEntity with _$UserPostCommentEntity {
-  const factory UserPostCommentEntity({
+class PostCommentEntity with _$PostCommentEntity {
+  const factory PostCommentEntity({
     required int id,
     required DateTime created,
     required DateTime updated,

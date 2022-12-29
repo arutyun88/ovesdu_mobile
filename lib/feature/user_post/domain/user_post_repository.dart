@@ -1,23 +1,23 @@
+import '../../../app/domain/entities/comment_entity/post_comment_entity.dart';
+import '../../../app/domain/entities/comment_entity/post_comments_entity.dart';
+import '../../../app/domain/entities/post_entity/post_entity.dart';
 import 'entity/reaction_type.dart';
-import 'entity/user_post/user_post_entity.dart';
-import 'entity/user_post/user_posts_entity.dart';
-import 'entity/user_post_comment/user_post_comment_entity.dart';
-import 'entity/user_post_comment/user_post_comments_entity.dart';
+import '../../../app/domain/entities/post_entity/posts_entity.dart';
 
 abstract class UserPostRepository {
-  Future<UserPostsEntity> getUserPosts(int id, int limit, int last);
+  Future<PostsEntity> getUserPosts(int id, int limit, int last);
 
-  Future<UserPostEntity> getUserPost(int id);
+  Future<PostEntity> getUserPost(int id);
 
   Future<ReactionType> updatePostReaction(int id, ReactionType type);
 
-  Future<UserPostCommentEntity> createPostComment(
+  Future<PostCommentEntity> createPostComment(
     int postId,
     String text, {
     int? toCommentId,
   });
 
-  Future<UserPostCommentsEntity> getPostComments(
+  Future<PostCommentsEntity> getPostComments(
     int postId,
     int limit,
     int last,
@@ -27,7 +27,7 @@ abstract class UserPostRepository {
 
   Future<void> deleteComment(int id);
 
-  Future<UserPostCommentEntity> updateComment(
+  Future<PostCommentEntity> updateComment(
     int commentId,
     String text,
     int postId, {

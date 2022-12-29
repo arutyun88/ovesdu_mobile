@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'user_post_comments_entity.dart';
+part of 'post_comments_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,39 +15,37 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UserPostCommentsEntity {
+mixin _$PostCommentsEntity {
   int get last => throw _privateConstructorUsedError;
   int get limit => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
-  List<UserPostCommentEntity> get comments =>
-      throw _privateConstructorUsedError;
-  List<UserPostCommentEntity> get commentsResponses =>
+  List<PostCommentEntity> get comments => throw _privateConstructorUsedError;
+  List<PostCommentEntity> get commentsResponses =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UserPostCommentsEntityCopyWith<UserPostCommentsEntity> get copyWith =>
+  $PostCommentsEntityCopyWith<PostCommentsEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserPostCommentsEntityCopyWith<$Res> {
-  factory $UserPostCommentsEntityCopyWith(UserPostCommentsEntity value,
-          $Res Function(UserPostCommentsEntity) then) =
-      _$UserPostCommentsEntityCopyWithImpl<$Res, UserPostCommentsEntity>;
+abstract class $PostCommentsEntityCopyWith<$Res> {
+  factory $PostCommentsEntityCopyWith(
+          PostCommentsEntity value, $Res Function(PostCommentsEntity) then) =
+      _$PostCommentsEntityCopyWithImpl<$Res, PostCommentsEntity>;
   @useResult
   $Res call(
       {int last,
       int limit,
       int count,
-      List<UserPostCommentEntity> comments,
-      List<UserPostCommentEntity> commentsResponses});
+      List<PostCommentEntity> comments,
+      List<PostCommentEntity> commentsResponses});
 }
 
 /// @nodoc
-class _$UserPostCommentsEntityCopyWithImpl<$Res,
-        $Val extends UserPostCommentsEntity>
-    implements $UserPostCommentsEntityCopyWith<$Res> {
-  _$UserPostCommentsEntityCopyWithImpl(this._value, this._then);
+class _$PostCommentsEntityCopyWithImpl<$Res, $Val extends PostCommentsEntity>
+    implements $PostCommentsEntityCopyWith<$Res> {
+  _$PostCommentsEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -79,38 +77,37 @@ class _$UserPostCommentsEntityCopyWithImpl<$Res,
       comments: null == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<UserPostCommentEntity>,
+              as List<PostCommentEntity>,
       commentsResponses: null == commentsResponses
           ? _value.commentsResponses
           : commentsResponses // ignore: cast_nullable_to_non_nullable
-              as List<UserPostCommentEntity>,
+              as List<PostCommentEntity>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_UserPostCommentsEntityCopyWith<$Res>
-    implements $UserPostCommentsEntityCopyWith<$Res> {
-  factory _$$_UserPostCommentsEntityCopyWith(_$_UserPostCommentsEntity value,
-          $Res Function(_$_UserPostCommentsEntity) then) =
-      __$$_UserPostCommentsEntityCopyWithImpl<$Res>;
+abstract class _$$_PostCommentsEntityCopyWith<$Res>
+    implements $PostCommentsEntityCopyWith<$Res> {
+  factory _$$_PostCommentsEntityCopyWith(_$_PostCommentsEntity value,
+          $Res Function(_$_PostCommentsEntity) then) =
+      __$$_PostCommentsEntityCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {int last,
       int limit,
       int count,
-      List<UserPostCommentEntity> comments,
-      List<UserPostCommentEntity> commentsResponses});
+      List<PostCommentEntity> comments,
+      List<PostCommentEntity> commentsResponses});
 }
 
 /// @nodoc
-class __$$_UserPostCommentsEntityCopyWithImpl<$Res>
-    extends _$UserPostCommentsEntityCopyWithImpl<$Res,
-        _$_UserPostCommentsEntity>
-    implements _$$_UserPostCommentsEntityCopyWith<$Res> {
-  __$$_UserPostCommentsEntityCopyWithImpl(_$_UserPostCommentsEntity _value,
-      $Res Function(_$_UserPostCommentsEntity) _then)
+class __$$_PostCommentsEntityCopyWithImpl<$Res>
+    extends _$PostCommentsEntityCopyWithImpl<$Res, _$_PostCommentsEntity>
+    implements _$$_PostCommentsEntityCopyWith<$Res> {
+  __$$_PostCommentsEntityCopyWithImpl(
+      _$_PostCommentsEntity _value, $Res Function(_$_PostCommentsEntity) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -122,7 +119,7 @@ class __$$_UserPostCommentsEntityCopyWithImpl<$Res>
     Object? comments = null,
     Object? commentsResponses = null,
   }) {
-    return _then(_$_UserPostCommentsEntity(
+    return _then(_$_PostCommentsEntity(
       last: null == last
           ? _value.last
           : last // ignore: cast_nullable_to_non_nullable
@@ -138,24 +135,24 @@ class __$$_UserPostCommentsEntityCopyWithImpl<$Res>
       comments: null == comments
           ? _value._comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<UserPostCommentEntity>,
+              as List<PostCommentEntity>,
       commentsResponses: null == commentsResponses
           ? _value._commentsResponses
           : commentsResponses // ignore: cast_nullable_to_non_nullable
-              as List<UserPostCommentEntity>,
+              as List<PostCommentEntity>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_UserPostCommentsEntity implements _UserPostCommentsEntity {
-  const _$_UserPostCommentsEntity(
+class _$_PostCommentsEntity implements _PostCommentsEntity {
+  const _$_PostCommentsEntity(
       {required this.last,
       required this.limit,
       required this.count,
-      required final List<UserPostCommentEntity> comments,
-      required final List<UserPostCommentEntity> commentsResponses})
+      required final List<PostCommentEntity> comments,
+      required final List<PostCommentEntity> commentsResponses})
       : _comments = comments,
         _commentsResponses = commentsResponses;
 
@@ -165,30 +162,30 @@ class _$_UserPostCommentsEntity implements _UserPostCommentsEntity {
   final int limit;
   @override
   final int count;
-  final List<UserPostCommentEntity> _comments;
+  final List<PostCommentEntity> _comments;
   @override
-  List<UserPostCommentEntity> get comments {
+  List<PostCommentEntity> get comments {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_comments);
   }
 
-  final List<UserPostCommentEntity> _commentsResponses;
+  final List<PostCommentEntity> _commentsResponses;
   @override
-  List<UserPostCommentEntity> get commentsResponses {
+  List<PostCommentEntity> get commentsResponses {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_commentsResponses);
   }
 
   @override
   String toString() {
-    return 'UserPostCommentsEntity(last: $last, limit: $limit, count: $count, comments: $comments, commentsResponses: $commentsResponses)';
+    return 'PostCommentsEntity(last: $last, limit: $limit, count: $count, comments: $comments, commentsResponses: $commentsResponses)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserPostCommentsEntity &&
+            other is _$_PostCommentsEntity &&
             (identical(other.last, last) || other.last == last) &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.count, count) || other.count == count) &&
@@ -209,19 +206,19 @@ class _$_UserPostCommentsEntity implements _UserPostCommentsEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserPostCommentsEntityCopyWith<_$_UserPostCommentsEntity> get copyWith =>
-      __$$_UserPostCommentsEntityCopyWithImpl<_$_UserPostCommentsEntity>(
+  _$$_PostCommentsEntityCopyWith<_$_PostCommentsEntity> get copyWith =>
+      __$$_PostCommentsEntityCopyWithImpl<_$_PostCommentsEntity>(
           this, _$identity);
 }
 
-abstract class _UserPostCommentsEntity implements UserPostCommentsEntity {
-  const factory _UserPostCommentsEntity(
+abstract class _PostCommentsEntity implements PostCommentsEntity {
+  const factory _PostCommentsEntity(
           {required final int last,
           required final int limit,
           required final int count,
-          required final List<UserPostCommentEntity> comments,
-          required final List<UserPostCommentEntity> commentsResponses}) =
-      _$_UserPostCommentsEntity;
+          required final List<PostCommentEntity> comments,
+          required final List<PostCommentEntity> commentsResponses}) =
+      _$_PostCommentsEntity;
 
   @override
   int get last;
@@ -230,11 +227,11 @@ abstract class _UserPostCommentsEntity implements UserPostCommentsEntity {
   @override
   int get count;
   @override
-  List<UserPostCommentEntity> get comments;
+  List<PostCommentEntity> get comments;
   @override
-  List<UserPostCommentEntity> get commentsResponses;
+  List<PostCommentEntity> get commentsResponses;
   @override
   @JsonKey(ignore: true)
-  _$$_UserPostCommentsEntityCopyWith<_$_UserPostCommentsEntity> get copyWith =>
+  _$$_PostCommentsEntityCopyWith<_$_PostCommentsEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }

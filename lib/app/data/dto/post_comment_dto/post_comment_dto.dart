@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
-import '../author_dto.dart';
+import '../../../domain/entities/comment_entity/post_comment_entity.dart';
+import '../author_dto/author_dto.dart';
 
-part 'user_post_comment_dto.g.dart';
+part 'post_comment_dto.g.dart';
 
 @JsonSerializable()
-class UserPostCommentDto {
+class PostCommentDto {
   final dynamic id;
   final dynamic created;
   final dynamic updated;
@@ -18,7 +18,7 @@ class UserPostCommentDto {
   final dynamic liked;
   final dynamic answers;
 
-  UserPostCommentDto({
+  PostCommentDto({
     required this.id,
     required this.created,
     required this.updated,
@@ -31,12 +31,12 @@ class UserPostCommentDto {
     required this.answers,
   });
 
-  factory UserPostCommentDto.fromJson(Map<String, dynamic> json) =>
-      _$UserPostCommentDtoFromJson(json);
+  factory PostCommentDto.fromJson(Map<String, dynamic> json) =>
+      _$PostCommentDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserPostCommentDtoToJson(this);
+  Map<String, dynamic> toJson() => _$PostCommentDtoToJson(this);
 
-  UserPostCommentEntity toEntity() => UserPostCommentEntity(
+  PostCommentEntity toEntity() => PostCommentEntity(
         id: id,
         created: DateTime.parse(created.toString()).toLocal(),
         updated: DateTime.parse(updated.toString()).toLocal(),

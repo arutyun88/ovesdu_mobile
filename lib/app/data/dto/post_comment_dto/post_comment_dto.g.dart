@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_post_comment_dto.dart';
+part of 'post_comment_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserPostCommentDto _$UserPostCommentDtoFromJson(Map<String, dynamic> json) =>
-    UserPostCommentDto(
+PostCommentDto _$PostCommentDtoFromJson(Map<String, dynamic> json) =>
+    PostCommentDto(
       id: json['id'],
       created: json['created'],
       updated: json['updated'],
@@ -20,7 +20,7 @@ UserPostCommentDto _$UserPostCommentDtoFromJson(Map<String, dynamic> json) =>
       answers: json['answers'],
     );
 
-Map<String, dynamic> _$UserPostCommentDtoToJson(UserPostCommentDto instance) =>
+Map<String, dynamic> _$PostCommentDtoToJson(PostCommentDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'created': instance.created,

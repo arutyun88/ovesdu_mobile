@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../../app/domain/entities/comment_entity/post_comment_entity.dart';
 import '../../../domain/entity/reaction_type.dart';
-import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import '../../../domain/state/user_post_comment/reaction/user_comment_reaction_cubit.dart';
 import '../reaction_widget.dart';
 
@@ -13,7 +13,7 @@ class UserCommentItemReaction extends StatefulWidget {
     this.comment, {
     Key? key,
   }) : super(key: key);
-  final UserPostCommentEntity comment;
+  final PostCommentEntity comment;
 
   @override
   State<UserCommentItemReaction> createState() =>

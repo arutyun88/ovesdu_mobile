@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'user_post_entity.dart';
+part of 'post_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,13 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UserPostEntity {
+mixin _$PostEntity {
   int get id => throw _privateConstructorUsedError;
   DateTime get created => throw _privateConstructorUsedError;
   DateTime get updated => throw _privateConstructorUsedError;
   String? get text => throw _privateConstructorUsedError;
-  List<UserPostPhotoEntity> get photos => throw _privateConstructorUsedError;
-  List<UserPostVideoEntity> get videos => throw _privateConstructorUsedError;
+  List<PostPhotoEntity> get photos => throw _privateConstructorUsedError;
+  List<PostVideoEntity> get videos => throw _privateConstructorUsedError;
   int get like => throw _privateConstructorUsedError;
   int get dislike => throw _privateConstructorUsedError;
   bool? get liked => throw _privateConstructorUsedError;
@@ -29,23 +29,23 @@ mixin _$UserPostEntity {
   AuthorEntity get author => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UserPostEntityCopyWith<UserPostEntity> get copyWith =>
+  $PostEntityCopyWith<PostEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserPostEntityCopyWith<$Res> {
-  factory $UserPostEntityCopyWith(
-          UserPostEntity value, $Res Function(UserPostEntity) then) =
-      _$UserPostEntityCopyWithImpl<$Res, UserPostEntity>;
+abstract class $PostEntityCopyWith<$Res> {
+  factory $PostEntityCopyWith(
+          PostEntity value, $Res Function(PostEntity) then) =
+      _$PostEntityCopyWithImpl<$Res, PostEntity>;
   @useResult
   $Res call(
       {int id,
       DateTime created,
       DateTime updated,
       String? text,
-      List<UserPostPhotoEntity> photos,
-      List<UserPostVideoEntity> videos,
+      List<PostPhotoEntity> photos,
+      List<PostVideoEntity> videos,
       int like,
       int dislike,
       bool? liked,
@@ -56,9 +56,9 @@ abstract class $UserPostEntityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserPostEntityCopyWithImpl<$Res, $Val extends UserPostEntity>
-    implements $UserPostEntityCopyWith<$Res> {
-  _$UserPostEntityCopyWithImpl(this._value, this._then);
+class _$PostEntityCopyWithImpl<$Res, $Val extends PostEntity>
+    implements $PostEntityCopyWith<$Res> {
+  _$PostEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -100,11 +100,11 @@ class _$UserPostEntityCopyWithImpl<$Res, $Val extends UserPostEntity>
       photos: null == photos
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as List<UserPostPhotoEntity>,
+              as List<PostPhotoEntity>,
       videos: null == videos
           ? _value.videos
           : videos // ignore: cast_nullable_to_non_nullable
-              as List<UserPostVideoEntity>,
+              as List<PostVideoEntity>,
       like: null == like
           ? _value.like
           : like // ignore: cast_nullable_to_non_nullable
@@ -138,11 +138,11 @@ class _$UserPostEntityCopyWithImpl<$Res, $Val extends UserPostEntity>
 }
 
 /// @nodoc
-abstract class _$$_UserPostEntityCopyWith<$Res>
-    implements $UserPostEntityCopyWith<$Res> {
-  factory _$$_UserPostEntityCopyWith(
-          _$_UserPostEntity value, $Res Function(_$_UserPostEntity) then) =
-      __$$_UserPostEntityCopyWithImpl<$Res>;
+abstract class _$$_PostEntityCopyWith<$Res>
+    implements $PostEntityCopyWith<$Res> {
+  factory _$$_PostEntityCopyWith(
+          _$_PostEntity value, $Res Function(_$_PostEntity) then) =
+      __$$_PostEntityCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -150,8 +150,8 @@ abstract class _$$_UserPostEntityCopyWith<$Res>
       DateTime created,
       DateTime updated,
       String? text,
-      List<UserPostPhotoEntity> photos,
-      List<UserPostVideoEntity> videos,
+      List<PostPhotoEntity> photos,
+      List<PostVideoEntity> videos,
       int like,
       int dislike,
       bool? liked,
@@ -163,11 +163,11 @@ abstract class _$$_UserPostEntityCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UserPostEntityCopyWithImpl<$Res>
-    extends _$UserPostEntityCopyWithImpl<$Res, _$_UserPostEntity>
-    implements _$$_UserPostEntityCopyWith<$Res> {
-  __$$_UserPostEntityCopyWithImpl(
-      _$_UserPostEntity _value, $Res Function(_$_UserPostEntity) _then)
+class __$$_PostEntityCopyWithImpl<$Res>
+    extends _$PostEntityCopyWithImpl<$Res, _$_PostEntity>
+    implements _$$_PostEntityCopyWith<$Res> {
+  __$$_PostEntityCopyWithImpl(
+      _$_PostEntity _value, $Res Function(_$_PostEntity) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -185,7 +185,7 @@ class __$$_UserPostEntityCopyWithImpl<$Res>
     Object? comment = null,
     Object? author = null,
   }) {
-    return _then(_$_UserPostEntity(
+    return _then(_$_PostEntity(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -205,11 +205,11 @@ class __$$_UserPostEntityCopyWithImpl<$Res>
       photos: null == photos
           ? _value._photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as List<UserPostPhotoEntity>,
+              as List<PostPhotoEntity>,
       videos: null == videos
           ? _value._videos
           : videos // ignore: cast_nullable_to_non_nullable
-              as List<UserPostVideoEntity>,
+              as List<PostVideoEntity>,
       like: null == like
           ? _value.like
           : like // ignore: cast_nullable_to_non_nullable
@@ -236,14 +236,14 @@ class __$$_UserPostEntityCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UserPostEntity implements _UserPostEntity {
-  const _$_UserPostEntity(
+class _$_PostEntity implements _PostEntity {
+  const _$_PostEntity(
       {required this.id,
       required this.created,
       required this.updated,
       required this.text,
-      required final List<UserPostPhotoEntity> photos,
-      required final List<UserPostVideoEntity> videos,
+      required final List<PostPhotoEntity> photos,
+      required final List<PostVideoEntity> videos,
       required this.like,
       required this.dislike,
       required this.liked,
@@ -260,16 +260,16 @@ class _$_UserPostEntity implements _UserPostEntity {
   final DateTime updated;
   @override
   final String? text;
-  final List<UserPostPhotoEntity> _photos;
+  final List<PostPhotoEntity> _photos;
   @override
-  List<UserPostPhotoEntity> get photos {
+  List<PostPhotoEntity> get photos {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_photos);
   }
 
-  final List<UserPostVideoEntity> _videos;
+  final List<PostVideoEntity> _videos;
   @override
-  List<UserPostVideoEntity> get videos {
+  List<PostVideoEntity> get videos {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_videos);
   }
@@ -287,14 +287,14 @@ class _$_UserPostEntity implements _UserPostEntity {
 
   @override
   String toString() {
-    return 'UserPostEntity(id: $id, created: $created, updated: $updated, text: $text, photos: $photos, videos: $videos, like: $like, dislike: $dislike, liked: $liked, comment: $comment, author: $author)';
+    return 'PostEntity(id: $id, created: $created, updated: $updated, text: $text, photos: $photos, videos: $videos, like: $like, dislike: $dislike, liked: $liked, comment: $comment, author: $author)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserPostEntity &&
+            other is _$_PostEntity &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.updated, updated) || other.updated == updated) &&
@@ -326,23 +326,23 @@ class _$_UserPostEntity implements _UserPostEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserPostEntityCopyWith<_$_UserPostEntity> get copyWith =>
-      __$$_UserPostEntityCopyWithImpl<_$_UserPostEntity>(this, _$identity);
+  _$$_PostEntityCopyWith<_$_PostEntity> get copyWith =>
+      __$$_PostEntityCopyWithImpl<_$_PostEntity>(this, _$identity);
 }
 
-abstract class _UserPostEntity implements UserPostEntity {
-  const factory _UserPostEntity(
+abstract class _PostEntity implements PostEntity {
+  const factory _PostEntity(
       {required final int id,
       required final DateTime created,
       required final DateTime updated,
       required final String? text,
-      required final List<UserPostPhotoEntity> photos,
-      required final List<UserPostVideoEntity> videos,
+      required final List<PostPhotoEntity> photos,
+      required final List<PostVideoEntity> videos,
       required final int like,
       required final int dislike,
       required final bool? liked,
       required final int comment,
-      required final AuthorEntity author}) = _$_UserPostEntity;
+      required final AuthorEntity author}) = _$_PostEntity;
 
   @override
   int get id;
@@ -353,9 +353,9 @@ abstract class _UserPostEntity implements UserPostEntity {
   @override
   String? get text;
   @override
-  List<UserPostPhotoEntity> get photos;
+  List<PostPhotoEntity> get photos;
   @override
-  List<UserPostVideoEntity> get videos;
+  List<PostVideoEntity> get videos;
   @override
   int get like;
   @override
@@ -368,6 +368,6 @@ abstract class _UserPostEntity implements UserPostEntity {
   AuthorEntity get author;
   @override
   @JsonKey(ignore: true)
-  _$$_UserPostEntityCopyWith<_$_UserPostEntity> get copyWith =>
+  _$$_PostEntityCopyWith<_$_PostEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -5,13 +5,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/di/init_di.dart';
+import '../../../../../app/domain/entities/author_entity/author_entity.dart';
+import '../../../../../app/domain/entities/comment_entity/post_comment_entity.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../../app/ui/components/custom_page_route.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../profile/domain/state/profile_cubit.dart';
 import '../../../../profile/ui/user_profile_screen.dart';
-import '../../../domain/entity/author_entity.dart';
-import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import 'user_comment_header.dart';
 import 'user_comment_item_statistic.dart';
 import 'user_comment_replied_item.dart';
@@ -26,13 +26,13 @@ class UserCommentItem extends StatelessWidget {
     required this.onTapToRead,
   }) : super(key: key);
 
-  final UserPostCommentEntity comment;
-  final UserPostCommentEntity? replyToComment;
+  final PostCommentEntity comment;
+  final PostCommentEntity? replyToComment;
   final String? replyToCommentText;
   final String? replyToCommentAuthor;
   final Function(
-    UserPostCommentEntity editingComment,
-    UserPostCommentEntity? replyTo,
+    PostCommentEntity editingComment,
+    PostCommentEntity? replyTo,
   ) onTapToRead;
 
   @override

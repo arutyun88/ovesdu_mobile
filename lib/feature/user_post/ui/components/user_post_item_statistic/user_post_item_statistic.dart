@@ -5,11 +5,11 @@ import 'package:provider/provider.dart';
 import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/di/init_di.dart';
+import '../../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/ui/components/buttons/empty_button.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../../app/ui/components/custom_page_route.dart';
-import '../../../domain/entity/user_post/user_post_entity.dart';
 import '../../../domain/state/user_post_cubit.dart';
 import '../../../domain/state/user_post_reaction/user_post_reaction_cubit.dart';
 import '../../../domain/user_post_repository.dart';
@@ -26,7 +26,7 @@ class UserPostItemStatistic extends StatefulWidget {
   }) : super(key: key);
   final String? avatar;
   final DateTime lastVisit;
-  final UserPostEntity post;
+  final PostEntity post;
   final bool isCommentScreen;
 
   @override
@@ -115,7 +115,7 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
           .then(
         (value) {
           if (value != null) {
-            context.read<UserPostCubit>().postUpdated(value as UserPostEntity);
+            context.read<UserPostCubit>().postUpdated(value as PostEntity);
           }
         },
       );

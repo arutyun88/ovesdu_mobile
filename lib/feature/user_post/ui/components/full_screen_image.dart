@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../app/const/const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import '../../domain/entity/user_post/user_post_photo_entity.dart';
+import '../../../../app/domain/entities/post_entity/post_photo_entity.dart';
 
 class FullScreenImage extends StatefulWidget {
   const FullScreenImage({
@@ -13,7 +13,7 @@ class FullScreenImage extends StatefulWidget {
     required this.currentIndex,
   }) : super(key: key);
 
-  final List<UserPostPhotoEntity> photos;
+  final List<PostPhotoEntity> photos;
   final int currentIndex;
 
   @override

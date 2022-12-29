@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../app/di/init_di.dart';
+import '../../../app/domain/entities/comment_entity/post_comment_entity.dart';
+import '../../../app/domain/entities/comment_entity/post_comments_entity.dart';
+import '../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../app/ui/components/custom_page_route.dart';
 import '../../profile/domain/state/profile_cubit.dart';
 import '../../profile/ui/user_profile_screen.dart';
-import '../domain/entity/user_post/user_post_entity.dart';
-import '../domain/entity/user_post_comment/user_post_comment_entity.dart';
-import '../domain/entity/user_post_comment/user_post_comments_entity.dart';
 import '../domain/state/user_comment_action/user_comment_action_cubit.dart';
 import '../domain/state/user_post_comment/user_post_comment_cubit.dart';
 import '../domain/state/user_post_cubit.dart';
@@ -30,7 +30,7 @@ class UserPostCommentScreen extends StatelessWidget {
 
   final String? avatar;
   final DateTime lastVisit;
-  final UserPostEntity post;
+  final PostEntity post;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class _UserPostCommentScreen extends StatefulWidget {
   }) : super(key: key);
   final String? avatar;
   final DateTime lastVisit;
-  final UserPostEntity post;
+  final PostEntity post;
 
   @override
   State<_UserPostCommentScreen> createState() => _UserPostCommentScreenState();
@@ -83,17 +83,17 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
 
   late int symbolCount = 0;
 
-  late UserPostEntity postEntity;
+  late PostEntity postEntity;
 
-  UserPostCommentEntity? selectedComment;
-  UserPostCommentEntity? editingComment;
+  PostCommentEntity? selectedComment;
+  PostCommentEntity? editingComment;
 
   bool isEdit = false;
 
   late ScrollController scrollController;
   bool isLoading = false;
   bool hasMore = true;
-  UserPostCommentsEntity? postComments;
+  PostCommentsEntity? postComments;
 
   @override
   void initState() {
@@ -227,7 +227,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
     });
   }
 
-  void _onTapToSelect(UserPostCommentEntity? selected) {
+  void _onTapToSelect(PostCommentEntity? selected) {
     setState(() {
       selectedComment = selected;
     });
@@ -241,7 +241,7 @@ class _UserPostCommentScreenState extends State<_UserPostCommentScreen> {
   }
 
   void _onTapToRead(
-      UserPostCommentEntity comment, UserPostCommentEntity? replyTo) {
+      PostCommentEntity comment, PostCommentEntity? replyTo) {
     setState(() {
       _commentController.text = comment.text ?? '';
       editingComment = comment;

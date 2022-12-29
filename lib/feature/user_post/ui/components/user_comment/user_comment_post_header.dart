@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../domain/entity/user_post/user_post_entity.dart';
 import '../user_post_item/user_post_item_header.dart';
 
 class UserCommentPostHeader extends StatelessWidget {
@@ -16,7 +16,7 @@ class UserCommentPostHeader extends StatelessWidget {
     required this.onTapToUp,
   }) : super(key: key);
 
-  final UserPostEntity postEntity;
+  final PostEntity postEntity;
 
   final String? avatar;
   final DateTime lastVisit;

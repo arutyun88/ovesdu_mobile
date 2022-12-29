@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../domain/entity/user_post/user_post_entity.dart';
+import '../../../../../app/domain/entities/post_entity/post_entity.dart';
 import 'user_post_item_content_photo.dart';
 
 class UserPostItemContent extends StatefulWidget {
@@ -12,7 +12,7 @@ class UserPostItemContent extends StatefulWidget {
     this.isCommentScreen = false,
   }) : super(key: key);
 
-  final UserPostEntity post;
+  final PostEntity post;
   final bool isCommentScreen;
 
   @override

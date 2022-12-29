@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
 
+import '../../../app/data/dto/post_dto/posts_dto.dart';
 import '../../../app/domain/app_api.dart';
-import '../../user_post/data/dto/user_post/user_posts_dto.dart';
-import '../../user_post/domain/entity/user_post/user_posts_entity.dart';
+import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../domain/entity/timeline_type.dart';
 import '../domain/post_repository.dart';
 
@@ -13,7 +13,7 @@ class PostRepositoryImpl implements PostRepository {
   PostRepositoryImpl(AppApi api) : _api = api;
 
   @override
-  Future<UserPostsEntity> getPosts(
+  Future<PostsEntity> getPosts(
     TimelineType type,
     int limit,
     int last,

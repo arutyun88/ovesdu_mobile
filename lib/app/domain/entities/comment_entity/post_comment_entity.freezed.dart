@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'user_post_comment_entity.dart';
+part of 'post_comment_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UserPostCommentEntity {
+mixin _$PostCommentEntity {
   int get id => throw _privateConstructorUsedError;
   DateTime get created => throw _privateConstructorUsedError;
   DateTime get updated => throw _privateConstructorUsedError;
@@ -28,15 +28,15 @@ mixin _$UserPostCommentEntity {
   int get answers => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UserPostCommentEntityCopyWith<UserPostCommentEntity> get copyWith =>
+  $PostCommentEntityCopyWith<PostCommentEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserPostCommentEntityCopyWith<$Res> {
-  factory $UserPostCommentEntityCopyWith(UserPostCommentEntity value,
-          $Res Function(UserPostCommentEntity) then) =
-      _$UserPostCommentEntityCopyWithImpl<$Res, UserPostCommentEntity>;
+abstract class $PostCommentEntityCopyWith<$Res> {
+  factory $PostCommentEntityCopyWith(
+          PostCommentEntity value, $Res Function(PostCommentEntity) then) =
+      _$PostCommentEntityCopyWithImpl<$Res, PostCommentEntity>;
   @useResult
   $Res call(
       {int id,
@@ -54,10 +54,9 @@ abstract class $UserPostCommentEntityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserPostCommentEntityCopyWithImpl<$Res,
-        $Val extends UserPostCommentEntity>
-    implements $UserPostCommentEntityCopyWith<$Res> {
-  _$UserPostCommentEntityCopyWithImpl(this._value, this._then);
+class _$PostCommentEntityCopyWithImpl<$Res, $Val extends PostCommentEntity>
+    implements $PostCommentEntityCopyWith<$Res> {
+  _$PostCommentEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -133,7 +132,7 @@ class _$UserPostCommentEntityCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$_UserPostCommentEntityCopyWith<$Res>
-    implements $UserPostCommentEntityCopyWith<$Res> {
+    implements $PostCommentEntityCopyWith<$Res> {
   factory _$$_UserPostCommentEntityCopyWith(_$_UserPostCommentEntity value,
           $Res Function(_$_UserPostCommentEntity) then) =
       __$$_UserPostCommentEntityCopyWithImpl<$Res>;
@@ -157,7 +156,7 @@ abstract class _$$_UserPostCommentEntityCopyWith<$Res>
 
 /// @nodoc
 class __$$_UserPostCommentEntityCopyWithImpl<$Res>
-    extends _$UserPostCommentEntityCopyWithImpl<$Res, _$_UserPostCommentEntity>
+    extends _$PostCommentEntityCopyWithImpl<$Res, _$_UserPostCommentEntity>
     implements _$$_UserPostCommentEntityCopyWith<$Res> {
   __$$_UserPostCommentEntityCopyWithImpl(_$_UserPostCommentEntity _value,
       $Res Function(_$_UserPostCommentEntity) _then)
@@ -260,7 +259,7 @@ class _$_UserPostCommentEntity implements _UserPostCommentEntity {
 
   @override
   String toString() {
-    return 'UserPostCommentEntity(id: $id, created: $created, updated: $updated, text: $text, author: $author, toCommentId: $toCommentId, like: $like, dislike: $dislike, liked: $liked, answers: $answers)';
+    return 'PostCommentEntity(id: $id, created: $created, updated: $updated, text: $text, author: $author, toCommentId: $toCommentId, like: $like, dislike: $dislike, liked: $liked, answers: $answers)';
   }
 
   @override
@@ -293,7 +292,7 @@ class _$_UserPostCommentEntity implements _UserPostCommentEntity {
           this, _$identity);
 }
 
-abstract class _UserPostCommentEntity implements UserPostCommentEntity {
+abstract class _UserPostCommentEntity implements PostCommentEntity {
   const factory _UserPostCommentEntity(
       {required final int id,
       required final DateTime created,

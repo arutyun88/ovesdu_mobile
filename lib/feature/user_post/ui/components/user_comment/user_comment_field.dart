@@ -5,11 +5,11 @@ import 'package:provider/provider.dart';
 
 import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../../app/domain/entities/comment_entity/post_comment_entity.dart';
 import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/ui/components/buttons/empty_button.dart';
 import '../../../../../app/ui/components/text_fields/app_multiline_text_field.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../domain/entity/user_post_comment/user_post_comment_entity.dart';
 import 'user_comment_replied_item.dart';
 
 class UserCommentField extends StatefulWidget {
@@ -29,8 +29,8 @@ class UserCommentField extends StatefulWidget {
   final Function(String)? onChanged;
   final VoidCallback? sendOnPressed;
   final int symbolCount;
-  final UserPostCommentEntity? replyToComment;
-  final Function(UserPostCommentEntity?) onTapToUnselect;
+  final PostCommentEntity? replyToComment;
+  final Function(PostCommentEntity?) onTapToUnselect;
   final bool isEdit;
   final VoidCallback? onTapToCancel;
 

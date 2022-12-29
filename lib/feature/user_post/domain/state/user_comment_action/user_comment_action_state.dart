@@ -6,12 +6,12 @@ class UserCommentActionState with _$UserCommentActionState {
 
   factory UserCommentActionState.creating() = _UserCommentActionStateCreating;
 
-  factory UserCommentActionState.created(UserPostCommentEntity comment) =
+  factory UserCommentActionState.created(PostCommentEntity comment) =
       _UserCommentActionStateCreated;
 
   factory UserCommentActionState.updating() = _UserCommentActionStateUpdating;
 
-  factory UserCommentActionState.updated(UserPostCommentEntity comment) =
+  factory UserCommentActionState.updated(PostCommentEntity comment) =
       _UserCommentActionStateUpdated;
 
   factory UserCommentActionState.deleting() = _UserCommentActionStateDeleting;

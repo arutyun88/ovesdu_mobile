@@ -1,10 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/entity/user_post/user_post_entity.dart';
-import '../../../domain/entity/user_post/user_posts_entity.dart';
-import 'user_post_dto.dart';
+import '../../../../../app/domain/entities/post_entity/posts_entity.dart';
+import '../../../domain/entities/post_entity/post_entity.dart';
+import 'post_dto.dart';
 
-part 'user_posts_dto.g.dart';
+part 'posts_dto.g.dart';
 
 @JsonSerializable()
 class UserPostsDto {
@@ -21,18 +21,18 @@ class UserPostsDto {
   });
 
   factory UserPostsDto.fromJson(Map<String, dynamic> json) =>
-      _$UserPostsDtoFromJson(json);
+      _$PostsDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserPostsDtoToJson(this);
+  Map<String, dynamic> toJson() => _$PostsDtoToJson(this);
 
-  UserPostsEntity toEntity() => UserPostsEntity(
+  PostsEntity toEntity() => PostsEntity(
         last: last,
         limit: limit,
         count: count,
         posts: _mapUserPost(posts as List),
       );
 
-  List<UserPostEntity> _mapUserPost(List posts) {
-    return posts.map((e) => UserPostDto.fromJson(e).toEntity()).toList();
+  List<PostEntity> _mapUserPost(List posts) {
+    return posts.map((e) => PostDto.fromJson(e).toEntity()).toList();
   }
 }

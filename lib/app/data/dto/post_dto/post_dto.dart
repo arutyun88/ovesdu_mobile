@@ -1,14 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/entity/user_post/user_post_entity.dart';
-import '../author_dto.dart';
-import 'user_post_photo_dto.dart';
-import 'user_post_video_dto.dart';
+import '../../../domain/entities/post_entity/post_entity.dart';
+import '../author_dto/author_dto.dart';
+import 'post_photo_dto.dart';
+import 'post_video_dto.dart';
 
-part 'user_post_dto.g.dart';
+part 'post_dto.g.dart';
 
 @JsonSerializable()
-class UserPostDto {
+class PostDto {
   final dynamic id;
   final dynamic created;
   final dynamic updated;
@@ -21,7 +21,7 @@ class UserPostDto {
   final dynamic photos;
   final dynamic videos;
 
-  UserPostDto({
+  PostDto({
     required this.id,
     required this.created,
     required this.updated,
@@ -35,21 +35,21 @@ class UserPostDto {
     required this.videos,
   });
 
-  factory UserPostDto.fromJson(Map<String, dynamic> json) =>
-      _$UserPostDtoFromJson(json);
+  factory PostDto.fromJson(Map<String, dynamic> json) =>
+      _$PostDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserPostDtoToJson(this);
+  Map<String, dynamic> toJson() => _$PostDtoToJson(this);
 
-  UserPostEntity toEntity() => UserPostEntity(
+  PostEntity toEntity() => PostEntity(
         id: id,
         created: DateTime.parse(created.toString()).toLocal(),
         updated: DateTime.parse(updated.toString()).toLocal(),
         text: text,
         photos: (photos as List)
-            .map((e) => UserPostPhotoDto.fromJson(e).toEntity())
+            .map((e) => PostPhotoDto.fromJson(e).toEntity())
             .toList(),
         videos: (videos as List)
-            .map((e) => UserPostVideoDto.fromJson(e).toEntity())
+            .map((e) => PostVideoDto.fromJson(e).toEntity())
             .toList(),
         like: like,
         dislike: dislike,

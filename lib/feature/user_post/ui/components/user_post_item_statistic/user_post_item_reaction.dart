@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../domain/entity/reaction_type.dart';
-import '../../../domain/entity/user_post/user_post_entity.dart';
 import '../../../domain/state/user_post_cubit.dart';
 import '../../../domain/state/user_post_reaction/user_post_reaction_cubit.dart';
 import '../reaction_widget.dart';
@@ -13,7 +13,7 @@ class UserPostItemReaction extends StatefulWidget {
     required this.post,
   }) : super(key: key);
 
-  final UserPostEntity post;
+  final PostEntity post;
 
   @override
   State<UserPostItemReaction> createState() => _UserPostItemReactionState();

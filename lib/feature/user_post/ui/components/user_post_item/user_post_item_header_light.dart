@@ -5,12 +5,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/di/init_di.dart';
+import '../../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../../../app/helpers/date_helper.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../profile/domain/state/profile_cubit.dart';
-import '../../../domain/entity/user_post/user_post_entity.dart';
 
 class UserPostItemHeaderLight extends StatefulWidget {
   const UserPostItemHeaderLight({
@@ -18,7 +18,7 @@ class UserPostItemHeaderLight extends StatefulWidget {
     required this.post,
   }) : super(key: key);
 
-  final UserPostEntity post;
+  final PostEntity post;
 
   @override
   State<UserPostItemHeaderLight> createState() =>

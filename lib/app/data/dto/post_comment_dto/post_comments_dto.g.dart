@@ -1,22 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_posts_dto.dart';
+part of 'post_comments_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserPostsDto _$UserPostsDtoFromJson(Map<String, dynamic> json) => UserPostsDto(
+PostCommentsDto _$PostCommentsDtoFromJson(Map<String, dynamic> json) =>
+    PostCommentsDto(
       last: json['last'],
       limit: json['limit'],
       count: json['count'],
-      posts: json['posts'],
+      comments: json['comments'],
+      commentsResponses: json['commentsResponses'],
     );
 
-Map<String, dynamic> _$UserPostsDtoToJson(UserPostsDto instance) =>
+Map<String, dynamic> _$PostCommentsDtoToJson(PostCommentsDto instance) =>
     <String, dynamic>{
       'last': instance.last,
       'limit': instance.limit,
       'count': instance.count,
-      'posts': instance.posts,
+      'comments': instance.comments,
+      'commentsResponses': instance.commentsResponses,
     };

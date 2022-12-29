@@ -3,9 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../app/domain/entities/error_entity/error_entity.dart';
+import '../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../entity/reaction_type.dart';
-import '../entity/user_post/user_post_entity.dart';
-import '../entity/user_post/user_posts_entity.dart';
+import '../../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../user_post_repository.dart';
 
 part 'user_post_state.dart';
@@ -34,10 +34,10 @@ class UserPostCubit extends Cubit<UserPostState> {
     }
   }
 
-  Future<void> postUpdated(UserPostEntity entity) async {
+  Future<void> postUpdated(PostEntity entity) async {
     try {
       state.whenOrNull(received: (posts) {
-        final postList = <UserPostEntity>[];
+        final postList = <PostEntity>[];
         for (int i = 0; i < posts.posts.length; i++) {
           if (posts.posts[i].id == entity.id) {
             postList.add(entity);
@@ -65,7 +65,7 @@ class UserPostCubit extends Cubit<UserPostState> {
   void updateComments(ActionType type) {
     try {
       state.whenOrNull(updated: (post) {
-        late UserPostEntity copy;
+        late PostEntity copy;
         switch (type) {
           case ActionType.add:
             copy = post.copyWith(comment: post.comment + 1);
@@ -85,7 +85,7 @@ class UserPostCubit extends Cubit<UserPostState> {
     try {
       state.whenOrNull(
         updated: (post) {
-          late UserPostEntity copy;
+          late PostEntity copy;
 
           switch (type) {
             case ReactionType.none:

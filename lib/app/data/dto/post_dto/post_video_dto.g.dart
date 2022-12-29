@@ -1,21 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_post_photo_dto.dart';
+part of 'post_video_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserPostPhotoDto _$UserPostPhotoDtoFromJson(Map<String, dynamic> json) =>
-    UserPostPhotoDto(
+PostVideoDto _$PostVideoDtoFromJson(Map<String, dynamic> json) => PostVideoDto(
       id: json['id'],
       created: json['created'],
-      photo: json['photo'],
+      video: json['video'],
     );
 
-Map<String, dynamic> _$UserPostPhotoDtoToJson(UserPostPhotoDto instance) =>
+Map<String, dynamic> _$PostVideoDtoToJson(PostVideoDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'created': instance.created,
-      'photo': instance.photo,
+      'video': instance.video,
     };

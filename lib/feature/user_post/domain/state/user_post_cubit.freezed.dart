@@ -20,8 +20,8 @@ mixin _$UserPostState {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(UserPostsEntity postsEntity) received,
-    required TResult Function(UserPostEntity postEntity) updated,
+    required TResult Function(PostsEntity postsEntity) received,
+    required TResult Function(PostEntity postEntity) updated,
     required TResult Function(ErrorEntity error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,8 +29,8 @@ mixin _$UserPostState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(UserPostsEntity postsEntity)? received,
-    TResult? Function(UserPostEntity postEntity)? updated,
+    TResult? Function(PostsEntity postsEntity)? received,
+    TResult? Function(PostEntity postEntity)? updated,
     TResult? Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,8 +38,8 @@ mixin _$UserPostState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(UserPostsEntity postsEntity)? received,
-    TResult Function(UserPostEntity postEntity)? updated,
+    TResult Function(PostsEntity postsEntity)? received,
+    TResult Function(PostEntity postEntity)? updated,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) =>
@@ -132,8 +132,8 @@ class _$_UserPostStateInit implements _UserPostStateInit {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(UserPostsEntity postsEntity) received,
-    required TResult Function(UserPostEntity postEntity) updated,
+    required TResult Function(PostsEntity postsEntity) received,
+    required TResult Function(PostEntity postEntity) updated,
     required TResult Function(ErrorEntity error) error,
   }) {
     return init();
@@ -144,8 +144,8 @@ class _$_UserPostStateInit implements _UserPostStateInit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(UserPostsEntity postsEntity)? received,
-    TResult? Function(UserPostEntity postEntity)? updated,
+    TResult? Function(PostsEntity postsEntity)? received,
+    TResult? Function(PostEntity postEntity)? updated,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return init?.call();
@@ -156,8 +156,8 @@ class _$_UserPostStateInit implements _UserPostStateInit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(UserPostsEntity postsEntity)? received,
-    TResult Function(UserPostEntity postEntity)? updated,
+    TResult Function(PostsEntity postsEntity)? received,
+    TResult Function(PostEntity postEntity)? updated,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -252,8 +252,8 @@ class _$_UserPostStateWaiting implements _UserPostStateWaiting {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(UserPostsEntity postsEntity) received,
-    required TResult Function(UserPostEntity postEntity) updated,
+    required TResult Function(PostsEntity postsEntity) received,
+    required TResult Function(PostEntity postEntity) updated,
     required TResult Function(ErrorEntity error) error,
   }) {
     return waiting();
@@ -264,8 +264,8 @@ class _$_UserPostStateWaiting implements _UserPostStateWaiting {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(UserPostsEntity postsEntity)? received,
-    TResult? Function(UserPostEntity postEntity)? updated,
+    TResult? Function(PostsEntity postsEntity)? received,
+    TResult? Function(PostEntity postEntity)? updated,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return waiting?.call();
@@ -276,8 +276,8 @@ class _$_UserPostStateWaiting implements _UserPostStateWaiting {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(UserPostsEntity postsEntity)? received,
-    TResult Function(UserPostEntity postEntity)? updated,
+    TResult Function(PostsEntity postsEntity)? received,
+    TResult Function(PostEntity postEntity)? updated,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -338,9 +338,7 @@ abstract class _$$_UserPostStateReceivedCopyWith<$Res> {
           $Res Function(_$_UserPostStateReceived) then) =
       __$$_UserPostStateReceivedCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserPostsEntity postsEntity});
-
-  $UserPostsEntityCopyWith<$Res> get postsEntity;
+  $Res call({PostsEntity postsEntity});
 }
 
 /// @nodoc
@@ -360,16 +358,8 @@ class __$$_UserPostStateReceivedCopyWithImpl<$Res>
       null == postsEntity
           ? _value.postsEntity
           : postsEntity // ignore: cast_nullable_to_non_nullable
-              as UserPostsEntity,
+              as PostsEntity,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserPostsEntityCopyWith<$Res> get postsEntity {
-    return $UserPostsEntityCopyWith<$Res>(_value.postsEntity, (value) {
-      return _then(_value.copyWith(postsEntity: value));
-    });
   }
 }
 
@@ -379,7 +369,7 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
   _$_UserPostStateReceived(this.postsEntity);
 
   @override
-  final UserPostsEntity postsEntity;
+  final PostsEntity postsEntity;
 
   @override
   String toString() {
@@ -391,12 +381,13 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserPostStateReceived &&
-            (identical(other.postsEntity, postsEntity) ||
-                other.postsEntity == postsEntity));
+            const DeepCollectionEquality()
+                .equals(other.postsEntity, postsEntity));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, postsEntity);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(postsEntity));
 
   @JsonKey(ignore: true)
   @override
@@ -410,8 +401,8 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(UserPostsEntity postsEntity) received,
-    required TResult Function(UserPostEntity postEntity) updated,
+    required TResult Function(PostsEntity postsEntity) received,
+    required TResult Function(PostEntity postEntity) updated,
     required TResult Function(ErrorEntity error) error,
   }) {
     return received(postsEntity);
@@ -422,8 +413,8 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(UserPostsEntity postsEntity)? received,
-    TResult? Function(UserPostEntity postEntity)? updated,
+    TResult? Function(PostsEntity postsEntity)? received,
+    TResult? Function(PostEntity postEntity)? updated,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return received?.call(postsEntity);
@@ -434,8 +425,8 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(UserPostsEntity postsEntity)? received,
-    TResult Function(UserPostEntity postEntity)? updated,
+    TResult Function(PostsEntity postsEntity)? received,
+    TResult Function(PostEntity postEntity)? updated,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -487,10 +478,10 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
 }
 
 abstract class _UserPostStateReceived implements UserPostState {
-  factory _UserPostStateReceived(final UserPostsEntity postsEntity) =
+  factory _UserPostStateReceived(final PostsEntity postsEntity) =
       _$_UserPostStateReceived;
 
-  UserPostsEntity get postsEntity;
+  PostsEntity get postsEntity;
   @JsonKey(ignore: true)
   _$$_UserPostStateReceivedCopyWith<_$_UserPostStateReceived> get copyWith =>
       throw _privateConstructorUsedError;
@@ -502,9 +493,9 @@ abstract class _$$_UserPostStateUpdatedCopyWith<$Res> {
           $Res Function(_$_UserPostStateUpdated) then) =
       __$$_UserPostStateUpdatedCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserPostEntity postEntity});
+  $Res call({PostEntity postEntity});
 
-  $UserPostEntityCopyWith<$Res> get postEntity;
+  $PostEntityCopyWith<$Res> get postEntity;
 }
 
 /// @nodoc
@@ -524,14 +515,14 @@ class __$$_UserPostStateUpdatedCopyWithImpl<$Res>
       null == postEntity
           ? _value.postEntity
           : postEntity // ignore: cast_nullable_to_non_nullable
-              as UserPostEntity,
+              as PostEntity,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserPostEntityCopyWith<$Res> get postEntity {
-    return $UserPostEntityCopyWith<$Res>(_value.postEntity, (value) {
+  $PostEntityCopyWith<$Res> get postEntity {
+    return $PostEntityCopyWith<$Res>(_value.postEntity, (value) {
       return _then(_value.copyWith(postEntity: value));
     });
   }
@@ -543,7 +534,7 @@ class _$_UserPostStateUpdated implements _UserPostStateUpdated {
   _$_UserPostStateUpdated(this.postEntity);
 
   @override
-  final UserPostEntity postEntity;
+  final PostEntity postEntity;
 
   @override
   String toString() {
@@ -574,8 +565,8 @@ class _$_UserPostStateUpdated implements _UserPostStateUpdated {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(UserPostsEntity postsEntity) received,
-    required TResult Function(UserPostEntity postEntity) updated,
+    required TResult Function(PostsEntity postsEntity) received,
+    required TResult Function(PostEntity postEntity) updated,
     required TResult Function(ErrorEntity error) error,
   }) {
     return updated(postEntity);
@@ -586,8 +577,8 @@ class _$_UserPostStateUpdated implements _UserPostStateUpdated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(UserPostsEntity postsEntity)? received,
-    TResult? Function(UserPostEntity postEntity)? updated,
+    TResult? Function(PostsEntity postsEntity)? received,
+    TResult? Function(PostEntity postEntity)? updated,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return updated?.call(postEntity);
@@ -598,8 +589,8 @@ class _$_UserPostStateUpdated implements _UserPostStateUpdated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(UserPostsEntity postsEntity)? received,
-    TResult Function(UserPostEntity postEntity)? updated,
+    TResult Function(PostsEntity postsEntity)? received,
+    TResult Function(PostEntity postEntity)? updated,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -651,10 +642,10 @@ class _$_UserPostStateUpdated implements _UserPostStateUpdated {
 }
 
 abstract class _UserPostStateUpdated implements UserPostState {
-  factory _UserPostStateUpdated(final UserPostEntity postEntity) =
+  factory _UserPostStateUpdated(final PostEntity postEntity) =
       _$_UserPostStateUpdated;
 
-  UserPostEntity get postEntity;
+  PostEntity get postEntity;
   @JsonKey(ignore: true)
   _$$_UserPostStateUpdatedCopyWith<_$_UserPostStateUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -737,8 +728,8 @@ class _$_UserPostStateError implements _UserPostStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(UserPostsEntity postsEntity) received,
-    required TResult Function(UserPostEntity postEntity) updated,
+    required TResult Function(PostsEntity postsEntity) received,
+    required TResult Function(PostEntity postEntity) updated,
     required TResult Function(ErrorEntity error) error,
   }) {
     return error(this.error);
@@ -749,8 +740,8 @@ class _$_UserPostStateError implements _UserPostStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(UserPostsEntity postsEntity)? received,
-    TResult? Function(UserPostEntity postEntity)? updated,
+    TResult? Function(PostsEntity postsEntity)? received,
+    TResult? Function(PostEntity postEntity)? updated,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
@@ -761,8 +752,8 @@ class _$_UserPostStateError implements _UserPostStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(UserPostsEntity postsEntity)? received,
-    TResult Function(UserPostEntity postEntity)? updated,
+    TResult Function(PostsEntity postsEntity)? received,
+    TResult Function(PostEntity postEntity)? updated,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
