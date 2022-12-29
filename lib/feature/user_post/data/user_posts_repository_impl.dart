@@ -26,7 +26,7 @@ class UserPostRepositoryImpl implements UserPostRepository {
 
       final data = response.data['data'];
 
-      return UserPostsDto.fromJson(data).toEntity();
+      return PostsDto.fromJson(data).toEntity();
     } catch (_) {
       rethrow;
     }

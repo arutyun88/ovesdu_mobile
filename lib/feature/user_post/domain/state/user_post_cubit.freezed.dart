@@ -339,6 +339,8 @@ abstract class _$$_UserPostStateReceivedCopyWith<$Res> {
       __$$_UserPostStateReceivedCopyWithImpl<$Res>;
   @useResult
   $Res call({PostsEntity postsEntity});
+
+  $PostsEntityCopyWith<$Res> get postsEntity;
 }
 
 /// @nodoc
@@ -361,6 +363,14 @@ class __$$_UserPostStateReceivedCopyWithImpl<$Res>
               as PostsEntity,
     ));
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PostsEntityCopyWith<$Res> get postsEntity {
+    return $PostsEntityCopyWith<$Res>(_value.postsEntity, (value) {
+      return _then(_value.copyWith(postsEntity: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -381,13 +391,12 @@ class _$_UserPostStateReceived implements _UserPostStateReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserPostStateReceived &&
-            const DeepCollectionEquality()
-                .equals(other.postsEntity, postsEntity));
+            (identical(other.postsEntity, postsEntity) ||
+                other.postsEntity == postsEntity));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(postsEntity));
+  int get hashCode => Object.hash(runtimeType, postsEntity);
 
   @JsonKey(ignore: true)
   @override

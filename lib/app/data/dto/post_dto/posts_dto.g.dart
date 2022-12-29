@@ -6,15 +6,14 @@ part of 'posts_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserPostsDto _$PostsDtoFromJson(Map<String, dynamic> json) => UserPostsDto(
+PostsDto _$PostsDtoFromJson(Map<String, dynamic> json) => PostsDto(
       last: json['last'],
       limit: json['limit'],
       count: json['count'],
       posts: json['posts'],
     );
 
-Map<String, dynamic> _$PostsDtoToJson(UserPostsDto instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PostsDtoToJson(PostsDto instance) => <String, dynamic>{
       'last': instance.last,
       'limit': instance.limit,
       'count': instance.count,

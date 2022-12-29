@@ -7,20 +7,20 @@ import 'post_dto.dart';
 part 'posts_dto.g.dart';
 
 @JsonSerializable()
-class UserPostsDto {
+class PostsDto {
   final dynamic last;
   final dynamic limit;
   final dynamic count;
   final dynamic posts;
 
-  UserPostsDto({
+  PostsDto({
     required this.last,
     required this.limit,
     required this.count,
     required this.posts,
   });
 
-  factory UserPostsDto.fromJson(Map<String, dynamic> json) =>
+  factory PostsDto.fromJson(Map<String, dynamic> json) =>
       _$PostsDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$PostsDtoToJson(this);

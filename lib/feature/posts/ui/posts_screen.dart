@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 
 class PostsScreen extends StatefulWidget {
-  const PostsScreen({Key? key}) : super(key: key);
+  const PostsScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<PostsScreen> createState() => _PostsScreenState();
