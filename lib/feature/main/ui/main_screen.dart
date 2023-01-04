@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/data/setting_provider/theme_provider.dart';
-import '../../posts/ui/posts_screen.dart';
+import 'components/main_body_widget.dart';
 import '../../profile/domain/state/profile_cubit.dart';
 import '../../profile/ui/user_screen.dart';
 import 'components/main_app_bar_widget.dart';
@@ -30,8 +30,7 @@ class _MainScreenState extends State<MainScreen> {
     'group',
     'archive',
   ];
-  late int selectedTimelinesType = 0;
-  late int selectedMessagesType = 0;
+
   late ThemeData theme;
   int selectedPage = 0;
   String title = 'home';
@@ -66,18 +65,17 @@ class _MainScreenState extends State<MainScreen> {
       body: Column(
         children: [
           MainAppBarWidget(
-            selectedPage: selectedPage,
             appBarHeight: appBarHeight,
-            appBarSubmenuHeight: appBarSubmenuHeight,
             title: title,
-            selectedMessagesTypeOnTap: _selectedMessagesTypeOnTap,
-            selectedTimelineTypeOnTap: _selectedTimelineTypeOnTap,
-            messagesTypeValues: messagesTypeValues,
-            timelineTypeValues: timelineTypeValues,
-            selectedTimelinesType: selectedTimelinesType,
-            selectedMessagesType: selectedMessagesType,
           ),
-          const Expanded(child: PostsScreen()),
+          Expanded(
+            child: MainBodyWidget(
+              selectedPage: selectedPage,
+              appBarSubmenuHeight: appBarSubmenuHeight,
+              messagesTypeValues: messagesTypeValues,
+              timelineTypeValues: timelineTypeValues,
+            ),
+          ),
           TabBarPageWidget(
             tabBarHeight: tabBarHeight,
             selectedPage: selectedPage,
@@ -106,17 +104,5 @@ class _MainScreenState extends State<MainScreen> {
         ),
       );
     }
-  }
-
-  void _selectedTimelineTypeOnTap(int id) {
-    setState(() {
-      selectedTimelinesType = id;
-    });
-  }
-
-  void _selectedMessagesTypeOnTap(int id) {
-    setState(() {
-      selectedMessagesType = id;
-    });
   }
 }

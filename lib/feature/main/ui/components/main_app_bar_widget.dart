@@ -7,35 +7,18 @@ import '../../../../app/const/const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/helpers/app_icons.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import '../../../posts/ui/components/post_type_item.dart';
 import 'app_bar_logo_widget.dart';
 import 'app_bar_page_widget.dart';
 
 class MainAppBarWidget extends StatelessWidget {
   const MainAppBarWidget({
     Key? key,
-    required this.selectedPage,
-    required this.selectedTimelinesType,
-    required this.selectedMessagesType,
     required this.appBarHeight,
-    required this.appBarSubmenuHeight,
-    required this.selectedMessagesTypeOnTap,
-    required this.selectedTimelineTypeOnTap,
     required this.title,
-    required this.timelineTypeValues,
-    required this.messagesTypeValues,
   }) : super(key: key);
 
-  final int selectedPage;
-  final int selectedTimelinesType;
-  final int selectedMessagesType;
   final double appBarHeight;
-  final double appBarSubmenuHeight;
-  final Function(int) selectedMessagesTypeOnTap;
-  final Function(int) selectedTimelineTypeOnTap;
   final String title;
-  final List<String> timelineTypeValues;
-  final List<String> messagesTypeValues;
 
   @override
   Widget build(BuildContext context) {
@@ -89,55 +72,6 @@ class MainAppBarWidget extends StatelessWidget {
                 ),
               ),
             ),
-            selectedPage == 0
-                ? SizedBox(
-                    height: appBarSubmenuHeight,
-                    width: MediaQuery.of(context).size.width,
-                    child: CustomScrollView(
-                      scrollDirection: Axis.horizontal,
-                      slivers: [
-                        SliverFillRemaining(
-                          hasScrollBody: false,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            mainAxisSize: MainAxisSize.max,
-                            children: List.generate(
-                              timelineTypeValues.length,
-                              (index) => PostTypeItem(
-                                value: timelineTypeValues[index],
-                                selected: selectedTimelinesType == index,
-                                onTap: () => selectedTimelineTypeOnTap(index),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
-                : SizedBox(
-                    height: appBarSubmenuHeight,
-                    width: MediaQuery.of(context).size.width,
-                    child: CustomScrollView(
-                      scrollDirection: Axis.horizontal,
-                      slivers: [
-                        SliverFillRemaining(
-                          hasScrollBody: false,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            mainAxisSize: MainAxisSize.max,
-                            children: List.generate(
-                              messagesTypeValues.length,
-                              (index) => PostTypeItem(
-                                value: messagesTypeValues[index],
-                                selected: selectedMessagesType == index,
-                                onTap: () => selectedMessagesTypeOnTap(index),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
           ],
         ),
       ),
