@@ -15,19 +15,20 @@ import '../../feature/location/data/network_location_repository.dart' as _i12;
 import '../../feature/location/domain/location_repository.dart' as _i11;
 import '../../feature/posts/data/post_repository_impl.dart' as _i14;
 import '../../feature/posts/domain/post_repository.dart' as _i13;
+import '../../feature/posts/domain/state/post_cubit.dart' as _i20;
 import '../../feature/profile/data/network_profile_repository.dart' as _i16;
 import '../../feature/profile/domain/profile_repository.dart' as _i15;
-import '../../feature/profile/domain/state/profile_cubit.dart' as _i20;
+import '../../feature/profile/domain/state/profile_cubit.dart' as _i21;
 import '../../feature/user_post/data/user_posts_repository_impl.dart' as _i18;
 import '../../feature/user_post/domain/state/user_comment_action/user_comment_action_cubit.dart'
-    as _i21;
-import '../../feature/user_post/domain/state/user_post_comment/reaction/user_comment_reaction_cubit.dart'
     as _i22;
-import '../../feature/user_post/domain/state/user_post_comment/user_post_comment_cubit.dart'
+import '../../feature/user_post/domain/state/user_post_comment/reaction/user_comment_reaction_cubit.dart'
     as _i23;
-import '../../feature/user_post/domain/state/user_post_cubit.dart' as _i24;
+import '../../feature/user_post/domain/state/user_post_comment/user_post_comment_cubit.dart'
+    as _i24;
+import '../../feature/user_post/domain/state/user_post_cubit.dart' as _i25;
 import '../../feature/user_post/domain/state/user_post_reaction/user_post_reaction_cubit.dart'
-    as _i25;
+    as _i26;
 import '../../feature/user_post/domain/user_post_repository.dart' as _i17;
 import '../data/config/dev_app_config.dart' as _i4;
 import '../data/config/prod_app_config.dart' as _i5;
@@ -76,17 +77,18 @@ _i1.GetIt $initGetIt(
   gh.factory<_i17.UserPostRepository>(
       () => _i18.UserPostRepositoryImpl(get<_i7.AppApi>()));
   gh.singleton<_i19.AuthCubit>(_i19.AuthCubit(get<_i9.AuthRepository>()));
-  gh.singleton<_i20.ProfileCubit>(
-      _i20.ProfileCubit(get<_i15.ProfileRepository>()));
-  gh.singleton<_i21.UserCommentActionCubit>(
-      _i21.UserCommentActionCubit(get<_i17.UserPostRepository>()));
-  gh.singleton<_i22.UserCommentReactionCubit>(
-      _i22.UserCommentReactionCubit(get<_i17.UserPostRepository>()));
-  gh.singleton<_i23.UserPostCommentCubit>(
-      _i23.UserPostCommentCubit(get<_i17.UserPostRepository>()));
-  gh.singleton<_i24.UserPostCubit>(
-      _i24.UserPostCubit(get<_i17.UserPostRepository>()));
-  gh.singleton<_i25.UserPostReactionCubit>(
-      _i25.UserPostReactionCubit(get<_i17.UserPostRepository>()));
+  gh.singleton<_i20.PostCubit>(_i20.PostCubit(get<_i13.PostRepository>()));
+  gh.singleton<_i21.ProfileCubit>(
+      _i21.ProfileCubit(get<_i15.ProfileRepository>()));
+  gh.singleton<_i22.UserCommentActionCubit>(
+      _i22.UserCommentActionCubit(get<_i17.UserPostRepository>()));
+  gh.singleton<_i23.UserCommentReactionCubit>(
+      _i23.UserCommentReactionCubit(get<_i17.UserPostRepository>()));
+  gh.singleton<_i24.UserPostCommentCubit>(
+      _i24.UserPostCommentCubit(get<_i17.UserPostRepository>()));
+  gh.singleton<_i25.UserPostCubit>(
+      _i25.UserPostCubit(get<_i17.UserPostRepository>()));
+  gh.singleton<_i26.UserPostReactionCubit>(
+      _i26.UserPostReactionCubit(get<_i17.UserPostRepository>()));
   return get;
 }
