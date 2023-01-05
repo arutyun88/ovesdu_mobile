@@ -2,29 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../posts/ui/components/post_type_item.dart';
+import '../../../../app/ui/config/app_colors.dart';
 
 class MainAppBarSubmenuWidget extends StatelessWidget {
   const MainAppBarSubmenuWidget({
     Key? key,
-    required this.selectedPage,
-    required this.selectedTimelinesType,
-    required this.selectedMessagesType,
     required this.appBarSubmenuHeight,
-    required this.timelineTypeValues,
-    required this.messagesTypeValues,
-    required this.selectedMessagesTypeOnTap,
-    required this.selectedTimelineTypeOnTap,
+    required this.typeValues,
+    required this.selectedType,
+    required this.selectedTypeOnTap,
   }) : super(key: key);
 
-  final int selectedPage;
-  final int selectedTimelinesType;
-  final int selectedMessagesType;
   final double appBarSubmenuHeight;
-  final List<String> timelineTypeValues;
-  final List<String> messagesTypeValues;
-  final Function(int) selectedMessagesTypeOnTap;
-  final Function(int) selectedTimelineTypeOnTap;
+  final List<String> typeValues;
+  final int selectedType;
+  final Function(int) selectedTypeOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -33,55 +25,78 @@ class MainAppBarSubmenuWidget extends StatelessWidget {
     return Material(
       color: theme.backgroundColor,
       elevation: 2.0,
-      child: selectedPage == 0
-          ? SizedBox(
-              height: appBarSubmenuHeight,
-              width: MediaQuery.of(context).size.width,
-              child: CustomScrollView(
-                scrollDirection: Axis.horizontal,
-                slivers: [
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: List.generate(
-                        timelineTypeValues.length,
-                        (index) => PostTypeItem(
-                          value: timelineTypeValues[index],
-                          selected: selectedTimelinesType == index,
-                          onTap: () => selectedTimelineTypeOnTap(index),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+      child: SizedBox(
+        height: appBarSubmenuHeight,
+        width: MediaQuery.of(context).size.width,
+        child: CustomScrollView(
+          scrollDirection: Axis.horizontal,
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                children: List.generate(
+                  typeValues.length,
+                  (index) => _TypeItem(
+                    value: typeValues[index],
+                    selected: selectedType == index,
+                    onTap: () => selectedTypeOnTap(index),
+                  ),
+                ),
               ),
             )
-          : SizedBox(
-              height: appBarSubmenuHeight,
-              width: MediaQuery.of(context).size.width,
-              child: CustomScrollView(
-                scrollDirection: Axis.horizontal,
-                slivers: [
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: List.generate(
-                        messagesTypeValues.length,
-                        (index) => PostTypeItem(
-                          value: messagesTypeValues[index],
-                          selected: selectedMessagesType == index,
-                          onTap: () => selectedMessagesTypeOnTap(index),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _TypeItem extends StatelessWidget {
+  const _TypeItem({
+    Key? key,
+    required this.value,
+    required this.selected,
+    required this.onTap,
+  }) : super(key: key);
+
+  final String value;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context).themeData;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Stack(
+        children: [
+          Container(
+            color: AppColors.transparent,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20.0,
+              vertical: 12.0,
+            ),
+            child: Text(
+              value,
+              style: theme.textTheme.headline6?.copyWith(
+                color: selected ? AppColors.orange : AppColors.hintTextColor,
               ),
             ),
+          ),
+          if (selected)
+            Positioned(
+              bottom: 0,
+              child: Container(
+                height: 2,
+                width: MediaQuery.of(context).size.width,
+                color: AppColors.orange,
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
