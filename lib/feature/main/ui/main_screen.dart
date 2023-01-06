@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/data/setting_provider/theme_provider.dart';
-import 'components/main_app_bar_submenu_widget.dart';
-import 'components/main_body_widget.dart';
+import '../../messages/ui/messages_screen.dart';
+import '../../posts/ui/posts_screen.dart';
 import '../../profile/domain/state/profile_cubit.dart';
 import '../../profile/ui/user_screen.dart';
 import 'components/main_app_bar_widget.dart';
 import 'components/tab_bar_page_widget.dart';
+
+const _home = 'home';
+const _messages = 'messages';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({
@@ -19,25 +22,9 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final List<String> timelineTypeValues = [
-    'overall',
-    'tags',
-    'my',
-    'subscribe',
-    'hot',
-  ];
-  final List<String> messagesTypeValues = [
-    'private',
-    'group',
-    'archive',
-  ];
-
   late ThemeData theme;
   int selectedPage = 0;
-  String title = 'home';
-
-  int selectedMessagesType = 0;
-  int selectedTimelinesType = 0;
+  String title = _home;
 
   final double appBarHeight = 42.0;
   final double appBarSubmenuHeight = 48.0;
@@ -45,18 +32,10 @@ class _MainScreenState extends State<MainScreen> {
 
   late double availableHeight;
 
-  late PageController timelinePageController;
-  late PageController messagePageController;
-
-  GlobalKey timelineKey = GlobalKey();
-  GlobalKey messageKey = GlobalKey();
-
   @override
   void initState() {
     super.initState();
     context.read<ProfileCubit>().getProfile();
-    timelinePageController = PageController(initialPage: selectedMessagesType);
-    messagePageController = PageController(initialPage: selectedTimelinesType);
   }
 
   @override
@@ -73,8 +52,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void dispose() {
-    timelinePageController.dispose();
-    messagePageController.dispose();
     super.dispose();
   }
 
@@ -87,32 +64,11 @@ class _MainScreenState extends State<MainScreen> {
             appBarHeight: appBarHeight,
             title: title,
           ),
-          selectedPage == 0
-              ? MainAppBarSubmenuWidget(
-                  appBarSubmenuHeight: appBarSubmenuHeight,
-                  typeValues: timelineTypeValues,
-                  selectedType: selectedTimelinesType,
-                  selectedTypeOnTap: _selectedTimelineTypeOnTap,
-                )
-              : MainAppBarSubmenuWidget(
-                  appBarSubmenuHeight: appBarSubmenuHeight,
-                  typeValues: messagesTypeValues,
-                  selectedType: selectedMessagesType,
-                  selectedTypeOnTap: _selectedMessagesTypeOnTap,
-                ),
-          selectedPage == 0
-              ? MainBodyWidget(
-                  key: timelineKey,
-                  typeValues: timelineTypeValues,
-                  pageController: timelinePageController,
-                  onPageChange: _changeTimelinePage,
-                )
-              : MainBodyWidget(
-                  key: messageKey,
-                  typeValues: messagesTypeValues,
-                  pageController: messagePageController,
-                  onPageChange: _changeMessagePage,
-                ),
+          Expanded(
+            child: selectedPage == 0
+                ? PostsScreen(appBarSubmenuHeight: appBarSubmenuHeight)
+                : MessagesScreen(appBarSubmenuHeight: appBarSubmenuHeight),
+          ),
           TabBarPageWidget(
             tabBarHeight: tabBarHeight,
             selectedPage: selectedPage,
@@ -126,15 +82,13 @@ class _MainScreenState extends State<MainScreen> {
   void _tabBarItemOnTap(int index) {
     if (index == 0) {
       setState(() {
-        _changeTimelinePage(timelinePageController.initialPage);
         selectedPage = 0;
-        title = 'home';
+        title = _home;
       });
     } else if (index == 1) {
       setState(() {
-        _changeMessagePage(messagePageController.initialPage);
         selectedPage = 1;
-        title = 'messages';
+        title = _messages;
       });
     } else if (index == 2) {
       Navigator.of(context).push(
@@ -143,33 +97,5 @@ class _MainScreenState extends State<MainScreen> {
         ),
       );
     }
-  }
-
-  void _changeMessagePage(int id) {
-    setState(() {
-      selectedMessagesType = id;
-    });
-  }
-
-  void _changeTimelinePage(int id) {
-    setState(() {
-      selectedTimelinesType = id;
-    });
-  }
-
-  void _selectedTimelineTypeOnTap(int index) {
-    timelinePageController.animateToPage(
-      index,
-      duration: kThemeAnimationDuration,
-      curve: Curves.ease,
-    );
-  }
-
-  void _selectedMessagesTypeOnTap(int index) {
-    messagePageController.animateToPage(
-      index,
-      duration: kThemeAnimationDuration,
-      curve: Curves.ease,
-    );
   }
 }
