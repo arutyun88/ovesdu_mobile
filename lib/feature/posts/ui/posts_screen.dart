@@ -1,29 +1,34 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/domain/entities/post_entity/posts_entity.dart';
+import '../../../app/ui/config/app_colors.dart';
 import '../../main/ui/components/main_app_bar_submenu_widget.dart';
-import '../../main/ui/components/main_body_widget.dart';
+import '../domain/entity/timeline_type.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({
     Key? key,
     required this.appBarSubmenuHeight,
+    this.overallReceived,
+    this.tagsReceived,
+    this.myReceived,
+    this.subscribeReceived,
+    this.hotReceived,
   }) : super(key: key);
 
   final double appBarSubmenuHeight;
+
+  final PostsEntity? overallReceived;
+  final PostsEntity? tagsReceived;
+  final PostsEntity? myReceived;
+  final PostsEntity? subscribeReceived;
+  final PostsEntity? hotReceived;
 
   @override
   State<PostsScreen> createState() => _PostsScreenState();
 }
 
 class _PostsScreenState extends State<PostsScreen> {
-  final List<String> timelineTypeValues = [
-    'overall',
-    'tags',
-    'my',
-    'subscribe',
-    'hot',
-  ];
-
   late PageController timelinePageController;
 
   int selectedTimelinesType = 0;
@@ -47,15 +52,122 @@ class _PostsScreenState extends State<PostsScreen> {
       children: [
         MainAppBarSubmenuWidget(
           appBarSubmenuHeight: widget.appBarSubmenuHeight,
-          typeValues: timelineTypeValues,
+          typeValues: TimelineType.values.map((e) => e.name).toList(),
           selectedType: selectedTimelinesType,
           selectedTypeOnTap: _selectedTimelineTypeOnTap,
         ),
-        MainBodyWidget(
-          key: timelineKey,
-          typeValues: timelineTypeValues,
-          pageController: timelinePageController,
-          onPageChange: _changeTimelinePage,
+        Expanded(
+          child: PageView(
+            controller: timelinePageController,
+            onPageChanged: _changeTimelinePage,
+            children: [
+              widget.overallReceived != null
+                  ? ListView(
+                      key: PageStorageKey<String>(TimelineType.overall.name),
+                      padding: EdgeInsets.zero,
+                      children: List.generate(
+                        30,
+                        (index) => Container(
+                          height: 50,
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          width: MediaQuery.of(context).size.width,
+                          color:
+                              index % 2 == 0 ? AppColors.red : AppColors.purple,
+                          child: Text('${TimelineType.overall}: $index'),
+                        ),
+                      ),
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.orange,
+                      ),
+                    ),
+              widget.tagsReceived != null
+                  ? ListView(
+                      key: PageStorageKey<String>(TimelineType.tags.name),
+                      padding: EdgeInsets.zero,
+                      children: List.generate(
+                        30,
+                        (index) => Container(
+                          height: 50,
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          width: MediaQuery.of(context).size.width,
+                          color:
+                              index % 2 == 0 ? AppColors.red : AppColors.purple,
+                          child: Text('${TimelineType.tags}: $index'),
+                        ),
+                      ),
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.orange,
+                      ),
+                    ),
+              widget.myReceived != null
+                  ? ListView(
+                      key: PageStorageKey<String>(TimelineType.my.name),
+                      padding: EdgeInsets.zero,
+                      children: List.generate(
+                        30,
+                        (index) => Container(
+                          height: 50,
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          width: MediaQuery.of(context).size.width,
+                          color:
+                              index % 2 == 0 ? AppColors.red : AppColors.purple,
+                          child: Text('${TimelineType.my}: $index'),
+                        ),
+                      ),
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.orange,
+                      ),
+                    ),
+              widget.subscribeReceived != null
+                  ? ListView(
+                      key: PageStorageKey<String>(TimelineType.subscribe.name),
+                      padding: EdgeInsets.zero,
+                      children: List.generate(
+                        30,
+                        (index) => Container(
+                          height: 50,
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          width: MediaQuery.of(context).size.width,
+                          color:
+                              index % 2 == 0 ? AppColors.red : AppColors.purple,
+                          child: Text('${TimelineType.subscribe}: $index'),
+                        ),
+                      ),
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.orange,
+                      ),
+                    ),
+              widget.hotReceived != null
+                  ? ListView(
+                      key: PageStorageKey<String>(TimelineType.hot.name),
+                      padding: EdgeInsets.zero,
+                      children: List.generate(
+                        30,
+                        (index) => Container(
+                          height: 50,
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          width: MediaQuery.of(context).size.width,
+                          color:
+                              index % 2 == 0 ? AppColors.red : AppColors.purple,
+                          child: Text('${TimelineType.hot}: $index'),
+                        ),
+                      ),
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.orange,
+                      ),
+                    ),
+            ],
+          ),
         ),
       ],
     );

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/data/setting_provider/theme_provider.dart';
+import '../../../app/di/init_di.dart';
+import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../../messages/ui/messages_screen.dart';
+import '../../posts/domain/entity/timeline_type.dart';
+import '../../posts/domain/post_repository.dart';
+import '../../posts/domain/state/post_cubit.dart';
 import '../../posts/ui/posts_screen.dart';
 import '../../profile/domain/state/profile_cubit.dart';
 import '../../profile/ui/user_screen.dart';
@@ -12,16 +18,30 @@ import 'components/tab_bar_page_widget.dart';
 const _home = 'home';
 const _messages = 'messages';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends StatelessWidget {
   const MainScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => PostCubit(locator.get<PostRepository>()),
+      child: const _MainScreen(),
+    );
+  }
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreen extends StatefulWidget {
+  const _MainScreen({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<_MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<_MainScreen> {
   late ThemeData theme;
   int selectedPage = 0;
   String title = _home;
@@ -32,10 +52,33 @@ class _MainScreenState extends State<MainScreen> {
 
   late double availableHeight;
 
+  final List<TimelineType> timelineTypeValues = [
+    TimelineType.overall,
+    TimelineType.tags,
+    TimelineType.my,
+    TimelineType.subscribe,
+    TimelineType.hot,
+  ];
+
+  PostsEntity? overallReceived;
+  PostsEntity? tagsReceived;
+  PostsEntity? myReceived;
+  PostsEntity? subscribeReceived;
+  PostsEntity? hotReceived;
+
   @override
   void initState() {
     super.initState();
     context.read<ProfileCubit>().getProfile();
+
+    for (TimelineType type in timelineTypeValues) {
+      context.read<PostCubit>().getUserPosts(
+            type: TimelineType.values
+                .firstWhere((element) => element.name == type.name),
+            limit: 10,
+            last: 0,
+          );
+    }
   }
 
   @override
@@ -66,7 +109,35 @@ class _MainScreenState extends State<MainScreen> {
           ),
           Expanded(
             child: selectedPage == 0
-                ? PostsScreen(appBarSubmenuHeight: appBarSubmenuHeight)
+                ? BlocListener<PostCubit, PostState>(
+                    listener: (context, state) {
+                      state.whenOrNull(
+                        overall: (received) => setState(
+                          () => overallReceived = received,
+                        ),
+                        tags: (received) => setState(
+                          () => tagsReceived = received,
+                        ),
+                        my: (received) => setState(
+                          () => myReceived = received,
+                        ),
+                        subscribe: (received) => setState(
+                          () => subscribeReceived = received,
+                        ),
+                        hot: (received) => setState(
+                          () => hotReceived = received,
+                        ),
+                      );
+                    },
+                    child: PostsScreen(
+                      appBarSubmenuHeight: appBarSubmenuHeight,
+                      overallReceived: overallReceived,
+                      tagsReceived: tagsReceived,
+                      myReceived: myReceived,
+                      subscribeReceived: subscribeReceived,
+                      hotReceived: hotReceived,
+                    ),
+                  )
                 : MessagesScreen(appBarSubmenuHeight: appBarSubmenuHeight),
           ),
           TabBarPageWidget(
