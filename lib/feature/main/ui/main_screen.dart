@@ -6,6 +6,7 @@ import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
 import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../../messages/ui/messages_screen.dart';
+import '../../posts/domain/entity/messages_type.dart';
 import '../../posts/domain/entity/timeline_type.dart';
 import '../../posts/domain/post_repository.dart';
 import '../../posts/domain/state/post_cubit.dart';
@@ -68,6 +69,14 @@ class _MainScreenState extends State<_MainScreen> {
 
   int selectedTimelinesType = 0;
 
+  final List<MessagesType> messagesTypeValues = [
+    MessagesType.private,
+    MessagesType.group,
+    MessagesType.archive,
+  ];
+
+  int selectedMessagesType = 0;
+
   @override
   void initState() {
     super.initState();
@@ -112,25 +121,23 @@ class _MainScreenState extends State<_MainScreen> {
           Expanded(
             child: selectedPage == 0
                 ? BlocListener<PostCubit, PostState>(
-                    listener: (context, state) {
-                      state.whenOrNull(
-                        overall: (received) => setState(
-                          () => overallReceived = received,
-                        ),
-                        tags: (received) => setState(
-                          () => tagsReceived = received,
-                        ),
-                        my: (received) => setState(
-                          () => myReceived = received,
-                        ),
-                        subscribe: (received) => setState(
-                          () => subscribeReceived = received,
-                        ),
-                        hot: (received) => setState(
-                          () => hotReceived = received,
-                        ),
-                      );
-                    },
+                    listener: (context, state) => state.whenOrNull(
+                      overall: (received) => setState(
+                        () => overallReceived = received,
+                      ),
+                      tags: (received) => setState(
+                        () => tagsReceived = received,
+                      ),
+                      my: (received) => setState(
+                        () => myReceived = received,
+                      ),
+                      subscribe: (received) => setState(
+                        () => subscribeReceived = received,
+                      ),
+                      hot: (received) => setState(
+                        () => hotReceived = received,
+                      ),
+                    ),
                     child: PostsScreen(
                       appBarSubmenuHeight: appBarSubmenuHeight,
                       overallReceived: overallReceived,
@@ -142,7 +149,11 @@ class _MainScreenState extends State<_MainScreen> {
                       changeTimelinePage: _changeTimelinePage,
                     ),
                   )
-                : MessagesScreen(appBarSubmenuHeight: appBarSubmenuHeight),
+                : MessagesScreen(
+                    appBarSubmenuHeight: appBarSubmenuHeight,
+                    selectedMessagesType: selectedMessagesType,
+                    changeMessagePage: _changeMessagePage,
+                  ),
           ),
           TabBarPageWidget(
             tabBarHeight: tabBarHeight,
@@ -177,6 +188,12 @@ class _MainScreenState extends State<_MainScreen> {
   void _changeTimelinePage(int id) {
     setState(() {
       selectedTimelinesType = id;
+    });
+  }
+
+  void _changeMessagePage(int id) {
+    setState(() {
+      selectedMessagesType = id;
     });
   }
 }
