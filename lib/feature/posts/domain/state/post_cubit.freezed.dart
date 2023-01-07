@@ -20,7 +20,11 @@ mixin _$PostState {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(PostsEntity postsEntity) received,
+    required TResult Function(PostsEntity postsEntity) overall,
+    required TResult Function(PostsEntity postsEntity) tags,
+    required TResult Function(PostsEntity postsEntity) my,
+    required TResult Function(PostsEntity postsEntity) subscribe,
+    required TResult Function(PostsEntity postsEntity) hot,
     required TResult Function(ErrorEntity error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +32,11 @@ mixin _$PostState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(PostsEntity postsEntity)? received,
+    TResult? Function(PostsEntity postsEntity)? overall,
+    TResult? Function(PostsEntity postsEntity)? tags,
+    TResult? Function(PostsEntity postsEntity)? my,
+    TResult? Function(PostsEntity postsEntity)? subscribe,
+    TResult? Function(PostsEntity postsEntity)? hot,
     TResult? Function(ErrorEntity error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +44,11 @@ mixin _$PostState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(PostsEntity postsEntity)? received,
+    TResult Function(PostsEntity postsEntity)? overall,
+    TResult Function(PostsEntity postsEntity)? tags,
+    TResult Function(PostsEntity postsEntity)? my,
+    TResult Function(PostsEntity postsEntity)? subscribe,
+    TResult Function(PostsEntity postsEntity)? hot,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) =>
@@ -45,7 +57,11 @@ mixin _$PostState {
   TResult map<TResult extends Object?>({
     required TResult Function(_PostStateInit value) init,
     required TResult Function(_PostStateWaiting value) waiting,
-    required TResult Function(_PostStateReceived value) received,
+    required TResult Function(_PostStateOverall value) overall,
+    required TResult Function(_PostStateTags value) tags,
+    required TResult Function(_PostStateMy value) my,
+    required TResult Function(_PostStateSubscribe value) subscribe,
+    required TResult Function(_PostStateHot value) hot,
     required TResult Function(_PostStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,7 +69,11 @@ mixin _$PostState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_PostStateInit value)? init,
     TResult? Function(_PostStateWaiting value)? waiting,
-    TResult? Function(_PostStateReceived value)? received,
+    TResult? Function(_PostStateOverall value)? overall,
+    TResult? Function(_PostStateTags value)? tags,
+    TResult? Function(_PostStateMy value)? my,
+    TResult? Function(_PostStateSubscribe value)? subscribe,
+    TResult? Function(_PostStateHot value)? hot,
     TResult? Function(_PostStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +81,11 @@ mixin _$PostState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PostStateInit value)? init,
     TResult Function(_PostStateWaiting value)? waiting,
-    TResult Function(_PostStateReceived value)? received,
+    TResult Function(_PostStateOverall value)? overall,
+    TResult Function(_PostStateTags value)? tags,
+    TResult Function(_PostStateMy value)? my,
+    TResult Function(_PostStateSubscribe value)? subscribe,
+    TResult Function(_PostStateHot value)? hot,
     TResult Function(_PostStateError value)? error,
     required TResult orElse(),
   }) =>
@@ -125,7 +149,11 @@ class _$_PostStateInit implements _PostStateInit {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(PostsEntity postsEntity) received,
+    required TResult Function(PostsEntity postsEntity) overall,
+    required TResult Function(PostsEntity postsEntity) tags,
+    required TResult Function(PostsEntity postsEntity) my,
+    required TResult Function(PostsEntity postsEntity) subscribe,
+    required TResult Function(PostsEntity postsEntity) hot,
     required TResult Function(ErrorEntity error) error,
   }) {
     return init();
@@ -136,7 +164,11 @@ class _$_PostStateInit implements _PostStateInit {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(PostsEntity postsEntity)? received,
+    TResult? Function(PostsEntity postsEntity)? overall,
+    TResult? Function(PostsEntity postsEntity)? tags,
+    TResult? Function(PostsEntity postsEntity)? my,
+    TResult? Function(PostsEntity postsEntity)? subscribe,
+    TResult? Function(PostsEntity postsEntity)? hot,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return init?.call();
@@ -147,7 +179,11 @@ class _$_PostStateInit implements _PostStateInit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(PostsEntity postsEntity)? received,
+    TResult Function(PostsEntity postsEntity)? overall,
+    TResult Function(PostsEntity postsEntity)? tags,
+    TResult Function(PostsEntity postsEntity)? my,
+    TResult Function(PostsEntity postsEntity)? subscribe,
+    TResult Function(PostsEntity postsEntity)? hot,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -162,7 +198,11 @@ class _$_PostStateInit implements _PostStateInit {
   TResult map<TResult extends Object?>({
     required TResult Function(_PostStateInit value) init,
     required TResult Function(_PostStateWaiting value) waiting,
-    required TResult Function(_PostStateReceived value) received,
+    required TResult Function(_PostStateOverall value) overall,
+    required TResult Function(_PostStateTags value) tags,
+    required TResult Function(_PostStateMy value) my,
+    required TResult Function(_PostStateSubscribe value) subscribe,
+    required TResult Function(_PostStateHot value) hot,
     required TResult Function(_PostStateError value) error,
   }) {
     return init(this);
@@ -173,7 +213,11 @@ class _$_PostStateInit implements _PostStateInit {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_PostStateInit value)? init,
     TResult? Function(_PostStateWaiting value)? waiting,
-    TResult? Function(_PostStateReceived value)? received,
+    TResult? Function(_PostStateOverall value)? overall,
+    TResult? Function(_PostStateTags value)? tags,
+    TResult? Function(_PostStateMy value)? my,
+    TResult? Function(_PostStateSubscribe value)? subscribe,
+    TResult? Function(_PostStateHot value)? hot,
     TResult? Function(_PostStateError value)? error,
   }) {
     return init?.call(this);
@@ -184,7 +228,11 @@ class _$_PostStateInit implements _PostStateInit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PostStateInit value)? init,
     TResult Function(_PostStateWaiting value)? waiting,
-    TResult Function(_PostStateReceived value)? received,
+    TResult Function(_PostStateOverall value)? overall,
+    TResult Function(_PostStateTags value)? tags,
+    TResult Function(_PostStateMy value)? my,
+    TResult Function(_PostStateSubscribe value)? subscribe,
+    TResult Function(_PostStateHot value)? hot,
     TResult Function(_PostStateError value)? error,
     required TResult orElse(),
   }) {
@@ -239,7 +287,11 @@ class _$_PostStateWaiting implements _PostStateWaiting {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(PostsEntity postsEntity) received,
+    required TResult Function(PostsEntity postsEntity) overall,
+    required TResult Function(PostsEntity postsEntity) tags,
+    required TResult Function(PostsEntity postsEntity) my,
+    required TResult Function(PostsEntity postsEntity) subscribe,
+    required TResult Function(PostsEntity postsEntity) hot,
     required TResult Function(ErrorEntity error) error,
   }) {
     return waiting();
@@ -250,7 +302,11 @@ class _$_PostStateWaiting implements _PostStateWaiting {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(PostsEntity postsEntity)? received,
+    TResult? Function(PostsEntity postsEntity)? overall,
+    TResult? Function(PostsEntity postsEntity)? tags,
+    TResult? Function(PostsEntity postsEntity)? my,
+    TResult? Function(PostsEntity postsEntity)? subscribe,
+    TResult? Function(PostsEntity postsEntity)? hot,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return waiting?.call();
@@ -261,7 +317,11 @@ class _$_PostStateWaiting implements _PostStateWaiting {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(PostsEntity postsEntity)? received,
+    TResult Function(PostsEntity postsEntity)? overall,
+    TResult Function(PostsEntity postsEntity)? tags,
+    TResult Function(PostsEntity postsEntity)? my,
+    TResult Function(PostsEntity postsEntity)? subscribe,
+    TResult Function(PostsEntity postsEntity)? hot,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -276,7 +336,11 @@ class _$_PostStateWaiting implements _PostStateWaiting {
   TResult map<TResult extends Object?>({
     required TResult Function(_PostStateInit value) init,
     required TResult Function(_PostStateWaiting value) waiting,
-    required TResult Function(_PostStateReceived value) received,
+    required TResult Function(_PostStateOverall value) overall,
+    required TResult Function(_PostStateTags value) tags,
+    required TResult Function(_PostStateMy value) my,
+    required TResult Function(_PostStateSubscribe value) subscribe,
+    required TResult Function(_PostStateHot value) hot,
     required TResult Function(_PostStateError value) error,
   }) {
     return waiting(this);
@@ -287,7 +351,11 @@ class _$_PostStateWaiting implements _PostStateWaiting {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_PostStateInit value)? init,
     TResult? Function(_PostStateWaiting value)? waiting,
-    TResult? Function(_PostStateReceived value)? received,
+    TResult? Function(_PostStateOverall value)? overall,
+    TResult? Function(_PostStateTags value)? tags,
+    TResult? Function(_PostStateMy value)? my,
+    TResult? Function(_PostStateSubscribe value)? subscribe,
+    TResult? Function(_PostStateHot value)? hot,
     TResult? Function(_PostStateError value)? error,
   }) {
     return waiting?.call(this);
@@ -298,7 +366,11 @@ class _$_PostStateWaiting implements _PostStateWaiting {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PostStateInit value)? init,
     TResult Function(_PostStateWaiting value)? waiting,
-    TResult Function(_PostStateReceived value)? received,
+    TResult Function(_PostStateOverall value)? overall,
+    TResult Function(_PostStateTags value)? tags,
+    TResult Function(_PostStateMy value)? my,
+    TResult Function(_PostStateSubscribe value)? subscribe,
+    TResult Function(_PostStateHot value)? hot,
     TResult Function(_PostStateError value)? error,
     required TResult orElse(),
   }) {
@@ -314,10 +386,10 @@ abstract class _PostStateWaiting implements PostState {
 }
 
 /// @nodoc
-abstract class _$$_PostStateReceivedCopyWith<$Res> {
-  factory _$$_PostStateReceivedCopyWith(_$_PostStateReceived value,
-          $Res Function(_$_PostStateReceived) then) =
-      __$$_PostStateReceivedCopyWithImpl<$Res>;
+abstract class _$$_PostStateOverallCopyWith<$Res> {
+  factory _$$_PostStateOverallCopyWith(
+          _$_PostStateOverall value, $Res Function(_$_PostStateOverall) then) =
+      __$$_PostStateOverallCopyWithImpl<$Res>;
   @useResult
   $Res call({PostsEntity postsEntity});
 
@@ -325,11 +397,11 @@ abstract class _$$_PostStateReceivedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PostStateReceivedCopyWithImpl<$Res>
-    extends _$PostStateCopyWithImpl<$Res, _$_PostStateReceived>
-    implements _$$_PostStateReceivedCopyWith<$Res> {
-  __$$_PostStateReceivedCopyWithImpl(
-      _$_PostStateReceived _value, $Res Function(_$_PostStateReceived) _then)
+class __$$_PostStateOverallCopyWithImpl<$Res>
+    extends _$PostStateCopyWithImpl<$Res, _$_PostStateOverall>
+    implements _$$_PostStateOverallCopyWith<$Res> {
+  __$$_PostStateOverallCopyWithImpl(
+      _$_PostStateOverall _value, $Res Function(_$_PostStateOverall) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -337,7 +409,7 @@ class __$$_PostStateReceivedCopyWithImpl<$Res>
   $Res call({
     Object? postsEntity = null,
   }) {
-    return _then(_$_PostStateReceived(
+    return _then(_$_PostStateOverall(
       null == postsEntity
           ? _value.postsEntity
           : postsEntity // ignore: cast_nullable_to_non_nullable
@@ -356,22 +428,22 @@ class __$$_PostStateReceivedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PostStateReceived implements _PostStateReceived {
-  _$_PostStateReceived(this.postsEntity);
+class _$_PostStateOverall implements _PostStateOverall {
+  _$_PostStateOverall(this.postsEntity);
 
   @override
   final PostsEntity postsEntity;
 
   @override
   String toString() {
-    return 'PostState.received(postsEntity: $postsEntity)';
+    return 'PostState.overall(postsEntity: $postsEntity)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PostStateReceived &&
+            other is _$_PostStateOverall &&
             (identical(other.postsEntity, postsEntity) ||
                 other.postsEntity == postsEntity));
   }
@@ -382,19 +454,22 @@ class _$_PostStateReceived implements _PostStateReceived {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PostStateReceivedCopyWith<_$_PostStateReceived> get copyWith =>
-      __$$_PostStateReceivedCopyWithImpl<_$_PostStateReceived>(
-          this, _$identity);
+  _$$_PostStateOverallCopyWith<_$_PostStateOverall> get copyWith =>
+      __$$_PostStateOverallCopyWithImpl<_$_PostStateOverall>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(PostsEntity postsEntity) received,
+    required TResult Function(PostsEntity postsEntity) overall,
+    required TResult Function(PostsEntity postsEntity) tags,
+    required TResult Function(PostsEntity postsEntity) my,
+    required TResult Function(PostsEntity postsEntity) subscribe,
+    required TResult Function(PostsEntity postsEntity) hot,
     required TResult Function(ErrorEntity error) error,
   }) {
-    return received(postsEntity);
+    return overall(postsEntity);
   }
 
   @override
@@ -402,10 +477,14 @@ class _$_PostStateReceived implements _PostStateReceived {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(PostsEntity postsEntity)? received,
+    TResult? Function(PostsEntity postsEntity)? overall,
+    TResult? Function(PostsEntity postsEntity)? tags,
+    TResult? Function(PostsEntity postsEntity)? my,
+    TResult? Function(PostsEntity postsEntity)? subscribe,
+    TResult? Function(PostsEntity postsEntity)? hot,
     TResult? Function(ErrorEntity error)? error,
   }) {
-    return received?.call(postsEntity);
+    return overall?.call(postsEntity);
   }
 
   @override
@@ -413,12 +492,16 @@ class _$_PostStateReceived implements _PostStateReceived {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(PostsEntity postsEntity)? received,
+    TResult Function(PostsEntity postsEntity)? overall,
+    TResult Function(PostsEntity postsEntity)? tags,
+    TResult Function(PostsEntity postsEntity)? my,
+    TResult Function(PostsEntity postsEntity)? subscribe,
+    TResult Function(PostsEntity postsEntity)? hot,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
-    if (received != null) {
-      return received(postsEntity);
+    if (overall != null) {
+      return overall(postsEntity);
     }
     return orElse();
   }
@@ -428,10 +511,14 @@ class _$_PostStateReceived implements _PostStateReceived {
   TResult map<TResult extends Object?>({
     required TResult Function(_PostStateInit value) init,
     required TResult Function(_PostStateWaiting value) waiting,
-    required TResult Function(_PostStateReceived value) received,
+    required TResult Function(_PostStateOverall value) overall,
+    required TResult Function(_PostStateTags value) tags,
+    required TResult Function(_PostStateMy value) my,
+    required TResult Function(_PostStateSubscribe value) subscribe,
+    required TResult Function(_PostStateHot value) hot,
     required TResult Function(_PostStateError value) error,
   }) {
-    return received(this);
+    return overall(this);
   }
 
   @override
@@ -439,10 +526,14 @@ class _$_PostStateReceived implements _PostStateReceived {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_PostStateInit value)? init,
     TResult? Function(_PostStateWaiting value)? waiting,
-    TResult? Function(_PostStateReceived value)? received,
+    TResult? Function(_PostStateOverall value)? overall,
+    TResult? Function(_PostStateTags value)? tags,
+    TResult? Function(_PostStateMy value)? my,
+    TResult? Function(_PostStateSubscribe value)? subscribe,
+    TResult? Function(_PostStateHot value)? hot,
     TResult? Function(_PostStateError value)? error,
   }) {
-    return received?.call(this);
+    return overall?.call(this);
   }
 
   @override
@@ -450,24 +541,750 @@ class _$_PostStateReceived implements _PostStateReceived {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PostStateInit value)? init,
     TResult Function(_PostStateWaiting value)? waiting,
-    TResult Function(_PostStateReceived value)? received,
+    TResult Function(_PostStateOverall value)? overall,
+    TResult Function(_PostStateTags value)? tags,
+    TResult Function(_PostStateMy value)? my,
+    TResult Function(_PostStateSubscribe value)? subscribe,
+    TResult Function(_PostStateHot value)? hot,
     TResult Function(_PostStateError value)? error,
     required TResult orElse(),
   }) {
-    if (received != null) {
-      return received(this);
+    if (overall != null) {
+      return overall(this);
     }
     return orElse();
   }
 }
 
-abstract class _PostStateReceived implements PostState {
-  factory _PostStateReceived(final PostsEntity postsEntity) =
-      _$_PostStateReceived;
+abstract class _PostStateOverall implements PostState {
+  factory _PostStateOverall(final PostsEntity postsEntity) =
+      _$_PostStateOverall;
 
   PostsEntity get postsEntity;
   @JsonKey(ignore: true)
-  _$$_PostStateReceivedCopyWith<_$_PostStateReceived> get copyWith =>
+  _$$_PostStateOverallCopyWith<_$_PostStateOverall> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_PostStateTagsCopyWith<$Res> {
+  factory _$$_PostStateTagsCopyWith(
+          _$_PostStateTags value, $Res Function(_$_PostStateTags) then) =
+      __$$_PostStateTagsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PostsEntity postsEntity});
+
+  $PostsEntityCopyWith<$Res> get postsEntity;
+}
+
+/// @nodoc
+class __$$_PostStateTagsCopyWithImpl<$Res>
+    extends _$PostStateCopyWithImpl<$Res, _$_PostStateTags>
+    implements _$$_PostStateTagsCopyWith<$Res> {
+  __$$_PostStateTagsCopyWithImpl(
+      _$_PostStateTags _value, $Res Function(_$_PostStateTags) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? postsEntity = null,
+  }) {
+    return _then(_$_PostStateTags(
+      null == postsEntity
+          ? _value.postsEntity
+          : postsEntity // ignore: cast_nullable_to_non_nullable
+              as PostsEntity,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PostsEntityCopyWith<$Res> get postsEntity {
+    return $PostsEntityCopyWith<$Res>(_value.postsEntity, (value) {
+      return _then(_value.copyWith(postsEntity: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_PostStateTags implements _PostStateTags {
+  _$_PostStateTags(this.postsEntity);
+
+  @override
+  final PostsEntity postsEntity;
+
+  @override
+  String toString() {
+    return 'PostState.tags(postsEntity: $postsEntity)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PostStateTags &&
+            (identical(other.postsEntity, postsEntity) ||
+                other.postsEntity == postsEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, postsEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PostStateTagsCopyWith<_$_PostStateTags> get copyWith =>
+      __$$_PostStateTagsCopyWithImpl<_$_PostStateTags>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() waiting,
+    required TResult Function(PostsEntity postsEntity) overall,
+    required TResult Function(PostsEntity postsEntity) tags,
+    required TResult Function(PostsEntity postsEntity) my,
+    required TResult Function(PostsEntity postsEntity) subscribe,
+    required TResult Function(PostsEntity postsEntity) hot,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return tags(postsEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? waiting,
+    TResult? Function(PostsEntity postsEntity)? overall,
+    TResult? Function(PostsEntity postsEntity)? tags,
+    TResult? Function(PostsEntity postsEntity)? my,
+    TResult? Function(PostsEntity postsEntity)? subscribe,
+    TResult? Function(PostsEntity postsEntity)? hot,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return tags?.call(postsEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? waiting,
+    TResult Function(PostsEntity postsEntity)? overall,
+    TResult Function(PostsEntity postsEntity)? tags,
+    TResult Function(PostsEntity postsEntity)? my,
+    TResult Function(PostsEntity postsEntity)? subscribe,
+    TResult Function(PostsEntity postsEntity)? hot,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (tags != null) {
+      return tags(postsEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PostStateInit value) init,
+    required TResult Function(_PostStateWaiting value) waiting,
+    required TResult Function(_PostStateOverall value) overall,
+    required TResult Function(_PostStateTags value) tags,
+    required TResult Function(_PostStateMy value) my,
+    required TResult Function(_PostStateSubscribe value) subscribe,
+    required TResult Function(_PostStateHot value) hot,
+    required TResult Function(_PostStateError value) error,
+  }) {
+    return tags(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_PostStateInit value)? init,
+    TResult? Function(_PostStateWaiting value)? waiting,
+    TResult? Function(_PostStateOverall value)? overall,
+    TResult? Function(_PostStateTags value)? tags,
+    TResult? Function(_PostStateMy value)? my,
+    TResult? Function(_PostStateSubscribe value)? subscribe,
+    TResult? Function(_PostStateHot value)? hot,
+    TResult? Function(_PostStateError value)? error,
+  }) {
+    return tags?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PostStateInit value)? init,
+    TResult Function(_PostStateWaiting value)? waiting,
+    TResult Function(_PostStateOverall value)? overall,
+    TResult Function(_PostStateTags value)? tags,
+    TResult Function(_PostStateMy value)? my,
+    TResult Function(_PostStateSubscribe value)? subscribe,
+    TResult Function(_PostStateHot value)? hot,
+    TResult Function(_PostStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (tags != null) {
+      return tags(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PostStateTags implements PostState {
+  factory _PostStateTags(final PostsEntity postsEntity) = _$_PostStateTags;
+
+  PostsEntity get postsEntity;
+  @JsonKey(ignore: true)
+  _$$_PostStateTagsCopyWith<_$_PostStateTags> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_PostStateMyCopyWith<$Res> {
+  factory _$$_PostStateMyCopyWith(
+          _$_PostStateMy value, $Res Function(_$_PostStateMy) then) =
+      __$$_PostStateMyCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PostsEntity postsEntity});
+
+  $PostsEntityCopyWith<$Res> get postsEntity;
+}
+
+/// @nodoc
+class __$$_PostStateMyCopyWithImpl<$Res>
+    extends _$PostStateCopyWithImpl<$Res, _$_PostStateMy>
+    implements _$$_PostStateMyCopyWith<$Res> {
+  __$$_PostStateMyCopyWithImpl(
+      _$_PostStateMy _value, $Res Function(_$_PostStateMy) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? postsEntity = null,
+  }) {
+    return _then(_$_PostStateMy(
+      null == postsEntity
+          ? _value.postsEntity
+          : postsEntity // ignore: cast_nullable_to_non_nullable
+              as PostsEntity,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PostsEntityCopyWith<$Res> get postsEntity {
+    return $PostsEntityCopyWith<$Res>(_value.postsEntity, (value) {
+      return _then(_value.copyWith(postsEntity: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_PostStateMy implements _PostStateMy {
+  _$_PostStateMy(this.postsEntity);
+
+  @override
+  final PostsEntity postsEntity;
+
+  @override
+  String toString() {
+    return 'PostState.my(postsEntity: $postsEntity)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PostStateMy &&
+            (identical(other.postsEntity, postsEntity) ||
+                other.postsEntity == postsEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, postsEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PostStateMyCopyWith<_$_PostStateMy> get copyWith =>
+      __$$_PostStateMyCopyWithImpl<_$_PostStateMy>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() waiting,
+    required TResult Function(PostsEntity postsEntity) overall,
+    required TResult Function(PostsEntity postsEntity) tags,
+    required TResult Function(PostsEntity postsEntity) my,
+    required TResult Function(PostsEntity postsEntity) subscribe,
+    required TResult Function(PostsEntity postsEntity) hot,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return my(postsEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? waiting,
+    TResult? Function(PostsEntity postsEntity)? overall,
+    TResult? Function(PostsEntity postsEntity)? tags,
+    TResult? Function(PostsEntity postsEntity)? my,
+    TResult? Function(PostsEntity postsEntity)? subscribe,
+    TResult? Function(PostsEntity postsEntity)? hot,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return my?.call(postsEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? waiting,
+    TResult Function(PostsEntity postsEntity)? overall,
+    TResult Function(PostsEntity postsEntity)? tags,
+    TResult Function(PostsEntity postsEntity)? my,
+    TResult Function(PostsEntity postsEntity)? subscribe,
+    TResult Function(PostsEntity postsEntity)? hot,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (my != null) {
+      return my(postsEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PostStateInit value) init,
+    required TResult Function(_PostStateWaiting value) waiting,
+    required TResult Function(_PostStateOverall value) overall,
+    required TResult Function(_PostStateTags value) tags,
+    required TResult Function(_PostStateMy value) my,
+    required TResult Function(_PostStateSubscribe value) subscribe,
+    required TResult Function(_PostStateHot value) hot,
+    required TResult Function(_PostStateError value) error,
+  }) {
+    return my(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_PostStateInit value)? init,
+    TResult? Function(_PostStateWaiting value)? waiting,
+    TResult? Function(_PostStateOverall value)? overall,
+    TResult? Function(_PostStateTags value)? tags,
+    TResult? Function(_PostStateMy value)? my,
+    TResult? Function(_PostStateSubscribe value)? subscribe,
+    TResult? Function(_PostStateHot value)? hot,
+    TResult? Function(_PostStateError value)? error,
+  }) {
+    return my?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PostStateInit value)? init,
+    TResult Function(_PostStateWaiting value)? waiting,
+    TResult Function(_PostStateOverall value)? overall,
+    TResult Function(_PostStateTags value)? tags,
+    TResult Function(_PostStateMy value)? my,
+    TResult Function(_PostStateSubscribe value)? subscribe,
+    TResult Function(_PostStateHot value)? hot,
+    TResult Function(_PostStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (my != null) {
+      return my(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PostStateMy implements PostState {
+  factory _PostStateMy(final PostsEntity postsEntity) = _$_PostStateMy;
+
+  PostsEntity get postsEntity;
+  @JsonKey(ignore: true)
+  _$$_PostStateMyCopyWith<_$_PostStateMy> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_PostStateSubscribeCopyWith<$Res> {
+  factory _$$_PostStateSubscribeCopyWith(_$_PostStateSubscribe value,
+          $Res Function(_$_PostStateSubscribe) then) =
+      __$$_PostStateSubscribeCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PostsEntity postsEntity});
+
+  $PostsEntityCopyWith<$Res> get postsEntity;
+}
+
+/// @nodoc
+class __$$_PostStateSubscribeCopyWithImpl<$Res>
+    extends _$PostStateCopyWithImpl<$Res, _$_PostStateSubscribe>
+    implements _$$_PostStateSubscribeCopyWith<$Res> {
+  __$$_PostStateSubscribeCopyWithImpl(
+      _$_PostStateSubscribe _value, $Res Function(_$_PostStateSubscribe) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? postsEntity = null,
+  }) {
+    return _then(_$_PostStateSubscribe(
+      null == postsEntity
+          ? _value.postsEntity
+          : postsEntity // ignore: cast_nullable_to_non_nullable
+              as PostsEntity,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PostsEntityCopyWith<$Res> get postsEntity {
+    return $PostsEntityCopyWith<$Res>(_value.postsEntity, (value) {
+      return _then(_value.copyWith(postsEntity: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_PostStateSubscribe implements _PostStateSubscribe {
+  _$_PostStateSubscribe(this.postsEntity);
+
+  @override
+  final PostsEntity postsEntity;
+
+  @override
+  String toString() {
+    return 'PostState.subscribe(postsEntity: $postsEntity)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PostStateSubscribe &&
+            (identical(other.postsEntity, postsEntity) ||
+                other.postsEntity == postsEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, postsEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PostStateSubscribeCopyWith<_$_PostStateSubscribe> get copyWith =>
+      __$$_PostStateSubscribeCopyWithImpl<_$_PostStateSubscribe>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() waiting,
+    required TResult Function(PostsEntity postsEntity) overall,
+    required TResult Function(PostsEntity postsEntity) tags,
+    required TResult Function(PostsEntity postsEntity) my,
+    required TResult Function(PostsEntity postsEntity) subscribe,
+    required TResult Function(PostsEntity postsEntity) hot,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return subscribe(postsEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? waiting,
+    TResult? Function(PostsEntity postsEntity)? overall,
+    TResult? Function(PostsEntity postsEntity)? tags,
+    TResult? Function(PostsEntity postsEntity)? my,
+    TResult? Function(PostsEntity postsEntity)? subscribe,
+    TResult? Function(PostsEntity postsEntity)? hot,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return subscribe?.call(postsEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? waiting,
+    TResult Function(PostsEntity postsEntity)? overall,
+    TResult Function(PostsEntity postsEntity)? tags,
+    TResult Function(PostsEntity postsEntity)? my,
+    TResult Function(PostsEntity postsEntity)? subscribe,
+    TResult Function(PostsEntity postsEntity)? hot,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (subscribe != null) {
+      return subscribe(postsEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PostStateInit value) init,
+    required TResult Function(_PostStateWaiting value) waiting,
+    required TResult Function(_PostStateOverall value) overall,
+    required TResult Function(_PostStateTags value) tags,
+    required TResult Function(_PostStateMy value) my,
+    required TResult Function(_PostStateSubscribe value) subscribe,
+    required TResult Function(_PostStateHot value) hot,
+    required TResult Function(_PostStateError value) error,
+  }) {
+    return subscribe(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_PostStateInit value)? init,
+    TResult? Function(_PostStateWaiting value)? waiting,
+    TResult? Function(_PostStateOverall value)? overall,
+    TResult? Function(_PostStateTags value)? tags,
+    TResult? Function(_PostStateMy value)? my,
+    TResult? Function(_PostStateSubscribe value)? subscribe,
+    TResult? Function(_PostStateHot value)? hot,
+    TResult? Function(_PostStateError value)? error,
+  }) {
+    return subscribe?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PostStateInit value)? init,
+    TResult Function(_PostStateWaiting value)? waiting,
+    TResult Function(_PostStateOverall value)? overall,
+    TResult Function(_PostStateTags value)? tags,
+    TResult Function(_PostStateMy value)? my,
+    TResult Function(_PostStateSubscribe value)? subscribe,
+    TResult Function(_PostStateHot value)? hot,
+    TResult Function(_PostStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (subscribe != null) {
+      return subscribe(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PostStateSubscribe implements PostState {
+  factory _PostStateSubscribe(final PostsEntity postsEntity) =
+      _$_PostStateSubscribe;
+
+  PostsEntity get postsEntity;
+  @JsonKey(ignore: true)
+  _$$_PostStateSubscribeCopyWith<_$_PostStateSubscribe> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_PostStateHotCopyWith<$Res> {
+  factory _$$_PostStateHotCopyWith(
+          _$_PostStateHot value, $Res Function(_$_PostStateHot) then) =
+      __$$_PostStateHotCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PostsEntity postsEntity});
+
+  $PostsEntityCopyWith<$Res> get postsEntity;
+}
+
+/// @nodoc
+class __$$_PostStateHotCopyWithImpl<$Res>
+    extends _$PostStateCopyWithImpl<$Res, _$_PostStateHot>
+    implements _$$_PostStateHotCopyWith<$Res> {
+  __$$_PostStateHotCopyWithImpl(
+      _$_PostStateHot _value, $Res Function(_$_PostStateHot) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? postsEntity = null,
+  }) {
+    return _then(_$_PostStateHot(
+      null == postsEntity
+          ? _value.postsEntity
+          : postsEntity // ignore: cast_nullable_to_non_nullable
+              as PostsEntity,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PostsEntityCopyWith<$Res> get postsEntity {
+    return $PostsEntityCopyWith<$Res>(_value.postsEntity, (value) {
+      return _then(_value.copyWith(postsEntity: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_PostStateHot implements _PostStateHot {
+  _$_PostStateHot(this.postsEntity);
+
+  @override
+  final PostsEntity postsEntity;
+
+  @override
+  String toString() {
+    return 'PostState.hot(postsEntity: $postsEntity)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PostStateHot &&
+            (identical(other.postsEntity, postsEntity) ||
+                other.postsEntity == postsEntity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, postsEntity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PostStateHotCopyWith<_$_PostStateHot> get copyWith =>
+      __$$_PostStateHotCopyWithImpl<_$_PostStateHot>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() waiting,
+    required TResult Function(PostsEntity postsEntity) overall,
+    required TResult Function(PostsEntity postsEntity) tags,
+    required TResult Function(PostsEntity postsEntity) my,
+    required TResult Function(PostsEntity postsEntity) subscribe,
+    required TResult Function(PostsEntity postsEntity) hot,
+    required TResult Function(ErrorEntity error) error,
+  }) {
+    return hot(postsEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? waiting,
+    TResult? Function(PostsEntity postsEntity)? overall,
+    TResult? Function(PostsEntity postsEntity)? tags,
+    TResult? Function(PostsEntity postsEntity)? my,
+    TResult? Function(PostsEntity postsEntity)? subscribe,
+    TResult? Function(PostsEntity postsEntity)? hot,
+    TResult? Function(ErrorEntity error)? error,
+  }) {
+    return hot?.call(postsEntity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? waiting,
+    TResult Function(PostsEntity postsEntity)? overall,
+    TResult Function(PostsEntity postsEntity)? tags,
+    TResult Function(PostsEntity postsEntity)? my,
+    TResult Function(PostsEntity postsEntity)? subscribe,
+    TResult Function(PostsEntity postsEntity)? hot,
+    TResult Function(ErrorEntity error)? error,
+    required TResult orElse(),
+  }) {
+    if (hot != null) {
+      return hot(postsEntity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PostStateInit value) init,
+    required TResult Function(_PostStateWaiting value) waiting,
+    required TResult Function(_PostStateOverall value) overall,
+    required TResult Function(_PostStateTags value) tags,
+    required TResult Function(_PostStateMy value) my,
+    required TResult Function(_PostStateSubscribe value) subscribe,
+    required TResult Function(_PostStateHot value) hot,
+    required TResult Function(_PostStateError value) error,
+  }) {
+    return hot(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_PostStateInit value)? init,
+    TResult? Function(_PostStateWaiting value)? waiting,
+    TResult? Function(_PostStateOverall value)? overall,
+    TResult? Function(_PostStateTags value)? tags,
+    TResult? Function(_PostStateMy value)? my,
+    TResult? Function(_PostStateSubscribe value)? subscribe,
+    TResult? Function(_PostStateHot value)? hot,
+    TResult? Function(_PostStateError value)? error,
+  }) {
+    return hot?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PostStateInit value)? init,
+    TResult Function(_PostStateWaiting value)? waiting,
+    TResult Function(_PostStateOverall value)? overall,
+    TResult Function(_PostStateTags value)? tags,
+    TResult Function(_PostStateMy value)? my,
+    TResult Function(_PostStateSubscribe value)? subscribe,
+    TResult Function(_PostStateHot value)? hot,
+    TResult Function(_PostStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (hot != null) {
+      return hot(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PostStateHot implements PostState {
+  factory _PostStateHot(final PostsEntity postsEntity) = _$_PostStateHot;
+
+  PostsEntity get postsEntity;
+  @JsonKey(ignore: true)
+  _$$_PostStateHotCopyWith<_$_PostStateHot> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -547,7 +1364,11 @@ class _$_PostStateError implements _PostStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() waiting,
-    required TResult Function(PostsEntity postsEntity) received,
+    required TResult Function(PostsEntity postsEntity) overall,
+    required TResult Function(PostsEntity postsEntity) tags,
+    required TResult Function(PostsEntity postsEntity) my,
+    required TResult Function(PostsEntity postsEntity) subscribe,
+    required TResult Function(PostsEntity postsEntity) hot,
     required TResult Function(ErrorEntity error) error,
   }) {
     return error(this.error);
@@ -558,7 +1379,11 @@ class _$_PostStateError implements _PostStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function()? waiting,
-    TResult? Function(PostsEntity postsEntity)? received,
+    TResult? Function(PostsEntity postsEntity)? overall,
+    TResult? Function(PostsEntity postsEntity)? tags,
+    TResult? Function(PostsEntity postsEntity)? my,
+    TResult? Function(PostsEntity postsEntity)? subscribe,
+    TResult? Function(PostsEntity postsEntity)? hot,
     TResult? Function(ErrorEntity error)? error,
   }) {
     return error?.call(this.error);
@@ -569,7 +1394,11 @@ class _$_PostStateError implements _PostStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? waiting,
-    TResult Function(PostsEntity postsEntity)? received,
+    TResult Function(PostsEntity postsEntity)? overall,
+    TResult Function(PostsEntity postsEntity)? tags,
+    TResult Function(PostsEntity postsEntity)? my,
+    TResult Function(PostsEntity postsEntity)? subscribe,
+    TResult Function(PostsEntity postsEntity)? hot,
     TResult Function(ErrorEntity error)? error,
     required TResult orElse(),
   }) {
@@ -584,7 +1413,11 @@ class _$_PostStateError implements _PostStateError {
   TResult map<TResult extends Object?>({
     required TResult Function(_PostStateInit value) init,
     required TResult Function(_PostStateWaiting value) waiting,
-    required TResult Function(_PostStateReceived value) received,
+    required TResult Function(_PostStateOverall value) overall,
+    required TResult Function(_PostStateTags value) tags,
+    required TResult Function(_PostStateMy value) my,
+    required TResult Function(_PostStateSubscribe value) subscribe,
+    required TResult Function(_PostStateHot value) hot,
     required TResult Function(_PostStateError value) error,
   }) {
     return error(this);
@@ -595,7 +1428,11 @@ class _$_PostStateError implements _PostStateError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_PostStateInit value)? init,
     TResult? Function(_PostStateWaiting value)? waiting,
-    TResult? Function(_PostStateReceived value)? received,
+    TResult? Function(_PostStateOverall value)? overall,
+    TResult? Function(_PostStateTags value)? tags,
+    TResult? Function(_PostStateMy value)? my,
+    TResult? Function(_PostStateSubscribe value)? subscribe,
+    TResult? Function(_PostStateHot value)? hot,
     TResult? Function(_PostStateError value)? error,
   }) {
     return error?.call(this);
@@ -606,7 +1443,11 @@ class _$_PostStateError implements _PostStateError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PostStateInit value)? init,
     TResult Function(_PostStateWaiting value)? waiting,
-    TResult Function(_PostStateReceived value)? received,
+    TResult Function(_PostStateOverall value)? overall,
+    TResult Function(_PostStateTags value)? tags,
+    TResult Function(_PostStateMy value)? my,
+    TResult Function(_PostStateSubscribe value)? subscribe,
+    TResult Function(_PostStateHot value)? hot,
     TResult Function(_PostStateError value)? error,
     required TResult orElse(),
   }) {

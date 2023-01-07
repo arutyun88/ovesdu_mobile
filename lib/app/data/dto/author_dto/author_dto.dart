@@ -30,6 +30,7 @@ class AuthorDto {
         avatar: avatar,
         firstName: firstName.toString(),
         lastName: lastName.toString(),
-        lastVisit: DateTime.parse(lastVisit.toString()).toLocal(),
+        lastVisit:
+            DateTime.parse((lastVisit ?? DateTime.now()).toString()).toLocal(),
       );
 }

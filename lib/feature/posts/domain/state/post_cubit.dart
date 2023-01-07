@@ -24,10 +24,25 @@ class PostCubit extends Cubit<PostState> {
     required int limit,
     required int last,
   }) async {
-    emit(PostState.waiting());
     try {
       final result = await _postRepository.getPosts(type, limit, last);
-      emit(PostState.received(result));
+      switch (type) {
+        case TimelineType.overall:
+          emit(PostState.overall(result));
+          break;
+        case TimelineType.tags:
+          emit(PostState.tags(result));
+          break;
+        case TimelineType.my:
+          emit(PostState.my(result));
+          break;
+        case TimelineType.subscribe:
+          emit(PostState.subscribe(result));
+          break;
+        case TimelineType.hot:
+          emit(PostState.hot(result));
+          break;
+      }
     } catch (error, stackTrace) {
       addError(error, stackTrace);
     }
