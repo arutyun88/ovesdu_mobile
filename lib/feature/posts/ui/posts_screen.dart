@@ -14,6 +14,8 @@ class PostsScreen extends StatefulWidget {
     this.myReceived,
     this.subscribeReceived,
     this.hotReceived,
+    required this.selectedTimelinesType,
+    required this.changeTimelinePage,
   }) : super(key: key);
 
   final double appBarSubmenuHeight;
@@ -24,6 +26,9 @@ class PostsScreen extends StatefulWidget {
   final PostsEntity? subscribeReceived;
   final PostsEntity? hotReceived;
 
+  final int selectedTimelinesType;
+  final Function(int) changeTimelinePage;
+
   @override
   State<PostsScreen> createState() => _PostsScreenState();
 }
@@ -31,13 +36,14 @@ class PostsScreen extends StatefulWidget {
 class _PostsScreenState extends State<PostsScreen> {
   late PageController timelinePageController;
 
-  int selectedTimelinesType = 0;
   GlobalKey timelineKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
-    timelinePageController = PageController(initialPage: selectedTimelinesType);
+    timelinePageController = PageController(
+      initialPage: widget.selectedTimelinesType,
+    );
   }
 
   @override
@@ -53,13 +59,13 @@ class _PostsScreenState extends State<PostsScreen> {
         MainAppBarSubmenuWidget(
           appBarSubmenuHeight: widget.appBarSubmenuHeight,
           typeValues: TimelineType.values.map((e) => e.name).toList(),
-          selectedType: selectedTimelinesType,
+          selectedType: widget.selectedTimelinesType,
           selectedTypeOnTap: _selectedTimelineTypeOnTap,
         ),
         Expanded(
           child: PageView(
             controller: timelinePageController,
-            onPageChanged: _changeTimelinePage,
+            onPageChanged: widget.changeTimelinePage,
             children: [
               widget.overallReceived != null
                   ? ListView(
@@ -171,12 +177,6 @@ class _PostsScreenState extends State<PostsScreen> {
         ),
       ],
     );
-  }
-
-  void _changeTimelinePage(int id) {
-    setState(() {
-      selectedTimelinesType = id;
-    });
   }
 
   void _selectedTimelineTypeOnTap(int index) {

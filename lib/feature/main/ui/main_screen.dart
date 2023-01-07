@@ -66,6 +66,8 @@ class _MainScreenState extends State<_MainScreen> {
   PostsEntity? subscribeReceived;
   PostsEntity? hotReceived;
 
+  int selectedTimelinesType = 0;
+
   @override
   void initState() {
     super.initState();
@@ -136,6 +138,8 @@ class _MainScreenState extends State<_MainScreen> {
                       myReceived: myReceived,
                       subscribeReceived: subscribeReceived,
                       hotReceived: hotReceived,
+                      selectedTimelinesType: selectedTimelinesType,
+                      changeTimelinePage: _changeTimelinePage,
                     ),
                   )
                 : MessagesScreen(appBarSubmenuHeight: appBarSubmenuHeight),
@@ -168,5 +172,11 @@ class _MainScreenState extends State<_MainScreen> {
         ),
       );
     }
+  }
+
+  void _changeTimelinePage(int id) {
+    setState(() {
+      selectedTimelinesType = id;
+    });
   }
 }
