@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../data/setting_provider/theme_provider.dart';
-import '../../../domain/entities/post_entity/post_entity.dart';
+import '../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../app/domain/entities/post_entity/post_entity.dart';
 import 'post_content_photo.dart';
 
 class PostContent extends StatefulWidget {

@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../app/const/const.dart';
 import '../../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../../../app/ui/config/app_colors.dart';
+import '../../../../posts/ui/components/post_statistic.dart';
 import '../../../domain/state/user_post_cubit.dart';
-import '../../../../../app/ui/components/post/post_content.dart';
-import '../user_post_item_statistic/user_post_item_statistic.dart';
+import '../../../../posts/ui/components/post_content.dart';
 
 class UserCommentPost extends StatefulWidget {
   const UserCommentPost({
@@ -52,11 +52,14 @@ class _UserCommentPostState extends State<UserCommentPost> {
             child: Column(
               children: [
                 PostContent(post: postEntity, isCommentScreen: true),
-                UserPostItemStatistic(
+                PostStatistic(
                   avatar: widget.avatar,
                   post: postEntity,
                   lastVisit: widget.lastVisit,
                   isCommentScreen: true,
+                  whenChanged: (PostEntity entity) {
+                    context.read<UserPostCubit>().postUpdated(entity);
+                  },
                 ),
               ],
             ),

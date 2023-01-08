@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../app/domain/entities/error_entity/error_entity.dart';
+import '../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../entity/timeline_type.dart';
 import '../post_repository.dart';
@@ -46,6 +47,10 @@ class PostCubit extends Cubit<PostState> {
     } catch (error, stackTrace) {
       addError(error, stackTrace);
     }
+  }
+
+  Future<void> postUpdated(PostEntity entity) async {
+    // todo
   }
 
   @override

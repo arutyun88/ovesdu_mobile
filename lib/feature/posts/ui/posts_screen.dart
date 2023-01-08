@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../main/ui/components/main_app_bar_submenu_widget.dart';
-import '../../../app/ui/components/post/post_content.dart';
+import 'components/post_content.dart';
 import '../domain/entity/timeline_type.dart';
-import '../../../app/ui/components/post/post_header.dart';
+import '../domain/state/post_cubit.dart';
+import 'components/post_header.dart';
+import 'components/post_statistic.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({
@@ -87,6 +90,18 @@ class _PostsScreenState extends State<PostsScreen> {
                               children: [
                                 PostContent(
                                   post: widget.overallReceived!.posts[index],
+                                ),
+                                PostStatistic(
+                                  avatar: widget.overallReceived?.posts[index]
+                                      .author.avatar,
+                                  post: widget.overallReceived!.posts[index],
+                                  lastVisit: widget.overallReceived!
+                                      .posts[index].author.lastVisit,
+                                  whenChanged: (PostEntity entity) {
+                                    context
+                                        .read<PostCubit>()
+                                        .postUpdated(entity);
+                                  },
                                 ),
                               ],
                             )

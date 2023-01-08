@@ -4,8 +4,9 @@ import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/domain/entities/post_entity/post_entity.dart';
-import '../user_post_item_statistic/user_post_item_statistic.dart';
-import '../../../../../app/ui/components/post/post_content.dart';
+import '../../../../posts/ui/components/post_statistic.dart';
+import '../../../domain/state/user_post_cubit.dart';
+import '../../../../posts/ui/components/post_content.dart';
 import 'user_post_item_header_light.dart';
 
 class UserPostItem extends StatelessWidget {
@@ -38,10 +39,13 @@ class UserPostItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 PostContent(post: post),
-                UserPostItemStatistic(
+                PostStatistic(
                   avatar: avatar,
                   post: post,
                   lastVisit: lastVisit,
+                  whenChanged: (PostEntity entity) {
+                    context.read<UserPostCubit>().postUpdated(entity);
+                  },
                 ),
               ],
             ),

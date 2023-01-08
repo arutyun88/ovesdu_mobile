@@ -2,38 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../app/const/const.dart';
-import '../../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../../app/di/init_di.dart';
-import '../../../../../app/domain/entities/post_entity/post_entity.dart';
-import '../../../../../app/helpers/app_icons.dart';
-import '../../../../../app/ui/components/buttons/empty_button.dart';
-import '../../../../../app/ui/config/app_colors.dart';
-import '../../../../../app/ui/components/custom_page_route.dart';
-import '../../../domain/state/user_post_cubit.dart';
-import '../../../domain/state/user_post_reaction/user_post_reaction_cubit.dart';
-import '../../../domain/user_post_repository.dart';
-import '../../user_post_comment_screen.dart';
-import 'user_post_item_reaction.dart';
+import '../../../../app/const/const.dart';
+import '../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../app/di/init_di.dart';
+import '../../../../app/domain/entities/post_entity/post_entity.dart';
+import '../../../../app/helpers/app_icons.dart';
+import '../../../../app/ui/components/buttons/empty_button.dart';
+import '../../../../app/ui/components/custom_page_route.dart';
+import '../../../../app/ui/config/app_colors.dart';
+import '../../../../feature/user_post/domain/state/user_post_reaction/user_post_reaction_cubit.dart';
+import '../../../../feature/user_post/domain/user_post_repository.dart';
+import '../../../../feature/user_post/ui/user_post_comment_screen.dart';
+import 'post_reaction.dart';
 
-class UserPostItemStatistic extends StatefulWidget {
-  const UserPostItemStatistic({
+class PostStatistic extends StatefulWidget {
+  const PostStatistic({
     Key? key,
     required this.avatar,
     required this.lastVisit,
     required this.post,
     this.isCommentScreen = false,
+    required this.whenChanged,
   }) : super(key: key);
   final String? avatar;
   final DateTime lastVisit;
   final PostEntity post;
   final bool isCommentScreen;
+  final Function(PostEntity entity) whenChanged;
 
   @override
-  State<UserPostItemStatistic> createState() => _UserPostItemStatisticState();
+  State<PostStatistic> createState() => _PostStatisticState();
 }
 
-class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
+class _PostStatisticState extends State<PostStatistic> {
   late ThemeData theme;
 
   @override
@@ -44,8 +45,7 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: theme.backgroundColor,
+    return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: verticalPadding,
         horizontal: itemHorPadding,
@@ -60,7 +60,7 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
               create: (_) => UserPostReactionCubit(
                 locator.get<UserPostRepository>(),
               ),
-              builder: (context, child) => UserPostItemReaction(
+              builder: (context, child) => PostReaction(
                 post: widget.post,
               ),
             ),
@@ -115,7 +115,7 @@ class _UserPostItemStatisticState extends State<UserPostItemStatistic> {
           .then(
         (value) {
           if (value != null) {
-            context.read<UserPostCubit>().postUpdated(value as PostEntity);
+            widget.whenChanged(value as PostEntity);
           }
         },
       );

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../const/const.dart';
-import '../../../data/setting_provider/theme_provider.dart';
-import '../../config/app_colors.dart';
-import '../../../domain/entities/post_entity/post_photo_entity.dart';
+import '../../../../app/const/const.dart';
+import '../../../../app/data/setting_provider/theme_provider.dart';
+import '../../../../app/ui/config/app_colors.dart';
+import '../../../../app/domain/entities/post_entity/post_photo_entity.dart';
 
 class PostContentImageFullScreen extends StatefulWidget {
   const PostContentImageFullScreen({

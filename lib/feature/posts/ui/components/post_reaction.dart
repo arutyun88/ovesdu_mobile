@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../app/domain/entities/post_entity/post_entity.dart';
-import '../../../domain/entity/reaction_type.dart';
-import '../../../domain/state/user_post_cubit.dart';
-import '../../../domain/state/user_post_reaction/user_post_reaction_cubit.dart';
-import '../reaction_widget.dart';
+import '../../../../app/domain/entities/post_entity/post_entity.dart';
+import '../../../user_post/domain/entity/reaction_type.dart';
+import '../../../user_post/domain/state/user_post_cubit.dart';
+import '../../../user_post/domain/state/user_post_reaction/user_post_reaction_cubit.dart';
+import '../../../user_post/ui/components/reaction_widget.dart';
 
-class UserPostItemReaction extends StatefulWidget {
-  const UserPostItemReaction({
+class PostReaction extends StatefulWidget {
+  const PostReaction({
     Key? key,
     required this.post,
   }) : super(key: key);
@@ -16,10 +16,10 @@ class UserPostItemReaction extends StatefulWidget {
   final PostEntity post;
 
   @override
-  State<UserPostItemReaction> createState() => _UserPostItemReactionState();
+  State<PostReaction> createState() => _PostReactionState();
 }
 
-class _UserPostItemReactionState extends State<UserPostItemReaction> {
+class _PostReactionState extends State<PostReaction> {
   late bool? liked;
   late int like;
   late int dislike;
