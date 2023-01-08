@@ -5,7 +5,7 @@ import '../../../../../app/const/const.dart';
 import '../../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../domain/state/user_post_cubit.dart';
-import '../user_post_item/user_post_item_content.dart';
+import '../../../../../app/ui/components/post/post_content.dart';
 import '../user_post_item_statistic/user_post_item_statistic.dart';
 
 class UserCommentPost extends StatefulWidget {
@@ -51,7 +51,7 @@ class _UserCommentPostState extends State<UserCommentPost> {
                 '${widget.post.author.firstName}',
             child: Column(
               children: [
-                UserPostItemContent(post: postEntity, isCommentScreen: true),
+                PostContent(post: postEntity, isCommentScreen: true),
                 UserPostItemStatistic(
                   avatar: widget.avatar,
                   post: postEntity,

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../app/data/setting_provider/setting_provider.dart';
-import '../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../app/di/init_di.dart';
-import '../../../../app/domain/entities/post_entity/post_entity.dart';
-import '../../../../app/helpers/date_helper.dart';
-import '../../../../app/ui/components/author/author_small_avatar.dart';
-import '../../../../app/ui/components/custom_dialog/custom_dialog.dart';
-import '../../../../app/ui/components/dialog/more_menu_dialog.dart';
-import '../../../../app/ui/config/app_colors.dart';
-import '../../../profile/domain/state/profile_cubit.dart';
+import '../../../data/setting_provider/setting_provider.dart';
+import '../../../data/setting_provider/theme_provider.dart';
+import '../../../di/init_di.dart';
+import '../../../domain/entities/post_entity/post_entity.dart';
+import '../../../helpers/date_helper.dart';
+import '../author/author_small_avatar.dart';
+import '../custom_dialog/custom_dialog.dart';
+import '../dialog/more_menu_dialog.dart';
+import '../../config/app_colors.dart';
+import '../../../../feature/profile/domain/state/profile_cubit.dart';
 
 class PostHeader extends StatefulWidget {
   const PostHeader({

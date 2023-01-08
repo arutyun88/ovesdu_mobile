@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../app/const/const.dart';
-import '../../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../../app/helpers/helpers.dart';
-import '../../../../../app/ui/config/app_colors.dart';
-import '../../../../../app/domain/entities/post_entity/post_photo_entity.dart';
-import '../full_screen_image.dart';
+import '../../../const/const.dart';
+import '../../../data/setting_provider/theme_provider.dart';
+import '../../../helpers/helpers.dart';
+import '../../config/app_colors.dart';
+import '../../../domain/entities/post_entity/post_photo_entity.dart';
+import 'post_content_image_fullscreen.dart';
 
-class UserPostItemContentPhoto extends StatelessWidget {
-  const UserPostItemContentPhoto({
+class PostContentPhoto extends StatelessWidget {
+  const PostContentPhoto({
     Key? key,
     required this.photos,
   }) : super(key: key);
@@ -30,7 +30,8 @@ class UserPostItemContentPhoto extends StatelessWidget {
               context: context,
               builder: (context) => GestureDetector(
                 onTap: () => Navigator.of(context).pop(),
-                child: FullScreenImage(photos: photos, currentIndex: 0),
+                child:
+                    PostContentImageFullScreen(photos: photos, currentIndex: 0),
               ),
             );
           },
@@ -273,7 +274,8 @@ class _ItemWidget extends StatelessWidget {
           context: context,
           builder: (context) => GestureDetector(
             onTap: () => Navigator.of(context).pop(),
-            child: FullScreenImage(photos: photos, currentIndex: index),
+            child:
+                PostContentImageFullScreen(photos: photos, currentIndex: index),
           ),
         );
       },

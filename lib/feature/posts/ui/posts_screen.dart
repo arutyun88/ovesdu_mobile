@@ -4,8 +4,9 @@ import '../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../main/ui/components/main_app_bar_submenu_widget.dart';
+import '../../../app/ui/components/post/post_content.dart';
 import '../domain/entity/timeline_type.dart';
-import 'components/post_header.dart';
+import '../../../app/ui/components/post/post_header.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({
@@ -81,6 +82,14 @@ class _PostsScreenState extends State<PostsScreen> {
                               post: widget.overallReceived!.posts[index],
                               onTapToRead: (PostEntity entity) {},
                             ),
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                PostContent(
+                                  post: widget.overallReceived!.posts[index],
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),

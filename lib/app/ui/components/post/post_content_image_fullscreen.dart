@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../app/const/const.dart';
-import '../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../app/ui/config/app_colors.dart';
-import '../../../../app/domain/entities/post_entity/post_photo_entity.dart';
+import '../../../const/const.dart';
+import '../../../data/setting_provider/theme_provider.dart';
+import '../../config/app_colors.dart';
+import '../../../domain/entities/post_entity/post_photo_entity.dart';
 
-class FullScreenImage extends StatefulWidget {
-  const FullScreenImage({
+class PostContentImageFullScreen extends StatefulWidget {
+  const PostContentImageFullScreen({
     Key? key,
     required this.photos,
     required this.currentIndex,
@@ -17,10 +17,11 @@ class FullScreenImage extends StatefulWidget {
   final int currentIndex;
 
   @override
-  State<FullScreenImage> createState() => _FullScreenImageState();
+  State<PostContentImageFullScreen> createState() =>
+      _PostContentImageFullScreenState();
 }
 
-class _FullScreenImageState extends State<FullScreenImage>
+class _PostContentImageFullScreenState extends State<PostContentImageFullScreen>
     with SingleTickerProviderStateMixin {
   late PageController controller;
   late TransformationController transformationController;

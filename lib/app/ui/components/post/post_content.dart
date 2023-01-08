@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../../app/domain/entities/post_entity/post_entity.dart';
-import 'user_post_item_content_photo.dart';
+import '../../../data/setting_provider/theme_provider.dart';
+import '../../../domain/entities/post_entity/post_entity.dart';
+import 'post_content_photo.dart';
 
-class UserPostItemContent extends StatefulWidget {
-  const UserPostItemContent({
+class PostContent extends StatefulWidget {
+  const PostContent({
     Key? key,
     required this.post,
     this.isCommentScreen = false,
@@ -16,10 +16,10 @@ class UserPostItemContent extends StatefulWidget {
   final bool isCommentScreen;
 
   @override
-  State<UserPostItemContent> createState() => _UserPostItemContentState();
+  State<PostContent> createState() => _PostContentState();
 }
 
-class _UserPostItemContentState extends State<UserPostItemContent> {
+class _PostContentState extends State<PostContent> {
   late ThemeData theme;
 
   @override
@@ -31,8 +31,7 @@ class _UserPostItemContentState extends State<UserPostItemContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: theme.backgroundColor,
+    return Padding(
       padding: const EdgeInsets.only(bottom: 8.0, top: 8.0),
       child: Column(
         children: [
@@ -53,7 +52,7 @@ class _UserPostItemContentState extends State<UserPostItemContent> {
               ),
             ),
           if (widget.post.photos.isNotEmpty)
-            UserPostItemContentPhoto(photos: widget.post.photos),
+            PostContentPhoto(photos: widget.post.photos),
         ],
       ),
     );
