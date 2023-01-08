@@ -215,7 +215,7 @@ class _DecoratedDialog extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: theme.backgroundColor,
-          borderRadius: BorderRadius.circular(mainPadding),
+          borderRadius: BorderRadius.circular(verticalPadding),
           boxShadow: const [
             BoxShadow(color: AppColors.hintTextColor, blurRadius: 5.0),
           ],

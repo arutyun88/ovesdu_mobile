@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../app/const/const.dart';
-import '../../../../../app/data/setting_provider/setting_provider.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/di/init_di.dart';
 import '../../../../../app/domain/entities/comment_entity/post_comment_entity.dart';
-import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/helpers/date_helper.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
+import '../../../../../app/ui/components/author/author_small_avatar.dart';
 import '../../../../profile/domain/state/profile_cubit.dart';
 import '../../../domain/state/user_comment_action/user_comment_action_cubit.dart';
 import '../../../domain/state/user_post_comment/user_post_comment_cubit.dart';
@@ -61,40 +59,15 @@ class _UserCommentHeaderState extends State<UserCommentHeader> {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context).themeData;
-    final avatarIsCircle = Provider.of<SettingProvider>(context).isCircleAvatar;
-    final isOnline = DateHelper.isOnline(widget.comment.author.lastVisit);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: itemHorPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            height: 48,
-            width: 48,
-            decoration: BoxDecoration(
-              shape: avatarIsCircle ? BoxShape.circle : BoxShape.rectangle,
-              borderRadius: avatarIsCircle ? null : BorderRadius.circular(16),
-              color: AppColors.hintTextColor.withOpacity(.1),
-              border: Border.all(
-                color: isOnline ? AppColors.orange : AppColors.hintTextColor,
-                width: 2,
-                strokeAlign: StrokeAlign.outside,
-              ),
-            ),
-            clipBehavior: Clip.hardEdge,
-            child: widget.comment.author.avatar != null
-                ? Image.network(
-                    widget.comment.author.avatar!,
-                    fit: BoxFit.cover,
-                  )
-                : Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: SvgPicture.asset(
-                      AppIcons.profileIcon,
-                      color: AppColors.hintTextColor,
-                    ),
-                  ),
+          AuthorSmallAvatar(
+            avatar: widget.comment.author.avatar,
+            lastVisit: widget.comment.author.lastVisit,
           ),
           Expanded(
             child: Padding(

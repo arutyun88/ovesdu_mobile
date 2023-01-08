@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../main/ui/components/main_app_bar_submenu_widget.dart';
 import '../domain/entity/timeline_type.dart';
+import 'components/post_header.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({
@@ -72,14 +74,14 @@ class _PostsScreenState extends State<PostsScreen> {
                       key: PageStorageKey<String>(TimelineType.overall.name),
                       padding: EdgeInsets.zero,
                       children: List.generate(
-                        30,
-                        (index) => Container(
-                          height: 50,
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          width: MediaQuery.of(context).size.width,
-                          color:
-                              index % 2 == 0 ? AppColors.red : AppColors.purple,
-                          child: Text('${TimelineType.overall}: $index'),
+                        widget.overallReceived!.posts.length,
+                        (index) => Column(
+                          children: [
+                            PostHeader(
+                              post: widget.overallReceived!.posts[index],
+                              onTapToRead: (PostEntity entity) {},
+                            ),
+                          ],
                         ),
                       ),
                     )
