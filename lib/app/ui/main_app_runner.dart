@@ -28,7 +28,6 @@ class MainAppRunner implements AppRunner {
 
   @override
   Future<void> preloadData() async {
-    initDi(env);
     directory = await path_provider.getApplicationDocumentsDirectory();
     Hive.init(directory.path);
     final settings = await Hive.openBox(SettingKey.settings);
@@ -67,12 +66,11 @@ class MainAppRunner implements AppRunner {
 
   @override
   Future<void> run(AppBuilder appBuilder) async {
-    final storage = await HydratedStorage.build(
-      storageDirectory: await path_provider.getApplicationDocumentsDirectory(),
-    );
+    await preloadData();
+    final storage = await HydratedStorage.build(storageDirectory: directory);
     HydratedBlocOverrides.runZoned(
       () async {
-        await preloadData();
+        initDi(env);
         runApp(
           appBuilder.buildApp(
             locale,
