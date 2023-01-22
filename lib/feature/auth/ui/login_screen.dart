@@ -1,13 +1,13 @@
 import 'dart:io';
 
+import 'package:domain/entity/device_entity/device_entity.dart';
+import 'package:domain/state/auth_state/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/ui/components/app_scaffold.dart';
 import '../../../app/ui/components/created_by_widget.dart';
 import '../../../app/ui/components/logo/logo_sliver_delegate.dart';
-import '../domain/state/auth_cubit.dart';
 import 'register_screen.dart';
 import 'widgets/contact_widget.dart';
 import 'widgets/first_settings_widget.dart';

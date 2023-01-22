@@ -1,7 +1,7 @@
+import 'package:domain/entity/error_entity/error_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../app/domain/entities/error_entity/error_entity.dart';
 import '../../entities/user_profile_follower/user_simple_followers_entity.dart';
 import '../../profile_repository.dart';
 

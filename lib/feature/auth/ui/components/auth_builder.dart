@@ -1,6 +1,6 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ovesdu_mobile/feature/auth/domain/state/auth_cubit.dart';
 
 class AuthBuilder extends StatelessWidget {
   const AuthBuilder({

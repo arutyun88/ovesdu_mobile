@@ -1,3 +1,4 @@
+import 'package:domain/entity/location_entity/location_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,6 @@ import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/app_scaffold.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../app/ui/config/app_colors.dart';
-import '../domain/entities/location_entity/location_entity.dart';
 import '../domain/location_repository.dart';
 import '../domain/state/location_cubit.dart';
 import 'components/location_list_tile.dart';

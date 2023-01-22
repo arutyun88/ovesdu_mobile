@@ -1,6 +1,6 @@
+import 'package:domain/entity/device_entity/device_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../app/domain/entities/device_entity/device_entity.dart';
 
 part 'device_dto.g.dart';
 

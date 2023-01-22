@@ -1,6 +1,6 @@
+import 'package:domain/entity/location_entity/location_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../domain/entities/location_entity/location_entity.dart';
 
 part 'location_dto.g.dart';
 

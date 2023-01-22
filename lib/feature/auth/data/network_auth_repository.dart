@@ -1,10 +1,10 @@
+import 'package:domain/entity/device_entity/device_entity.dart';
+import 'package:domain/entity/token_entity/token_entity.dart';
+import 'package:domain/entity/user_entity/user_entity.dart';
+import 'package:domain/repository/auth_repository.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../app/domain/app_api.dart';
-import '../../../app/domain/entities/device_entity/device_entity.dart';
-import '../../../app/domain/entities/user_entity/user_entity.dart';
-import '../domain/auth_repository.dart';
-import '../domain/entities/token_entity/token_entity.dart';
 import 'dto/device_dto.dart';
 import 'dto/token_dto.dart';
 import 'dto/user_dto.dart';

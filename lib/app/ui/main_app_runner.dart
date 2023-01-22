@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:domain/entity/device_entity/device_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:hive/hive.dart';
@@ -11,7 +12,6 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 import '../di/init_di.dart';
 import '../domain/app_builder.dart';
 import '../domain/app_runner.dart';
-import '../domain/entities/device_entity/device_entity.dart';
 import '../helpers/setting_key.dart';
 
 class MainAppRunner implements AppRunner {

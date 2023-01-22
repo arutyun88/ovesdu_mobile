@@ -1,6 +1,5 @@
+import 'package:domain/entity/device_entity/device_entity.dart';
 import 'package:flutter/material.dart';
-
-import 'entities/device_entity/device_entity.dart';
 
 abstract class AppBuilder {
   Widget buildApp(

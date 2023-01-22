@@ -1,3 +1,4 @@
+import 'package:domain/entity/device_entity/device_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,6 @@ import '../../feature/main/ui/main_screen.dart';
 import '../../l10n/l10n.dart';
 import '../data/setting_provider/locale_provider.dart';
 import '../data/setting_provider/theme_provider.dart';
-import '../domain/entities/device_entity/device_entity.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({

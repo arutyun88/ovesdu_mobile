@@ -1,7 +1,7 @@
+import 'package:domain/entity/location_entity/location_entity.dart';
+import 'package:domain/entity/user_entity/user_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ovesdu_mobile/feature/location/domain/entities/location_entity/location_entity.dart';
 
-import '../../../../app/domain/entities/user_entity/user_entity.dart';
 import 'device_dto.dart';
 
 part 'user_dto.g.dart';

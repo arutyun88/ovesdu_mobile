@@ -1,4 +1,4 @@
-import 'entities/location_entity/location_entity.dart';
+import 'package:domain/entity/location_entity/location_entity.dart';
 
 abstract class LocationRepository {
   Future<List<LocationEntity>> getLocations(String query);

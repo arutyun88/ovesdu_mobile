@@ -1,3 +1,6 @@
+import 'package:domain/entity/device_entity/device_entity.dart';
+import 'package:domain/entity/location_entity/location_entity.dart';
+import 'package:domain/state/auth_state/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -8,7 +11,6 @@ import 'package:provider/provider.dart';
 
 import '../../../app/const/reg_exr_const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
-import '../../../app/domain/entities/device_entity/device_entity.dart';
 import '../../../app/helpers/app_icons.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/app_scaffold.dart';
@@ -19,9 +21,7 @@ import '../../../app/ui/components/text_fields/formatter/common.dart';
 import '../../../app/ui/components/text_fields/formatter/date_text_formatter.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../../app/ui/components/buttons/default_button.dart';
-import '../../location/domain/entities/location_entity/location_entity.dart';
 import '../../location/ui/location_screen.dart';
-import '../domain/state/auth_cubit.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({

@@ -1,13 +1,12 @@
+import 'package:domain/entity/device_entity/device_entity.dart';
+import 'package:domain/entity/error_entity/error_entity.dart';
+import 'package:domain/entity/location_entity/location_entity.dart';
+import 'package:domain/entity/token_entity/token_entity.dart';
+import 'package:domain/entity/user_entity/user_entity.dart';
+import 'package:domain/repository/auth_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../app/domain/entities/device_entity/device_entity.dart';
-import '../../../../app/domain/entities/error_entity/error_entity.dart';
-import '../../../../app/domain/entities/user_entity/user_entity.dart';
-import '../../../location/domain/entities/location_entity/location_entity.dart';
-import '../auth_repository.dart';
-import '../entities/token_entity/token_entity.dart';
 
 part 'auth_state.dart';
 

@@ -38,6 +38,11 @@ dependencies:
   pretty_dio_logger: ^1.1.1
   cached_network_image: ^3.2.3
 
+  domain:
+    path: packages/domain
+  di:
+    path: packages/di
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

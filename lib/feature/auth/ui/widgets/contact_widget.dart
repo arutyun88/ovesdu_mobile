@@ -1,3 +1,4 @@
+import 'package:domain/state/auth_state/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -10,7 +11,6 @@ import '../../../../app/ui/components/text_fields/app_phone_field/app_phone_fiel
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/config/app_colors.dart';
 import '../../../../app/ui/components/buttons/default_button.dart';
-import '../../domain/state/auth_cubit.dart';
 import '../../../../app/ui/components/custom_flex.dart';
 
 class ContactWidget extends StatefulWidget {

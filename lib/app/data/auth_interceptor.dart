@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:hive/hive.dart';
+import 'package:domain/domain.dart';
 
-import '../../feature/auth/domain/state/auth_cubit.dart';
 import '../di/init_di.dart';
 import '../domain/app_api.dart';
 
@@ -9,9 +8,9 @@ class AuthInterceptor extends QueuedInterceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    final tokenEntity = await Hive.openBox('hydrated_box');
-    final accessToken =
-        tokenEntity.get('AuthCubit')['tokenEntity']['accessToken'];
+    final accessToken = locator.get<AuthCubit>().state.whenOrNull(
+          authorized: (tokens) => tokens.accessToken,
+        );
     if (accessToken == null) {
       super.onRequest(options, handler);
     } else {

@@ -1,7 +1,7 @@
+import 'package:domain/entity/location_entity/location_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/ui/config/app_colors.dart';
-import '../../domain/entities/location_entity/location_entity.dart';
 
 class LocationListTile extends StatelessWidget {
   const LocationListTile({

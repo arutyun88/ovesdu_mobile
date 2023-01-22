@@ -1,3 +1,4 @@
+import 'package:domain/state/auth_state/auth_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -7,7 +8,6 @@ import '../../../../app/const/reg_exr_const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import '../../domain/state/auth_cubit.dart';
 import '../../../../app/ui/components/buttons/default_button.dart';
 import '../../../../app/ui/components/custom_flex.dart';
 

@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +10,6 @@ import '../../../app/ui/components/buttons/empty_button.dart';
 import '../../../app/ui/components/buttons/language_button/language_button.dart';
 import '../../../app/ui/components/buttons/theme_button/theme_button.dart';
 import '../../../app/ui/config/app_colors.dart';
-import '../../auth/domain/state/auth_cubit.dart';
 import '../domain/state/profile_cubit.dart';
 
 class UserScreen extends StatelessWidget {

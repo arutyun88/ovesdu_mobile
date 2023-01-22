@@ -1,9 +1,9 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:domain/entity/error_entity/error_entity.dart';
+import 'package:domain/entity/location_entity/location_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../app/domain/entities/error_entity/error_entity.dart';
-import '../entities/location_entity/location_entity.dart';
 import '../location_repository.dart';
 
 part 'location_state.dart';

@@ -1,7 +1,6 @@
+import 'package:domain/entity/device_entity/device_entity.dart';
+import 'package:domain/entity/location_entity/location_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../../../app/domain/entities/device_entity/device_entity.dart';
-import '../../../../feature/location/domain/entities/location_entity/location_entity.dart';
 
 part 'user_entity.freezed.dart';
 
