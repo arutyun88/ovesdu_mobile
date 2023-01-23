@@ -12,15 +12,95 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
+  path_provider: ^2.0.10
+  hive: ^2.1.0
+
   cupertino_icons: ^1.0.2
+  flutter_multi_formatter: ^2.5.1
+  intl: ^0.17.0
+  provider: ^6.0.2
+
+  injectable: ^1.5.3
+  injectable_generator: ^1.5.3
+  get_it: ^7.2.0
+  dio: ^4.0.6
+  freezed: ^2.1.0
+  freezed_annotation: ^2.1.0
+  flutter_bloc: ^8.1.1
+  json_serializable: ^6.5.2
+  device_info_plus: ^7.0.1
+  hydrated_bloc: ^8.1.0
+  bloc_concurrency: ^0.2.0
+  flutter_svg: ^1.1.6
+  pretty_dio_logger: ^1.1.1
+  cached_network_image: ^3.2.3
+
+  domain:
+    path: packages/domain
+  di:
+    path: packages/di
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.0
+  build_runner: ^2.2.1
 
 flutter:
+  generate: true
   uses-material-design: true
 
   assets:
     - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/roboto_mono_regular.ttf
+
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/nunito/Nunito-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/nunito/Nunito-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/nunito/Nunito-Light.ttf
+          weight: 300
+        - asset: assets/fonts/nunito/Nunito-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/nunito/Nunito-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/nunito/Nunito-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/nunito/Nunito-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/nunito/Nunito-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/nunito/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/nunito/Nunito-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/nunito/Nunito-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/nunito/Nunito-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/nunito/Nunito-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/nunito/Nunito-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/nunito/Nunito-Black.ttf
+          weight: 900
+        - asset: assets/fonts/nunito/Nunito-BlackItalic.ttf
+          weight: 900
+          style: italic

@@ -1,6 +1,10 @@
 # Custom
 pubspec.lock
 .metadata
+/ios/Podfile.lock
+*.config.*
+*.freezed.*
+*.g.*
 
 # Miscellaneous
 *.class

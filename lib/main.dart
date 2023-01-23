@@ -1,21 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:injectable/injectable.dart';
+import 'package:ovesdu_mobile/app/ui/main_app_builder.dart';
+import 'package:ovesdu_mobile/app/ui/main_app_runner.dart';
 
-void main() => runApp(const OvesDuApp());
-
-class OvesDuApp extends StatelessWidget {
-  const OvesDuApp({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'OvesDu Application',
-      home: Scaffold(
-        body: Center(
-          child: Text('OvesDu'),
-        ),
-      ),
-    );
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  const env = String.fromEnvironment('env', defaultValue: Environment.dev);
+  final runner = MainAppRunner(env);
+  final builder = MainAppBuilder();
+  runner.run(builder);
 }
