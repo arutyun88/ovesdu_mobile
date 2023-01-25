@@ -1,14 +1,13 @@
+import 'package:domain/dto/device_dto.dart';
+import 'package:domain/dto/token_dto.dart';
+import 'package:domain/dto/user_dto.dart';
+import 'package:domain/dto/user_info_dto.dart';
 import 'package:domain/entity/device_entity/device_entity.dart';
 import 'package:domain/entity/token_entity/token_entity.dart';
 import 'package:domain/entity/user_entity/user_entity.dart';
 import 'package:domain/repository/auth_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ovesdu_mobile/app/domain/auth_api.dart';
-
-import 'dto/device_dto.dart';
-import 'dto/token_dto.dart';
-import 'dto/user_dto.dart';
-import 'dto/user_info_dto.dart';
 
 @Injectable(as: AuthRepository)
 class NetworkAuthRepository implements AuthRepository {

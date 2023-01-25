@@ -3,7 +3,6 @@ import 'package:domain/entity/location_entity/location_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../app/domain/app_api.dart';
-import 'dto/location_dto.dart';
 
 @Injectable(as: LocationRepository)
 class NetworkLocationRepository implements LocationRepository {

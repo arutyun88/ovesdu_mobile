@@ -19,4 +19,16 @@ export 'repository/profile_repository.dart';
 export 'repository/location_repository.dart';
 export 'repository/post_repository.dart';
 
+export 'dto/token_dto.dart';
+export 'dto/user_dto.dart';
+export 'dto/user_info_dto.dart';
+export 'dto/user_profile/user_profile_dto.dart';
+export 'dto/user_profile_statistic/user_profile_statistic_dto.dart';
+export 'dto/user_profile_follower/user_profile_follower_dto.dart';
+export 'dto/device_dto.dart';
+export 'dto/location_dto.dart';
+export 'dto/post_dto/posts_dto.dart';
+export 'dto/post_comment_dto/post_comment_dto.dart';
+export 'dto/post_comment_dto/post_comments_dto.dart';
+
 export './di/di.dart' show configureDependencies;
