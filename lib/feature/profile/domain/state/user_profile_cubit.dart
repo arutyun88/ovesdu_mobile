@@ -4,8 +4,6 @@ import 'package:domain/entity/error_entity/error_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../profile_repository.dart';
-
 part 'user_profile_state.dart';
 
 part 'user_profile_cubit.freezed.dart';

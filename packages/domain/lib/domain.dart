@@ -13,5 +13,10 @@ export 'entity/user_profile_statistic/user_profile_statistic_entity.dart';
 export 'entity/user_profile_follower/user_profile_follower_item_entity.dart';
 export 'entity/user_profile_follower/user_profile_followers_entity.dart';
 export 'entity/user_profile_follower/user_simple_followers_entity.dart';
+export 'repository/auth_repository.dart';
+export 'repository/user_post_repository.dart';
+export 'repository/profile_repository.dart';
+export 'repository/location_repository.dart';
+export 'repository/post_repository.dart';
 
 export './di/di.dart' show configureDependencies;

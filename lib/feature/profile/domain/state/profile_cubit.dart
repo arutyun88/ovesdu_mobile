@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../profile_repository.dart';
-
 part 'profile_state.dart';
 
 part 'profile_cubit.freezed.dart';

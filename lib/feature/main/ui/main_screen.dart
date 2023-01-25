@@ -1,4 +1,6 @@
 import 'package:domain/domain.dart';
+import 'package:domain/entity/timeline_type.dart';
+import 'package:domain/entity/messages_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -6,9 +8,6 @@ import 'package:provider/provider.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
 import '../../messages/ui/messages_screen.dart';
-import '../../posts/domain/entity/messages_type.dart';
-import '../../posts/domain/entity/timeline_type.dart';
-import '../../posts/domain/post_repository.dart';
 import '../../posts/domain/state/post_cubit.dart';
 import '../../posts/ui/posts_screen.dart';
 import '../../profile/domain/state/profile_cubit.dart';

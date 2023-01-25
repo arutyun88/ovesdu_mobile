@@ -1,8 +1,8 @@
+import 'package:domain/domain.dart';
 import 'package:domain/entity/location_entity/location_entity.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../app/domain/app_api.dart';
-import '../domain/location_repository.dart';
 import 'dto/location_dto.dart';
 
 @Injectable(as: LocationRepository)

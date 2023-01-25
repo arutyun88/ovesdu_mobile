@@ -3,9 +3,7 @@ import 'package:domain/entity/error_entity/error_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:ovesdu_mobile/feature/user_post/domain/entity/reaction_type.dart';
-
-import '../user_post_repository.dart';
+import 'package:domain/entity/reaction_type.dart';
 
 part 'user_post_state.dart';
 

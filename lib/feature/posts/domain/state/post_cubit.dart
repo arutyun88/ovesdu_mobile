@@ -1,11 +1,9 @@
 import 'package:domain/domain.dart';
 import 'package:domain/entity/error_entity/error_entity.dart';
+import 'package:domain/entity/timeline_type.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
-import '../entity/timeline_type.dart';
-import '../post_repository.dart';
 
 part 'post_state.dart';
 

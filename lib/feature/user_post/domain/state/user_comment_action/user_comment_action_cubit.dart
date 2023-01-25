@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../user_post_repository.dart';
-
 part 'user_comment_action_state.dart';
 
 part 'user_comment_action_cubit.freezed.dart';

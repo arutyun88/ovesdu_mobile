@@ -1,5 +1,5 @@
 import 'package:domain/domain.dart';
-import 'package:ovesdu_mobile/feature/user_post/domain/entity/reaction_type.dart';
+import 'package:domain/entity/reaction_type.dart';
 
 abstract class UserPostRepository {
   Future<PostsEntity> getUserPosts(int id, int limit, int last);

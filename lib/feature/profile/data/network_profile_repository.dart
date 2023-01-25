@@ -2,7 +2,6 @@ import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../app/domain/app_api.dart';
-import '../domain/profile_repository.dart';
 import 'dto/user_profile/user_profile_dto.dart';
 import 'dto/user_profile_follower/user_profile_follower_dto.dart';
 import 'dto/user_profile_statistic/user_profile_statistic_dto.dart';
