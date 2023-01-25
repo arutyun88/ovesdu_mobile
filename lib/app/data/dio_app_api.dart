@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../domain/app_api.dart';
-import '../domain/app_config.dart';
 import 'auth_interceptor.dart';
 
 @Singleton(as: AppApi)
