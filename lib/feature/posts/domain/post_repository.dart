@@ -1,4 +1,5 @@
-import '../../../app/domain/entities/post_entity/posts_entity.dart';
+import 'package:domain/domain.dart';
+
 import 'entity/timeline_type.dart';
 
 abstract class PostRepository {

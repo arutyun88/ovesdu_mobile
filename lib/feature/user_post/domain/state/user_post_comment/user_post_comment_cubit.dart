@@ -1,10 +1,9 @@
+import 'package:domain/domain.dart';
 import 'package:domain/entity/error_entity/error_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../app/domain/entities/comment_entity/post_comment_entity.dart';
-import '../../../../../app/domain/entities/comment_entity/post_comments_entity.dart';
 import '../../user_post_repository.dart';
 
 part 'user_post_comment_state.dart';

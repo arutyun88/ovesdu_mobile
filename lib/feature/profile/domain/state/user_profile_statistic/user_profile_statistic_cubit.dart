@@ -1,8 +1,8 @@
+import 'package:domain/domain.dart';
 import 'package:domain/entity/error_entity/error_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../entities/user_profile_statistic/user_profile_statistic_entity.dart';
 import '../../profile_repository.dart';
 
 part 'user_profile_statistic_state.dart';

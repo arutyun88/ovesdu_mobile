@@ -1,9 +1,9 @@
+import 'package:domain/domain.dart';
 import 'package:domain/entity/error_entity/error_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../entities/user_profile/user_profile_entity.dart';
 import '../profile_repository.dart';
 
 part 'profile_state.dart';

@@ -1,8 +1,5 @@
+import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../author_entity/author_entity.dart';
-import 'post_photo_entity.dart';
-import 'post_video_entity.dart';
 
 part 'post_entity.freezed.dart';
 

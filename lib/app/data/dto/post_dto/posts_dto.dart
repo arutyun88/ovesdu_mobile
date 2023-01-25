@@ -1,7 +1,6 @@
+import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../app/domain/entities/post_entity/posts_entity.dart';
-import '../../../domain/entities/post_entity/post_entity.dart';
 import 'post_dto.dart';
 
 part 'posts_dto.g.dart';

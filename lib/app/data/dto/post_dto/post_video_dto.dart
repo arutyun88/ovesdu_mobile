@@ -1,6 +1,5 @@
+import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../../../app/domain/entities/post_entity/post_video_entity.dart';
 
 part 'post_video_dto.g.dart';
 

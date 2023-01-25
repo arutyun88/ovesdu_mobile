@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +8,6 @@ import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/helpers/app_icons.dart';
 import '../../../../app/helpers/date_helper.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import '../../domain/entities/user_profile/user_profile_entity.dart';
 
 class ProfileAppBar extends StatefulWidget {
   const ProfileAppBar({

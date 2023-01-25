@@ -1,11 +1,9 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../app/di/init_di.dart';
-import '../../../app/domain/entities/comment_entity/post_comment_entity.dart';
-import '../../../app/domain/entities/comment_entity/post_comments_entity.dart';
-import '../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../app/ui/components/custom_page_route.dart';

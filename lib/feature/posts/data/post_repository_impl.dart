@@ -1,8 +1,8 @@
+import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../app/data/dto/post_dto/posts_dto.dart';
 import '../../../app/domain/app_api.dart';
-import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../domain/entity/timeline_type.dart';
 import '../domain/post_repository.dart';
 

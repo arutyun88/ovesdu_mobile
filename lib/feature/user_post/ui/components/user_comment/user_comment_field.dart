@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
@@ -5,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../../../../../app/const/const.dart';
 import '../../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../../app/domain/entities/comment_entity/post_comment_entity.dart';
 import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/ui/components/buttons/empty_button.dart';
 import '../../../../../app/ui/components/text_fields/app_multiline_text_field.dart';

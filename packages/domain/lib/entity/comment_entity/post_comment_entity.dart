@@ -1,6 +1,6 @@
+import 'package:domain/entity/author_entity/author_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../author_entity/author_entity.dart';
 
 part 'post_comment_entity.freezed.dart';
 

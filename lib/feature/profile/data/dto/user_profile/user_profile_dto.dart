@@ -1,5 +1,5 @@
+import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ovesdu_mobile/feature/profile/domain/entities/user_profile/user_profile_entity.dart';
 
 part 'user_profile_dto.g.dart';
 

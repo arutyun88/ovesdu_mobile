@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +8,6 @@ import '../../../app/const/const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
 import '../../../app/ui/config/app_colors.dart';
-import '../domain/entities/user_profile/user_profile_entity.dart';
 import '../domain/profile_repository.dart';
 import '../domain/state/user_blocked/user_blocked_cubit.dart';
 import '../domain/state/user_profile_follower/my_followers_cubit.dart';

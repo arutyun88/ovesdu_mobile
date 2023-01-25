@@ -1,6 +1,6 @@
+import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/entities/user_profile_statistic/user_profile_statistic_entity.dart';
 
 part 'user_profile_statistic_dto.g.dart';
 

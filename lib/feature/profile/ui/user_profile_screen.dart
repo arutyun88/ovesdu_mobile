@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +10,6 @@ import '../../../app/di/init_di.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../user_post/domain/state/user_post_cubit.dart';
 import '../../user_post/domain/user_post_repository.dart';
-import '../domain/entities/user_profile/user_profile_entity.dart';
 import '../domain/profile_repository.dart';
 import '../domain/state/profile_cubit.dart';
 import '../domain/state/user_blocked/user_blocked_cubit.dart';

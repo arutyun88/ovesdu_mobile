@@ -1,6 +1,6 @@
+import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../app/domain/entities/post_entity/post_photo_entity.dart';
 
 part 'post_photo_dto.g.dart';
 

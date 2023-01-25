@@ -1,10 +1,10 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
-import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../../messages/ui/messages_screen.dart';
 import '../../posts/domain/entity/messages_type.dart';
 import '../../posts/domain/entity/timeline_type.dart';

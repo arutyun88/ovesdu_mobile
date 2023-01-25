@@ -1,15 +1,12 @@
+import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
+import 'package:ovesdu_mobile/feature/user_post/domain/entity/reaction_type.dart';
 
 import '../../../app/data/dto/post_comment_dto/post_comment_dto.dart';
 import '../../../app/data/dto/post_comment_dto/post_comments_dto.dart';
 import '../../../app/data/dto/post_dto/post_dto.dart';
 import '../../../app/data/dto/post_dto/posts_dto.dart';
 import '../../../app/domain/app_api.dart';
-import '../../../app/domain/entities/comment_entity/post_comment_entity.dart';
-import '../../../app/domain/entities/comment_entity/post_comments_entity.dart';
-import '../../../app/domain/entities/post_entity/post_entity.dart';
-import '../domain/entity/reaction_type.dart';
-import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../domain/user_post_repository.dart';
 
 @Injectable(as: UserPostRepository)
