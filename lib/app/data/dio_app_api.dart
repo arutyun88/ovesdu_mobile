@@ -1,44 +1,36 @@
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
-import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:ovesdu_mobile/app/data/auth_interceptor.dart';
 
 import '../domain/app_api.dart';
-import 'auth_interceptor.dart';
 
 @Singleton(as: AppApi)
 class DioAppApi implements AppApi {
-  late final Dio dio;
+  final ApiDio api;
 
-  DioAppApi(AppConfig appConfig) {
-    final options = BaseOptions(
-      baseUrl: appConfig.baseUrl,
-      connectTimeout: 15000,
-    );
-    dio = Dio(options);
-    if (kDebugMode) _addInterceptor(PrettyDioLogger());
+  DioAppApi(this.api) {
     _addInterceptor(AuthInterceptor());
   }
 
   void _addInterceptor(Interceptor interceptor) {
-    if (dio.interceptors.contains(interceptor)) {
-      dio.interceptors.remove(interceptor);
+    if (api.dio.interceptors.contains(interceptor)) {
+      api.dio.interceptors.remove(interceptor);
     }
     _deleteInterceptor(interceptor.runtimeType);
-    dio.interceptors.add(interceptor);
+    api.dio.interceptors.add(interceptor);
   }
 
   void _deleteInterceptor(Type type) {
-    dio.interceptors.removeWhere((element) => element.runtimeType == type);
+    api.dio.interceptors.removeWhere((element) => element.runtimeType == type);
   }
 
   @override
   Future<void> setHeaderLocale() async {
     final settings = await Hive.openBox('settings');
     var locale = settings.get('locale');
-    dio.options.headers.addEntries(
+    api.dio.options.headers.addEntries(
       {
         'locale': locale,
       }.entries,
@@ -48,7 +40,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> request(String path) {
     try {
-      return dio.request(path);
+      return api.dio.request(path);
     } catch (_) {
       rethrow;
     }
@@ -57,7 +49,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> fetch(RequestOptions requestOptions) {
     try {
-      return dio.fetch(requestOptions);
+      return api.dio.fetch(requestOptions);
     } catch (_) {
       rethrow;
     }
@@ -66,7 +58,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> checkContact(Map<String, dynamic> data) {
     try {
-      return dio.post('/auth/check', data: data);
+      return api.dio.post('/auth/check', data: data);
     } catch (_) {
       rethrow;
     }
@@ -75,7 +67,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> checkUsername(String username) {
     try {
-      return dio.get('/auth/check/$username');
+      return api.dio.get('/auth/check/$username');
     } catch (_) {
       rethrow;
     }
@@ -84,7 +76,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getName(Map<String, dynamic> data) {
     try {
-      return dio.post('/auth/info', data: data);
+      return api.dio.post('/auth/info', data: data);
     } catch (_) {
       rethrow;
     }
@@ -93,7 +85,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> refreshToken(String? refreshToken) {
     try {
-      return dio.post('/auth/token/$refreshToken');
+      return api.dio.post('/auth/token/$refreshToken');
     } catch (_) {
       rethrow;
     }
@@ -102,7 +94,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> signIn(Map<String, dynamic> data) {
     try {
-      return dio.post('/auth/token', data: data);
+      return api.dio.post('/auth/token', data: data);
     } catch (_) {
       rethrow;
     }
@@ -111,7 +103,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> signUp(Map<String, dynamic> data) {
     try {
-      return dio.put('/auth/token', data: data);
+      return api.dio.put('/auth/token', data: data);
     } catch (_) {
       rethrow;
     }
@@ -120,7 +112,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getLocations(String query) {
     try {
-      return dio.get('/library/location/$query');
+      return api.dio.get('/library/location/$query');
     } catch (_) {
       rethrow;
     }
@@ -129,7 +121,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> saveLocation(Map<String, dynamic> data) {
     try {
-      return dio.put('/library/location', queryParameters: data);
+      return api.dio.put('/library/location', queryParameters: data);
     } catch (_) {
       rethrow;
     }
@@ -138,7 +130,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> searchLocations(String query) {
     try {
-      return dio.post('/library/location/$query');
+      return api.dio.post('/library/location/$query');
     } catch (_) {
       rethrow;
     }
@@ -147,7 +139,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getProfile() {
     try {
-      return dio.get('/auth/user');
+      return api.dio.get('/auth/user');
     } catch (_) {
       rethrow;
     }
@@ -156,7 +148,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getUserProfile(String userId) {
     try {
-      return dio.get(
+      return api.dio.get(
         '/auth/profile',
         queryParameters: {_QueryKey.userId: userId},
       );
@@ -168,7 +160,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getUserProfileStatistic(String userId) {
     try {
-      return dio.get(
+      return api.dio.get(
         '/data/statistic',
         queryParameters: {_QueryKey.userId: userId},
       );
@@ -180,7 +172,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getUserProfileFollowers(Map<String, dynamic> data) {
     try {
-      return dio.post('/auth/profile/simple', data: data);
+      return api.dio.post('/auth/profile/simple', data: data);
     } catch (_) {
       rethrow;
     }
@@ -189,7 +181,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getMyFollowersIds() {
     try {
-      return dio.get('/data/followers');
+      return api.dio.get('/data/followers');
     } catch (_) {
       rethrow;
     }
@@ -198,7 +190,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getBlockedIds() {
     try {
-      return dio.get('/auth/profile/block');
+      return api.dio.get('/auth/profile/block');
     } catch (_) {
       rethrow;
     }
@@ -207,7 +199,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> createFollowing(String id) {
     try {
-      return dio.put('/data/followers/$id');
+      return api.dio.put('/data/followers/$id');
     } catch (_) {
       rethrow;
     }
@@ -216,7 +208,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> deleteFollowing(String id) {
     try {
-      return dio.delete('/data/followers/$id');
+      return api.dio.delete('/data/followers/$id');
     } catch (_) {
       rethrow;
     }
@@ -225,7 +217,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> addBlocked(String id) {
     try {
-      return dio.put('/auth/profile/block/$id');
+      return api.dio.put('/auth/profile/block/$id');
     } catch (_) {
       rethrow;
     }
@@ -234,7 +226,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> removeBlocked(String id) {
     try {
-      return dio.delete('/auth/profile/block/$id');
+      return api.dio.delete('/auth/profile/block/$id');
     } catch (_) {
       rethrow;
     }
@@ -243,7 +235,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getUserPosts(int id, int limit, int last) {
     try {
-      return dio.get(
+      return api.dio.get(
         '/data/post/$id',
         queryParameters: {
           _QueryKey.limit: limit,
@@ -258,7 +250,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> updatePostReaction(int id, String type) {
     try {
-      return dio.put(
+      return api.dio.put(
         '/data/like/$id',
         queryParameters: {
           _QueryKey.type: type,
@@ -272,7 +264,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> createPostComment(Map<String, dynamic> body) {
     try {
-      return dio.post(
+      return api.dio.post(
         '/data/comment',
         data: body,
       );
@@ -284,7 +276,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getUserPost(int id) {
     try {
-      return dio.get(
+      return api.dio.get(
         '/data/post/$id/check',
       );
     } catch (_) {
@@ -295,7 +287,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getPostComments(int id, int limit, int last) {
     try {
-      return dio.get(
+      return api.dio.get(
         '/data/comment',
         queryParameters: {
           _QueryKey.postId: id,
@@ -311,7 +303,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> updateCommentReaction(int id, String type) {
     try {
-      return dio.put(
+      return api.dio.put(
         '/data/comment/$id/reaction',
         queryParameters: {
           _QueryKey.type: type,
@@ -325,7 +317,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> deleteComment(int id) {
     try {
-      return dio.delete(
+      return api.dio.delete(
         '/data/comment/$id',
       );
     } catch (_) {
@@ -336,7 +328,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> updateComment(int id, Map<String, dynamic> body) {
     try {
-      return dio.put(
+      return api.dio.put(
         '/data/comment/$id',
         data: body,
       );
@@ -348,7 +340,7 @@ class DioAppApi implements AppApi {
   @override
   Future<Response> getPosts(String type, int limit, int last) {
     try {
-      return dio.get(
+      return api.dio.get(
         '/data/post',
         queryParameters: {
           _QueryKey.type: type,
