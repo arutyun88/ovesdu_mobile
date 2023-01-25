@@ -7,18 +7,6 @@ abstract class AppApi {
 
   Future<Response> fetch(RequestOptions requestOptions);
 
-  Future<Response> getName(Map<String, dynamic> data);
-
-  Future<Response> checkUsername(String username);
-
-  Future<Response> checkContact(Map<String, dynamic> data);
-
-  Future<Response> signIn(Map<String, dynamic> data);
-
-  Future<Response> signUp(Map<String, dynamic> data);
-
-  Future<Response> refreshToken(String? refreshToken);
-
   Future<Response> getLocations(String query);
 
   Future<Response> searchLocations(String query);

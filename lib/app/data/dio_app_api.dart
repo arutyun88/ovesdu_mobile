@@ -56,60 +56,6 @@ class DioAppApi implements AppApi {
   }
 
   @override
-  Future<Response> checkContact(Map<String, dynamic> data) {
-    try {
-      return api.dio.post('/auth/check', data: data);
-    } catch (_) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<Response> checkUsername(String username) {
-    try {
-      return api.dio.get('/auth/check/$username');
-    } catch (_) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<Response> getName(Map<String, dynamic> data) {
-    try {
-      return api.dio.post('/auth/info', data: data);
-    } catch (_) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<Response> refreshToken(String? refreshToken) {
-    try {
-      return api.dio.post('/auth/token/$refreshToken');
-    } catch (_) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<Response> signIn(Map<String, dynamic> data) {
-    try {
-      return api.dio.post('/auth/token', data: data);
-    } catch (_) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<Response> signUp(Map<String, dynamic> data) {
-    try {
-      return api.dio.put('/auth/token', data: data);
-    } catch (_) {
-      rethrow;
-    }
-  }
-
-  @override
   Future<Response> getLocations(String query) {
     try {
       return api.dio.get('/library/location/$query');
