@@ -1,11 +1,10 @@
 import 'package:domain/domain.dart';
-import 'package:domain/entity/device_entity/device_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ovesdu_mobile/app/data/setting_provider/setting_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../feature/profile/domain/state/profile_cubit.dart';
+import '../../feature/profile/state/profile_cubit.dart';
 import '../data/setting_provider/locale_provider.dart';
 import '../data/setting_provider/theme_provider.dart';
 import '../di/init_di.dart';

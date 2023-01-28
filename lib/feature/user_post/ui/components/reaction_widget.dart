@@ -8,7 +8,7 @@ import '../../../../app/di/init_di.dart';
 import '../../../../app/helpers/app_icons.dart';
 import '../../../../app/ui/components/buttons/empty_button.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import '../../../profile/domain/state/profile_cubit.dart';
+import '../../../profile/state/profile_cubit.dart';
 import 'user_post_helper.dart';
 
 class ReactionWidget extends StatefulWidget {

@@ -1,11 +1,11 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:ovesdu_mobile/app/const/const.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../../posts/ui/components/post_statistic.dart';
-import '../../../domain/state/user_post_cubit.dart';
+import '../../../state/user_post_cubit.dart';
 import '../../../../posts/ui/components/post_content.dart';
 import 'user_post_item_header_light.dart';
 

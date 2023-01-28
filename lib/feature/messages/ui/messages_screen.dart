@@ -1,8 +1,8 @@
+import 'package:domain/entity/messages_type.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/ui/config/app_colors.dart';
 import '../../main/ui/components/main_app_bar_submenu_widget.dart';
-import '../../posts/domain/entity/messages_type.dart';
 
 class MessagesScreen extends StatefulWidget {
   const MessagesScreen({

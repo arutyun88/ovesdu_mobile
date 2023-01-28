@@ -1,17 +1,16 @@
+import 'package:domain/domain.dart';
+import 'package:domain/entity/timeline_type.dart';
+import 'package:domain/entity/messages_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
-import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../../messages/ui/messages_screen.dart';
-import '../../posts/domain/entity/messages_type.dart';
-import '../../posts/domain/entity/timeline_type.dart';
-import '../../posts/domain/post_repository.dart';
-import '../../posts/domain/state/post_cubit.dart';
+import '../../posts/state/post_cubit.dart';
 import '../../posts/ui/posts_screen.dart';
-import '../../profile/domain/state/profile_cubit.dart';
+import '../../profile/state/profile_cubit.dart';
 import '../../profile/ui/user_screen.dart';
 import 'components/main_app_bar_widget.dart';
 import 'components/tab_bar_page_widget.dart';

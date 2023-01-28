@@ -1,11 +1,11 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../app/const/const.dart';
-import '../../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../posts/ui/components/post_statistic.dart';
-import '../../../domain/state/user_post_cubit.dart';
+import '../../../state/user_post_cubit.dart';
 import '../../../../posts/ui/components/post_content.dart';
 
 class UserCommentPost extends StatefulWidget {

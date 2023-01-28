@@ -1,13 +1,12 @@
+import 'package:domain/domain.dart';
+import 'package:domain/entity/timeline_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../app/domain/entities/post_entity/post_entity.dart';
-import '../../../app/domain/entities/post_entity/posts_entity.dart';
 import '../../../app/ui/config/app_colors.dart';
 import '../../main/ui/components/main_app_bar_submenu_widget.dart';
 import 'components/post_content.dart';
-import '../domain/entity/timeline_type.dart';
-import '../domain/state/post_cubit.dart';
+import '../state/post_cubit.dart';
 import 'components/post_header.dart';
 import 'components/post_statistic.dart';
 
