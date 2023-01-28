@@ -8,6 +8,6 @@ final locator = GetIt.instance;
 
 @InjectableInit()
 void initDi(String env) {
-  di.configureDependencies(locator);
+  di.configureDependencies(locator, env);
   $initGetIt(locator, environment: env);
 }
