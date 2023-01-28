@@ -1,3 +1,4 @@
+import 'package:data/dio/auth_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -18,6 +19,16 @@ class ApiDioImpl implements ApiDio {
     );
     _dio = Dio(options);
     if (debugMode) _addInterceptor(PrettyDioLogger());
+    _addInterceptor(AuthInterceptor());
+  }
+
+  @override
+  Future<Response> fetch(RequestOptions requestOptions) {
+    try {
+      return _dio.fetch(requestOptions);
+    } catch (_) {
+      rethrow;
+    }
   }
 
   void _addInterceptor(Interceptor interceptor) {

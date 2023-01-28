@@ -10,7 +10,6 @@ class NetworkProfileRepository implements ProfileRepository {
 
   @override
   Future<UserProfileEntity> getProfile() async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.getProfile();
       return UserProfileDto.fromJson(response.data['data']).toEntity();
@@ -21,7 +20,6 @@ class NetworkProfileRepository implements ProfileRepository {
 
   @override
   Future<UserProfileEntity> getUserProfile(String userId) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.getUserProfile(userId);
       return UserProfileDto.fromJson(response.data['data']).toOtherEntity();
@@ -34,7 +32,6 @@ class NetworkProfileRepository implements ProfileRepository {
   Future<UserProfileStatisticEntity> getUserProfileStatistic(
     String userId,
   ) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.getUserProfileStatistic(userId);
       return UserProfileStatisticDto.fromJson(response.data['data']).toEntity();
@@ -48,7 +45,6 @@ class NetworkProfileRepository implements ProfileRepository {
     List<int> followers,
     List<int> following,
   ) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.getUserProfileFollowers(
         {'followers': followers, 'following': following},
@@ -76,7 +72,6 @@ class NetworkProfileRepository implements ProfileRepository {
 
   @override
   Future<UserSimpleFollowersEntity> getMyFollowersIds() async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.getMyFollowersIds();
 
@@ -96,7 +91,6 @@ class NetworkProfileRepository implements ProfileRepository {
 
   @override
   Future<List<int>> getBlockedIds() async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.getBlockedIds();
 
@@ -112,7 +106,6 @@ class NetworkProfileRepository implements ProfileRepository {
 
   @override
   Future<int> createFollowing(String id) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.createFollowing(id);
 
@@ -126,7 +119,6 @@ class NetworkProfileRepository implements ProfileRepository {
 
   @override
   Future<int> deleteFollowing(String id) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.deleteFollowing(id);
 
@@ -140,7 +132,6 @@ class NetworkProfileRepository implements ProfileRepository {
 
   @override
   Future<int> addBlocked(String id) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.addBlocked(id);
 
@@ -154,7 +145,6 @@ class NetworkProfileRepository implements ProfileRepository {
 
   @override
   Future<int> removeBlocked(String id) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.removeBlocked(id);
 

@@ -13,8 +13,6 @@ class PostRepositoryImpl implements PostRepository {
     int limit,
     int last,
   ) async {
-    await _api.setHeaderLocale();
-
     try {
       final response = await _api.getPosts(type.name, limit, last);
 

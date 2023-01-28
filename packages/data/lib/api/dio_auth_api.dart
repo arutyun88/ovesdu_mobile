@@ -1,37 +1,10 @@
-import 'package:data/dio/auth_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
-import 'package:hive/hive.dart';
 
 class DioAuthApi implements AuthApi {
   final ApiDio _api;
 
-  DioAuthApi(ApiDio api) : _api = api {
-    _addInterceptor(AuthInterceptor());
-  }
-
-  void _addInterceptor(Interceptor interceptor) {
-    if (_api.dio.interceptors.contains(interceptor)) {
-      _api.dio.interceptors.remove(interceptor);
-    }
-    _deleteInterceptor(interceptor.runtimeType);
-    _api.dio.interceptors.add(interceptor);
-  }
-
-  void _deleteInterceptor(Type type) {
-    _api.dio.interceptors.removeWhere((element) => element.runtimeType == type);
-  }
-
-  @override
-  Future<void> setHeaderLocale() async {
-    final settings = await Hive.openBox('settings');
-    var locale = settings.get('locale');
-    _api.dio.options.headers.addEntries(
-      {
-        'locale': locale,
-      }.entries,
-    );
-  }
+  DioAuthApi(ApiDio api) : _api = api;
 
   @override
   Future<Response> checkContact(Map<String, dynamic> data) {

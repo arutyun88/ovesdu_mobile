@@ -1,11 +1,6 @@
 import 'package:dio/dio.dart';
 
 abstract class AppApi {
-  Future<void> setHeaderLocale();
-
-  Future<Response> request(String path);
-
-  Future<Response> fetch(RequestOptions requestOptions);
 
   Future<Response> getLocations(String query);
 

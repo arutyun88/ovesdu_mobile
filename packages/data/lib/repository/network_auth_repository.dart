@@ -14,7 +14,6 @@ class NetworkAuthRepository implements AuthRepository {
     required String username,
     required DeviceEntity device,
   }) async {
-    await _api.setHeaderLocale();
     try {
       final UserDto data = username.contains('@')
           ? UserDto(
@@ -38,7 +37,6 @@ class NetworkAuthRepository implements AuthRepository {
     required String password,
     required DeviceEntity device,
   }) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.signIn(
         UserDto(
@@ -55,7 +53,6 @@ class NetworkAuthRepository implements AuthRepository {
 
   @override
   Future<void> checkUsername(String username) async {
-    await _api.setHeaderLocale();
     try {
       await _api.checkUsername(username);
     } catch (_) {
@@ -68,7 +65,6 @@ class NetworkAuthRepository implements AuthRepository {
     required String email,
     required String phoneNumber,
   }) async {
-    await _api.setHeaderLocale();
     try {
       await _api.checkContact(
         UserDto(email: email, phoneNumber: phoneNumber).toJson(),
@@ -80,7 +76,6 @@ class NetworkAuthRepository implements AuthRepository {
 
   @override
   Future<TokenEntity> signUp(UserEntity userEntity) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.signUp(UserDto.toDto(userEntity).toJson());
       return TokenDto.fromJson(response.data['data']).toEntity();
@@ -93,7 +88,6 @@ class NetworkAuthRepository implements AuthRepository {
   Future<TokenEntity> refreshToken({
     String? refreshToken,
   }) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.refreshToken(refreshToken);
       return TokenDto.fromJson(response.data['data']).toEntity();

@@ -12,7 +12,6 @@ class UserPostRepositoryImpl implements UserPostRepository {
 
   @override
   Future<PostsEntity> getUserPosts(int id, int limit, int last) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.getUserPosts(id, limit, last);
 
@@ -26,7 +25,6 @@ class UserPostRepositoryImpl implements UserPostRepository {
 
   @override
   Future<ReactionType> updatePostReaction(int id, ReactionType type) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.updatePostReaction(id, type.name);
 
@@ -44,7 +42,6 @@ class UserPostRepositoryImpl implements UserPostRepository {
     String text, {
     int? toCommentId,
   }) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.createPostComment(
         {
@@ -64,7 +61,6 @@ class UserPostRepositoryImpl implements UserPostRepository {
 
   @override
   Future<PostEntity> getUserPost(int id) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.getUserPost(id);
 
@@ -82,7 +78,6 @@ class UserPostRepositoryImpl implements UserPostRepository {
     int limit,
     int last,
   ) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.getPostComments(postId, limit, last);
 
@@ -96,7 +91,6 @@ class UserPostRepositoryImpl implements UserPostRepository {
 
   @override
   Future<ReactionType> updateCommentReaction(int id, ReactionType type) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.updateCommentReaction(id, type.name);
 
@@ -110,7 +104,6 @@ class UserPostRepositoryImpl implements UserPostRepository {
 
   @override
   Future<void> deleteComment(int id) async {
-    await _api.setHeaderLocale();
     try {
       await _api.deleteComment(id);
     } catch (_) {
@@ -125,7 +118,6 @@ class UserPostRepositoryImpl implements UserPostRepository {
     int postId, {
     int? toCommentId,
   }) async {
-    await _api.setHeaderLocale();
     try {
       final response = await _api.updateComment(
         commentId,
