@@ -1,3 +1,4 @@
+import 'package:data/dto/location_dto.dart';
 import 'package:domain/domain.dart';
 import 'package:domain/entity/location_entity/location_entity.dart';
 

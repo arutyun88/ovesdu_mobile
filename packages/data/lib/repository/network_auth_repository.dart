@@ -1,3 +1,7 @@
+import 'package:data/dto/device_dto.dart';
+import 'package:data/dto/token_dto.dart';
+import 'package:data/dto/user_dto.dart';
+import 'package:data/dto/user_info_dto.dart';
 import 'package:domain/domain.dart';
 
 class NetworkAuthRepository implements AuthRepository {

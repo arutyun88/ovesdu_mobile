@@ -1,3 +1,4 @@
+import 'package:data/dto/post_dto/posts_dto.dart';
 import 'package:domain/domain.dart';
 import 'package:domain/entity/timeline_type.dart';
 

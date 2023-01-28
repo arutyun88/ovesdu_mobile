@@ -10,6 +10,8 @@ dependencies:
   hive: ^2.1.0
   pretty_dio_logger: ^1.1.1
   get_it: ^7.2.0
+  freezed: ^2.1.0
+  freezed_annotation: ^2.1.0
 
   domain:
     path: '../domain'
@@ -17,3 +19,4 @@ dependencies:
 dev_dependencies:
   lints: ^2.0.0
   build_runner: ^2.2.1
+  json_serializable: ^6.5.2

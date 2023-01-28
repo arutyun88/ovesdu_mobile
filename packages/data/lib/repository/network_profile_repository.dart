@@ -1,3 +1,6 @@
+import 'package:data/dto/user_profile/user_profile_dto.dart';
+import 'package:data/dto/user_profile_follower/user_profile_follower_dto.dart';
+import 'package:data/dto/user_profile_statistic/user_profile_statistic_dto.dart';
 import 'package:domain/domain.dart';
 
 class NetworkProfileRepository implements ProfileRepository {
