@@ -8,7 +8,7 @@ import '../../../../app/const/const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/ui/components/custom_page_route.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import '../../domain/state/user_profile_statistic/user_profile_statistic_cubit.dart';
+import '../../state/user_profile_statistic/user_profile_statistic_cubit.dart';
 import '../follower_screen.dart';
 import '../../../../app/ui/components/item_divider.dart';
 

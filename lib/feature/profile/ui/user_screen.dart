@@ -10,7 +10,7 @@ import '../../../app/ui/components/buttons/empty_button.dart';
 import '../../../app/ui/components/buttons/language_button/language_button.dart';
 import '../../../app/ui/components/buttons/theme_button/theme_button.dart';
 import '../../../app/ui/config/app_colors.dart';
-import '../domain/state/profile_cubit.dart';
+import '../state/profile_cubit.dart';
 
 class UserScreen extends StatelessWidget {
   const UserScreen({Key? key}) : super(key: key);

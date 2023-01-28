@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../posts/ui/components/post_statistic.dart';
-import '../../../domain/state/user_post_cubit.dart';
+import '../../../state/user_post_cubit.dart';
 import '../../../../posts/ui/components/post_content.dart';
 import 'user_post_item_header_light.dart';
 

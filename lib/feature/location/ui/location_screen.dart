@@ -13,7 +13,7 @@ import '../../../app/helpers/helpers.dart';
 import '../../../app/ui/components/app_scaffold.dart';
 import '../../../app/ui/components/text_fields/app_text_field.dart';
 import '../../../app/ui/config/app_colors.dart';
-import '../domain/state/location_cubit.dart';
+import '../state/location_cubit.dart';
 import 'components/location_list_tile.dart';
 
 class LocationScreen extends StatelessWidget {

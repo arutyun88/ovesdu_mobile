@@ -5,7 +5,7 @@ import 'package:domain/entity/reaction_type.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../domain/state/user_post_comment/reaction/user_comment_reaction_cubit.dart';
+import '../../../state/user_post_comment/reaction/user_comment_reaction_cubit.dart';
 import '../reaction_widget.dart';
 
 class UserCommentItemReaction extends StatefulWidget {

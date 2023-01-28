@@ -11,10 +11,10 @@ import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
 import '../../../../../app/ui/components/author/author_small_avatar.dart';
-import '../../../../profile/domain/state/profile_cubit.dart';
-import '../../../domain/state/user_comment_action/user_comment_action_cubit.dart';
-import '../../../domain/state/user_post_comment/user_post_comment_cubit.dart';
-import '../../../domain/state/user_post_cubit.dart';
+import '../../../../profile/state/profile_cubit.dart';
+import '../../../state/user_comment_action/user_comment_action_cubit.dart';
+import '../../../state/user_post_comment/user_post_comment_cubit.dart';
+import '../../../state/user_post_cubit.dart';
 
 class UserCommentHeader extends StatefulWidget {
   const UserCommentHeader({

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:domain/entity/reaction_type.dart';
 
-import '../../../user_post/domain/state/user_post_cubit.dart';
-import '../../../user_post/domain/state/user_post_reaction/user_post_reaction_cubit.dart';
+import '../../../user_post/state/user_post_cubit.dart';
+import '../../../user_post/state/user_post_reaction/user_post_reaction_cubit.dart';
 import '../../../user_post/ui/components/reaction_widget.dart';
 
 class PostReaction extends StatefulWidget {

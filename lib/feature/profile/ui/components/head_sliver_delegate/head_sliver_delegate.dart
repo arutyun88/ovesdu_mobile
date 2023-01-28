@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../app/di/init_di.dart';
 import '../../../../../app/helpers/app_actions.dart';
-import '../../../domain/state/profile_cubit.dart';
-import '../../../domain/state/user_blocked/user_blocked_cubit.dart';
-import '../../../domain/state/user_profile_cubit.dart';
+import '../../../state/profile_cubit.dart';
+import '../../../state/user_blocked/user_blocked_cubit.dart';
+import '../../../state/user_profile_cubit.dart';
 import 'or_else_widget.dart';
 import 'received_widget.dart';
 

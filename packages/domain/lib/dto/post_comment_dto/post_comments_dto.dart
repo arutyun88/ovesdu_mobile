@@ -1,8 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'post_comment_dto.dart';
-
 part 'post_comments_dto.g.dart';
 
 @JsonSerializable()
@@ -35,8 +33,6 @@ class PostCommentsDto {
       );
 
   List<PostCommentEntity> _mapUserComments(List comments) {
-    return comments
-        .map((e) => PostCommentDto.fromJson(e).toEntity())
-        .toList();
+    return comments.map((e) => PostCommentDto.fromJson(e).toEntity()).toList();
   }
 }

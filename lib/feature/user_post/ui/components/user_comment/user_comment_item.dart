@@ -9,7 +9,7 @@ import '../../../../../app/di/init_di.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../../app/ui/components/custom_page_route.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../../profile/domain/state/profile_cubit.dart';
+import '../../../../profile/state/profile_cubit.dart';
 import '../../../../profile/ui/user_profile_screen.dart';
 import 'user_comment_header.dart';
 import 'user_comment_item_statistic.dart';

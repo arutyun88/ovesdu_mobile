@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../app/di/init_di.dart';
 import '../../../../app/ui/components/item_divider.dart';
-import '../../domain/state/profile_cubit.dart';
+import '../../state/profile_cubit.dart';
 import 'follower_item.dart';
 
 class FollowList extends StatelessWidget {

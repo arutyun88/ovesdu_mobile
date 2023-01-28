@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../domain/state/user_post_comment/user_post_comment_cubit.dart';
+import '../../../state/user_post_comment/user_post_comment_cubit.dart';
 import 'user_comment_item.dart';
 
 class UserCommentList extends StatelessWidget {

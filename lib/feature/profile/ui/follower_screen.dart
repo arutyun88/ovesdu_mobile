@@ -8,9 +8,9 @@ import '../../../app/const/const.dart';
 import '../../../app/data/setting_provider/theme_provider.dart';
 import '../../../app/di/init_di.dart';
 import '../../../app/ui/config/app_colors.dart';
-import '../domain/state/user_blocked/user_blocked_cubit.dart';
-import '../domain/state/user_profile_follower/my_followers_cubit.dart';
-import '../domain/state/user_profile_follower/user_profile_follower_cubit.dart';
+import '../state/user_blocked/user_blocked_cubit.dart';
+import '../state/user_profile_follower/my_followers_cubit.dart';
+import '../state/user_profile_follower/user_profile_follower_cubit.dart';
 import 'components/follow_list.dart';
 import 'components/profile_app_bar.dart';
 

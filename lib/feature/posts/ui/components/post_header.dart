@@ -11,7 +11,7 @@ import '../../../../app/ui/components/author/author_small_avatar.dart';
 import '../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import '../../../profile/domain/state/profile_cubit.dart';
+import '../../../profile/state/profile_cubit.dart';
 
 class PostHeader extends StatefulWidget {
   const PostHeader({

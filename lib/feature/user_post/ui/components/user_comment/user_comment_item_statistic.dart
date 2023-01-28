@@ -8,7 +8,7 @@ import '../../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../../app/di/init_di.dart';
 import '../../../../../app/helpers/helpers.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../domain/state/user_post_comment/reaction/user_comment_reaction_cubit.dart';
+import '../../../state/user_post_comment/reaction/user_comment_reaction_cubit.dart';
 import 'user_comment_item_reaction.dart';
 
 class UserCommentItemStatistic extends StatelessWidget {
