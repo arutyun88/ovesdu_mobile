@@ -80,7 +80,7 @@ class _UserPostItemHeaderState extends State<UserPostItemHeader> {
                 border: Border.all(
                   color: isOnline ? AppColors.orange : AppColors.hintTextColor,
                   width: 2,
-                  strokeAlign: StrokeAlign.outside,
+                  strokeAlign: BorderSide.strokeAlignOutside,
                 ),
               ),
               clipBehavior: Clip.hardEdge,

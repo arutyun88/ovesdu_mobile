@@ -126,7 +126,7 @@ class _FollowerItemState extends State<FollowerItem> {
                                     ? AppColors.orange.withOpacity(.3)
                                     : AppColors.orange,
                                 width: 2,
-                                strokeAlign: StrokeAlign.outside,
+                                strokeAlign: BorderSide.strokeAlignOutside,
                               ),
                             ),
                             clipBehavior: Clip.hardEdge,

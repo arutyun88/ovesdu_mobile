@@ -89,7 +89,7 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
                                   ? AppColors.orange
                                   : AppColors.hintTextColor,
                               width: 2,
-                              strokeAlign: StrokeAlign.outside,
+                              strokeAlign: BorderSide.strokeAlignOutside,
                             ),
                           ),
                           clipBehavior: Clip.hardEdge,
