@@ -50,3 +50,9 @@ class _Language {
     _Language(name: 'français', flag: '🇫🇷', language: 'fr', country: 'FR'),
   ];
 }
+
+extension LocalizationsExtension on BuildContext {
+  AppLocalizations get dictionary => AppLocalizations.of(this)!;
+
+  String get getCountryCode => Localizations.localeOf(this).languageCode;
+}
