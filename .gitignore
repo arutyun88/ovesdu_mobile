@@ -5,6 +5,7 @@ pubspec.lock
 *.config.*
 *.freezed.*
 *.g.*
+*.mocks.dart
 
 # Miscellaneous
 *.class

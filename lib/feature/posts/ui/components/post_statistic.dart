@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -5,13 +6,11 @@ import 'package:provider/provider.dart';
 import '../../../../app/const/const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/di/init_di.dart';
-import '../../../../app/domain/entities/post_entity/post_entity.dart';
 import '../../../../app/helpers/app_icons.dart';
 import '../../../../app/ui/components/buttons/empty_button.dart';
 import '../../../../app/ui/components/custom_page_route.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import '../../../../feature/user_post/domain/state/user_post_reaction/user_post_reaction_cubit.dart';
-import '../../../../feature/user_post/domain/user_post_repository.dart';
+import '../../../../feature/user_post/state/user_post_reaction/user_post_reaction_cubit.dart';
 import '../../../../feature/user_post/ui/user_post_comment_screen.dart';
 import 'post_reaction.dart';
 

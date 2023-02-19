@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,12 +13,9 @@ import '../../../../app/helpers/app_icons.dart';
 import '../../../../app/ui/components/buttons/empty_button.dart';
 import '../../../../app/ui/components/custom_page_route.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import '../../domain/entities/user_profile_follower/user_profile_follower_item_entity.dart';
-import '../../domain/entities/user_profile_follower/user_simple_followers_entity.dart';
-import '../../domain/profile_repository.dart';
-import '../../domain/state/profile_cubit.dart';
-import '../../domain/state/user_blocked/user_blocked_cubit.dart';
-import '../../domain/state/user_profile_follower/my_followers_cubit.dart';
+import '../../state/profile_cubit.dart';
+import '../../state/user_blocked/user_blocked_cubit.dart';
+import '../../state/user_profile_follower/my_followers_cubit.dart';
 import '../user_profile_screen.dart';
 
 class FollowerItem extends StatefulWidget {
@@ -128,7 +126,7 @@ class _FollowerItemState extends State<FollowerItem> {
                                     ? AppColors.orange.withOpacity(.3)
                                     : AppColors.orange,
                                 width: 2,
-                                strokeAlign: StrokeAlign.outside,
+                                strokeAlign: BorderSide.strokeAlignOutside,
                               ),
                             ),
                             clipBehavior: Clip.hardEdge,

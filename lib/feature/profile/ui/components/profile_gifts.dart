@@ -103,7 +103,7 @@ class _GiftItem extends StatelessWidget {
                 border: Border.all(
                   color: AppColors.orange,
                   width: 4,
-                  strokeAlign: StrokeAlign.outside,
+                  strokeAlign: BorderSide.strokeAlignOutside,
                 ),
               ),
               clipBehavior: Clip.hardEdge,

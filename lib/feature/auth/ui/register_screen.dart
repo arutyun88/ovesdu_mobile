@@ -3,10 +3,10 @@ import 'package:domain/entity/location_entity/location_entity.dart';
 import 'package:domain/state/auth_state/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ovesdu_mobile/app/const/const.dart';
 import 'package:ovesdu_mobile/app/ui/components/buttons/theme_button/theme_button.dart';
+import 'package:ovesdu_mobile/l10n/l10n.dart';
 import 'package:provider/provider.dart';
 
 import '../../../app/const/reg_exr_const.dart';
@@ -65,7 +65,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late bool _passwordConfirmIsValid = false;
   late bool _buttonEnabled;
   late final ValueNotifier<List<String>> _notifications = ValueNotifier([]);
-  late AppLocalizations _dictionary;
   late String _serverMessage = '';
 
   late bool _genderSelected = false;
@@ -92,7 +91,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _dictionary = AppLocalizations.of(context)!;
   }
 
   @override
@@ -134,7 +132,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   const EdgeInsets.symmetric(vertical: 16.0),
                               child: EmptyButton(
                                 child: Text(
-                                  _dictionary.toStart,
+                                  context.dictionary.toStart,
                                   style: theme.textTheme.headline6?.copyWith(
                                     color: AppColors.orange,
                                     fontWeight: FontWeight.w700,
@@ -155,18 +153,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   _ConfirmedValue(
-                                    name: _dictionary
+                                    name: context.dictionary
                                         .registerConfirmedUsernameLabel,
                                     value: widget.username,
                                   ),
                                   _ConfirmedValue(
-                                    name:
-                                        _dictionary.registerConfirmedEmailLabel,
+                                    name: context
+                                        .dictionary.registerConfirmedEmailLabel,
                                     value: widget.email,
                                   ),
                                   _ConfirmedValue(
-                                    name:
-                                        _dictionary.registerConfirmedPhoneLabel,
+                                    name: context
+                                        .dictionary.registerConfirmedPhoneLabel,
                                     value:
                                         '${widget.phoneNumber} (${widget.phoneCountryCode})',
                                   ),
@@ -176,8 +174,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           AppTextField(
                             controller: _firstNameController,
-                            hintText: _dictionary.firstNameHint,
-                            labelText: _dictionary.firstNameLabel,
+                            hintText: context.dictionary.firstNameHint,
+                            labelText: context.dictionary.firstNameLabel,
                             borderColor: _firstNameIsComplete
                                 ? AppColors.orange
                                 : AppColors.red,
@@ -187,8 +185,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           const SizedBox(height: 12.0),
                           AppTextField(
                             controller: _lastNameController,
-                            hintText: _dictionary.lastNameHint,
-                            labelText: _dictionary.lastNameLabel,
+                            hintText: context.dictionary.lastNameHint,
+                            labelText: context.dictionary.lastNameLabel,
                             borderColor: _lastNameIsComplete
                                 ? AppColors.orange
                                 : AppColors.red,
@@ -209,8 +207,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   borderColor: _dateIsComplete
                                       ? AppColors.orange
                                       : AppColors.red,
-                                  hintText: _dictionary.dateOfBirthLabel,
-                                  labelText: _dictionary.dateOfBirthLabel,
+                                  hintText: context.dictionary.dateOfBirthLabel,
+                                  labelText:
+                                      context.dictionary.dateOfBirthLabel,
                                   onChanged: (value) => setState(_dateValidate),
                                 ),
                               ),
@@ -274,7 +273,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 child: Text(
                                   _locationToString.isNotEmpty
                                       ? _locationToString
-                                      : _dictionary.locationChoose,
+                                      : context.dictionary.locationChoose,
                                   textAlign: _locationToString.isNotEmpty
                                       ? TextAlign.start
                                       : TextAlign.end,
@@ -303,8 +302,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 child: AppTextField(
                                   fieldType: TextFieldType.password,
                                   controller: _passwordController,
-                                  hintText: _dictionary.passwordHint,
-                                  labelText: _dictionary.passwordLabel,
+                                  hintText: context.dictionary.passwordHint,
+                                  labelText: context.dictionary.passwordLabel,
                                   borderColor: _passwordIsComplete
                                       ? AppColors.orange
                                       : AppColors.red,
@@ -334,8 +333,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           AppTextField(
                             fieldType: TextFieldType.password,
                             controller: _passwordConfirmController,
-                            hintText: _dictionary.passwordConfirmHint,
-                            labelText: _dictionary.passwordConfirmLabel,
+                            hintText: context.dictionary.passwordConfirmHint,
+                            labelText: context.dictionary.passwordConfirmLabel,
                             borderColor: _passwordConfirmIsComplete
                                 ? AppColors.orange
                                 : AppColors.red,
@@ -349,7 +348,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               padding:
                                   const EdgeInsets.symmetric(vertical: 30.0),
                               child: DefaultButton(
-                                title: _dictionary.register,
+                                title: context.dictionary.register,
                                 enable: _buttonEnabled,
                                 onPressed: () {
                                   _registerOnPressed(context.read<AuthCubit>());
@@ -465,15 +464,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _firstNameValidate() {
     _notificationsRemove(_serverMessage);
     if (_firstNameController.text.isEmpty) {
-      _notificationsRemove(_dictionary.firstNameInvalid);
+      _notificationsRemove(context.dictionary.firstNameInvalid);
       _firstNameIsComplete = true;
       _firstNameIsValid = false;
     } else if (_firstNameController.text.length < 2) {
-      _notificationsUpdate(_dictionary.firstNameInvalid);
+      _notificationsUpdate(context.dictionary.firstNameInvalid);
       _firstNameIsComplete = false;
       _firstNameIsValid = false;
     } else {
-      _notificationsRemove(_dictionary.firstNameInvalid);
+      _notificationsRemove(context.dictionary.firstNameInvalid);
       _firstNameIsComplete = true;
       _firstNameIsValid = true;
     }
@@ -483,15 +482,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _lastNameValidate() {
     _notificationsRemove(_serverMessage);
     if (_lastNameController.text.isEmpty) {
-      _notificationsRemove(_dictionary.lastNameInvalid);
+      _notificationsRemove(context.dictionary.lastNameInvalid);
       _lastNameIsComplete = true;
       _lastNameIsValid = false;
     } else if (_lastNameController.text.length < 2) {
-      _notificationsUpdate(_dictionary.lastNameInvalid);
+      _notificationsUpdate(context.dictionary.lastNameInvalid);
       _lastNameIsComplete = false;
       _lastNameIsValid = false;
     } else {
-      _notificationsRemove(_dictionary.lastNameInvalid);
+      _notificationsRemove(context.dictionary.lastNameInvalid);
       _lastNameIsComplete = true;
       _lastNameIsValid = true;
     }
@@ -501,12 +500,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _dateValidate() {
     _notificationsRemove(_serverMessage);
     if (_dateOfBirthController.text.isEmpty) {
-      _notificationsRemove(_dictionary.dateInvalid);
+      _notificationsRemove(context.dictionary.dateInvalid);
       _dateIsComplete = true;
       _dateIsValid = false;
     } else if (_dateOfBirthController.text.length != 10) {
-      _notificationsRemove(_dictionary.isUnderage);
-      _notificationsUpdate(_dictionary.dateInvalid);
+      _notificationsRemove(context.dictionary.isUnderage);
+      _notificationsUpdate(context.dictionary.dateInvalid);
       _dateIsComplete = false;
       _dateIsValid = false;
     } else {
@@ -516,13 +515,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
           .toList();
       var date = DateTime(temp[2], temp[1], temp[0]);
       if (date.isUnderage()) {
-        _notificationsRemove(_dictionary.dateInvalid);
-        _notificationsUpdate(_dictionary.isUnderage);
+        _notificationsRemove(context.dictionary.dateInvalid);
+        _notificationsUpdate(context.dictionary.isUnderage);
         _dateIsComplete = false;
         _dateIsValid = false;
       } else {
-        _notificationsRemove(_dictionary.isUnderage);
-        _notificationsRemove(_dictionary.dateInvalid);
+        _notificationsRemove(context.dictionary.isUnderage);
+        _notificationsRemove(context.dictionary.dateInvalid);
         _dateIsComplete = true;
         _dateIsValid = true;
       }
@@ -536,16 +535,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
     var value = _passwordController.text;
     _passwordController.selection = updateCursorSelection(value);
     if (value.isEmpty) {
-      _notificationsRemove(_dictionary.passwordErrorText);
+      _notificationsRemove(context.dictionary.passwordErrorText);
       _passwordIsComplete = true;
       _passwordIsValid = false;
     } else {
       if (value.validatePassword()) {
-        _notificationsRemove(_dictionary.passwordErrorText);
+        _notificationsRemove(context.dictionary.passwordErrorText);
         _passwordIsComplete = true;
         _passwordIsValid = true;
       } else {
-        _notificationsUpdate(_dictionary.passwordErrorText);
+        _notificationsUpdate(context.dictionary.passwordErrorText);
         _passwordIsComplete = false;
         _passwordIsValid = false;
       }
@@ -558,16 +557,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _notificationsRemove(_serverMessage);
     if (_passwordController.text.isNotEmpty) {
       if (_passwordController.text == _passwordConfirmController.text) {
-        _notificationsRemove(_dictionary.passwordNotMatch);
+        _notificationsRemove(context.dictionary.passwordNotMatch);
         _passwordConfirmIsComplete = true;
         _passwordConfirmIsValid = true;
       } else {
-        _notificationsUpdate(_dictionary.passwordNotMatch);
+        _notificationsUpdate(context.dictionary.passwordNotMatch);
         _passwordConfirmIsComplete = false;
         _passwordConfirmIsValid = false;
       }
     } else {
-      _notificationsRemove(_dictionary.passwordNotMatch);
+      _notificationsRemove(context.dictionary.passwordNotMatch);
       _passwordConfirmIsComplete = true;
       _passwordConfirmIsValid = false;
     }

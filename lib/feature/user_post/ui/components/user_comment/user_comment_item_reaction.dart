@@ -1,11 +1,11 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:domain/entity/reaction_type.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../app/data/setting_provider/theme_provider.dart';
-import '../../../../../app/domain/entities/comment_entity/post_comment_entity.dart';
-import '../../../domain/entity/reaction_type.dart';
-import '../../../domain/state/user_post_comment/reaction/user_comment_reaction_cubit.dart';
+import '../../../state/user_post_comment/reaction/user_comment_reaction_cubit.dart';
 import '../reaction_widget.dart';
 
 class UserCommentItemReaction extends StatefulWidget {

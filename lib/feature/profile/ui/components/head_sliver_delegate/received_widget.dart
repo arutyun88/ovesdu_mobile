@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +12,6 @@ import '../../../../../app/helpers/date_helper.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../domain/entities/user_profile/user_profile_entity.dart';
 import '../message_button.dart';
 import 'head_sliver_delegate.dart';
 
@@ -188,7 +188,7 @@ class _ReceivedWidgetState extends State<ReceivedWidget> {
                                 ? AppColors.orange
                                 : AppColors.hintTextColor,
                             width: 2,
-                            strokeAlign: StrokeAlign.outside,
+                            strokeAlign: BorderSide.strokeAlignOutside,
                           ),
                         ),
                         clipBehavior: Clip.hardEdge,

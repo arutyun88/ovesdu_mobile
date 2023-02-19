@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../feature/profile/domain/state/profile_cubit.dart';
-import '../../feature/profile/domain/state/user_blocked/user_blocked_cubit.dart';
-import '../../feature/user_post/domain/state/user_post_cubit.dart';
+import '../../feature/profile/state/profile_cubit.dart';
+import '../../feature/profile/state/user_blocked/user_blocked_cubit.dart';
+import '../../feature/user_post/state/user_post_cubit.dart';
 import '../di/init_di.dart';
 import '../ui/components/custom_dialog/custom_dialog.dart';
 

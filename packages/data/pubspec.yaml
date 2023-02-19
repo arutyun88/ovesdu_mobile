@@ -6,8 +6,12 @@ environment:
   sdk: '>=2.18.4 <3.0.0'
 
 dependencies:
+  dio: ^4.0.6
+  hive: ^2.1.0
+  pretty_dio_logger: ^1.1.1
   get_it: ^7.2.0
-  injectable: ^1.5.3
+  freezed: ^2.1.0
+  freezed_annotation: ^2.1.0
 
   domain:
     path: '../domain'
@@ -15,4 +19,4 @@ dependencies:
 dev_dependencies:
   lints: ^2.0.0
   build_runner: ^2.2.1
-  injectable_generator: ^1.5.3
+  json_serializable: ^6.5.2

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,7 +7,6 @@ import '../../../../app/const/const.dart';
 import '../../../../app/data/setting_provider/theme_provider.dart';
 import '../../../../app/helpers/helpers.dart';
 import '../../../../app/ui/config/app_colors.dart';
-import '../../../../app/domain/entities/post_entity/post_photo_entity.dart';
 import 'post_content_image_fullscreen.dart';
 
 class PostContentPhoto extends StatelessWidget {

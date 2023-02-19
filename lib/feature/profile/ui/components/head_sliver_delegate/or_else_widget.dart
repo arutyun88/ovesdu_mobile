@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +12,6 @@ import '../../../../../app/helpers/app_icons.dart';
 import '../../../../../app/ui/components/custom_dialog/custom_dialog.dart';
 import '../../../../../app/ui/components/dialog/more_menu_dialog.dart';
 import '../../../../../app/ui/config/app_colors.dart';
-import '../../../domain/entities/user_profile/user_profile_entity.dart';
 import 'head_sliver_delegate.dart';
 
 class OrElseWidget extends StatefulWidget {
