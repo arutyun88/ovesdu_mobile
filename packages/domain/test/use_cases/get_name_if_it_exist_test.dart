@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:domain/domain.dart';
 import 'package:domain/repository/authentication_repository.dart';
 import 'package:domain/use_cases/get_name_if_it_exist.dart';
 import 'package:mockito/annotations.dart';
@@ -17,7 +18,7 @@ void main() {
   });
 
   final qName = 'some';
-  final tName = 'Some';
+  final tName = NameEntity('Some');
 
   test(
     'should get the name if it exist from the repository',
