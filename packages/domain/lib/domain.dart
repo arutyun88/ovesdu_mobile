@@ -20,11 +20,15 @@ export 'entity/user_profile_follower/user_simple_followers_entity.dart';
 
 export 'entity/name_entity.dart';
 
+export 'error/failures.dart';
+
 export 'repository/auth_repository.dart';
 export 'repository/user_post_repository.dart';
 export 'repository/profile_repository.dart';
 export 'repository/location_repository.dart';
 export 'repository/post_repository.dart';
+
+export 'repository/authentication_repository.dart';
 
 export 'api/auth_api.dart';
 export 'api/app_api.dart';
