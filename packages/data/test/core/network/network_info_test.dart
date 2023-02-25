@@ -1,4 +1,4 @@
-import 'package:data/core/platform/network_info.dart';
+import 'package:data/core/network/network_info.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

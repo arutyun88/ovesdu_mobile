@@ -1,26 +1,27 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/exceptions/exceptions.dart';
 import 'package:domain/domain.dart';
 
-import '../core/platform/network_info.dart';
+import '../core/network/network_info.dart';
 import '../datasources/authentication_remote_datasource.dart';
+import '../exceptions/exceptions.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
-  final AuthenticationRemoteDatasource authenticationRemoteDatasource;
-  final NetworkInfo networkInfo;
+  final AuthenticationRemoteDatasource _authenticationRemoteDatasource;
+  final NetworkInfo _networkInfo;
 
   const AuthenticationRepositoryImpl({
-    required this.authenticationRemoteDatasource,
-    required this.networkInfo,
-  });
+    required AuthenticationRemoteDatasource authenticationRemoteDatasource,
+    required NetworkInfo networkInfo,
+  })  : _authenticationRemoteDatasource = authenticationRemoteDatasource,
+        _networkInfo = networkInfo;
 
   @override
   Future<Either<Failure, NameEntity>> getNameIfItExist(
     String usernameOrEmailOrPhoneNumber,
   ) async {
     try {
-      if (await networkInfo.isConnected) {
-        final nameEntity = await authenticationRemoteDatasource
+      if (await _networkInfo.isConnected) {
+        final nameEntity = await _authenticationRemoteDatasource
             .getNameIfItExist(usernameOrEmailOrPhoneNumber);
         return Right(nameEntity);
       } else {

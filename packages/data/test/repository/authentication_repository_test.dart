@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/core/platform/network_info.dart';
+import 'package:data/core/network/network_info.dart';
 import 'package:data/datasources/authentication_remote_datasource.dart';
 import 'package:data/exceptions/exceptions.dart';
 import 'package:data/models/name_model.dart';
