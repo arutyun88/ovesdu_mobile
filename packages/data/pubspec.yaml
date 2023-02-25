@@ -13,6 +13,7 @@ dependencies:
   freezed: ^2.1.0
   freezed_annotation: ^2.1.0
   dartz: ^0.10.1
+  internet_connection_checker: ^1.0.0+1
 
   domain:
     path: '../domain'
