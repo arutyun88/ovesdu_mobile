@@ -7,8 +7,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import '../../datasources/authentication_remote_datasource_test.mocks.dart';
 import '../../resources/resources_reader.dart';
+import 'request_wrapper_test.mocks.dart';
 
 @GenerateMocks([Dio])
 void main() {
@@ -25,7 +25,7 @@ void main() {
       data: errorData));
 
   final Dio client = MockDio();
-  final RequestWrapper wrapper = RequestWrapper.testInstance(client);
+  final RequestWrapper wrapper = RequestWrapper(client);
 
   group('RequestWrapper', () {
     test(
