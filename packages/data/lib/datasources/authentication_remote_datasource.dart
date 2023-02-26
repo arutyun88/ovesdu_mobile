@@ -1,8 +1,8 @@
-import 'dart:convert';
-
 import 'package:data/exceptions/exceptions.dart';
 import 'package:data/models/name_model.dart';
-import 'package:dio/dio.dart';
+
+import '../core/wrappers/request_wrapper.dart';
+import '../dio/app_dio.dart';
 
 abstract class AuthenticationRemoteDatasource {
   /// Calls the /auth/info/{[usernameOrEmailOrPhoneNumber]} endpoint
@@ -13,25 +13,22 @@ abstract class AuthenticationRemoteDatasource {
 
 class AuthenticationRemoteDatasourceImpl
     implements AuthenticationRemoteDatasource {
-  final Dio _client;
+  late final RequestWrapper _wrapper;
 
-  const AuthenticationRemoteDatasourceImpl({
-    required Dio client,
-  }) : _client = client;
+  AuthenticationRemoteDatasourceImpl({
+    RequestWrapper? wrapper,
+  }) : _wrapper = wrapper ?? RequestWrapper(AppClient.instance);
 
   @override
   Future<NameModel> getNameIfItExist(
     String usernameOrEmailOrPhoneNumber,
   ) async {
-    final response =
-        await _client.get('/auth/info/$usernameOrEmailOrPhoneNumber')
-          ..requestOptions.headers = {
-            Headers.contentTypeHeader: Headers.jsonContentType,
-          };
-    if (response.statusCode == 200) {
-      return NameModel.fromJson(jsonDecode(response.data)['data']);
-    } else {
-      throw ServerException();
+    try {
+      final response =
+          await _wrapper.get('/auth/info/$usernameOrEmailOrPhoneNumber');
+      return NameModel.fromJson(response['data']);
+    } catch (_) {
+      rethrow;
     }
   }
 }

@@ -1,24 +1,26 @@
 import 'dart:convert';
 
+import 'package:data/core/wrappers/request_wrapper.dart';
 import 'package:data/datasources/authentication_remote_datasource.dart';
 import 'package:data/exceptions/exceptions.dart';
 import 'package:data/models/name_model.dart';
 import 'package:mockito/annotations.dart';
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:dio/dio.dart';
 
 import '../resources/resources_reader.dart';
 import 'authentication_remote_datasource_test.mocks.dart';
 
-@GenerateMocks([Dio])
+@GenerateMocks([RequestWrapper])
 void main() {
+  final successResponse = jsonDecode(reader('name_data_success'));
+
   late AuthenticationRemoteDatasource datasource;
-  late Dio client;
+  late RequestWrapper wrapper;
 
   setUp(() {
-    client = MockDio();
-    datasource = AuthenticationRemoteDatasourceImpl(client: client);
+    wrapper = MockRequestWrapper();
+    datasource = AuthenticationRemoteDatasourceImpl(wrapper: wrapper);
   });
 
   final tNameModel =
@@ -26,32 +28,25 @@ void main() {
   final qName = tNameModel.name;
   final path = '/auth/info/$qName';
 
-  Response response(String value, int code) => Response(
-        requestOptions: RequestOptions(path: path),
-        statusCode: code,
-        data: value,
-      );
-
-  void setUpMockClientSuccess200() => when(client.get(path)).thenAnswer(
-      (_) async => Future.value(response(reader('name_data_success'), 200)));
-
-  group('getNameIfItExist', () {
+  group('AuthenticationRemoteDatasource: getNameIfItExist', () {
     test(
-      '''should perform GET request on a URL with username or email 
+      '''should call GET method on wrapper with username or email 
       or phone number being the endpoint, once''',
       () async {
-        setUpMockClientSuccess200();
+        when(wrapper.get(path))
+            .thenAnswer((_) async => Future.value(successResponse));
 
         datasource.getNameIfItExist(qName);
 
-        verify(client.get(path)).called(1);
+        verify(wrapper.get(path)).called(1);
       },
     );
 
     test(
-      'should return NameModel when the response code is 200',
+      'should return NameModel when the request was successful',
       () async {
-        setUpMockClientSuccess200();
+        when(wrapper.get(path))
+            .thenAnswer((_) async => Future.value(successResponse));
 
         final result = await datasource.getNameIfItExist(qName);
 
@@ -60,10 +55,9 @@ void main() {
     );
 
     test(
-      'should throw a ServerException when the response code is 404 or other',
+      'should throw a ServerException when the request failed',
       () async {
-        when(client.get(path)).thenAnswer((_) async =>
-            Future.value(response(reader('name_data_error'), 404)));
+        when(wrapper.get(path)).thenThrow(ServerException());
 
         final call = datasource.getNameIfItExist;
 
