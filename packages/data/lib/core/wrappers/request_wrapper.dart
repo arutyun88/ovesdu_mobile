@@ -1,5 +1,8 @@
-import 'package:data/exceptions/exceptions.dart';
 import 'package:dio/dio.dart';
+
+import '../../exceptions/exceptions.dart';
+import '../helpers/device_helper.dart';
+import '../helpers/app_header.dart';
 
 class RequestWrapper {
   static late final Dio _client;
@@ -33,11 +36,15 @@ class RequestWrapper {
 
   Future<Response<dynamic>> send(
     Future<Response<dynamic>> request,
-  ) async =>
-      await request
-        ..requestOptions.headers = {
-          Headers.contentTypeHeader: Headers.jsonContentType,
-        };
+  ) async {
+    return await request
+      ..requestOptions.headers = {
+        Headers.contentTypeHeader: Headers.jsonContentType,
+        AppHeader.appLocale: DeviceHelper.locale(),
+        AppHeader.deviceType: DeviceHelper.deviceType(),
+        AppHeader.deviceId: DeviceHelper.deviceId(),
+      };
+  }
 
   Map<String, dynamic> _responseHandler(Response<dynamic> response) {
     if (response.statusCode == 200) return response.data;

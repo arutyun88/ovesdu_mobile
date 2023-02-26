@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:data/core/helpers/app_header.dart';
 import 'package:data/core/wrappers/request_wrapper.dart';
 import 'package:data/exceptions/exceptions.dart';
 import 'package:dio/dio.dart';
@@ -70,6 +71,26 @@ void main() {
         final headers = result.requestOptions.headers;
 
         expect(headers[Headers.contentTypeHeader], Headers.jsonContentType);
+      },
+    );
+
+    test(
+      'should send a request header contains locale, device type and device id and its not empty',
+      () async {
+        when(client.get('')).thenAnswer((_) async => successResponse);
+
+        final result = await wrapper.send(client.get(''));
+        final headers = result.requestOptions.headers;
+        final keys = headers.keys.toList();
+
+        expect(keys, contains(AppHeader.appLocale));
+        expect(headers[AppHeader.appLocale], isNotEmpty);
+
+        expect(keys, contains(AppHeader.deviceType));
+        expect(headers[AppHeader.deviceType], isNotEmpty);
+
+        expect(keys, contains(AppHeader.deviceId));
+        expect(headers[AppHeader.deviceId], isNotEmpty);
       },
     );
   });
