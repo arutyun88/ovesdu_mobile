@@ -60,5 +60,17 @@ void main() {
         expect(() => call(''), throwsA(TypeMatcher<ServerException>()));
       },
     );
+
+    test(
+      'should send a request with a content-type header equal to application/json',
+      () async {
+        when(client.get('')).thenAnswer((_) async => successResponse);
+
+        final result = await wrapper.send(client.get(''));
+        final headers = result.requestOptions.headers;
+
+        expect(headers[Headers.contentTypeHeader], Headers.jsonContentType);
+      },
+    );
   });
 }
