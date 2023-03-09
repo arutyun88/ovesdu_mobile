@@ -1,6 +1,8 @@
 import 'package:data/exceptions/exceptions.dart';
 import 'package:data/models/name_model.dart';
 
+import '../core/helpers/app_header.dart';
+import '../core/helpers/device_helper.dart';
 import '../core/wrappers/request_wrapper.dart';
 import '../dio/app_dio.dart';
 
@@ -24,8 +26,11 @@ class AuthenticationRemoteDatasourceImpl
     String usernameOrEmailOrPhoneNumber,
   ) async {
     try {
-      final response =
-          await _wrapper.get('/auth/info/$usernameOrEmailOrPhoneNumber');
+      final response = await _wrapper
+          .get('/auth/info/$usernameOrEmailOrPhoneNumber', header: {
+        AppHeader.deviceType: DeviceHelper.deviceType(),
+        AppHeader.deviceId: DeviceHelper.deviceId(),
+      });
       return NameModel.fromJson(response['data']);
     } catch (_) {
       rethrow;

@@ -75,7 +75,7 @@ void main() {
     );
 
     test(
-      'should send a request header contains locale, device type and device id and its not empty',
+      'should send a request header contains locale and it\'s not empty',
       () async {
         when(client.get('')).thenAnswer((_) async => successResponse);
 
@@ -85,12 +85,6 @@ void main() {
 
         expect(keys, contains(AppHeader.appLocale));
         expect(headers[AppHeader.appLocale], isNotEmpty);
-
-        expect(keys, contains(AppHeader.deviceType));
-        expect(headers[AppHeader.deviceType], isNotEmpty);
-
-        expect(keys, contains(AppHeader.deviceId));
-        expect(headers[AppHeader.deviceId], isNotEmpty);
       },
     );
   });

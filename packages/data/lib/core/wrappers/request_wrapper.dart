@@ -14,6 +14,7 @@ class RequestWrapper {
   Future<Map<String, dynamic>> get(
     String path, {
     Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? header,
   }) async {
     return _responseHandler(
       await send(
@@ -26,6 +27,7 @@ class RequestWrapper {
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? header,
   }) async {
     return _responseHandler(
       await send(
@@ -35,14 +37,14 @@ class RequestWrapper {
   }
 
   Future<Response<dynamic>> send(
-    Future<Response<dynamic>> request,
-  ) async {
+    Future<Response<dynamic>> request, {
+    Map<String, dynamic>? header,
+  }) async {
     return await request
       ..requestOptions.headers = {
         Headers.contentTypeHeader: Headers.jsonContentType,
         AppHeader.appLocale: DeviceHelper.locale(),
-        AppHeader.deviceType: DeviceHelper.deviceType(),
-        AppHeader.deviceId: DeviceHelper.deviceId(),
+        ...?header,
       };
   }
 
